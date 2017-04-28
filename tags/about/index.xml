@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on Verric&#39;s Blog</title>
+    <link>https://verric.github.io/tags/about/</link>
+    <description>Recent content in About on Verric&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 27 Mar 2017 10:39:33 +1100</lastBuildDate>
+    
+	<atom:link href="https://verric.github.io/tags/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>(&gt;o.0)&gt;  give introduction &lt;(0.o&lt;)</title>
+      <link>https://verric.github.io/about/</link>
+      <pubDate>Mon, 27 Mar 2017 10:39:33 +1100</pubDate>
+      
+      <guid>https://verric.github.io/about/</guid>
+      <description>Not really much to say at this point of time.
+Commonly go by the name Verric on the webs accompanied by </description>
+    </item>
+    
+  </channel>
+</rss>
