@@ -1,0 +1,772 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.20.6">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Kotlin in Action: Chapter 1</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="kotlin, programming, learning">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
+    <meta property="og:description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Kotlin in Action: Chapter 1">
+    <meta property="og:url" content="/2017/05/05/kotlin-in-action-chapter-1/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Kotlin in Action: Chapter 1
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-05T16:02:50&#43;10:00">
+      
+  
+  
+  
+  
+    2017-05-05
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/kotlin">kotlin</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h2 id="chapter-1-kotlin-basics">Chapter 1: Kotlin Basics</h2>
+
+<h3 id="kotlin-overview">Kotlin overview</h3>
+
+<ul>
+<li>Created and currently maintained by JetBrains</li>
+<li>Designed to be a <code>pragmatic, concise and safe</code>  language above all else</li>
+<li>Supports OOP and FP</li>
+<li>Statically Typed</li>
+<li>Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers)</li>
+<li>Currently targets Java 1.6 bytecode to be compatible with Android</li>
+<li>Interoperable with Java and most JVM languages (can use classes, methods etc from other languages)</li>
+<li>Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile</li>
+</ul>
+
+<h3 id="starting-kotlin-basics">Starting Kotlin - Basics</h3>
+
+<p>Unavoidable HelloWorld.kt</p>
+
+<pre><code class="language-java">fun main(args: Array&lt;String&gt;) {
+  println(&quot;Hello World&quot;);
+}
+</code></pre>
+
+<ul>
+<li><code>fun</code> - short for function can be declared in a file outside of a class since Kotlin supports <code>Functions as a first class citizen</code></li>
+<li>declares variables as <code>name: type</code>  instead of the C-sytnax of <code>type name</code></li>
+<li>Kotlin doesnt really have primitives nor C-style arrays - so we use <code>Arrays</code> as if it were a formal class</li>
+<li><code>println</code> is simply wrapper around <code>System.out.println</code></li>
+<li>Semi-colons are optional</li>
+</ul>
+
+<h3 id="functions">Functions</h3>
+
+<p>Functions in Kotlin are commonly referred to as  <code>first class citizens</code>, meaning they can be passed as a values and can also be return values from other functions, similar to Scala, Javascript and the other languages that support FP.</p>
+
+<p><em>Declaring a function</em></p>
+
+<p>The skeleton for declaring a function in Kotlin is as follows.</p>
+
+<pre><code class="language-java">fun functionName(parameterName1: parameterType1, parameterName2: parameterType2 ...): returnType {/** function body **/}
+</code></pre>
+
+<p>Note there are variances for convenience, but this is the main structure.</p>
+
+<p>Example</p>
+
+<pre><code class="language-java">fun getFullName(firstName: String, lastName: String): String {
+  return firstName + &quot; &quot; + lastName;
+}
+</code></pre>
+
+<p><strong>Expression Functions</strong></p>
+
+<p>expression functions are a type <code>special</code> of function and syntactically resemble a JS ES6 arrow function (with types) in that if the function body is only 1 expression then:</p>
+
+<ul>
+<li>you do not have to explicitly use the <code>return</code> keyword</li>
+<li>you can drop the  return type from the function signature (it is still statically checked at compile time, but is inferred)</li>
+<li>you <em>use</em> an equals symbol  instead of curly braces</li>
+</ul>
+
+<p>hence we could turn the above example into the following</p>
+
+<pre><code class="language-java">fun getFullName(firstName: String, lastName: String) = firstName + &quot; &quot; + lastName;
+</code></pre>
+
+<h3 id="variables">Variables</h3>
+
+<p>One main difference in Kotlin compared to Java (at least until <a href="http://openjdk.java.net/jeps/286">Project Amber</a> comes in) is the use of type inference, similar to Scala, meaning you can drop the variable type when initializing a Variable</p>
+
+<pre><code class="language-java">var age = 42;
+val name = &quot;Bob Dole&quot;;
+</code></pre>
+
+<p>You can also explicitly declare the type if you wish using the <code>varName: varType</code> format</p>
+
+<pre><code class="language-java">var age: Int = 42;
+val name: String = &quot;Bob Dole&quot;;
+</code></pre>
+
+<p><em>obviously if the declared type does not match the assigned value Kotlin will fail to compile.</em></p>
+
+<p>The only rule to remember here is that if you declare a variable but  <em><strong>DO NOT INITIALISE</strong></em> the variable then you must explicitly declare the type</p>
+
+<pre><code class="language-java">var age: Int;
+age = 42;
+</code></pre>
+
+<p>Do not forget even though you do not have to explicitly set the variable type (it can be inferred), once declared you can not assign to a  value of a different type</p>
+
+<pre><code class="language-java">var age = 42;
+age = &quot;Bob&quot;; // fail to compile as &quot;Bob&quot; is not if type Int.
+</code></pre>
+
+<p><strong>Mutable vs Immutable</strong></p>
+
+<p>As you may have noticed above we used <code>var</code> and <code>val</code> both identical to their Scala counter-parts.</p>
+
+<ul>
+<li><code>var</code> - used to declare a <em>mutable</em> variable</li>
+<li><code>val</code> - used to declare a <em>immutable</em> variable</li>
+</ul>
+
+<p>Note: When using <code>val</code> on reference types, this makes the reference to the object/function immutable.</p>
+
+<pre><code class="language-java"> val languages = arrayListOf(&quot;Java&quot;);
+ languages.add(&quot;Kotlin&quot;);
+</code></pre>
+
+<p>This is perfectly valid as we are not changing where <code>languages</code> is pointing. This should be familiar to Java developers as it follows the same reasoning when using <code>final</code> on variables.</p>
+
+<h3 id="string-templates">String Templates</h3>
+
+<p>As a matter of convenience Kotlin provides string templates, which make dealing with expressions, variables and the like easier to use with strings.
+Kotlin provides to ways to use string templates;</p>
+
+<ul>
+<li>&rdquo;$variableName&rdquo; - Kotlin allows you to use local variables by putting the dollar sign ($) in front of the variable name</li>
+<li>&rdquo;${expression}&rdquo; - Kotlin will evaluate the expression and return a string version of the expression.</li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code class="language-java">val name = &quot;Bob&quot;;
+println(&quot;Hello, $name&quot;); // prints &quot;Hello Bob&quot;
+
+
+val names = arrayOf(&quot;Bob&quot;, &quot;Jeff&quot;);
+println(&quot;Hello, ${names[0]}&quot;); // prints &quot;Hello Bob&quot;
+println(&quot;Hello, ${names[1]}&quot;); // prints &quot;Hello Jeff&quot;
+</code></pre>
+
+<h3 id="classes-and-properties">Classes and Properties</h3>
+
+<p><strong>Basic Class Declaration</strong>
+Kotlin aims to provide a more compact way of dealing with classes via properties and other short hands, while on the whole this makes dealing with classes easier and more concise. There are some aspects such as custom getters and setters that can be a bit more a pain (personal opinion there) than in regular Java</p>
+
+<p>Example class</p>
+
+<pre><code class="language-java">class Person(val name:String, var age: Int); //the parenthesis is actually the constructor here.
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>you must use <code>var</code> or <code>val</code> to declare a property</li>
+<li>using <code>var</code> will automatically create both getters and setters for that property</li>
+<li>using <code>val</code> will only create getters for that property</li>
+<li>you  must declare the variable types in the constructor</li>
+<li>a class is <code>public</code> by default</li>
+</ul>
+
+<p><strong>Accessing properties</strong></p>
+
+<p>You can access a classes property by using dot notation followed by the name of the property</p>
+
+<pre><code class="language-java"> val person = Person(&quot;Bob&quot;, 42);
+ person.name // &quot;Bob&quot;
+</code></pre>
+
+<p><em>Note: Even though it looks like we are directly accessing the name property Kotlin is still retrieving the field via the name getter.</em></p>
+
+<p><strong>Using your own properties</strong>
+ Let&rsquo;s say you want to use the above class, but you want the name to be returned in upper classes.
+ To do that we need to write our own getter.</p>
+
+<pre><code class="language-java"> class Person(val name:String, var age: Int) {
+   val name: String
+       get() {
+         return name.toUpperCase();
+       }
+       set(value) {
+         field = value.toLowerCase()
+       }
+ }
+</code></pre>
+
+<p>Coming from Java the syntax may look a little goofy, but should look a little familiar coming from a C# or JS ES6</p>
+
+<ul>
+<li>When using setter you do not have to pass the type of <code>value</code> but you can if you want</li>
+<li><code>field</code> is a keyword that refers to the objects instance field (there is way to actually directly manipulate the backing field in Kotlin)</li>
+<li>you can create/use properties not defined in the constructor, this allows not for other types of properties, such as <code>computed properties</code> or <code>delegated properties</code></li>
+</ul>
+
+<p><strong>Using a computed property</strong></p>
+
+<pre><code class="language-java"> class Rectangle(val width: Int, val height: Int) {
+   val area: Double
+       get() {
+         return width * height;
+       }
+ }
+
+ val smallBox = Rectangle(2,2);
+ smallBox.area; // returns 4
+</code></pre>
+
+<p><strong>Kotlin source code layout: directories and packages</strong></p>
+
+<p>Kotlin primarily adopts Javas usage of <code>package</code> to declare the package this file belongs to and use of the <code>import</code> keyword to import classes and functions.</p>
+
+<p>A major key difference is that Kotlin allows you to import top level functions.</p>
+
+<p>Also since its possible for a Kotlin file to have nothing but functions (no classes) the file name can be whatever you want it to be, this is in contrast to Java where the file name has to match the public class (there is a caveat that in Java if there is only one class in a file, it does not have to be public so you can name the file whatever you want :p)</p>
+
+<h3 id="representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</h3>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/kotlin/">kotlin</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/introduction/">introduction</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 Richard Vernali. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-1/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         2 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

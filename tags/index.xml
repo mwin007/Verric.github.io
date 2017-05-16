@@ -5,27 +5,27 @@
     <link>https://verric.github.io/tags/</link>
     <description>Recent content in Tags on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    <lastBuildDate>Mon, 27 Mar 2017 10:39:33 +1100</lastBuildDate>
+    <language>en-GB</language>
+    <lastBuildDate>Fri, 05 May 2017 16:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About</title>
-      <link>https://verric.github.io/tags/about/</link>
-      <pubDate>Mon, 27 Mar 2017 10:39:33 +1100</pubDate>
+      <title>Introduction</title>
+      <link>https://verric.github.io/tags/introduction/</link>
+      <pubDate>Fri, 05 May 2017 16:02:50 +1000</pubDate>
       
-      <guid>https://verric.github.io/tags/about/</guid>
+      <guid>https://verric.github.io/tags/introduction/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Me</title>
-      <link>https://verric.github.io/tags/me/</link>
-      <pubDate>Mon, 27 Mar 2017 10:39:33 +1100</pubDate>
+      <title>Kotlin</title>
+      <link>https://verric.github.io/tags/kotlin/</link>
+      <pubDate>Fri, 05 May 2017 16:02:50 +1000</pubDate>
       
-      <guid>https://verric.github.io/tags/me/</guid>
+      <guid>https://verric.github.io/tags/kotlin/</guid>
       <description></description>
     </item>
     

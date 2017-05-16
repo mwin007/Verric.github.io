@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/verric
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://verric.github.io
+  * I am verric (https://keybase.io/verric) on keybase.
+  * I have a public key with fingerprint A774 E1E8 723B F636 527C  5802 787F 17A9 BA10 AC53
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01018a7a95798c93d51e7dc5c922d72379ec6784ad5eb0a1f9acb9536c766b3a4e1c0a",
+            "fingerprint": "a774e1e8723bf636527c5802787f17a9ba10ac53",
+            "host": "keybase.io",
+            "key_id": "787f17a9ba10ac53",
+            "kid": "01018a7a95798c93d51e7dc5c922d72379ec6784ad5eb0a1f9acb9536c766b3a4e1c0a",
+            "uid": "2c99694016ab06d46b2d84622349c419",
+            "username": "verric"
+        },
+        "revoke": {
+            "sig_ids": [
+                "4494ae28b16f7da713431a95b4d7d04e10676327d60e533845549c735dda3ec50f"
+            ]
+        },
+        "service": {
+            "hostname": "verric.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1494933029,
+    "expire_in": 157680000,
+    "prev": "6e332b44ff074080fda35e7465eb548921f924909ae68e739f08109e379ada1b",
+    "seqno": 9,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.70
+Comment: https://keybase.io/crypto
+
+yMJvAnicrZJ9aFZVHMefzZfho9KQMBVROVAbMte597w/ZIgiaqltoUGUPTv3nnOf
+3W0+9/He+6yGTRmFioJCUQ6cS5A9IY9vQ9c/orYVUURp1nJoL5NKcBCiISSi69yl
+fwT+2f3ncs/5/j7f7/2e8/nMSal0Rc3A+dw3P388XPH14J1i6tV5vzy9FTiB6gCZ
+raBVT7x0m9JRnG31FcgAaEGLSyYFYYK7AiliaaZc4grbVsxGTGiXMo6lItqB0vKE
+dB1BEHUZpQ6SWFsulKAOeH4+p8NC6Odjg5WMmR3NDcHxKKLEZi7h0GaceZZxc6QF
+pUuQGWwOomTChHNkpOv9wKyZj+xEvMfo/+fcxQmc7QpBBYYWlQ6kClPHVhxT20ZY
+uNgSiTDSYV5u1kbdrsPQd0FnHQh1e9Cqk1YjP2ciRyDzGsBYYKlt7ljUY0oyC2Fk
+maQOVkxB4wwpo8hmikJNEOKYEOPCEFFKIu0S6IFNhm382n13Ap509B/v+pwfNxed
+f9sqhEEcuEGb2W2O40KUSZLFHYVE/qZ2sg9BWcfPK3NKZsJAIj/Ig4xllG7sJ2TL
+pBYIQVvUAf1WwQ911k8UhFEOzZP46HaDpBoh28HY8yDDkEPPpCaaYWqaJpgL25Rt
+YwGF1JRrhoQHuQWFNmcilbQckPzalnwAMsYpljmDNOXlZVwMNegc+vT1yamKdGrq
+lMrk9qbS06of3emeM1XjfmVTcfR2y9QTf1+bXpibWbOz6ruVO07nj/bfXT73/qXG
+i/Nn//C9XDo4b6x273O9cW5/7zOluPdGesPw+4Vf4w/HNnYHNeduvHJ91dm3n//k
+UsvoqXvX4I5NfvWS0ba+7ivnG8pj7955MKlr9faT6I+lt3bPWnSsuufYFyvKqfpv
+B5q+ujyy/Oy22mBt4+nfL1xdMH0+LTW3lEu3yzMg7jjSu/DJ+p45h66/xw+O85fG
+t7+wb+Rm+Y1nO/rW6c7FL48PHT/1zqyILRj5oK/UNfvKrvUHBtNdP+7Zn11T6ifT
+XhxqWPbXvnM1T3z2J8+e2S2/PNz000eVpQFZtXnlkd+eahy7Wds9PGdK/5J/AL2J
+X2Y=
+=Iezx
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/verric
+
+==================================================================
+

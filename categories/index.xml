@@ -5,10 +5,28 @@
     <link>https://verric.github.io/categories/</link>
     <description>Recent content in Categories on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
+    <language>en-GB</language>
     
 	<atom:link href="https://verric.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kotlin</title>
+      <link>https://verric.github.io/categories/kotlin/</link>
+      <pubDate>Fri, 05 May 2017 16:02:50 +1000</pubDate>
+      
+      <guid>https://verric.github.io/categories/kotlin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>https://verric.github.io/categories/programming/</link>
+      <pubDate>Fri, 05 May 2017 16:02:50 +1000</pubDate>
+      
+      <guid>https://verric.github.io/categories/programming/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
