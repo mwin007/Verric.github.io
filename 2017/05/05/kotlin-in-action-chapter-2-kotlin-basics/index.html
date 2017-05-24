@@ -21,9 +21,9 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.20.6">
+    <meta name="generator" content="Hugo 0.20.7">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Kotlin in Action: Chapter 1</title>
+    <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
     <meta name="author" content="Richard Vernali">
     <meta name="keywords" content="kotlin, programming, learning">
 
@@ -31,15 +31,18 @@
     
 
     
-    <meta name="description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
-    <meta property="og:description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
+    <meta name="description" content="Full length notes for Kotlin in Action chapter 2.
+">
+    <meta property="og:description" content="Full length notes for Kotlin in Action chapter 2.
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Kotlin in Action: Chapter 1">
-    <meta property="og:url" content="/2017/05/05/kotlin-in-action-chapter-1/">
+    <meta property="og:title" content="Kotlin in Action: Chapter 2: Kotlin Basics">
+    <meta property="og:url" content="/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
     <meta property="og:site_name" content="Verric&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Verric&#39;s Blog">
-    <meta name="twitter:description" content="Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.">
+    <meta name="twitter:description" content="Full length notes for Kotlin in Action chapter 2.
+">
     
       <meta name="twitter:creator" content="@verr1c">
     
@@ -53,6 +56,8 @@
     
 
     
+      <meta property="og:image" content="http://i.imgur.com/kXbRD0g.jpg">
+    
     
     
 
@@ -64,7 +69,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
     
     
-    <link rel="stylesheet" href="https://verric.github.io/css/style-u6mk0ojoywresbx8iepslrmmhl4stuhrsxuwhkpwrkrx7mryjcaimasnk4pi.min.css" />
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ydmhqici8uyfqhsixas7wiiw6dfdxojuebdxmsejdt5qxj3xqdv0mlpzudoq.min.css" />
     
     
 
@@ -213,12 +218,12 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Kotlin in Action: Chapter 1
+      Kotlin in Action: Chapter 2: Kotlin Basics
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-05-05T16:02:50&#43;10:00">
+    <time itemprop="datePublished" datetime="2017-05-05T17:02:50&#43;10:00">
       
   
   
@@ -247,11 +252,45 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p>
 
-<h2 id="chapter-1-kotlin-basics">Chapter 1: Kotlin Basics</h2>
+<h1 id="chapter-2-kotlin-basics">Chapter 2: Kotlin Basics</h1>
 
-<h3 id="kotlin-overview">Kotlin overview</h3>
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-2-kotlin-basics">Chapter 2: Kotlin Basics</a>
+<ul>
+<li><a href="#kotlin-overview">Kotlin overview</a></li>
+<li><a href="#basic-elements-functions-and-variables">Basic elements: functions and variables</a>
+<ul>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#declaring-a-function">Declaring a function</a></li>
+<li><a href="#expression-functions">Expression Functions</a></li>
+</ul></li>
+<li><a href="#variables">Variables</a>
+<ul>
+<li><a href="#mutable-vs-immutable">Mutable vs Immutable</a></li>
+</ul></li>
+<li><a href="#string-templates">String Templates</a></li>
+</ul></li>
+<li><a href="#classes-and-properties">Classes and Properties</a>
+<ul>
+<li><a href="#basic-class-declaration">Basic Class Declaration</a></li>
+<li><a href="#properties">Properties</a>
+<ul>
+<li><a href="#custom-getters-setters">Custom Getters / Setters</a></li>
+<li><a href="#using-a-computed-property">Using a computed property</a></li>
+</ul></li>
+<li><a href="#kotlin-source-code-layout-directories-and-packages">Kotlin source code layout: directories and packages</a></li>
+</ul></li>
+<li><a href="#representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h2 id="kotlin-overview">Kotlin overview</h2>
 
 <ul>
 <li>Created and currently maintained by JetBrains</li>
@@ -259,17 +298,17 @@
 <li>Supports OOP and FP</li>
 <li>Statically Typed</li>
 <li>Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers)</li>
-<li>Currently targets Java 1.6 bytecode to be compatible with Android</li>
-<li>Interoperable with Java and most JVM languages (can use classes, methods etc from other languages)</li>
+<li>Currently targets Java 1.6 bytecode to be compatible with Android (can target high versions now, as well ?)</li>
+<li>Interoperable with Java and most JVM languages (can use classes, methods etc from other JVM languages)</li>
 <li>Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile</li>
 </ul>
 
-<h3 id="starting-kotlin-basics">Starting Kotlin - Basics</h3>
+<h2 id="basic-elements-functions-and-variables">Basic elements: functions and variables</h2>
 
-<p>Unavoidable HelloWorld.kt</p>
+<p>Unavoidable <code>HelloWorld.kt</code></p>
 
 <pre><code class="language-java">fun main(args: Array&lt;String&gt;) {
-  println(&quot;Hello World&quot;);
+ println(&quot;Hello World&quot;);
 }
 </code></pre>
 
@@ -285,25 +324,23 @@
 
 <p>Functions in Kotlin are commonly referred to as  <code>first class citizens</code>, meaning they can be passed as a values and can also be return values from other functions, similar to Scala, Javascript and the other languages that support FP.</p>
 
-<p><em>Declaring a function</em></p>
+<h4 id="declaring-a-function">Declaring a function</h4>
 
 <p>The skeleton for declaring a function in Kotlin is as follows.</p>
 
 <pre><code class="language-java">fun functionName(parameterName1: parameterType1, parameterName2: parameterType2 ...): returnType {/** function body **/}
 </code></pre>
 
-<p>Note there are variances for convenience, but this is the main structure.</p>
-
 <p>Example</p>
 
 <pre><code class="language-java">fun getFullName(firstName: String, lastName: String): String {
-  return firstName + &quot; &quot; + lastName;
+ return firstName + &quot; &quot; + lastName;
 }
 </code></pre>
 
-<p><strong>Expression Functions</strong></p>
+<h4 id="expression-functions">Expression Functions</h4>
 
-<p>expression functions are a type <code>special</code> of function and syntactically resemble a JS ES6 arrow function (with types) in that if the function body is only 1 expression then:</p>
+<p>Expression functions are a type <code>special</code> of function and syntactically resemble a JS ES6 arrow function (with types) in that if the function body is only one expression then:</p>
 
 <ul>
 <li>you do not have to explicitly use the <code>return</code> keyword</li>
@@ -344,7 +381,7 @@ age = 42;
 age = &quot;Bob&quot;; // fail to compile as &quot;Bob&quot; is not if type Int.
 </code></pre>
 
-<p><strong>Mutable vs Immutable</strong></p>
+<h4 id="mutable-vs-immutable">Mutable vs Immutable</h4>
 
 <p>As you may have noticed above we used <code>var</code> and <code>val</code> both identical to their Scala counter-parts.</p>
 
@@ -355,8 +392,8 @@ age = &quot;Bob&quot;; // fail to compile as &quot;Bob&quot; is not if type Int.
 
 <p>Note: When using <code>val</code> on reference types, this makes the reference to the object/function immutable.</p>
 
-<pre><code class="language-java"> val languages = arrayListOf(&quot;Java&quot;);
- languages.add(&quot;Kotlin&quot;);
+<pre><code class="language-java">val languages = arrayListOf(&quot;Java&quot;);
+languages.add(&quot;Kotlin&quot;);
 </code></pre>
 
 <p>This is perfectly valid as we are not changing where <code>languages</code> is pointing. This should be familiar to Java developers as it follows the same reasoning when using <code>final</code> on variables.</p>
@@ -367,8 +404,8 @@ age = &quot;Bob&quot;; // fail to compile as &quot;Bob&quot; is not if type Int.
 Kotlin provides to ways to use string templates;</p>
 
 <ul>
-<li>&rdquo;$variableName&rdquo; - Kotlin allows you to use local variables by putting the dollar sign ($) in front of the variable name</li>
-<li>&rdquo;${expression}&rdquo; - Kotlin will evaluate the expression and return a string version of the expression.</li>
+<li><code>$variableName</code> - Kotlin allows you to use local variables by putting the dollar sign ($) in front of the variable name</li>
+<li><code>${expression}</code> - Kotlin will evaluate the expression and return the result of the expression as a string.</li>
 </ul>
 
 <p>Example:</p>
@@ -382,14 +419,15 @@ println(&quot;Hello, ${names[0]}&quot;); // prints &quot;Hello Bob&quot;
 println(&quot;Hello, ${names[1]}&quot;); // prints &quot;Hello Jeff&quot;
 </code></pre>
 
-<h3 id="classes-and-properties">Classes and Properties</h3>
+<h2 id="classes-and-properties">Classes and Properties</h2>
 
-<p><strong>Basic Class Declaration</strong>
-Kotlin aims to provide a more compact way of dealing with classes via properties and other short hands, while on the whole this makes dealing with classes easier and more concise. There are some aspects such as custom getters and setters that can be a bit more a pain (personal opinion there) than in regular Java</p>
+<h3 id="basic-class-declaration">Basic Class Declaration</h3>
 
-<p>Example class</p>
+<p>Kotlin aims to provide a more compact way of dealing with classes via properties and other short hands, while on the whole this makes dealing with classes easier and more concise. There are some aspects such as custom getters and setters that can be a bit more a pain (personal opinion there) than in regular Java</p>
 
-<pre><code class="language-java">class Person(val name:String, var age: Int); //the parenthesis is actually the constructor here.
+<p>Example:</p>
+
+<pre><code class="language-java">class Person(val name:String, var age: Int); //defines a class called person that requires two args 
 </code></pre>
 
 <p>Notes:</p>
@@ -402,53 +440,56 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
 <li>a class is <code>public</code> by default</li>
 </ul>
 
-<p><strong>Accessing properties</strong></p>
+<h3 id="properties">Properties</h3>
 
-<p>You can access a classes property by using dot notation followed by the name of the property</p>
+<p>You can access a classes property by using dot notation followed by the name of the property.</p>
 
-<pre><code class="language-java"> val person = Person(&quot;Bob&quot;, 42);
- person.name // &quot;Bob&quot;
+<pre><code class="language-java">val person = Person(&quot;Bob&quot;, 42);
+person.name // &quot;Bob&quot;
 </code></pre>
 
-<p><em>Note: Even though it looks like we are directly accessing the name property Kotlin is still retrieving the field via the name getter.</em></p>
+<p><strong><em>Note: Even though it looks like we are directly accessing the name property Kotlin is still retrieving the field via the getter.</em></strong></p>
 
-<p><strong>Using your own properties</strong>
- Let&rsquo;s say you want to use the above class, but you want the name to be returned in upper classes.
- To do that we need to write our own getter.</p>
+<h4 id="custom-getters-setters">Custom Getters / Setters</h4>
 
-<pre><code class="language-java"> class Person(val name:String, var age: Int) {
-   val name: String
-       get() {
-         return name.toUpperCase();
-       }
-       set(value) {
-         field = value.toLowerCase()
-       }
- }
+<p>Let&rsquo;s say you want to use the above class, but you want the name to be returned in upper classes.
+To do that we need to write our own getter.</p>
+
+<pre><code class="language-java">class Person(val name:String, var age: Int) {
+ val name: String
+    get() {
+      return name.toUpperCase();
+    }
+    set(value) {
+      field = value.toLowerCase();
+    }
+}
 </code></pre>
 
 <p>Coming from Java the syntax may look a little goofy, but should look a little familiar coming from a C# or JS ES6</p>
 
+<p>Notes:</p>
+
 <ul>
-<li>When using setter you do not have to pass the type of <code>value</code> but you can if you want</li>
-<li><code>field</code> is a keyword that refers to the objects instance field (there is way to actually directly manipulate the backing field in Kotlin)</li>
-<li>you can create/use properties not defined in the constructor, this allows not for other types of properties, such as <code>computed properties</code> or <code>delegated properties</code></li>
+<li>When using setter you do not have to pass the type of <code>value</code> but you can if you want.</li>
+<li><code>field</code> is a keyword that refers to the objects instance field (there is no way to actually directly manipulate the backing field in Kotlin).</li>
+<li>you can create/use properties not defined in the constructor, this allows for other types of properties, such as <code>computed properties</code> or <code>delegated properties</code>.</li>
 </ul>
 
-<p><strong>Using a computed property</strong></p>
+<h4 id="using-a-computed-property">Using a computed property</h4>
 
-<pre><code class="language-java"> class Rectangle(val width: Int, val height: Int) {
-   val area: Double
-       get() {
-         return width * height;
-       }
- }
+<pre><code class="language-java">class Rectangle(val width: Int, val height: Int) {
+ val area: Double
+    get() {
+      return width * height;
+    }
+}
 
- val smallBox = Rectangle(2,2);
- smallBox.area; // returns 4
+val smallBox = Rectangle(2,2);
+smallBox.area; // returns 4
 </code></pre>
 
-<p><strong>Kotlin source code layout: directories and packages</strong></p>
+<h3 id="kotlin-source-code-layout-directories-and-packages">Kotlin source code layout: directories and packages</h3>
 
 <p>Kotlin primarily adopts Javas usage of <code>package</code> to declare the package this file belongs to and use of the <code>import</code> keyword to import classes and functions.</p>
 
@@ -456,8 +497,7 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
 
 <p>Also since its possible for a Kotlin file to have nothing but functions (no classes) the file name can be whatever you want it to be, this is in contrast to Java where the file name has to match the public class (there is a caveat that in Java if there is only one class in a file, it does not have to be public so you can name the file whatever you want :p)</p>
 
-<h3 id="representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</h3>
-
+<h2 id="representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</h2>
               
             </div>
           </div>
@@ -508,17 +548,17 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -526,7 +566,7 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
     
     <li class="post-action">
       
-        <a class="post-action-btn btn btn--default" href="#">
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
       
         <i class="fa fa-list"></i>
       </a>
@@ -542,7 +582,7 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2017 Richard Vernali. 
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
   </span>
 </footer>
 
@@ -579,17 +619,17 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -597,7 +637,7 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
     
     <li class="post-action">
       
-        <a class="post-action-btn btn btn--default" href="#">
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
       
         <i class="fa fa-list"></i>
       </a>
@@ -610,17 +650,17 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
         <i class="fa fa-google-plus"></i><span></span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
         <i class="fa fa-facebook-official"></i><span></span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-1%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f05%2fkotlin-in-action-chapter-2-kotlin-basics%2f">
         <i class="fa fa-twitter"></i><span></span>
       </a>
     </li>
@@ -680,15 +720,16 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-1/">
-                <h3 class="media-heading">Kotlin in Action: Chapter 1</h3>
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   May 5, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.</div>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -737,7 +778,7 @@ Kotlin aims to provide a more compact way of dealing with classes via properties
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
 
 
-<script src="https://verric.github.io/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+<script src="https://verric.github.io/js/script-vklmdz56r3nsi9avpni5fwxxyzmhybh7ddgjgn0krc67tw7z1grjeowbj5q8.min.js"></script>
 
 <script>
 $(document).ready(function() {

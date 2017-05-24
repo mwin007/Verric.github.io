@@ -6,18 +6,19 @@
     <description>Recent content on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Fri, 05 May 2017 16:02:50 +1000</lastBuildDate>
+    <lastBuildDate>Fri, 05 May 2017 17:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Kotlin in Action: Chapter 1</title>
-      <link>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-1/</link>
-      <pubDate>Fri, 05 May 2017 16:02:50 +1000</pubDate>
+      <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
+      <link>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</link>
+      <pubDate>Fri, 05 May 2017 17:02:50 +1000</pubDate>
       
-      <guid>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-1/</guid>
-      <description>Chapter 1: Kotlin Basics Kotlin overview  Created and currently maintained by JetBrains Designed to be a pragmatic, concise and safe language above all else Supports OOP and FP Statically Typed Can be compiled into JVM bytecode or JS bytecode (runs on JVM or in browsers) Currently targets Java 1.6 bytecode to be compatible with Android Interoperable with Java and most JVM languages (can use classes, methods etc from other languages) Has an absolute disdain for Null pointer Exceptions, most code that could throw an NPE will fail to compile  Starting Kotlin - Basics Unavoidable HelloWorld.</description>
+      <guid>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</guid>
+      <description>&lt;p&gt;Full length notes for &lt;strong&gt;Kotlin in Action&lt;/strong&gt; chapter 2.
+&lt;/p&gt;</description>
     </item>
     
   </channel>
