@@ -1,0 +1,1222 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>OCJP Chapter 2: Design Pattern and Principles</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 2">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Summary notes for Chapter 2
+">
+    <meta property="og:description" content="Summary notes for Chapter 2
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OCJP Chapter 2: Design Pattern and Principles">
+    <meta property="og:url" content="/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Summary notes for Chapter 2
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/oMmCBiT.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ydmhqici8uyfqhsixas7wiiw6dfdxojuebdxmsejdt5qxj3xqdv0mlpzudoq.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      OCJP Chapter 2: Design Pattern and Principles
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-05-25T15:14:44&#43;10:00">
+      
+  
+  
+  
+  
+    2017-05-25
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/study-notes">study-notes</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Summary notes for Chapter 2
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-2-design-pattern-and-principles">Chapter 2: Design Pattern and Principles</a>
+<ul>
+<li><a href="#chapter-goals">Chapter Goals:</a></li>
+<li><a href="#designing-an-interface">Designing an interface</a>
+<ul>
+<li><a href="#purpose-of-an-interface">Purpose of an Interface</a></li>
+</ul></li>
+<li><a href="#introducing-functional-programming">Introducing Functional Programming</a>
+<ul>
+<li><a href="#defining-a-functional-interface">Defining a Functional Interface</a></li>
+<li><a href="#understanding-lambda-syntax">Understanding Lambda Syntax</a></li>
+<li><a href="#invalid-valid-lambdas-combos">Invalid/Valid lambdas combos</a></li>
+<li><a href="#applying-the-predicate-interface">Applying the Predicate Interface</a></li>
+</ul></li>
+<li><a href="#implementing-polymorphism">Implementing Polymorphism</a>
+<ul>
+<li><a href="#distinguishing-between-an-object-and-a-reference">Distinguishing between an Object and a Reference</a></li>
+<li><a href="#casting-object-references">Casting object references</a></li>
+</ul></li>
+<li><a href="#understanding-design-principles">Understanding Design Principles</a>
+<ul>
+<li><a href="#encapsulating-data">Encapsulating Data</a></li>
+<li><a href="#creating-java-beans">Creating Java Beans</a></li>
+<li><a href="#invalid-javabean-species">Invalid JavaBean Species</a></li>
+<li><a href="#applying-the-is-a-relationship">Applying the Is-A relationship</a></li>
+<li><a href="#applying-the-has-a-relationship">Applying the Has‐a Relationship</a></li>
+<li><a href="#composing-objects">Composing Objects</a></li>
+</ul></li>
+<li><a href="#working-with-design-patterns">Working with Design Patterns</a>
+<ul>
+<li><a href="#applying-the-singleton-pattern">Applying the Singleton pattern.</a></li>
+<li><a href="#lazy-instantiation-of-singleton-objects">Lazy instantiation of Singleton objects</a></li>
+<li><a href="#creating-unique-singletons">Creating unique singletons</a></li>
+<li><a href="#creating-immutable-objects">Creating Immutable objects</a></li>
+<li><a href="#using-the-builder-pattern">Using the Builder Pattern</a></li>
+<li><a href="#creating-objects-with-the-factory-pattern">Creating Objects with the Factory Pattern</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="chapter-2-design-pattern-and-principles">Chapter 2: Design Pattern and Principles</h1>
+
+<h2 id="chapter-goals">Chapter Goals:</h2>
+
+<ol>
+<li><p>Develop code that declares, implements, and/or extends interfaces and use the @Override annotation</p></li>
+
+<li><p>Create and use Lambda expressions</p></li>
+
+<li><p>Use the built‐in interfaces included in the java.util.function package such as Predicate, Consumer, Function, and Supplier</p></li>
+
+<li><p>Implement encapsulation</p></li>
+
+<li><p>Implement inheritance including visibility modifiers and composition</p></li>
+
+<li><p>Implement polymorphism</p></li>
+
+<li><p>Create and use singleton classes and immutable classes</p></li>
+</ol>
+
+<h2 id="designing-an-interface">Designing an interface</h2>
+
+<ul>
+<li>Interfaces can support abstract, static and default methods.</li>
+<li>All methods are implicitly marked <code>public</code></li>
+<li>If a method is not marked <code>static</code> or <code>default</code> it is assumed to be abstract;</li>
+<li>All fields are implicitly <code>public static final</code></li>
+<li>Interfaces can inherit from other interfaces using the <code>extends</code> keyword</li>
+<li>When an interface extends another interface <em>it only inherits abstract methods</em></li>
+<li>A <code>Marker interface</code> is an interface that declares no methods or fields, and is generally used to permit polymorphism without extending a class.</li>
+</ul>
+
+<h3 id="purpose-of-an-interface">Purpose of an Interface</h3>
+
+<p>Interfaces can be used for various different reasons.</p>
+
+<ul>
+<li>Promote loose coupling between classes.</li>
+<li>Polymorphism.</li>
+<li>&ldquo;Contract&rdquo; between communicating classes.</li>
+</ul>
+
+<h2 id="introducing-functional-programming">Introducing Functional Programming</h2>
+
+<p>A Functional Interface is one that <code>ONLY CONTAINS ONE ABSTRACT METHOD</code>. Functional Interface allow the use of a lambda expression in Java.</p>
+
+<h3 id="defining-a-functional-interface">Defining a Functional Interface</h3>
+
+<pre><code class="language-java">@FunctionalInterface
+public interface Sprint {
+  public void sprint(Animal animal);
+}
+</code></pre>
+
+<ul>
+<li>The above is a functional interface because it states only one abstract method.</li>
+<li>The <code>@FunctionalInterface</code> annotation is not required for this interface to be functional and will compile successfully without it, but provides two main purposes,
+
+<ul>
+<li>Acts as documentation to developers that the interface can be used in lambda expressions</li>
+<li>Tells the compiler that this is intended to be a functional interface and thus if there are two or more abstract methods, will result in a compile time failure</li>
+</ul></li>
+</ul>
+
+<p>Examples using the &lsquo;Sprint&rsquo; interface defined above:</p>
+
+<pre><code class="language-java">public interface Run extends Sprint {}
+
+public interface SprintFaster extends Sprint {
+  public void sprint(Animal animal);
+}
+
+public interface Skip extends Sprint {
+  public default int getHopCount(Kangaroo kangaroo) {return 10;}
+  public static void skip(int speed) {}
+}
+</code></pre>
+
+<p>Here all three of the above interfaces are functional interfaces;</p>
+
+<ul>
+<li>&lsquo;Run&rsquo; inherits the abstract method from &lsquo;Sprint&rsquo; and hence becomes functional</li>
+<li>&lsquo;SprintFaster&rsquo; simply re-declares the method (an override)</li>
+<li>&lsquo;Skip&rsquo; defines a <code>default</code> and a <code>static</code> method, as such it still only contains one abstract method, thus it is still a functional interface</li>
+</ul>
+
+<h3 id="understanding-lambda-syntax">Understanding Lambda Syntax</h3>
+
+<p>Lambda&rsquo;s can be written in various ways but certain rules must be followed.
+For example both of the following are equivalent.</p>
+
+<pre><code class="language-java">a -&gt; a.canHop() //deliberately no semi-colon
+(Animal a) -&gt; { return a.canHop(); }
+</code></pre>
+
+<p>Lambda Rules:</p>
+
+<ol>
+<li>If there is EXACTLY one parameter and the type is NOT specified then the parenthesis are optional, otherwise they are mandatory</li>
+<li>If the lambda expression consists of only ONE statement then you do NOT need curly braces</li>
+<li>If you have curly braces you must explicitly state the <code>return</code> keyword, which like normal Java must have a semi-colon after it</li>
+<li>If a lambdas takes parameters then you can either specify all the type or leave them omitted but not declare some and omit others.</li>
+<li>You can not declare variables within the lambda body that are all ready within scope.</li>
+<li>Any variables used by the lambda expression that are outside of the lambda must be effectively <code>final</code></li>
+</ol>
+
+<h3 id="invalid-valid-lambdas-combos">Invalid/Valid lambdas combos</h3>
+
+<pre><code class="language-java">//Invalid
+Duck d -&gt; d.quack() // Rule 1
+a,d -&gt; d.quack() // Rule 1
+(Animal a, Duck d) -&gt; { d.quack() } //Rule 3
+
+//Valid
+(Duck d) -&gt; d.quack()
+(a,d) -&gt; d.quack()
+(Animal a, Duck d) -&gt; { return d.quack(); }
+
+
+//Invalid
+(int y, z) -&gt; {int x=1; return y+10; } // Rule 4
+(String s, z) -&gt; { return s.length()+z; } // Rule 4
+(int a, Animal b, String c) -&gt; { int a =0; return b.getSpecies();} // Rule 5
+
+//Valid
+(int y, int z) -&gt; { int x=1; return y+10; }
+(s,z) -&gt; { return s.length()+z; }
+(int a, Animal b, String c) -&gt; { int d=0; return b.getSpecies(); } // Rule 5
+</code></pre>
+
+<h3 id="applying-the-predicate-interface">Applying the Predicate Interface</h3>
+
+<p>In Java the Predicate Functional Interface can be used for any expressions that returns a boolean value (true or false) and is defined as such:</p>
+
+<pre><code class="language-Java">@FunctionalInterface
+public interface Predicate&lt;T&gt; {
+  public boolean test(T t);
+}
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code class="language-java">public static void printValidString(String s, Predicate&lt;String&gt; validator) {
+  if(validator.test(s)) System.out.println(s);
+}
+
+public static void main(String[] args) {
+  printValidString(&quot;Bob&quot;, s -&gt; s.length() &lt; 10); //prints &quot;Bob&quot;
+  printValidString(&quot;Dole&quot;, (String s) -&gt; s.startsWith(&quot;Q&quot;)); // does not print anything
+}
+</code></pre>
+
+<h2 id="implementing-polymorphism">Implementing Polymorphism</h2>
+
+<blockquote>
+<p>Polymorphism is the ability of a single interface to support multiple underlying forms. In
+Java, this allows multiple types of objects to be passed to a single method or class.</p>
+</blockquote>
+
+<pre><code class="language-java">public interface LivesInOcean { public void makeSound(); }
+
+public class Dolphin implements LivesInOcean {
+  public void makeSound() { System.out.println(&quot;whistle&quot;); }
+}
+
+public class Whale implements LivesInOcean {
+  public void makeSound() { System.out.println(&quot;sing&quot;); }
+}
+
+public class Oceanographer {
+  public void checkSound(LivesInOcean animal) {
+    animal.makeSound();
+  }
+  public void main(String[] args) {
+    Oceanographer o = new Oceanographer();
+    o.checkSound(new Dolphin()); //prints whistle
+    o.checkSound(new Whale());  //prints sing
+  }
+}
+</code></pre>
+
+<p>The above works fine as the <code>checkSound</code> method requires an animal of type <code>LivesInOcean</code> since both Dolphin and Whale implement that interface, both can be referenced by the type <code>LivesInOcean</code></p>
+
+<h3 id="distinguishing-between-an-object-and-a-reference">Distinguishing between an Object and a Reference</h3>
+
+<p>In Java all objects are accessed by a reference. as such developers never have any direct access to the object in memory.</p>
+
+<p>When a developer creates an an instance of an object in memory  (using the new <code>new</code> keyword) then that object exists as that type, regardless of the reference type it is assigned</p>
+
+<pre><code class="language-Java">List&lt;String&gt; names = new ArrayList&lt;&gt;();
+</code></pre>
+
+<p>It&rsquo;s important to note here even though &lsquo;names&rsquo; is accessed via a <code>List</code> reference, the object in memory is still of type <code>ArrayList</code>, as such it has all the properties and members of the <code>ArrayList</code> class the reference variables, which is of type <code>List</code> denotes which of the properties this variable can access.</p>
+
+<p>Two general rules:</p>
+
+<blockquote>
+<ol>
+<li>The type of the object determines which properties exist within the object in memory.</li>
+<li>The type of the reference to the object determines which methods and variables are
+accessible to the Java program.</li>
+</ol>
+</blockquote>
+
+<h3 id="casting-object-references">Casting object references</h3>
+
+<blockquote>
+<p>Here are some basic rules to keep in mind when casting variables:
+1. Casting an object from a subclass to a superclass doesn’t require an explicit cast.
+2. Casting an object from a superclass to a subclass requires an explicit cast.
+3. The compiler will not allow casts to unrelated types.
+4. Even when the code compiles without issue, an exception may be thrown at runtime if
+the object being cast is not actually an instance of that class.</p>
+</blockquote>
+
+<p>Here because we are assigning a specific type to a more generic type, (from subclass to super class) we don&rsquo;t not have to explicitly cast the reference, as <code>Person</code> is guaranteed to have at least all public methods available from the <code>Object</code> method</p>
+
+<p>However casting the other way from a generic type to a more specific type (superclass to subclass) requires an explicit cast as there is no guarantee that the superclass reference has all the properties and members of the sib class.</p>
+
+<pre><code class="language-Java">Person bob = new Person();
+Object newBob = bob; // Java automatically casts person to Object as Person inherits from Object
+Person bornAgainBob = (Person)newBob; // Explicit cast to person reference as we are casting to a more specify type
+Person bornAgainAgainBob = Person.class.cast(newBob); // alternative way to cast, useful for Lambdas as you can do Person.class::cast
+</code></pre>
+
+<p>Attempting to cast unrelated type will result in a compile time error</p>
+
+<pre><code class="language-Java">public class Dog {}
+public class Cat {
+  psvm(String... args) {
+    Dog dog = new Dog();
+    Cat cat = (Cat)dog; //Will fail at COMPILE TIME
+  }
+}
+</code></pre>
+
+<p>Note however we can abuse the compile time checks as such.</p>
+
+<pre><code class="language-Java">public class Dog {}
+public class Cat {
+  public static void main(String... args) {
+    Dog dog = new Dog();
+    Object doggo = dog;
+    Cat cat = (Cat)doggo; //Will fail at RUNTIME with `ClassCastException`
+  }
+}
+</code></pre>
+
+<p>Here we cast dog to an Object which is permissible, and then doggo (which is referenced by Object) to a a Cat, which is also permissible, but the Cat class is not the same as Dog class an will fail at runtime, as the object in memory is still a dog object, and can not logically be referenced by a Cat, at least given the example above.</p>
+
+<p>It is important to remember the <em>actual</em> type of object in memory regardless of the reference.</p>
+
+<pre><code class="language-Java">public class Rodent {}
+
+public class Capybara extends Rodent {
+  public static void main(String[] args) {
+  Rodent rodent = new Rodent();
+  Capybara capybara = (Capybara)rodent; // Throws ClassCastException at runtime
+  }
+}
+</code></pre>
+
+<p>If this is confusing, the above fails to execute because the reference(capybara) is <code>lower</code> on the inheritance tree (assume java.lang.object is the top of the tree) than the object instance in memory (rodent)</p>
+
+<pre><code>object
+  |
+  |
+Rodent* (actual object instance in memory)
+  |
+  |
+Capybara -- reference
+</code></pre>
+
+<p>Since it is only possible (at runtime) to have a reference to an object that is is either the same type of the object it self or of a superclass or implemented interface, etc (in this case the only super class is object)</p>
+
+<h2 id="understanding-design-principles">Understanding Design Principles</h2>
+
+<blockquote>
+<p>A design principle is an established idea or best practice that facilitates the software design
+process.</p>
+</blockquote>
+
+<ul>
+<li>More logical code</li>
+<li>Code that is easier to understand</li>
+<li>Classes that are easier to reuse in other relationships and applications</li>
+<li>Code that is easier to maintain and that adapts more readily to changes in the application requirements</li>
+</ul>
+
+<h3 id="encapsulating-data">Encapsulating Data</h3>
+
+<blockquote>
+<p>In software development, encapsulation is the idea of combining fields and methods in a class such that the methods operate on the data, as opposed to the users of the class accessing the fields directly</p>
+</blockquote>
+
+<p>In other languages this could be done via <code>properties</code></p>
+
+<p>Encapsulation aims to protect the integrity of fields belonging to a class by effectively ensuring that no other class can directly manipulate the state of the class.</p>
+
+<p>By forcing outside parties to access fields through getters and setters, means the class can have complete control of incoming and outgoing data, including enforcing invariants and other types of validation.</p>
+
+<pre><code class="language-java">public class Animal {
+
+  private String species;
+
+  public void setSpecies(String species) {
+    if(species == null || species.trim().length()==0)
+      throw new IllegalArgumentException(&quot;Species is required&quot;);
+    this.species = species
+  }
+}
+</code></pre>
+
+<p>Here we can validate the species string before changing the <code>Animals</code> species.</p>
+
+<p>It also considered best practice to provide getters and setters for fields, even if they do not enforce any rules, as this all fields to be changed internally without breaking any external code. It also validation  to be implemented at a later date, also without braking external code.</p>
+
+<h3 id="creating-java-beans">Creating Java Beans</h3>
+
+<p>JavaBeans is a convention or a standard of naming getters and setters. It aims to provide a universally consistent way of naming and dealing with encapsulation (getter and setters) in Java.</p>
+
+<p>The JavaBean specification is as follows:</p>
+
+<ul>
+<li>All fields should be marked as <code>private</code></li>
+<li>getters and setters should use the camel case convention</li>
+<li>all getters and setters for non boolean follows</li>
+</ul>
+
+<pre><code class="language-Java"> public getFieldName();
+ public setFieldName(SomeField field);
+</code></pre>
+
+<ul>
+<li>primitive booleans use <code>is</code> as their prefix</li>
+</ul>
+
+<pre><code class="language-java">private boolean admin;
+
+public isAdmin();
+</code></pre>
+
+<ul>
+<li>However if we are using the wrapper class for the boolean (Boolean) we use the <code>get</code> prefix since we are returning the object rather than the value.</li>
+</ul>
+
+<pre><code class="language-java">private Boolean admin;
+
+public getAdmin();
+</code></pre>
+
+<h3 id="invalid-javabean-species">Invalid JavaBean Species</h3>
+
+<p>Below are some methods that don&rsquo;t adhere to the JavaBean spec</p>
+
+<pre><code class="language-java">public String name; // field is public, should be private
+public String name() { return name; } // name should called getName();
+public void updateName(String n) { name = n; } // method should be setName(String n);
+public void setname(String n) { name = n; } // should be using camel case setName(String n);
+</code></pre>
+
+<h3 id="applying-the-is-a-relationship">Applying the Is-A relationship</h3>
+
+<blockquote>
+<p>In object‐oriented design, we describe the property of an object being an instance
+of a data type as having an is‐a relationship. The is‐a relationship is also known as the
+inheritance test.</p>
+</blockquote>
+
+<p>Applying the Is-A relationship tests helps developers build and reason about their inheritance model and their mental model.</p>
+
+<p>Since Java only allows single inheritance it could be useful to group common traits into interfaces rather than a parenting class, this allow for pseudo multiple inheritance while still adhering to loose coupling and <code>programming to an interfaces</code> which is a common development practice in many enterprise systems.</p>
+
+<h3 id="applying-the-has-a-relationship">Applying the Has‐a Relationship</h3>
+
+<blockquote>
+<p>We refer to the has‐a relationship as the property of an object having a
+named data object or primitive as a member. The has‐a relationship is also known as the
+object composition test</p>
+</blockquote>
+
+<p>The Has-A relationship tests aims to test whether a class is using composition of certain types than inheritance.</p>
+
+<p>If a parent has‐a object as a protected or public member, then any child of the parent must also have that object as a member.</p>
+
+<p>Note that this does not hold true for private members defined in parent classes, because private members are not inherited in Java.</p>
+
+<h3 id="composing-objects">Composing Objects</h3>
+
+<blockquote>
+<p>In object‐oriented design, we refer to object composition as the property of constructing a class using references to other classes in order to reuse the functionality of the other classes.
+Object composition should be thought of as an alternate to inheritance and is often used to simulate polymorphic behavior that cannot be achieved via single inheritance.</p>
+</blockquote>
+
+<p>Object composition is a useful pattern that allows for complex objects to be built from similar objects without having to tie into a particular inheritance tree, allowing for easier re-use;
+However inheritance should be used when there is a natural link between classes that can share similar behaviours or have similar attributes.</p>
+
+<h2 id="working-with-design-patterns">Working with Design Patterns</h2>
+
+<blockquote>
+<p>A design pattern is an established general solution to a commonly occurring software development problem.</p>
+</blockquote>
+
+<h3 id="applying-the-singleton-pattern">Applying the Singleton pattern.</h3>
+
+<p>The Singleton pattern is used to when you want to ensure only ONE instance of a class can be instantiated. These are commonly used for &lsquo;managers&rsquo; or or &lsquo;orchestrators&rsquo; where only one instance is needed to provide the necessary functionality.</p>
+
+<pre><code class="language-Java">public class HayStorageManager {
+
+  private int quantity = 0;
+  private static final HayStorageManager instance = new HayStorageManager(); // creates an instance when the after class is initiliased.
+
+  private HayStorageManager() {} // private constructor
+
+  public static HayStorageManager getInstance() {  //always returns the same instance.
+  return instance;
+  }
+}
+</code></pre>
+
+<p>The key points are
+- Mark the constructor as <code>private</code> this means no other class can instantiate the HayStorageManager (without using reflection)
+- We create a <code>private</code> instance of the class
+- We have a public field, generally called <code>getInstance()</code> which always returns the same instance.</p>
+
+<p>We could of also achieved a similar effect with the <code>static Singleton Pattern</code> instead of creating an instance in the classes&rsquo;s instance field, we create an instance in the static initialisation block.</p>
+
+<h3 id="lazy-instantiation-of-singleton-objects">Lazy instantiation of Singleton objects</h3>
+
+<p>We can make the singleton object lazy by deferring object creation until needed, that is only create the object when its need rather than when the program loads.</p>
+
+<p>Lazy creation comes with a trade off, on one hand it can speed up the overall initial loading of the program as object are not created until they are needed, this load time is simply put off until the object is needed which could cause the program to slow down while the resources are being loaded.</p>
+
+<p>Lazy creation is often used on &lsquo;heavy weight&rsquo; objects that may or may not be needed instead of loading them up when the program starts to avoid consuming resources until they are needed.</p>
+
+<pre><code class="language-java">public static VisitorTicketTracker getInstance() {
+  if(instance == null) {
+    instance = new VisitorTicketTracker(); // NOT THREAD-SAFE!
+  }
+  return instance;
+}
+</code></pre>
+
+<p>However this is not thread safe in that, if multiple different threads try to create the TicketTracker at the same time, each thread may come up withs its own instance, defeating the purpose of the singleton pattern.</p>
+
+<h3 id="creating-unique-singletons">Creating unique singletons</h3>
+
+<p>To ensure a that only one instance of the singleton object is created in a multi-threaded environment. This can be achieved using Java&rsquo;s in built synchronization keyword</p>
+
+<pre><code class="language-java">public static synchronized VisitorTicketTracker getInstance() {
+  if(instance == null) {
+    instance = new VisitorTicketTracker();
+  }
+  return instance;
+}
+</code></pre>
+
+<p>While this is now relatively thread safe, it has the possibility to cause a lot of performance issues as every call to the method locks down the thread due to the synchronization.</p>
+
+<p>We can optimize this by only locking down the method the first time its called.</p>
+
+<pre><code class="language-Java">private static volatile VisitorTicketTracker instance;
+public static VisitorTicketTracker getInstance() {
+  if(instance == null) {
+    synchronized(VisitorTicketTracker.class) {
+      if(instance == null) {
+        instance = new VisitorTicketTracker();
+      }
+  }
+}
+return instance;
+}
+</code></pre>
+
+<p>This is called double locking, as we check twice to see if the instance is null before creating our instance.
+We also use volatile which tells the JVM to keep an individual record of the reference across threads&hellip;. i think // look this up later :/</p>
+
+<h3 id="creating-immutable-objects">Creating Immutable objects</h3>
+
+<p>An immutable object is an object where the contents of the object can not be modified, this is commonly used as &lsquo;data&rsquo; objects (objects that only have state and no behaviour), immutable objects also have the added benefits of being thread safe as it is impossible for multiple threads to act on (mutate) the object at the same time.</p>
+
+<p>To create an immutable object they are some common code designs:</p>
+
+<ol>
+<li>Use a constructor to set all properties of the object</li>
+<li>Mark all of the instance variables private and final</li>
+<li>Don’t define any setter methods</li>
+<li>Don’t allow referenced mutable objects to be modified or accessed directly</li>
+<li>Prevent methods from being overridden</li>
+</ol>
+
+<p>The fourth rules refers to having fields that are themselves mutable objects, simply returning the reference via the getter would allow another class to change the state of that particular field.
+The most common example is having one of the collections as field, for example a <code>List</code> or a  <code>Set</code></p>
+
+<pre><code class="language-java">private final String name;
+private final List&lt;String&gt; aliases;
+
+public List getAliases() {
+  return this.aliases; // returns a reference to a mutable object
+}
+</code></pre>
+
+<p>Since you can&rsquo;t modify an immutable object if you want to change something you have to create a new instance of class with the updated values.
+An example would be the String class, every time we &lsquo;update&rsquo; a string we have to assign it a reference otherwise the changes are lost.</p>
+
+<pre><code class="language-java">String name = &quot;Bob&quot;;
+name.toLowerCase(); // since String is immutable not re-assigning will cause all changes to be 'lost'.
+System.out.println(name); // prints Bob
+</code></pre>
+
+<h3 id="using-the-builder-pattern">Using the Builder Pattern</h3>
+
+<p>The builder pattern can be used when there are many fields that need to be set and using a constructor or having many setters becomes too impractical to implement.</p>
+
+<p>The builder pattern generally does a few things</p>
+
+<ol>
+<li>only manipulates one field at a time</li>
+<li>Always returns an instance to allow method chaining</li>
+<li>Contains a <code>build/create/execute</code> method that returns the built object, with the parameters specified</li>
+</ol>
+
+<pre><code class="language-java">public class AnimalBuilder {
+  private String species;
+  private int age;
+  private String favoriteFood;
+
+  public AnimalBuilder setAge(int age) {
+    this.age = age;
+    return this;
+  }
+
+  public AnimalBuilder setSpecies(String species) {
+    this.species = species;
+    return this;
+  }
+
+  public AnimalBuilder setFavouriteFood(String favouriteFood) {
+    this.favoriteFoods = favoriteFoods;
+    return this;
+  }
+
+  public Animal build() {
+    return new Animal(species, age, favouriteFood);
+  }
+}
+</code></pre>
+
+<p>A common tradeoff to the builder pattern is that, the builder class is tightly coupled to the class type being &lsquo;built&rsquo; meaning any changes to one class, will probably mean breaking changes to the other class, not that this is a bad thing in this case as the builder&rsquo;s purpose is solely  to build the target class.</p>
+
+<h3 id="creating-objects-with-the-factory-pattern">Creating Objects with the Factory Pattern</h3>
+
+<p>The factory pattern is used to produce certain object instances based on input parameters, unlike the builder pattern, the object being produced has all its properties being set and as such could be an immutable object if needs be</p>
+
+<p>An example of a Factory class may look like</p>
+
+<pre><code class="language-java">public class FoodFactory {
+  public static Food getFood(String animalName) {
+    switch(animalName) {
+      case &quot;zebra&quot;: return new Hay(100);
+      case &quot;rabbit&quot;: return new Pellets(5);
+      case &quot;goat&quot;: return new Pellets(30);
+      case &quot;polar bear&quot;: return new Fish(10);
+    }
+  }
+}
+
+class ZooKeeper {
+  private Food food = FoodFactory.getFood(&quot;goat&quot;);
+}
+</code></pre>
+
+<p>Factory methods are generally static but don&rsquo;t have to be.</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/programming/">programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/study-notes/">study-notes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/" data-tooltip="OCJP Chapter 1: Advanced Class Design">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/" data-tooltip="Kotlin in Action: Chapter 2: Kotlin Basics">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/" data-tooltip="OCJP Chapter 1: Advanced Class Design">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/" data-tooltip="Kotlin in Action: Chapter 2: Kotlin Basics">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-2-design-pattern-and-principles%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         4 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-vklmdz56r3nsi9avpni5fwxxyzmhybh7ddgjgn0krc67tw7z1grjeowbj5q8.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

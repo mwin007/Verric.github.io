@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Verric&#39;s Blog</title>
-    <link>https://verric.github.io/post/</link>
-    <description>Recent content in Posts on Verric&#39;s Blog</description>
+    <title>Programming on Verric&#39;s Blog</title>
+    <link>https://verric.github.io/tags/programming/</link>
+    <description>Recent content in Programming on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
     <lastBuildDate>Thu, 25 May 2017 15:14:44 +1000</lastBuildDate>
     
-	<atom:link href="https://verric.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://verric.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,16 +28,6 @@
       
       <guid>https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/</guid>
       <description>&lt;p&gt;Summary notes for Chapter 2
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
-      <link>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</link>
-      <pubDate>Fri, 05 May 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</guid>
-      <description>&lt;p&gt;Full length notes for &lt;strong&gt;Kotlin in Action&lt;/strong&gt; chapter 2.
 &lt;/p&gt;</description>
     </item>
     

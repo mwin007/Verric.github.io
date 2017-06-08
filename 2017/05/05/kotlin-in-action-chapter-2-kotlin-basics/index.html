@@ -21,7 +21,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.20.7">
+    <meta name="generator" content="Hugo 0.21">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
     <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
     <meta name="author" content="Richard Vernali">
@@ -285,7 +285,15 @@
 </ul></li>
 <li><a href="#kotlin-source-code-layout-directories-and-packages">Kotlin source code layout: directories and packages</a></li>
 </ul></li>
-<li><a href="#representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</a></li>
+<li><a href="#representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</a>
+<ul>
+<li><a href="#declaring-enum-classes">Declaring enum classes</a>
+<ul>
+<li><a href="#enums-with-properties">Enums with properties</a></li>
+</ul></li>
+<li><a href="#using-when-to-deal-with-enum-classes">Using “when” to deal with enum classes</a></li>
+<li><a href="#using-when-with-arbitrary-objects">Using “when” with arbitrary objects</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -427,7 +435,7 @@ println(&quot;Hello, ${names[1]}&quot;); // prints &quot;Hello Jeff&quot;
 
 <p>Example:</p>
 
-<pre><code class="language-java">class Person(val name:String, var age: Int); //defines a class called person that requires two args 
+<pre><code class="language-java">class Person(val name:String, var age: Int); //defines a class called person that requires two args
 </code></pre>
 
 <p>Notes:</p>
@@ -491,13 +499,74 @@ smallBox.area; // returns 4
 
 <h3 id="kotlin-source-code-layout-directories-and-packages">Kotlin source code layout: directories and packages</h3>
 
-<p>Kotlin primarily adopts Javas usage of <code>package</code> to declare the package this file belongs to and use of the <code>import</code> keyword to import classes and functions.</p>
+<p>Kotlin primarily adopts Java&rsquo;s usage of <code>package</code> to declare the package this file belongs to and use of the <code>import</code> keyword to import classes and functions.</p>
 
 <p>A major key difference is that Kotlin allows you to import top level functions.</p>
 
 <p>Also since its possible for a Kotlin file to have nothing but functions (no classes) the file name can be whatever you want it to be, this is in contrast to Java where the file name has to match the public class (there is a caveat that in Java if there is only one class in a file, it does not have to be public so you can name the file whatever you want :p)</p>
 
 <h2 id="representing-and-handling-choices-enums-and-when">Representing and handling choices: enums and “when”</h2>
+
+<h3 id="declaring-enum-classes">Declaring enum classes</h3>
+
+<p>Similar to Java, to define an enum we use the <code>enum</code> soft-keyword however in Kotlin we also use the <code>class</code> to denote that this is an enum class</p>
+
+<p>Note: Here we only use squiggly brackets, when declaring basic enums</p>
+
+<pre><code class="language-Java">enum class Colours {
+  GREEN, GOLD
+}
+</code></pre>
+
+<p>However here we use parenthesis to declare our parameters as usual.</p>
+
+<h4 id="enums-with-properties">Enums with properties</h4>
+
+<pre><code class="language-Java">enum class Colours (val r: Int, val g: Int, val b:Int) {
+  RED(255,0,0), GREEN(0,255,0), BLUE(0,0,255);//note semi-colon  
+  fun rgb() = (r * 256 + g) * 256 + b;
+}
+</code></pre>
+
+<p>Methods defined in enums are used after the enum type.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-Java">Colours.BLUE.rgb(); // (0 * 256 + 0) * 256 + 255 --&gt; 255
+</code></pre>
+
+<h3 id="using-when-to-deal-with-enum-classes">Using “when” to deal with enum classes</h3>
+
+<p><code>When</code> in kotlin is can behave like a <code>switch</code> statement in Java, but more closely resemebles Scala&rsquo;s <code>case</code> expressions.</p>
+
+<p>As <code>when</code> is an expression it is permitted to return a value, even if the returned type is different to the type being matched and can also, naturally be used in expression functions.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-Java">fun getMnemonic(color: Color) =
+when (color) {
+Color.RED -&gt; &quot;Red&quot;
+Color.GREEN -&gt; &quot;Green&quot;
+Color.BLUE -&gt; &quot;Blue&quot;
+}
+</code></pre>
+
+<h3 id="using-when-with-arbitrary-objects">Using “when” with arbitrary objects</h3>
+
+<p>Loosely speaking, any any <code>value</code> can be used in an <code>when</code> expression, as long as the value can be compared.</p>
+
+<p>Here since we are using sets, you could enter <strong>YELLOW</strong>, <strong>RED</strong> and <strong>ORANGE</strong> would still return;</p>
+
+<pre><code class="language-Java">fun mix(c1: Color, c2: Color) =
+when (setOf(c1, c2)) {
+setOf(RED, YELLOW) -&gt; ORANGE
+setOf(YELLOW, BLUE) -&gt; GREEN
+setOf(BLUE, VIOLET) -&gt; INDIGO
+else -&gt; throw Exception(&quot;Dirty color&quot;)
+}
+</code></pre>
+
+<p>// TODO 2.33 &ndash;&gt; EOC</p>
               
             </div>
           </div>
@@ -523,7 +592,7 @@ smallBox.area; // returns 4
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/" data-tooltip="OCJP Chapter 2: Design Pattern and Principles">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml"></span>
@@ -594,7 +663,7 @@ smallBox.area; // returns 4
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/" data-tooltip="OCJP Chapter 2: Design Pattern and Principles">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml"></span>
@@ -720,6 +789,42 @@ smallBox.area; // returns 4
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
                 <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
               </a>
@@ -759,7 +864,7 @@ smallBox.area; // returns 4
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         2 posts found
+         4 posts found
       </p>
     </div>
   </div>
