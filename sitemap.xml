@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/</loc>
     <lastmod>2017-05-25T15:14:44+10:00</lastmod>
   </url>
@@ -34,6 +39,30 @@
   </url>
   
   <url>
+    <loc>https://verric.github.io/tags/jackson/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://verric.github.io/tags/java-8/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://verric.github.io/tags/json/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://verric.github.io/categories/json-spring/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://verric.github.io/tags/kotlin/</loc>
     <lastmod>2017-05-05T17:02:50+10:00</lastmod>
     <priority>0</priority>
@@ -47,7 +76,7 @@
   
   <url>
     <loc>https://verric.github.io/post/</loc>
-    <lastmod>2017-05-25T15:14:44+10:00</lastmod>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -59,7 +88,13 @@
   
   <url>
     <loc>https://verric.github.io/categories/programming/</loc>
-    <lastmod>2017-05-25T15:14:44+10:00</lastmod>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://verric.github.io/tags/spring/</loc>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -83,7 +118,7 @@
   
   <url>
     <loc>https://verric.github.io/</loc>
-    <lastmod>2017-05-25T15:14:44+10:00</lastmod>
+    <lastmod>2017-06-08T11:10:44+10:00</lastmod>
     <priority>0</priority>
   </url>
   

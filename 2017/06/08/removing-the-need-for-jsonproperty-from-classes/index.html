@@ -1,0 +1,786 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Removing the need for @JsonProperty from classes</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="json, jsonproperty">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Read the full post or skip to the answers section :)
+">
+    <meta property="og:description" content="Read the full post or skip to the answers section :)
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Removing the need for @JsonProperty from classes">
+    <meta property="og:url" content="/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Read the full post or skip to the answers section :)
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ydmhqici8uyfqhsixas7wiiw6dfdxojuebdxmsejdt5qxj3xqdv0mlpzudoq.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Removing the need for @JsonProperty from classes
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-08T11:10:44&#43;10:00">
+      
+  
+  
+  
+  
+    2017-06-08
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/json-spring">json-spring</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Read the full post or skip to the answers section :)
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#foreword">Foreword</a></li>
+<li><a href="#problem">Problem</a>
+<ul>
+<li><a href="#why-we-needed-jsonproperty-before-java-8">Why we needed @JsonProperty before Java 8</a></li>
+</ul></li>
+<li><a href="#solution">Solution</a>
+<ul>
+<li><a href="#dependencies-and-set-up">Dependencies and set up</a></li>
+<li><a href="#compiling-with-parameters">Compiling with &lsquo;-parameters&rsquo;</a></li>
+<li><a href="#using-the-jackson-parameters-module">Using the Jackson parameters module</a>
+<ul>
+<li><a href="#using-the-object-mapper-directly">Using the Object Mapper directly</a></li>
+<li><a href="#using-spring">Using spring</a></li>
+</ul></li>
+<li><a href="#the-result">The Result</a>
+<ul>
+<li><a href="#caveats">Caveats</a></li>
+</ul></li>
+<li><a href="#resources">Resources</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="foreword">Foreword</h1>
+
+<p>As of writing the latest version of <a href="https://github.com/FasterXML/jackson-core">Jackson core</a> is 2.8.8 (stable release) which targets Java 1.6.</p>
+
+<p>In order to use the following features you will ned to include <a href="https://github.com/FasterXML/jackson-modules-java8">jackson-modules-java8</a>, which is also at version 2.8.8</p>
+
+<p>However in future releases of Jackson, once the core can target Java 8, the above module maybe be merged into Jackson core (or Jackson data-bind not sure :/) removing the need to externally require it.</p>
+
+<p>Also at time of writing for those interested the latest stable release of <a href="https://projects.spring.io/spring-framework/">Sping MVC</a> is 4.3.9 which includes Jackson 2.8.7 (but does not include the jackson-java8-module)</p>
+
+<h1 id="problem">Problem</h1>
+
+<h2 id="why-we-needed-jsonproperty-before-java-8">Why we needed @JsonProperty before Java 8</h2>
+
+<p>Prior to Java 8 there was no easy to extract parameter names from constructors and methods, most often libraries and frameworks would try to infer parameters names from the getters and setters, or use annotations to mark the parameter names, so they knew which one was which.</p>
+
+<p>Unfortunately if you have a large and/or complex data class, this can result in a lot annotations, especially if you combine these classes with other annotations such as lombok and BeanValidation.</p>
+
+<p>A short example may be</p>
+
+<pre><code class="language-Java">@Getter //lombok annotation, generates 'public String getName' and 'public int getAge()''
+public class Person {
+
+  private String name;
+  private int age;
+
+  public Person(@JsonProperty(&quot;name&quot;) String name, @JsonProperty(&quot;age&quot;) int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+}
+</code></pre>
+
+<p>There are also alternative configurations which could let you place the <code>@JsonProperty</code> on the field declaration as well.</p>
+
+<p>In both cases there would be alot of annotations</p>
+
+<h1 id="solution">Solution</h1>
+
+<h2 id="dependencies-and-set-up">Dependencies and set up</h2>
+
+<p>To have a <code>@JsonProperty</code> free class we need a few things</p>
+
+<ol>
+<li>JDK 8 or higher</li>
+<li>Enable the  <code>-parameters</code> compile option (more below)</li>
+<li>Configure Jackson Object Mapper</li>
+<li>Provide a Bean definition if using Spring (more below)</li>
+</ol>
+
+<h2 id="compiling-with-parameters">Compiling with &lsquo;-parameters&rsquo;</h2>
+
+<ol>
+<li><p>Command Line</p>
+
+<pre><code class="language-shell">javac -cp /path/to/lombok/and/jackson -parameters Person.java
+</code></pre></li>
+
+<li><p>Using IntelliJ</p></li>
+</ol>
+
+<ul>
+<li>File</li>
+<li>Settings (I believe this is &lsquo;Preferences&rsquo; on a Mac ???)</li>
+<li>Build, Execution, Deployment</li>
+<li>Compiler</li>
+<li>Java Compiler</li>
+<li>In &ldquo;Additional command line parameters&rdquo; enter &ldquo;-parameters&rdquo; (without the quotes)</li>
+</ul>
+
+<h2 id="using-the-jackson-parameters-module">Using the Jackson parameters module</h2>
+
+<h3 id="using-the-object-mapper-directly">Using the Object Mapper directly</h3>
+
+<p>Default declaration</p>
+
+<pre><code class="language-Java">ObjectMapper objMapper =  new ObjectMapper().registerModule(new ParameterNamesModule());
+</code></pre>
+
+<p>However if you want to map a JSON object to multiple parameters you need to specify the Jackson Properties setting and can be done so by adding <code>JsonCreate.Mode.PROPERTIES</code> to the constructor of the <code>ParametersNamesModule</code></p>
+
+<pre><code class="language-Java">ObjectMapper objMapper =  new ObjectMapper().registerModule(new ParameterNamesModule(JsonCreate.Mode.PROPERTIES));
+</code></pre>
+
+<h3 id="using-spring">Using spring</h3>
+
+<p>Currently if you place a Jackson compatible module on the class path Spring will automatically detect and register it for you. This is neat because all you have to do is supply the dependency through maven, gradle etc and it will automatically configure the default settings.</p>
+
+<p>If however you want to specify multiple parameters as above then, simply provide the following bean definition in any of your configuration classes.</p>
+
+<pre><code class="language-java">@Bean
+public Module parameterNamesModule() {
+  return new ParameterNamesModule(JsonCreator.Mode.PROPERTIES);
+}
+</code></pre>
+
+<h2 id="the-result">The Result</h2>
+
+<p>Now we can provide we can provide our original Person class <code>@JsonProperty</code> free</p>
+
+<pre><code class="language-java">@Getter
+public class Person {
+
+  private String name;
+  private int age;
+
+  public Person(String name int age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+</code></pre>
+
+<p>We still provide the getter as a way to retrieve data from the class, the getter (as far as I know) has no bearing on the JSON being parsed when using this module</p>
+
+<h3 id="caveats">Caveats</h3>
+
+<ul>
+<li><p>If you provide two or more constructors (or factory methods) then you must annotate the one you want Jackson to use with <code>@JsonCcreator</code></p></li>
+
+<li><p>If you use the <code>JsonCreator.Mode.PROPERTIES</code> and your class takes <em>ONLY 1 parameter</em> then you must still annotate that parameter with <code>@JsonProperty(&quot;ParamName&quot;)</code>, this is to maintain some legacy behaviour. It may be possible, in the future that this will be changed/fixed.</p></li>
+</ul>
+
+<h2 id="resources">Resources</h2>
+
+<p><a href="https://github.com/FasterXML/jackson-core">Jackson core</a> - github</p>
+
+<p><a href="https://github.com/FasterXML/jackson-modules-java8">jackson-modules-java8</a> - github</p>
+
+<p><a href="https://github.com/FasterXML/jackson-modules-java8/tree/master/parameter-names">jackon-modules-java8-paramter-names</a> - github</p>
+
+<p><a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html">Java 8 parameters names tutorial</a> - oracle/java tutorials</p>
+
+<p><a href="https://projectlombok.org/">lombok</a> - hompage</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/json/">json</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/spring/">spring</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/jackson/">jackson</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/java-8/">java 8</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/" data-tooltip="OCJP Chapter 1: Advanced Class Design">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/" data-tooltip="OCJP Chapter 1: Advanced Class Design">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f08%2fremoving-the-need-for-jsonproperty-from-classes%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+                <h3 class="media-heading">Removing the need for @JsonProperty from classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Read the full post or skip to the answers section :)
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         5 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-vklmdz56r3nsi9avpni5fwxxyzmhybh7ddgjgn0krc67tw7z1grjeowbj5q8.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+
