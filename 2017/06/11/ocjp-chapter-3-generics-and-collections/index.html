@@ -1,0 +1,1035 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>OCJP Chapter 3: Generics and Collections</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 3">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Summary notes for Chapter 3
+">
+    <meta property="og:description" content="Summary notes for Chapter 3
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OCJP Chapter 3: Generics and Collections">
+    <meta property="og:url" content="/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Summary notes for Chapter 3
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/oMmCBiT.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ph2qukmvkthsrclqvqejhnf6wgadzikwy8xvsija3tglgsuhrbooocbhqjz1.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      OCJP Chapter 3: Generics and Collections
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-11T15:14:44&#43;10:00">
+      
+  
+  
+  
+  
+    2017-06-11
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/study-notes">study-notes</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Summary notes for Chapter 3
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-3-generics-and-collections">Chapter 3: Generics and Collections</a></li>
+<li><a href="#reviewing-oca-collections">Reviewing OCA Collections</a>
+<ul>
+<li><a href="#array-and-arraylist">Array and ArrayList</a></li>
+<li><a href="#searching-and-sorting">Searching and Sorting</a></li>
+<li><a href="#wrapper-class-and-autoboxing">Wrapper Class and AutoBoxing</a>
+<ul>
+<li><a href="#integer-nuance">Integer Nuance</a></li>
+</ul></li>
+<li><a href="#the-diamond-operator">The Diamond Operator</a></li>
+</ul></li>
+<li><a href="#working-with-generics">Working With Generics</a>
+<ul>
+<li><a href="#generic-classes">Generic Classes</a>
+<ul>
+<li><a href="#naming-conventions-for-java-generics">Naming Conventions for Java Generics</a></li>
+<li><a href="#type-erasure">Type Erasure</a></li>
+</ul></li>
+<li><a href="#generic-interfaces">Generic Interfaces</a>
+<ul>
+<li><a href="#limitations-of-generics">Limitations of Generics</a></li>
+</ul></li>
+<li><a href="#generic-methods">Generic methods</a>
+<ul>
+<li><a href="#invoking-generic-methods">Invoking Generic methods</a></li>
+</ul></li>
+<li><a href="#interacting-with-legacy-code">Interacting with Legacy Code</a>
+<ul>
+<li><a href="#autoboxing-with-raw-collections">AutoBoxing With Raw Collections</a></li>
+</ul></li>
+<li><a href="#type-bounds">Type Bounds</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="chapter-3-generics-and-collections">Chapter 3: Generics and Collections</h1>
+
+<p>Chapter goals:</p>
+
+<blockquote>
+<p>Generics and Collections:</p>
+
+<ol>
+<li><p>Create and use a generic class</p></li>
+
+<li><p>Create and use ArrayList, TreeSet, TreeMap and ArrayDeque objects</p></li>
+
+<li><p>Use java.util.Comparator and java.lang.Comparable interfaces</p></li>
+
+<li><p>Iterate using forEach methods on Streams and List</p></li>
+
+<li><p>Use method references with Streams</p></li>
+
+<li><p>Advanced Java Class Design</p></li>
+
+<li><p>Create and use lambda expressions</p></li>
+
+<li><p>Generics and Collections</p></li>
+
+<li><p>Filter a collection using lambda expressions</p></li>
+
+<li><p>Java Stream API</p></li>
+
+<li><p>Use of merge()and flatMap()methods of the Stream API</p></li>
+</ol>
+</blockquote>
+
+<h1 id="reviewing-oca-collections">Reviewing OCA Collections</h1>
+
+<h2 id="array-and-arraylist">Array and ArrayList</h2>
+
+<p><em>Arrays</em>
+- Not part of the Java Collections framework
+- Can store primitives
+- Fixed size
+- Only inherits from <code>java.lang.object</code>
+- Only field is <code>length</code></p>
+
+<p><em>ArrayList</em>
+- Part of the Java Collections framework
+- CANNOT store primitives (only objects)
+- Can dynamically shrink and grow as needed
+- Is an implementation of the List <code>interface</code>
+- Uses generics to ensure consistent type</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = Arrays.asList(arrayRef);
+</code></pre>
+
+<p>Returns a <code>List</code> based implementation that returns a fixed size list, not an <code>ArrayList</code></p>
+
+<p>While adding and removing from &lsquo;list&rsquo; throws an <code>UnsupportedOperationException</code> as you just like a normal array you can not perform actions that would change the length of the array.</p>
+
+<p>However you can still use methods like <code>List.set()</code> to change the value at a certain index, just like a normal array</p>
+
+<h2 id="searching-and-sorting">Searching and Sorting</h2>
+
+<p><em>Arrays</em></p>
+
+<p>Use the <code>Arrays</code> helper class to sort and search on arrays.</p>
+
+<p>Sorting:</p>
+
+<pre><code class="language-java">int[] nums = new int[]{1,6,5,4,8,9,7};
+Arrays.sort(nums); // 1,4,5,6,7,8,9
+</code></pre>
+
+<p>Searching:</p>
+
+<pre><code class="language-java">Arrays.binarySearch(nums, 6) // returns 1 (6 is at index 1)
+Arrays.binarySearch(nums, 3) // returns -2
+</code></pre>
+
+<p>The second example returns -2 because if it were to exist it would need to be inserted at index 1, negating this gives us -1 and subtracting 1 gives us -2, refer to OCA notes or JavaDocs.</p>
+
+<p><em>ArrayList</em></p>
+
+<p>Uses the <code>Collections</code> helper class to sort and search.</p>
+
+<p>Sorting:</p>
+
+<pre><code class="language-java">List&lt;Integer&gt; numbers = new ArrayList&lt;&gt;(Arrays.asList(9,7,5,3));
+Collections.sort(numbers); // numbers = [3,5,7,9]
+</code></pre>
+
+<p>Searching:</p>
+
+<pre><code class="language-java">Collections.binarySearch(numbers, 3); // returns 0
+Collections.binarySearch(numbers, 2); // returns -1
+</code></pre>
+
+<h2 id="wrapper-class-and-autoboxing">Wrapper Class and AutoBoxing</h2>
+
+<p><em>Boxing</em> is when the JVM automatically takes a primitive type and turns it into it&rsquo;s wrapper type</p>
+
+<ul>
+<li>int &ndash;&gt; Integer</li>
+<li>double &ndash;&gt; Double</li>
+<li>float &ndash;&gt; Float</li>
+<li>char &ndash;&gt; Character</li>
+</ul>
+
+<p><em>Unboxing</em> occurs when the JVM will take the wrapper type and change it into it&rsquo;s primitive type</p>
+
+<p>AutoBoxing often occurs when dealing with primitives types and generics, since generics cant hold primitive types Java will automatically convert it into its wrapper type.</p>
+
+<h3 id="integer-nuance">Integer Nuance</h3>
+
+<p>Given the following</p>
+
+<pre><code class="language-java">List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;();
+numbers.add(1);
+numbers.add(new Integer(3));
+numbers.add(new Integer(5));
+numbers.remove(1); // tricky one returns 3
+numbers.remove(new Integer(5)); // returns true
+System.out.println(numbers); // returns [1,5]
+</code></pre>
+
+<p>The above line marked &lsquo;tricky one&rsquo; is marked as such because <code>ArrayList</code> has an overloaded <code>remove</code> methods</p>
+
+<pre><code class="language-java">public E remove(int index); // belongs to java.util.List
+public boolean remove (Object o); // belongs to java.util.Collection
+</code></pre>
+
+<p>When type matching parameters Java always looks for the most direct type match first and then &ldquo;broadens&rdquo; its type. As all literals in Java are treated as primitives (String being an exception), Java interprets the argument type to
+<code>numbers.remove(1)</code> to be of type <code>int</code> and as such calls <code>remove(int index)</code>.</p>
+
+<p>In the following line we pass in an <code>Integer</code> to the remove method, while an Integer isn&rsquo;t exactly an <code>Object</code> an Integer <code>is-an</code> Object and hence calls the second remove method</p>
+
+<h2 id="the-diamond-operator">The Diamond Operator</h2>
+
+<p>Since Java 7 (JDK 1.7) Java has had the capacity to infer <code>right-side</code> types meaning it can infer types that are on the right hand side of the assignment operator (=). This is particularly useful for generics are we no longer have to re-declare our generic types making the code look cleaner.</p>
+
+<p>Prior to Java 7</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = new ArrayList&lt;String&gt;();
+Map&lt;String, Map&lt;String, Object&gt;&gt; cache = new HashMap&lt;String, HashMap&lt;String,Object&gt;&gt;();
+</code></pre>
+
+<p>Since Java 7 we can remove the types from the angled brackets on the right hand side.</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = new ArrayList&lt;&gt;();
+Map&lt;String, Map&lt;String, Object&gt;&gt; cache = new HashMap&lt;&gt;();
+</code></pre>
+
+<p>Hence the two angle brackets form a &lsquo;diamond&rsquo; shape. Magical :/</p>
+
+<h1 id="working-with-generics">Working With Generics</h1>
+
+<p>Generics were introduced in Java 5 as a way to allow a way to produce code that is type agnostic (the code doesn&rsquo;t care about the type it deals with), such as Lists, Sets and Maps, while still allowing some <code>type safety</code>.</p>
+
+<p>Java uses angle brackets and parameterized types to form a generic type.</p>
+
+<p>Unfortunately there are a few caveats and nuance to ensure backwards compatibility (being able to write legal Java 4 code on Java 5 JDK/JRE) and can be one of the most common sources of complexity in everyday Java code.</p>
+
+<p>Java generics are only enforced at by compile by  (none other than) the compiler, and does not type checking at runtime.</p>
+
+<h2 id="generic-classes">Generic Classes</h2>
+
+<p>Example:</p>
+
+<pre><code class="language-java">public class Crate&lt;T&gt; {
+  private T contents;
+  public T emptyCrate() {
+    return contents;
+  }
+  public void packCrate(T contents) {
+    this.contents = contents;
+  }
+}
+</code></pre>
+
+<p>Here we declare a formal type parameter of <T>. This means you can instantiate the <code>Crate</code> class with ONE specific type</p>
+
+<h3 id="naming-conventions-for-java-generics">Naming Conventions for Java Generics</h3>
+
+<p>While a type parameter can be named anything you want, they are generally declared via a single upper-case letter. There are also a few conventions:</p>
+
+<ul>
+<li>E - for element, usually used in collections</li>
+<li>K - for key, usually when relating to keys in a map</li>
+<li>V - for value, usually also in a a map</li>
+<li>N - for number</li>
+<li>T - for type, for any type of value</li>
+<li>S,V,U - when declaring multiple generic types</li>
+</ul>
+
+<p>Here is a class that takes two generic values</p>
+
+<pre><code class="language-java">public class SizeLimitedCrate&lt;T, U&gt; {
+  private T contents;
+  private U unit;
+  public SizeLimitedCrate(T contents, U unit) {
+    this.contents = contents;
+    this.unit = unit;
+  }
+}
+</code></pre>
+
+<h3 id="type-erasure">Type Erasure</h3>
+
+<p>To ensure compatibility with pre-Java-5 code, all generic types are lost after compile time, that is the type parameter is only used by the compiler to ensure in the source code that references match the parameter type, there are no checks at runtime.</p>
+
+<p>This means after compile our <code>Crate</code> class above will be transformed into something effectively like this.</p>
+
+<pre><code class="language-java">public class Crate {
+  private Object contents;
+
+  public Object emptyCrate() {
+    return contents;
+  }
+
+  public void packCrate(Object contents) {
+    this.contents = contents;
+  }
+}
+</code></pre>
+
+<p>Here all references to <code>T</code> have been replaced by <code>Object</code>.</p>
+
+<p>Java will also place the necessary casts from <code>Object</code> to the type specified as well, in the caller code.</p>
+
+<h2 id="generic-interfaces">Generic Interfaces</h2>
+
+<p>Interfaces can also declare a generic type parameter</p>
+
+<pre><code class="language-java">public interface Shippable&lt;T&gt; {
+  void ship(T t);
+}
+</code></pre>
+
+<p>You can consume the generic interface just like you normally would with a generic class.</p>
+
+<pre><code class="language-java">public MyClass implements Shippiable&lt;Item&gt; {
+  public void ship(Item item)
+}
+</code></pre>
+
+<h3 id="limitations-of-generics">Limitations of Generics</h3>
+
+<ol>
+<li>Cannot create a new instance of the parameter type <code>&lt;T&gt;</code> as at runtime you would just be creating an instance of <code>Object</code></li>
+<li>Cannot create a static array, as once again you&rsquo;d be creating an array of <code>Object</code>s</li>
+<li>Cannot use the <code>instanceof</code> operator as types are lost at runtime</li>
+<li>Can not use primitives as a generic type parameter. This is because at runtime all types become <code>Object</code>, primitives are the only types in Java that do not intrinsically inherit from <code>java.lang.Object</code></li>
+<li>Cannot create a static variable as a type parameter.</li>
+<li>Have overloaded generic method signatures. The methods will appear to be identical after type erasure.</li>
+</ol>
+
+<h2 id="generic-methods">Generic methods</h2>
+
+<p>Methods can be generic as well, if the method is not using a type parameter specified in its class or interface than it must explicitly state its own type parameter, this declaration is placed just before the return type.</p>
+
+<pre><code class="language-java">public static &lt;T&gt; Crate&lt;T&gt; ship(T t) {
+  System.out.println(&quot;Preparing &quot; + t);
+  return new Crate&lt;T&gt;();
+}
+</code></pre>
+
+<p>The type parameter declaration must enclosed in angled brackets, else it will fail to compile.</p>
+
+<h3 id="invoking-generic-methods">Invoking Generic methods</h3>
+
+<p>You can invoke the above generic method like you normally would with any other method.</p>
+
+<pre><code class="language-java">Crate&lt;String&gt; output = MyClass.ship(&quot;hello&quot;);
+</code></pre>
+
+<p>Or you can explicitly declare the type parameter</p>
+
+<pre><code class="language-java">Crate&lt;String&gt; output = MyClass.&lt;String&gt;ship(&quot;hello&quot;);
+</code></pre>
+
+<p>The above is legal but no longer required as Java can infer the right hand side type from the reference type.</p>
+
+<h2 id="interacting-with-legacy-code">Interacting with Legacy Code</h2>
+
+<blockquote>
+<p>Collections written without generics are also known as raw collections.</p>
+</blockquote>
+
+<p>Raw Collections or classes that use <code>raw types</code> can not be used to enforce compile time safety, this is because all raw types accept <code>Object</code> or return  <code>Object</code> and as such often run into <code>CastClassException</code> at runtime.</p>
+
+<pre><code class="language-Java">public static void main(String[] args) {
+  List unicorns = new ArrayList();
+  unicorns.add(new Unicorn());
+  printDragons(unicorns);
+}
+
+private static void printDragons(List&lt;Dragon&gt; dragons) {
+  for (Dragon dragon: dragons) { // ClassCastException
+  System.out.println(dragon);
+  }
+}
+</code></pre>
+
+<p>Here the <code>List</code> of unicorns uses a raw type (it does not specify a generic type to use) as such we can add anything we can.</p>
+
+<p>Even though we pass the <code>List</code> to the <code>printDragons</code> method that <em>DOES</em> specify a type (Dragons), due to type erasure <code>List</code> and <code>List&lt;Dragon&gt;</code> look exactly the same to the compiler, hence we can pass in the list of unicorns, succesfully.</p>
+
+<p>However at runtime we find out we don&rsquo;t have unicorns, we have dragons :(</p>
+
+<p>We still get a <code>ClassCastException</code> even if we reverse the code, where we pass in a generic <code>List</code> to a method that takes a raw type.</p>
+
+<pre><code class="language-Java">public static void main(String[] args) {
+  List&lt;Unicorn&gt; unicorns = new ArrayList&lt;&gt;();
+  unicorns.add(new Unicorn());
+  printDragons(unicorns);
+}
+
+private static void printDragons(List dragons) {
+  for (Dragon dragon: dragons) { // ClassCastException
+  System.out.println(dragon);
+  }
+}
+</code></pre>
+
+<h3 id="autoboxing-with-raw-collections">AutoBoxing With Raw Collections</h3>
+
+<pre><code class="language-java">public class LegacyAutoboxing {
+  public static void main(String[] args) {
+  List numbers = new ArrayList();
+  numbers.add(5); //works fine as Java converts to an Integer
+  int result = numbers.get(0); // DOES NOT COMPILE
+  }
+}
+</code></pre>
+
+<p>The above fails to compile because raw types return <code>Object</code>, as such the compiler knows an <code>Object</code> can not be referenced by a primitive <code>int</code> and falls over.</p>
+
+<p>Autoboxing only works if we use generics as the compiler knows type at compile time, it can box and unbox for us.</p>
+
+<h2 id="type-bounds">Type Bounds</h2>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/programming/">programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/study-notes/">study-notes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/" data-tooltip="OCJP Chapter 4: Functional Programming">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/" data-tooltip="Removing the need for @JsonProperty from classes">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/" data-tooltip="OCJP Chapter 4: Functional Programming">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/" data-tooltip="Removing the need for @JsonProperty from classes">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2focjp-chapter-3-generics-and-collections%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
+                <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for chapter 4: Functional Programming in Java 8
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+                <h3 class="media-heading">OCJP Chapter 3: Generics and Collections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 3
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+                <h3 class="media-heading">Removing the need for @JsonProperty from classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Read the full post or skip to the answers section :)
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         7 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-lcevoqx3idqctdiel2oegt13zm6ydaxadnv0sqeswho6mmlbf2zitqgw83dp.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+

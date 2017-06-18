@@ -6,10 +6,30 @@
     <description>Recent content on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Thu, 08 Jun 2017 11:10:44 +1000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jun 2017 14:28:09 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OCJP Chapter 4: Functional Programming</title>
+      <link>https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/</link>
+      <pubDate>Wed, 14 Jun 2017 14:28:09 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/</guid>
+      <description>&lt;p&gt;Summary notes for chapter 4: Functional Programming in Java 8
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OCJP Chapter 3: Generics and Collections</title>
+      <link>https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/</link>
+      <pubDate>Sun, 11 Jun 2017 15:14:44 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/</guid>
+      <description>&lt;p&gt;Summary notes for Chapter 3
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Removing the need for @JsonProperty from classes</title>
@@ -38,16 +58,6 @@
       
       <guid>https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/</guid>
       <description>&lt;p&gt;Summary notes for Chapter 2
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>OCJP Chapter 3: Generics and Collections</title>
-      <link>https://verric.github.io/2017/05/25/ocjp-chapter-3-generics-and-collections/</link>
-      <pubDate>Thu, 25 May 2017 15:14:44 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/25/ocjp-chapter-3-generics-and-collections/</guid>
-      <description>&lt;p&gt;Summary notes for Chapter 3
 &lt;/p&gt;</description>
     </item>
     

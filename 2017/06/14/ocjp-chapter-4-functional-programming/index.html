@@ -1,0 +1,1523 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.21">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>OCJP Chapter 4: Functional Programming</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 4">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Summary notes for chapter 4: Functional Programming in Java 8
+">
+    <meta property="og:description" content="Summary notes for chapter 4: Functional Programming in Java 8
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OCJP Chapter 4: Functional Programming">
+    <meta property="og:url" content="/2017/06/14/ocjp-chapter-4-functional-programming/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Summary notes for chapter 4: Functional Programming in Java 8
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/oMmCBiT.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ph2qukmvkthsrclqvqejhnf6wgadzikwy8xvsija3tglgsuhrbooocbhqjz1.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      OCJP Chapter 4: Functional Programming
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-14T14:28:09&#43;10:00">
+      
+  
+  
+  
+  
+    2017-06-14
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/study-notes">study-notes</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Summary notes for chapter 4: Functional Programming in Java 8
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-4-functional-programming">Chapter 4: Functional Programming</a>
+<ul>
+<li><a href="#chapter-goals">Chapter goals</a></li>
+<li><a href="#using-variables-in-lambdas">Using Variables in Lambdas</a></li>
+<li><a href="#working-with-built-in-functional-interfaces">Working with built-in Functional Interfaces</a>
+<ul>
+<li><a href="#implementing-supplier">Implementing Supplier</a></li>
+<li><a href="#implementing-consumer-and-bi-consumer">Implementing Consumer and Bi-Consumer</a></li>
+<li><a href="#implementing-predicate-and-bi-predicate">Implementing Predicate and Bi-Predicate</a></li>
+<li><a href="#implementing-function-and-bifunction">Implementing Function and BiFunction</a></li>
+<li><a href="#implementing-unaryoperator-and-binaryoperator">Implementing UnaryOperator and BinaryOperator</a></li>
+<li><a href="#returning-an-optional">Returning an Optional</a></li>
+</ul></li>
+<li><a href="#using-streams">Using Streams</a>
+<ul>
+<li><a href="#creating-stream-sources">Creating Stream Sources</a></li>
+<li><a href="#using-common-terminal-operations">Using Common Terminal Operations</a>
+<ul>
+<li><a href="#count">count</a></li>
+<li><a href="#min-max">min &amp; max</a></li>
+<li><a href="#findany-and-findfirst">findAny() and findFirst()</a></li>
+<li><a href="#allmatch-anymatch-and-nonematch">allMatch() , anyMatch() and noneMatch()</a></li>
+<li><a href="#foreach">forEach()</a></li>
+<li><a href="#reduce">reduce()</a></li>
+<li><a href="#collect">collect()</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#using-common-intermediate-operations">Using Common Intermediate Operations</a>
+<ul>
+<li>
+<ul>
+<li><a href="#filter">filter()</a></li>
+<li><a href="#distinct">distinct()</a></li>
+<li><a href="#limit-and-skip">limit() and skip()</a></li>
+<li><a href="#map">map()</a></li>
+<li><a href="#flatmap">flatMap()</a></li>
+<li><a href="#sorted">sorted()</a></li>
+<li><a href="#peek">peek()</a></li>
+</ul></li>
+<li><a href="#putting-together-the-pipeline">Putting Together The Pipeline</a>
+<ul>
+<li><a href="#ordering-of-operations-in-streams">Ordering Of Operations In Streams</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#working-with-primitives">Working With Primitives</a>
+<ul>
+<li><a href="#creating-primitive-streams">Creating Primitive Streams</a></li>
+<li><a href="#using-optional-with-primitive-streams">Using Optional With Primitive Streams</a></li>
+<li><a href="#summarising-statistics">Summarising Statistics</a></li>
+<li><a href="#learning-the-functional-interfaces-for-primitives">Learning the Functional Interfaces for Primitives</a></li>
+</ul></li>
+<li><a href="#working-with-advanced-stream-pipeline-concepts">Working with Advanced Stream Pipeline Concepts</a>
+<ul>
+<li><a href="#linking-streams-to-the-underlying-data">Linking Streams to the Underlying Data</a></li>
+<li><a href="#chaining-optionals">Chaining Optionals</a></li>
+<li><a href="#collecting-results">Collecting Results</a></li>
+<li><a href="#collecting-using-basic-collectors">Collecting Using Basic Collectors</a></li>
+<li><a href="#collecting-into-maps">Collecting into Maps</a></li>
+<li><a href="#collecting-using-grouping-partitioning-and-mapping">Collecting Using Grouping, Partitioning, and Mapping</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="chapter-4-functional-programming">Chapter 4: Functional Programming</h1>
+
+<h2 id="chapter-goals">Chapter goals</h2>
+
+<p><em>Generics and Collections</em></p>
+
+<ul>
+<li>Collections Streams and Filters</li>
+<li>Iterate using forEach methods of Streams and List</li>
+<li>Describe Stream interface and Stream pipeline</li>
+<li>Use method references with Streams</li>
+</ul>
+
+<p><em>Lambda Built-In Functional Interfaces</em></p>
+
+<ul>
+<li>Use the built-in interfaces included in the java.util.function package such as Predicate, Consumer, Function, and Supplier</li>
+<li>Develop code that uses primitive versions of functional interfaces</li>
+<li>Develop code that uses binary versions of functional interfaces</li>
+<li>Develop code that uses the UnaryOperator interface</li>
+</ul>
+
+<p><em>Java Stream API</em></p>
+
+<ul>
+<li>Develop code to extract data from an object using peek() and map() methods including primitive versions of the map() method</li>
+<li>Search for data by using search methods of the Stream classes including findFirst, findAny, anyMatch, allMatch, and noneMatch</li>
+<li>Develop code that uses the Optional class</li>
+<li>Develop code that uses Stream data methods and calculation methods</li>
+<li>Sort a collection using Stream API</li>
+<li>Save results to a collection using the collect method and group/partition data using the Collectors class</li>
+<li>Use of merge() and flatMap() methods of the Stream API</li>
+</ul>
+
+<h2 id="using-variables-in-lambdas">Using Variables in Lambdas</h2>
+
+<p>Lambdas generally follow the same rules as anonymous inner classes and as such can only access</p>
+
+<ol>
+<li>Static variables</li>
+<li>Instance variables</li>
+<li>Effectively final method parameters</li>
+<li>Effectively final local variables</li>
+</ol>
+
+<p><code>Effectively final</code> meaning that the variable is only ever assigned a value once and it is never changed, as if you had used the <code>final</code> keyword</p>
+
+<h2 id="working-with-built-in-functional-interfaces">Working with built-in Functional Interfaces</h2>
+
+<p><img src="http://i.imgur.com/btSdfnL.png" alt="Standard Function Interfaces" /></p>
+
+<h3 id="implementing-supplier">Implementing Supplier</h3>
+
+<blockquote>
+<p>A Supplier is used when you want to generate or supply values without taking any input. The Supplier interface is defined as</p>
+</blockquote>
+
+<pre><code class="language-java">@FunctionalInterface
+public interface Supplier&lt;T&gt; {
+  public T get();
+}
+</code></pre>
+
+<p>Example of using Supplier:</p>
+
+<pre><code class="language-Java">Supplier&lt;LocalDate&gt; s1 = LocalDate::now;
+Supplier&lt;LocalDate&gt; s2 = () -&gt; LocalDate.now();
+LocalDate d1 = s1.get();
+LocalDate d2 = s2.get();
+</code></pre>
+
+<p>// Aside: Material seems piss poor on suppliers, just seems like a to hold an interim variables for no reason ???</p>
+
+<h3 id="implementing-consumer-and-bi-consumer">Implementing Consumer and Bi-Consumer</h3>
+
+<blockquote>
+<p>You use a Consumer when you want to do something with a parameter but not return anything.
+BiConsumer does the same thing except that it takes two parameters. Omitting the
+default methods, the interfaces are defined as follows:</p>
+</blockquote>
+
+<pre><code class="language-java">@FunctionalInterface public interface Consumer&lt;T&gt; {
+  void accept(T t);
+}
+
+@FunctionalInterface public interface BiConsumer&lt;T, U&gt; {
+  void accept(T t, U u);
+}
+</code></pre>
+
+<p>Consumers are the main way of passing functionality around to variables rather than passing variables areound to functions/methods.</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">Consumer&lt;String&gt; c1 = System.out::println;
+Consumer&lt;String&gt; c2 = x -&gt; System.out.println(x);
+c1.accept(&quot;Annie&quot;);
+c2.accept(&quot;Annie&quot;);
+</code></pre>
+
+<p>BiConsumer works the same way but takes two parameters and still returns void.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-java">Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+
+BiConsumer&lt;String, String&gt; b1 = map::put;
+BiConsumer&lt;String, String&gt; b2 = (k, v) -&gt; map.put(k, v);
+
+b1.accept(&quot;chicken&quot;, &quot;Cluck&quot;); // inserts (chicken, cluck) into map
+b2.accept(&quot;chick&quot;, &quot;Tweep&quot;);
+</code></pre>
+
+<h3 id="implementing-predicate-and-bi-predicate">Implementing Predicate and Bi-Predicate</h3>
+
+<blockquote>
+<p>Predicate is often used when filtering or matching. Both are very common operations. A BiPredicate is just like a Predicate except that it takes two parameters instead of one. Omitting any default or static methods, the interfaces are defined as follows:</p>
+</blockquote>
+
+<pre><code class="language-java">@FunctionalInterface public interface Predicate&lt;T&gt; {
+boolean test(T t);
+}
+@FunctionalInterface public interface BiPredicate&lt;T, U&gt; {
+boolean test(T t, U u);
+}
+</code></pre>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; p1 = String::isEmpty;
+Predicate&lt;String&gt; p2 = x -&gt; x.isEmpty();
+
+System.out.println(p1.test(&quot;&quot;));
+System.out.println(p2.test(&quot;&quot;));
+</code></pre>
+
+<p>Bi-Predicate naturally takes two parameters</p>
+
+<pre><code class="language-java">BiPredicate&lt;Integer,Integer&gt; b1 = (x,y) -&gt; x%y == 0;
+</code></pre>
+
+<p>The Predicate interface has several default methods to help with logical operations commonly used with booleans such as <code>and()</code>, <code>or()</code> and <code>negate()</code>.</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; egg = s -&gt; s.contains(&quot;egg&quot;);
+Predicate&lt;String&gt; brown = s -&gt; s.contains(&quot;brown&quot;);
+Predicate&lt;String&gt; otherEggs = -&gt; egg.and(brown.negate());
+</code></pre>
+
+<h3 id="implementing-function-and-bifunction">Implementing Function and BiFunction</h3>
+
+<blockquote>
+<p>Function is responsible for turning one parameter into a value of a potentially different type and returning it. Similarly, a BiFunction is responsible for turning two parameters into a value and returning it. Omitting any default or static methods, the interfaces are defined as the following:</p>
+</blockquote>
+
+<pre><code class="language-java">@FunctionalInterface public interface Function&lt;T, R&gt; {
+  R apply(T t);
+}
+
+@FunctionalInterface public interface BiFunction&lt;T, U, R&gt; {
+  R apply(T t, U u);
+}
+</code></pre>
+
+<p>Essentially the most generic (in terms of use cases) of the functional interfaces, takes whatever and returns whatever (thats not void)</p>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">Function&lt;String, Integer&gt; f1 = String::length;
+BiFunction&lt;String, String, Integer&gt; f2 = (x,y) -&gt; x.length() + y.length();
+
+System.out.println(f1.apply(&quot;cluck&quot;)); // 5
+System.out.println(f2.apply(&quot;cluck&quot;, &quot;truck&quot;)); // 10
+</code></pre>
+
+<h3 id="implementing-unaryoperator-and-binaryoperator">Implementing UnaryOperator and BinaryOperator</h3>
+
+<blockquote>
+<p>UnaryOperator and BinaryOperator are a special case of a function. They require all type parameters to be the same type. A UnaryOperator transforms its value into one of the same type. For example, incrementing by one is a unary operation. In fact, UnaryOperator extends Function. A BinaryOperator merges two values into one of the same type.</p>
+</blockquote>
+
+<pre><code class="language-java">@FunctionalInterface
+public interface UnaryOperator&lt;T&gt; extends Function&lt;T, T&gt; { }
+
+@FunctionalInterface
+public interface BinaryOperator&lt;T&gt; extends BiFunction&lt;T, T, T&gt; { }
+</code></pre>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">UnaryOperator&lt;String&gt; u1 = String::toUpperCase;
+
+BinaryOperator&lt;String&gt; b2 = (string, toAdd) -&gt; string.concat(toAdd);
+</code></pre>
+
+<h3 id="returning-an-optional">Returning an Optional</h3>
+
+<p>Optionals re used to represent cases where a value may or may not be returned, and provides a functional to deal with obtaining that value or handling cases where that value may not be present.</p>
+
+<pre><code class="language-java">public static Optional&lt;Double&gt; average(int… scores) {
+  if (scores.length == 0) return Optional.empty();
+  int sum = 0;
+
+  for (int score: scores) sum += score;
+  return Optional.of((double) sum / scores.length);
+}
+</code></pre>
+
+<p>We can use the <code>isPresent()</code> and the <code>get()</code> to check if there is a value and retrieve value in a traditional way</p>
+
+<pre><code class="language-java">Optional&lt;Double&gt; opt = average(90, 100);
+
+if(opt.isPresent())
+  System.out.println(opt.get());
+</code></pre>
+
+<p>Note: Calling <code>get()</code> on an empty optional will throw a <code>NoSuchElementException</code>.</p>
+
+<p>The <code>Optional.of()</code> only allows non-nullable types, to create an optional where the value may be null we need to use <code>Optional.ofNullable()</code>.</p>
+
+<p>Note: Calling <code>get()</code> on an optional that contains a &lsquo;null&rsquo; value will throw a <code>NullPointerException</code></p>
+
+<p>Optional, commonly used methods table
+<img src="http://i.imgur.com/y83mSPp.png" alt="Optional API table" /></p>
+
+<h2 id="using-streams">Using Streams</h2>
+
+<blockquote>
+<p>A stream in Java is a sequence of data. A stream pipeline is the operations that run on a stream to produce a result.</p>
+</blockquote>
+
+<ol>
+<li>Pipeline methods in a stream return a <code>Stream</code> to allow other pipeline methods to be chained.</li>
+<li>A terminal operation is an operation the results in a concrete value. Once a terminal operation has been called the stream, the value is returned and the stream is ended.</li>
+<li>Java lazily evaluates streams, meaning no actual operation takes place (pipeline or other) until a terminal operation is invoked.</li>
+<li>Streams can be finite or infinite.</li>
+</ol>
+
+<h3 id="creating-stream-sources">Creating Stream Sources</h3>
+
+<p>You can create stream in multiple ways, however the most basic and common way is using the <code>from()</code> facotry methods</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; empty = Stream.empty(); // count = 0
+Stream&lt;Integer&gt; singleElement = Stream.of(1); // count = 1
+Stream&lt;Integer&gt; fromArray = Stream.of(1, 2, 3); // count = 2
+</code></pre>
+
+<p>You can also easily convert from a list to a stream using the <code>stream()</code> method.</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = Arrays.asList(&quot;bob&quot;, &quot;jeff&quot;, &quot;greg&quot;);
+names.stream().forEach(System.out::println);
+</code></pre>
+
+<h3 id="using-common-terminal-operations">Using Common Terminal Operations</h3>
+
+<blockquote>
+<p>You can perform a terminal operation without any intermediate operations but not the other way around. This is why we will talk about terminal operations first.</p>
+</blockquote>
+
+<h4 id="count">count</h4>
+
+<pre><code class="language-java">long count();
+</code></pre>
+
+<p>Counts the number of elements in a stream, will hang in the event of an infinite stream.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; s = Stream.of(&quot;monkey&quot;, &quot;gorilla&quot;, &quot;bonobo&quot;);
+System.out.println(s.count()); // 3
+</code></pre>
+
+<h4 id="min-max">min &amp; max</h4>
+
+<pre><code class="language-java">Optional&lt;T&gt; min(&lt;? super T&gt; comparator);
+Optional&lt;T&gt; max(&lt;? super T&gt; comparator);
+</code></pre>
+
+<p>Takes a comparator to determine the smallest or largest element in the  stream, will also hang in the event of an infinite stream. Returns an optional to denote there might not be a min or max value.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; s = Stream.of(&quot;monkey&quot;, &quot;ape&quot;, &quot;bonobo&quot;);
+Optional&lt;?&gt; minEmpty = Stream.empty().min((s1, s2) -&gt; 0);
+Optional&lt;String&gt; min = s.min((s1, s2) -&gt; s1.length()—s2.length());
+min.ifPresent(System.out::println); // ape
+minEmpty.isPresent(); // returns false
+</code></pre>
+
+<h4 id="findany-and-findfirst">findAny() and findFirst()</h4>
+
+<pre><code class="language-java">Optional&lt;T&gt; findAny();
+Optional&lt;T&gt; findFirst();
+</code></pre>
+
+<p>Used to obtain an optional of the first element in a stream. Since these return the first element encountered they are able to work on infinite streams. <code>findAny()</code> is particularly when working on parallel streams since it will return the any element in the fork-join process while calling <code>findFirst()</code> would have to wait until the stream is re-joined to get the <em>first</em> element.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; s = Stream.of(&quot;monkey&quot;, &quot;gorilla&quot;, &quot;bonobo&quot;);
+Stream&lt;String&gt; infinite = Stream.generate(() -&gt; &quot;chimp&quot;);
+
+s.findFirst().ifPresent(System.out::println); // monkey
+infinite.findAny().ifPresent(System.out::println); // chimp
+</code></pre>
+
+<h4 id="allmatch-anymatch-and-nonematch">allMatch() , anyMatch() and noneMatch()</h4>
+
+<pre><code class="language-java">boolean anyMatch(Predicate &lt;? super T&gt; predicate)
+boolean allMatch(Predicate &lt;? super T&gt; predicate)
+boolean noneMatch(Predicate &lt;? super T&gt; predicate)
+</code></pre>
+
+<p>Pretty straight forward, all methods have the <em>potential</em> to hang on infinite streams.</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = Arrays.asList(&quot;monkey&quot;, &quot;2&quot;, &quot;chimp&quot;);
+Stream&lt;String&gt; infinite = Stream.generate(() -&gt; &quot;chimp&quot;);
+
+Predicate&lt;String&gt; pred = x -&gt; Character.isLetter(x.charAt(0));
+
+System.out.println(list.stream().anyMatch(pred)); // true
+System.out.println(list.stream().allMatch(pred)); // false
+System.out.println(list.stream().noneMatch(pred)); // false
+
+System.out.println(infinite.anyMatch(pred)); // true
+</code></pre>
+
+<h4 id="foreach">forEach()</h4>
+
+<pre><code class="language-java">void forEach(Consumer&lt;? super T&gt; action)
+</code></pre>
+
+<p>The only terminal action that has <code>void</code> for the return type, meaning any operation you want to take on each element has to happen in the <code>consumer</code>.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; s = Stream.of(&quot;Monkey &quot;, &quot;Gorilla &quot;, &quot;Bonobo&quot;);
+
+s.forEach(System.out::print); // Monkey Gorilla Bonobo
+</code></pre>
+
+<h4 id="reduce">reduce()</h4>
+
+<pre><code class="language-java">T reduce(T identity, BinaryOperator&lt;T&gt; accumulator);
+
+Optional&lt;T&gt; reduce(BinaryOperator&lt;T&gt; accumulator);
+
+&lt;U&gt; U reduce(U identity, BiFunction&lt;U,? super T,U&gt; accumulator, BinaryOperator&lt;U&gt; combiner);
+</code></pre>
+
+<p>Reduce takes the elements from a stream and and applied an operation and then merges the values together, this is also known as a <code>fold</code> in other languages.</p>
+
+<p>The first reduce type takes an identity (an initial value) and a binaryOperator.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;w&quot;, &quot;o&quot;, &quot;l&quot;, &quot;f&quot;);
+String word = stream.reduce(&quot;&quot;, (s, c) -&gt; s + c); // &quot;wolf&quot;
+or
+String word = stream.reduce(&quot;&quot;, String::concat); // &quot;wolf&quot;
+</code></pre>
+
+<p>The second reduce function operates exactly the same as the first but does not take an initial value, as such it returns <code>Optional</code> as no value may be returned by the reduce operation.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;w&quot;, &quot;o&quot;, &quot;l&quot;, &quot;f&quot;);
+Optional&lt;String&gt; word = stream.reduce((s, c) -&gt; s + c); // &quot;wolf&quot;
+or
+Optional&lt;String&gt; word = stream.reduce(String::concat); // &quot;wolf&quot;
+</code></pre>
+
+<p>The final reduce takes an initial value, an accumulator and and the combiner, this is useful for housing intermediate values (the accumulator) during the operation, and as well using reducers on parallel streams.</p>
+
+<pre><code class="language-java">BinaryOperator&lt;Integer&gt; op = (a, b) -&gt; a * b;
+Stream&lt;Integer&gt; stream = Stream.of(3, 5, 6);
+System.out.println(stream.reduce(1, op, op)); // 90
+</code></pre>
+
+<h4 id="collect">collect()</h4>
+
+<blockquote>
+<p>The collect() method is a special type of reduction called a mutable reduction. It is more efficient than a regular reduction because we use the same mutable object while accumulating</p>
+</blockquote>
+
+<pre><code class="language-java">&lt;R&gt; R collect(Supplier&lt;R&gt; supplier, BiConsumer&lt;R, ? super T&gt; accumulator, BiConsumer&lt;R, R&gt; combiner)
+
+&lt;R,A&gt; R collect(Collector&lt;? super T, A,R&gt; collector)
+</code></pre>
+
+<p>The first one uses a supplier to create an object to store the collected elements, and then a n accumulator and combiner to merge the elements together, once again, generally speaking the combiner and the accumulator maybe the same, but the combiner can be useful when using parallel streams.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;w&quot;, &quot;o&quot;, &quot;l&quot;, &quot;f&quot;);
+StringBuilder word = stream.collect(StringBuilder::new,
+
+StringBuilder::append, StringBuilder:append);
+</code></pre>
+
+<p>Where the combiner is different to the accumulator</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;w&quot;, &quot;o&quot;, &quot;l&quot;, &quot;f&quot;);
+TreeSet&lt;String&gt; set = stream.collect(TreeSet::new, TreeSet::add, TreeSet::addAll);
+
+System.out.println(set); // [f, l, o, w]
+</code></pre>
+
+<p>The second collect method takes a <code>Collector</code>. Collector is a class that houses many common uses cases for collectors such as <code>toList()</code>, <code>toSet()</code>, <code>toMap()</code>, <code>joining()</code> etc</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; stream = Stream.of(&quot;w&quot;, &quot;o&quot;, &quot;l&quot;, &quot;f&quot;);
+TreeSet&lt;String&gt; set = stream.collect(Collectors.joining(&quot;&quot;)); // &quot;wolf&quot;
+TreeSet&lt;String&gt; set = stream.collect(Collectors.toList()); //[&quot;w&quot;, &quot;o&quot; ,&quot;l&quot; ,&quot;f&quot;]
+
+System.out.println(set); // [f, l, o, w]
+</code></pre>
+
+<h2 id="using-common-intermediate-operations">Using Common Intermediate Operations</h2>
+
+<blockquote>
+<p>Unlike a terminal operation, intermediate operations deal with infinite streams simply by returning an infinite stream. Since elements are produced only as needed, this works fine.</p>
+</blockquote>
+
+<h4 id="filter">filter()</h4>
+
+<pre><code class="language-java">Stream&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate)
+</code></pre>
+
+<p>One of the most common operations, takes a predicate and returns a stream with only the values that match the expression.</p>
+
+<pre><code class="language-java">Stream.of(&quot;monkey&quot;, &quot;gorilla&quot;, &quot;bonobo&quot;)
+      .filter(x -&gt; x.startsWith(&quot;m&quot;))
+      .forEach(System.out::print); // prints &quot;monkey&quot;
+</code></pre>
+
+<h4 id="distinct">distinct()</h4>
+
+<pre><code class="language-java">Stream&lt;T&gt; distinct()
+</code></pre>
+
+<p>Removes duplicate values from the stream, Java uses the types <T> equals method to determine if values are equal.</p>
+
+<pre><code class="language-java">Stream.of(&quot;duck &quot;, &quot;duck &quot;, &quot;duck &quot;, &quot;goose&quot;)
+      .distinct()
+      .forEach(System.out::print); // &quot;duck&quot;, &quot;goose&quot;
+</code></pre>
+
+<h4 id="limit-and-skip">limit() and skip()</h4>
+
+<pre><code class="language-java">Stream&lt;T&gt; limit(int maxSize)
+Stream&lt;T&gt; skip(int n)
+</code></pre>
+
+<p>Limit , naturally, limits the stream to a certain size, if there are fewer elements than limit size specified then those elements are returned.</p>
+
+<pre><code class="language-java">Stream.of(1,2,3,4,5,6,7,8,9,10).limit(5).forEach(System.out::print()); // [1,2,3,4,5]
+Stream.of(1,2,3).limit(5).forEach(System.out::print()); // [1,2,3]
+</code></pre>
+
+<p>Skip is essentially an offset in many other contexts, it skips the first, x amount of elements in the stream. If you skip more than the total size of the stream, an empty stream is returned.</p>
+
+<pre><code class="language-java">Stream.of(1,2,3,4,5,6,7,8,9,10).skip(5).forEach(System.out::println()); //6,7,8,9,10
+Stream.of(1,2,3,).skip(5).forEach(System.out::println()); // []
+</code></pre>
+
+<h4 id="map">map()</h4>
+
+<blockquote>
+<p>The map() method creates a one-to-one mapping from the elements in the stream to the elements of the next step in the stream.</p>
+</blockquote>
+
+<pre><code class="language-java">&lt;R&gt; Stream&lt;R&gt; map(Function&lt;? super T, ? extends R&gt; mapper)
+</code></pre>
+
+<p>The <code>map()</code> methods applies the function to each element and then returns the new element, map will always return a stream of the same size as the original stream. This means in Java the map operation must return the same type <R> on all of the elements.</p>
+
+<pre><code class="language-java">Stream.of(&quot;monkey&quot;, &quot;gorilla&quot;, &quot;bonobo&quot;)
+      .map(String::toUpperCase).forEach(System.out::println); // &quot;MONKEY&quot;, &quot;GORILLA&quot;, &quot;BONOBO&quot;
+</code></pre>
+
+<h4 id="flatmap">flatMap()</h4>
+
+<blockquote>
+<p>The flatMap() method takes each element in the stream and makes any elements it contains top-level elements in a single stream.</p>
+</blockquote>
+
+<pre><code class="language-java">&lt;R&gt; Stream&lt;R&gt; flatMap(Function&lt;? super T, ? extends Stream&lt;? extends R&gt;&gt; mapper) // pretty generic :/
+</code></pre>
+
+<p>Useful merging multiple streams into one stream, any empty streams will be discarded.</p>
+
+<pre><code class="language-java">List&lt;String&gt; zero = Arrays.asList();
+List&lt;String&gt; one = Arrays.asList(&quot;Bonobo&quot;);
+List&lt;String&gt; two = Arrays.asList(&quot;Mama Gorilla&quot;, &quot;Baby Gorilla&quot;);
+
+Stream&lt;List&lt;String&gt;&gt; animals = Stream.of(zero, one, two);
+
+animals.flatMap(l -&gt; l.stream()).forEach(System.out::println); // &quot;Bonobo&quot;, &quot;Mama Gorilla&quot;, &quot;Baby Gorilla&quot;
+</code></pre>
+
+<h4 id="sorted">sorted()</h4>
+
+<pre><code class="language-java">Stream&lt;T&gt; sorted()
+Stream&lt;T&gt; sorted(Comparator&lt;? super T&gt; comparator)
+</code></pre>
+
+<p>Sorts the stream by its &lsquo;natural order&rsquo;, or you can specify a comparator to sort the elements.</p>
+
+<p>The <code>Comparator</code> interface has a few static methods to help with common sorting use cases, such as <code>Comparator.naturalOrder()</code> and <code>Comparator.reverseOrder()</code></p>
+
+<pre><code class="language-java">Stream.of(3,6,4,2,1,9,10)
+      .sorted().forEach(System.out::print); // 1,2,3,4,9,10
+
+Stream.of(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot; ,&quot;e&quot;)
+      .sorted(Comparator.reverseOrder())
+      .forEach(System.out::print); // &quot;e&quot;, &quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot;
+</code></pre>
+
+<h4 id="peek">peek()</h4>
+
+<pre><code class="language-java">Stream&lt;T&gt; peek(Consumer&lt;? super T&gt; action)
+</code></pre>
+
+<p>Peek simply looks through each element and applies the consumer without actually modifying the stream. It can be useful in debugging scenarios or logging where you want to look a the stream without directly manipulating it.</p>
+
+<pre><code class="language-java">StringBuilder sb =  new StringBuilder();
+Stream.of(&quot;black bear&quot;, &quot;brown bear&quot;, &quot;grizzly&quot;)
+      .filter(s -&gt; s.startsWith(&quot;g&quot;))
+      .peek(sb::append); // sb -&gt; &quot;grizzly&quot;
+</code></pre>
+
+<h3 id="putting-together-the-pipeline">Putting Together The Pipeline</h3>
+
+<p>Streams are useful because they flip the way Java has traditionally dealt with methods and data, in the past it was more common to pass &lsquo;data to functions&rsquo;, with the advent of lambdas and streams in Java, we can no pass &lsquo;functions to data&rsquo;.</p>
+
+<p>This allows to operate on large sets of data quite nicely and helps in some aspects with concurrency.</p>
+
+<p>Java 7:</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = Arrays.asList(&quot;Toby&quot;, &quot;Anna&quot;, &quot;Leroy&quot;, &quot;Alex&quot;);
+List&lt;String&gt; filtered = new ArrayList&lt;&gt;();
+
+  for (String name: list) {
+    if (name.length() == 4)
+      filtered.add(name);
+  }
+Collections.sort(filtered);
+</code></pre>
+
+<p>Here we want to return a new, sorted array list that contains only names that are four letters long. In this case we are passing data to our control structures such as loops (enhanced for loop) and if statements.</p>
+
+<p>Java 8:</p>
+
+<pre><code class="language-java">List&lt;String&gt; updatedList = Arrays.asList(&quot;Toby&quot;, &quot;Anna&quot;, &quot;Leroy&quot;, &quot;Alex&quot;)
+      .stream()
+      .filter(n -&gt; n.length() == 4)
+      .sorted()
+      .collect(Collectors.toList());
+</code></pre>
+
+<p>While similar in terms of the number of lines, the second way better demonstrates what we are trying to achieve. Here we are passing functions to our data instead of the other way around.</p>
+
+<h4 id="ordering-of-operations-in-streams">Ordering Of Operations In Streams</h4>
+
+<p>When using streams, particularly infinite streams (generating random names, producing a sequence of numbers) it is important to carefully consider how we order our pipeline.</p>
+
+<pre><code class="language-java">Stream.generate(() -&gt; &quot;Elsa&quot;)
+      .filter(n -&gt; n.length() == 4)
+      .sorted()
+      .limit(2)
+      .forEach(System.out::println);
+</code></pre>
+
+<p>The above code hangs forever as it attempts to sort an infinite stream, hence it never reaches the <code>limit(2)</code> method or anything else.</p>
+
+<pre><code class="language-java">Stream.generate(() -&gt; &quot;Elsa&quot;)
+      .filter(n -&gt; n.length() == 4)
+      .limit(2)
+      .sorted()
+      .forEach(System.out::println);
+</code></pre>
+
+<p>Here it prints &ldquo;Elsa&rdquo; twice as we limit the output to two iterations then sort then print.</p>
+
+<pre><code class="language-java">Stream.generate(() -&gt; &quot;Olaf Lazisson&quot;)
+.filter(n -&gt; n.length() == 4)
+.limit(2)
+.sorted()
+.forEach(System.out::println);
+</code></pre>
+
+<p>This also hangs, this is because there is never any value thats length exactly equals four, as such nothing ever gets passed the <code>filter</code> method.</p>
+
+<h2 id="working-with-primitives">Working With Primitives</h2>
+
+<p>Since streams support generics and generics don&rsquo;t support  primitives. Java Provides specific classes to deal with primitives. The main purpose you would work with primitives over their wrapper counter parts is generally speed and memory size.</p>
+
+<p>These custom classes also provide useful  utility methods as well, for common tasks when working with numbers.</p>
+
+<pre><code class="language-java">IntStream intStream = IntStream.of(1, 2, 3);
+OptionalDouble avg = intStream.average();
+System.out.println(avg.getAsDouble());
+</code></pre>
+
+<h3 id="creating-primitive-streams">Creating Primitive Streams</h3>
+
+<blockquote>
+<p>Here are three types of primitive streams:</p>
+</blockquote>
+
+<ol>
+<li>IntStream: Used for the primitive types int, short, byte, and char</li>
+<li>LongStream: Used for the primitive type long</li>
+<li>DoubleStream: Used for the primitive types double and float</li>
+</ol>
+
+<p>We can create the majority if primitives streams much like the regular stream class, by using the <code>of()</code>, <code>empty()</code>, <code>iterate()</code> and <code>generate</code> factory methods.</p>
+
+<pre><code class="language-java">DoubleStream oneValue = DoubleStream. of (3.14);
+DoubleStream varargs = DoubleStream. of (1.0, 1.1, 1.2);
+
+DoubleStream random = DoubleStream. generate (Math::random);
+DoubleStream fractions = DoubleStream. iterate (.5, d -&gt; d / 2);
+</code></pre>
+
+<p>IntStreams can also have a range function that creates a stream of numbers from low to high, you can also use the closeRanged to include the high value.</p>
+
+<pre><code class="language-java">IntStream range = IntStream.range(1, 6); // 1,2,3,4,5
+
+IntStream range = IntStream.rangeClosed(1, 5); //1,2,3,4,5
+</code></pre>
+
+<p>You can also create a primitive stream by mapping it from a generic stream to its respective  primitive stream. To do this you call the primitive stream mapping function as seen in the table below</p>
+
+<p><img src="http://i.imgur.com/1YyyZkY.png" alt="Table4.6" /></p>
+
+<p>This table shows the function types when mapping between stream types.</p>
+
+<p><img src="http://i.imgur.com/2xhiYkn.png" alt="Table4.7" /></p>
+
+<h3 id="using-optional-with-primitive-streams">Using Optional With Primitive Streams</h3>
+
+<p>Just as primitives have their own special steam class, they also have their own optional class as well.</p>
+
+<pre><code class="language-java">IntStream stream = IntStream.rangeClosed(1,10);
+OptionalDouble optional = stream.average();
+</code></pre>
+
+<p>Most Operations are similar to their <code>Optional&lt;&gt;</code> counter part, except they are bound to their primitive type.</p>
+
+<p><img src="http://i.imgur.com/svyvhVe.png" alt="PrimitiveOptionals" /></p>
+
+<h3 id="summarising-statistics">Summarising Statistics</h3>
+
+<p>In some cases there maybe situations where we want to get the; min, avg and max value from a primitive stream, however each one of those respective operations is a terminal operation meaning we have to create a statement for each piece data we want to retrieve. Java provides the <code>summaryStatistics()</code> method for us. This method returns the min, max, avg, size, and the number of values in the stream.</p>
+
+<pre><code class="language-java">private static int range(IntStream ints) {
+  IntSummaryStatistics stats = ints.summaryStatistics();
+  if (stats.getCount() == 0) throw new RuntimeException();
+  return stats.getMax()—stats.getMin();
+}
+</code></pre>
+
+<h3 id="learning-the-functional-interfaces-for-primitives">Learning the Functional Interfaces for Primitives</h3>
+
+<p>// TODO just a bunch of JavaDoc stuff</p>
+
+<h2 id="working-with-advanced-stream-pipeline-concepts">Working with Advanced Stream Pipeline Concepts</h2>
+
+<blockquote>
+<p>You’ll see the relationship between streams and the underlying data, chaining Optional and grouping collectors.</p>
+</blockquote>
+
+<h3 id="linking-streams-to-the-underlying-data">Linking Streams to the Underlying Data</h3>
+
+<pre><code class="language-java">List&lt;String&gt; cats = new ArrayList&lt;&gt;();
+cats.add(&quot;Annie&quot;);
+cats.add(&quot;Ripley&quot;);
+
+Stream&lt;String&gt; stream = cats.stream();
+cats.add(&quot;KC&quot;);
+System.out.println(stream.count());
+</code></pre>
+
+<p>Here the out put is three (3). This is due to the fact that stream are lazy evaluated. Even though we create a stream after only two entries into the list, the terminal operation (<code>count()</code>) is called once the the list has three elements, hence the output is three (3)</p>
+
+<h3 id="chaining-optionals">Chaining Optionals</h3>
+
+<p>You can chain optionals or use the optionals API to return a stream of the result (or potential result)</p>
+
+<pre><code class="language-java">private static void threeDigit(Optional&lt;Integer&gt; optional) {
+  optional.map(n -&gt; &quot;&quot; + n) // converts to string
+          .filter(s -&gt; s.length() == 3) // checks whether the string length is equal to three
+          .ifPresent(System.out::println); // prints if there is a valid value.
+}
+</code></pre>
+
+<p>Chaining optionals can become a bit more complex especially when dealing and combining optionals together.</p>
+
+<pre><code class="language-java">Optional&lt;Integer&gt; result = optional.map(String::length);
+
+Optional&lt;Integer&gt; stuff = result.map(i -&gt; i/2);// fails to compile
+</code></pre>
+
+<p>This is because the <code>map()</code> method wraps it return type in an optional hence the return type is actually</p>
+
+<pre><code class="language-java">Optional&lt;Optional&lt;Integer&gt;&gt; stuff....
+</code></pre>
+
+<p>A simple way around this is to use <code>flatMap()</code> to get rid of the extra optional.</p>
+
+<h3 id="collecting-results">Collecting Results</h3>
+
+<p>The <code>Collectors</code> class provides many predefined collecting methods to help with common use cases. As the entire Collectors class only consists of static methods you can, statically import the class  to help &lsquo;clean up&rsquo; the code.</p>
+
+<h3 id="collecting-using-basic-collectors">Collecting Using Basic Collectors</h3>
+
+<p>One of the most common tasks is to join strings together, usually from an array or list, here we can use the joining method to help us</p>
+
+<pre><code class="language-java">import static java.util.stream.Collectors.*;
+Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+String result = ohMy.collect(joining(&quot;, &quot;));
+System.out.println(result); // lions, tigers, bears
+</code></pre>
+
+<p>It s also important to note that Collectors do nothing outside of the <code>collect()</code> method.</p>
+
+<p>We can also use collectors to help with converting between collection types</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+
+TreeSet&lt;String&gt; result = ohMy.filter(s -&gt; s.startsWith(&quot;t&quot;)) .collect(Collectors.toCollection(TreeSet::new)); //[&quot;tigers&quot;]
+</code></pre>
+
+<h3 id="collecting-into-maps">Collecting into Maps</h3>
+
+<p>Since Maps have a key value pair, creating maps using collectors can get long and potentially messy.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+Map&lt;String, Integer&gt; map = ohMy.collect(Collectors.toMap(s -&gt; s, String::length)); {lions=5, bears=5, tigers=6}
+</code></pre>
+
+<p>In Java lambdas, there are times where you want to return the value that was passed into the lambda, such as above where we used <code>...toMap(s-&gt;s...)</code>. Here we can replace  &rsquo;s-&gt;s&rsquo; with <code>Function.identity</code> if we wanted to.</p>
+
+<p>The <code>toMap()</code> also takes a parameter (a BinaryOperator), if you want to perform some operations in the values being inserted into the map.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+
+Map&lt;Integer, String&gt; map = ohMy.collect(Collectors.toMap(
+  String::length,
+  k -&gt; k,
+  (s1, s2) -&gt; s1 + &quot;,&quot; + s2));
+System.out.println(map); // {5=lions,bears, 6=tigers}
+</code></pre>
+
+<p>The final <code>toMap()</code> method takes a supplier, and is often used when you want to specify the type of the map you want to be returned (HashMap, TreeMap, LinkedHashMap, etc)</p>
+
+<pre><code class="language-java">Map&lt;Integer, String&gt; map = ohMy.collect(Collectors.toMap(
+  String::length,
+  k -&gt; k,
+  (s1, s2) -&gt; s1 + &quot;,&quot; + s2),
+  TreeMap::new);
+</code></pre>
+
+<h3 id="collecting-using-grouping-partitioning-and-mapping">Collecting Using Grouping, Partitioning, and Mapping</h3>
+
+<p>We can use <code>groupingBy()</code>  to group certain aspects of data together by some common value.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+Map&lt;Integer, List&lt;String&gt;&gt; map = ohMy.collect(Collectors.groupingBy(String::length)); // {5=[lions, bears], 6=[tigers]}
+</code></pre>
+
+<p>There are overloads of the <code>groupingBy()</code> to help change what type you want the data to be returned as.</p>
+
+<pre><code class="language-java">Map&lt;Integer, Set&lt;String&gt;&gt; map = ohMy.collect(
+Collectors.groupingBy(String::length, Collectors.toSet()));  // {5=[lions, bears], 6=[tigers]}
+</code></pre>
+
+<p>Partitioning is a special case of grouping, partition will only return two groups, those that passed a predicate and those that failed the predicate.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+
+Map&lt;Boolean, List&lt;String&gt;&gt; map = ohMy.collect(Collectors.partitioningBy(s -&gt; s.length() &lt;= 5)); // {false=[tigers], true=[lions, bears]}
+</code></pre>
+
+<p>Just like the other methods, this comes with an overload to help us return the collection type we want.</p>
+
+<pre><code class="language-java">Map&lt;Boolean, Set&lt;String&gt;&gt; map = ohMy.collect(
+Collectors.partitioningBy(s -&gt; s.length() &lt;= 7, Collectors.toSet())); // {false=[], true=[lions, tigers, bears]}
+</code></pre>
+
+<p>The <code>mapping()</code> collector is used when we want to apply multiple (often nested) collectors on stream.</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+Map&lt;Integer, Optional&lt;Character&gt;&gt; map = ohMy.collect(
+  Collectors.groupingBy(
+    String::length,
+    Collectors.mapping(s -&gt; s.charAt(0),
+      Collectors.minBy(Comparator.naturalOrder())))); // {5=Optional[b], 6=Optional[t]}
+</code></pre>
+
+<p>As stated above we can use static imports to tidy this up</p>
+
+<pre><code class="language-java">Stream&lt;String&gt; ohMy = Stream.of(&quot;lions&quot;, &quot;tigers&quot;, &quot;bears&quot;);
+Map&lt;Integer, Optional&lt;Character&gt;&gt; map = ohMy.collect(
+  groupingBy(
+    String::length,
+    mapping(s -&gt; s.charAt(0),
+      minBy(Comparator.naturalOrder())))); // {5=Optional[b], 6=Optional[t]}
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/programming/">programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/study-notes/">study-notes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/" data-tooltip="OCJP Chapter 3: Generics and Collections">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/" data-tooltip="OCJP Chapter 3: Generics and Collections">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f14%2focjp-chapter-4-functional-programming%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
+                <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for chapter 4: Functional Programming in Java 8
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+                <h3 class="media-heading">OCJP Chapter 3: Generics and Collections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 3
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+                <h3 class="media-heading">Removing the need for @JsonProperty from classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Read the full post or skip to the answers section :)
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         7 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-lcevoqx3idqctdiel2oegt13zm6ydaxadnv0sqeswho6mmlbf2zitqgw83dp.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+
