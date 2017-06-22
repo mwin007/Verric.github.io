@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Fri, 05 May 2017 17:02:50 +1000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Jun 2017 17:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular2</title>
+      <link>https://verric.github.io/tags/angular2/</link>
+      <pubDate>Wed, 21 Jun 2017 17:02:50 +1000</pubDate>
+      
+      <guid>https://verric.github.io/tags/angular2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bootstrap</title>
+      <link>https://verric.github.io/tags/bootstrap/</link>
+      <pubDate>Wed, 21 Jun 2017 17:02:50 +1000</pubDate>
+      
+      <guid>https://verric.github.io/tags/bootstrap/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Introduction</title>
@@ -80,6 +98,15 @@
       <pubDate>Wed, 14 Jun 2017 14:28:09 +1000</pubDate>
       
       <guid>https://verric.github.io/tags/study-notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tip Of The Day</title>
+      <link>https://verric.github.io/tags/tip-of-the-day/</link>
+      <pubDate>Wed, 21 Jun 2017 17:02:50 +1000</pubDate>
+      
+      <guid>https://verric.github.io/tags/tip-of-the-day/</guid>
       <description></description>
     </item>
     

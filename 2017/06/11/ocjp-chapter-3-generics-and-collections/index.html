@@ -852,6 +852,40 @@ private static void printDragons(List dragons) {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
+                <h3 class="media-heading">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
+
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
                 <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
               </a>
@@ -981,7 +1015,7 @@ private static void printDragons(List dragons) {
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>

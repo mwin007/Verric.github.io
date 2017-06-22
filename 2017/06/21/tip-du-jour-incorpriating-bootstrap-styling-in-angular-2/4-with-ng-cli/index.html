@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -19,25 +23,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.24">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>Kotlin</title>
+    <title>Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</title>
     <meta name="author" content="Richard Vernali">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="angular2/4, bootstrap">
 
     <link rel="icon" href="https://verric.github.io/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://verric.github.io/tags/kotlin/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="You can add any css files to the angular-cli.json styles field to have them globally added to your angular 2&frasl;4 project
+
+&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+
+
+Here we added boostrap to our global styles, so now we can do the following without any extra imports.
+
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+
+
+">
+    <meta property="og:description" content="You can add any css files to the angular-cli.json styles field to have them globally added to your angular 2&frasl;4 project
+
+&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+
+
+Here we added boostrap to our global styles, so now we can do the following without any extra imports.
+
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+
+
+">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Kotlin">
-    <meta property="og:url" content="/tags/kotlin/">
+    <meta property="og:title" content="Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli">
+    <meta property="og:url" content="/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
     <meta property="og:site_name" content="Verric&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Verric&#39;s Blog">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="You can add any css files to the angular-cli.json styles field to have them globally added to your angular 2&frasl;4 project
+
+&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+
+
+Here we added boostrap to our global styles, so now we can do the following without any extra imports.
+
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+
+
+">
     
       <meta name="twitter:creator" content="@verr1c">
     
@@ -74,7 +127,7 @@
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
@@ -94,7 +147,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -200,43 +253,29 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
+    <h1 class="post-title" itemprop="headline">
+      Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli
+    </h1>
   
-
-
+  <div class="postShorten-meta post-meta">
   
-
-<article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
-          Kotlin in Action: Chapter 2: Kotlin Basics
-        </a>
-      </h1>
-      <div class="postShorten-meta post-meta">
-  
-    <time itemprop="datePublished" datetime="2017-05-05T17:02:50&#43;10:00">
+    <time itemprop="datePublished" datetime="2017-06-21T17:02:50&#43;10:00">
       
   
   
   
   
-    2017-05-05
+    2017-06-21
   
 
     </time>
@@ -248,38 +287,119 @@
     
       <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
     
-      <a class="category-link" href="https://verric.github.io/categories/kotlin">kotlin</a>
+      <a class="category-link" href="https://verric.github.io/categories/tip-of-the-day">tip of the day</a>
     
   
 
 
 </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>
-        Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
 
-        <br>
-        <a href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/" class="postShorten-excerpt_link link"></a>
-        
-      </p>
-    </div>
-  </div>
-  
-    <a href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="http://i.imgur.com/kXbRD0g.jpg"/>
-      </div>
-    </a>
-  
-</article>
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/tip-of-the-day/">tip of the day</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/angular2/">angular2</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/bootstrap/">bootstrap</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/" data-tooltip="OCJP Chapter 4: Functional Programming">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
 
             
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
@@ -287,6 +407,86 @@
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/" data-tooltip="OCJP Chapter 4: Functional Programming">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f21%2ftip-du-jour-incorpriating-bootstrap-styling-in-angular-2%2f4-with-ng-cli%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -542,6 +742,10 @@ $(document).ready(function() {
   });
 });
 </script>
+
+  
+    
+  
 
 
 

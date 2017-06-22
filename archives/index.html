@@ -217,12 +217,16 @@
         <ul class="archive-posts archive-month" data-date="201706">
           <h5 class="archive-title" style="text-decoration: none;"></h5>
           
-            <li class="archive-post archive-day" data-date="20170614">
-              <a class="archive-post-title" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">OCJP Chapter 4: Functional Programming</a>
+            <li class="archive-post archive-day" data-date="20170621">
+              <a class="archive-post-title" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</a>
+            </li>
+          
+            <li class="archive-post archive-day" data-date="20170621">
+              <a class="archive-post-title" href="https://verric.github.io/post/">Posts</a>
             </li>
           
             <li class="archive-post archive-day" data-date="20170614">
-              <a class="archive-post-title" href="https://verric.github.io/post/">Posts</a>
+              <a class="archive-post-title" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">OCJP Chapter 4: Functional Programming</a>
             </li>
           
             <li class="archive-post archive-day" data-date="20170611">
@@ -306,6 +310,40 @@
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
+                <h3 class="media-heading">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
+
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -439,7 +477,7 @@
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         8 posts found
       </p>
     </div>
   </div>
