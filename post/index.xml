@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Wed, 21 Jun 2017 17:02:50 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jun 2017 14:28:09 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OCJP Chapter 5: Dates, Strings and Localisations</title>
+      <link>https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/</link>
+      <pubDate>Mon, 26 Jun 2017 14:28:09 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/</guid>
+      <description>&lt;hr /&gt;
+
+&lt;p&gt;Chapter 5 summary notes
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</title>

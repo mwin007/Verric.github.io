@@ -1,0 +1,1544 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.24">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>OCJP Chapter 5: Dates, Strings and Localisations</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 5">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="
+
+Chapter 5 summary notes
+">
+    <meta property="og:description" content="
+
+Chapter 5 summary notes
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OCJP Chapter 5: Dates, Strings and Localisations">
+    <meta property="og:url" content="/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="
+
+Chapter 5 summary notes
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/oMmCBiT.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ph2qukmvkthsrclqvqejhnf6wgadzikwy8xvsija3tglgsuhrbooocbhqjz1.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      OCJP Chapter 5: Dates, Strings and Localisations
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-06-26T14:28:09&#43;10:00">
+      
+  
+  
+  
+  
+    2017-06-26
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/study-notes">study-notes</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <hr />
+
+<p>Chapter 5 summary notes
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-5-dates-strings-and-localisations">Chapter 5: Dates, Strings and Localisations</a>
+<ul>
+<li><a href="#chapter-goals">Chapter goals:</a></li>
+<li><a href="#working-with-dates-and-times">Working with Dates and Times</a>
+<ul>
+<li><a href="#creating-dates-and-times">Creating Dates and Times</a>
+<ul>
+<li><a href="#creating-a-localdate">Creating a LocalDate</a></li>
+<li><a href="#creating-a-localtime">Creating a LocalTime</a></li>
+<li><a href="#creating-a-localdatetime">Creating a LocalDateTime</a></li>
+<li><a href="#creating-a-zoneddatetime">Creating a ZonedDateTime</a></li>
+</ul></li>
+<li><a href="#manipulating-dates-and-time">Manipulating Dates and Time</a></li>
+<li><a href="#working-with-periods">Working with Periods.</a></li>
+<li><a href="#working-with-durations">Working with Durations</a>
+<ul>
+<li><a href="#working-with-instants">Working with Instants</a></li>
+</ul></li>
+<li><a href="#accounting-for-daylight-savings-time">Accounting for Daylight Savings Time</a></li>
+</ul></li>
+<li><a href="#reviewing-the-string-class">Reviewing the String class</a></li>
+<li><a href="#adding-internationalization-and-localization">Adding Internationalization and Localization</a>
+<ul>
+<li><a href="#picking-a-locale">Picking a Locale</a></li>
+<li><a href="#using-a-resource-bundle">Using a Resource Bundle</a>
+<ul>
+<li><a href="#creating-a-property-file-resource-bundle">Creating a Property File Resource Bundle</a></li>
+<li><a href="#creating-a-java-class-resource-bundle">Creating a Java Class Resource Bundle</a></li>
+<li><a href="#determining-which-resource-bundle-to-use">Determining Which Resource Bundle to Use</a></li>
+</ul></li>
+<li><a href="#formatting-numbers">Formatting Numbers</a>
+<ul>
+<li><a href="#format-and-parse-numbers-and-currency">Format and Parse Numbers and Currency</a></li>
+<li><a href="#formatting">Formatting</a></li>
+<li><a href="#parsing">Parsing</a></li>
+</ul></li>
+<li><a href="#formatting-dates-and-time">Formatting Dates and Time</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="chapter-5-dates-strings-and-localisations">Chapter 5: Dates, Strings and Localisations</h1>
+
+<h2 id="chapter-goals">Chapter goals:</h2>
+
+<p><em>Use Java SE 8 Date/Time API</em></p>
+
+<ul>
+<li>Create and manage date-based and time-based events including a combination of date and time into a single object using LocalDate, LocalTime, LocalDateTime, Instant, Period and Duration</li>
+<li>Work with dates and times across time zones and manage changes resulting from daylight savings including Format date and time values</li>
+<li>Define and create and manage date-based and time-based events using Instant, Period, Duration and TemporalUnit</li>
+</ul>
+
+<p><em>Localization</em></p>
+
+<ul>
+<li>Read and set the local by using the Locale object</li>
+<li>Create and read a Properties file</li>
+<li>Build a resource bundle for each locale and load a resource bundle in an application</li>
+</ul>
+
+<h2 id="working-with-dates-and-times">Working with Dates and Times</h2>
+
+<p>There will be code and notes in this segment that deal with  the &ldquo;old&rdquo; java date and time APIs as well as the new way introduced in Java 8. Even though we may mention the old way, we only have to focus on the.</p>
+
+<h3 id="creating-dates-and-times">Creating Dates and Times</h3>
+
+<p>There are four main types when dealing with dates and times, we will also have to be aware of time zones as well in OCJP.</p>
+
+<p><em>LocalDate</em></p>
+
+<blockquote>
+<p>Contains just a date—no time and no time zone. A good example of LocalDate is your birthday this year. It is your birthday for a full day, regardless of what time it is.</p>
+</blockquote>
+
+<p>Looks like: 2015–05–25</p>
+
+<p><em>LocalTime</em></p>
+
+<blockquote>
+<p>Contains just a time—no date and no time zone. A good example of LocalTime is midnight. It is midnight at the same time every day.</p>
+</blockquote>
+
+<p>Looks like: 09:13:07.768</p>
+
+<p><em>LocalDateTime</em></p>
+
+<blockquote>
+<p>Contains both a date and time but no time zone. A good example of LocalDateTime is “the stroke of midnight on New Year’s Eve.”</p>
+</blockquote>
+
+<p>Looks like: 2015–05–25T09:13:07.768</p>
+
+<p><em>ZonedDateTime</em></p>
+
+<blockquote>
+<p>Contains a date, time, and time zone. A good example of ZonedDateTime is “a conference call at 9:00 a.m. EST.”</p>
+</blockquote>
+
+<p>Looks like: 2015–05–25T09:13:07.769–04:00[America/New_York]</p>
+
+<p><em>Time zones</em></p>
+
+<p>Time zones are given via GMT or UTC, time zones can be denoted using +02:00, GMT+2, UTC+2, all have identical meaning.</p>
+
+<p>You will also need to be able to calculate time zone differences.</p>
+
+<p>2015–06–20T07:50–07:00[US/Pacific]
+2015–06–20T07:50+05:30[Asia/Kolkata]</p>
+
+<p>Here we can see the two regions are 12.5 hours apart, we could then use this difference to calculate the time in one region given the other.</p>
+
+<p>eg What is it in [US/Pacific] when its 03:40 in [Asia/Kolkata]?</p>
+
+<p>We can see that Asia is ahead of the US so we need to subtract 12.5 hours (12 hours and 30 minutes). Fortunately because clocks are on two, twelve hour cycles (am/pm) we knows its just half an hour difference on the other side of the am/pm cycle hence the time in the [US/Pacific] would be 3:10pm / 15:10 on the previous day.</p>
+
+<p>All time zones and dates are given in the format of <code>Year/Month/Day</code> as standard, this in contrast to many english regions that give the date <code>Day/Month/Year</code> and burger-land which has the format <code>Month/Day/Year</code>.</p>
+
+<p>To get any of the respective date time now we use the <code>now()</code> method.</p>
+
+<pre><code class="language-java">LocalDate.now();
+LocalTime.now();
+LocalDateTime.now();
+ZonedDateTime.now();
+</code></pre>
+
+<h4 id="creating-a-localdate">Creating a LocalDate</h4>
+
+<p>We can also use the <code>of()</code> method to construct a local date instance</p>
+
+<pre><code class="language-java">LocalDate date1 = LocalDate.of(2015, Month.JANUARY, 20); // Month is an enum
+LocalDate date2 = LocalDate.of(2015, 1, 20); // month is an int
+</code></pre>
+
+<p>Both use the (year/month/day) format.</p>
+
+<h4 id="creating-a-localtime">Creating a LocalTime</h4>
+
+<p>When creating a time you can specify the hour, minute, second and nanosecond using the overloaded <code>of()</code> method.</p>
+
+<pre><code class="language-java">LocalTime time1 = LocalTime.of(6, 15); // hour and minute
+LocalTime time2 = LocalTime.of(6, 15, 30); // + seconds
+LocalTime time3 = LocalTime.of(6, 15, 30, 200); // + nanoseconds
+</code></pre>
+
+<p>All of which take <code>int</code> as the type.</p>
+
+<h4 id="creating-a-localdatetime">Creating a LocalDateTime</h4>
+
+<p>We essentially merge the above factory methods.</p>
+
+<pre><code class="language-java">LocalDateTime dateTime1 = LocalDateTime.of(2015, Month.JANUARY, 20, 6, 15, 30); // Jan 20, 2015 at 6 hours, 15 minutes and 30 seconds
+
+// or
+
+LocalDate date1 = ...;
+LocalTime time1 = ...;
+LocalDateTime dateTime2 = LocalDateTime.of(date1, time1);
+</code></pre>
+
+<h4 id="creating-a-zoneddatetime">Creating a ZonedDateTime</h4>
+
+<p>Once we are essentially creating a local dat-time and appending a time zone to it, this can often lead to large factory methods such as</p>
+
+<pre><code class="language-java">ZonedDateTime zoned1 = ZonedDateTime.of(2015, 1, 20, 6, 15, 30, 200, ZoneId.of(&quot;US/Eastern&quot;));
+</code></pre>
+
+<p>There&rsquo;s a lot of numbers as well making it a bit hard to read.</p>
+
+<p>As such you can build a zoned dat-time using local time, local date or local date-time and the zone-id.</p>
+
+<pre><code class="language-java">LocalDate date1 = ...;
+LocalTime time1 = ...;
+ZoneId zone = ...;
+LocalDateTime dateTime1 = LocalDateTime.of(date1,time1);
+
+ZonedDateTime zoned2 = ZonedDateTime.of(date1, time1, zone);
+ZonedDateTime zoned3 = ZonedDateTime.of(dateTime1, zone);
+</code></pre>
+
+<p>Note, the only way to create any of the above instances is via the <code>of()</code> factory method, the classes above all have their constructors as private meaning you can NOT directly instantiate the class.</p>
+
+<pre><code class="language-java">LocalDate date = new LocalDate(); //  Will NOT compile
+</code></pre>
+
+<p>The <code>of()</code> also validates input as well and cna return an exception.</p>
+
+<pre><code class="language-java">LocalDate.of(2015, Month.JANUARY, 32) // throws DateTimeException
+</code></pre>
+
+<h3 id="manipulating-dates-and-time">Manipulating Dates and Time</h3>
+
+<p>When working the Java 8 date and time classes it is important to remember that these classes are immutable, and, like strings have to have their new value re-assigned to a variable.</p>
+
+<p>We can add and minus dates and time using each classes respective <code>addDATEAMOUNT</code>, <code>minusDATEAMOUNT</code>, <code>addTIMEAMOUNT</code>, <code>minusTIMEAMOUNT</code></p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
+date = date.plusDays(2);// 2014–01–22
+date = date.plusWeeks(1); // 2014–01–29
+date = date.plusMonths(1); // 2014–02–28
+date = date.plusYears(5); // 2019–02–28
+</code></pre>
+
+<p>We can apply similar method calls to our local time class</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+LocalTime time = LocalTime.of(5, 15);
+
+LocalDateTime dateTime = LocalDateTime.of(date, time);  // 2020–01–20T05:15
+
+dateTime = dateTime.minusDays(1); // 2020–01–19T05:15
+dateTime = dateTime.minusHours(10); // 2020–01–18T19:15
+dateTime = dateTime.minusSeconds(30); // 2020–01–18T19:14:30
+</code></pre>
+
+<p>Since each method returns a new instance of their respective class we can chain  method calls together.</p>
+
+<pre><code class="language-java">LocalDateTime dateTime = LocalDateTime.of(date, time).minusDays(1).minusHours(10).minusSeconds(30);
+</code></pre>
+
+<p>There are two main traps to avoid when dealing with dates and time.</p>
+
+<ol>
+<li>Like Strings LocalDate,LocalTime,LocalDateTime and ZonedDateTime are all immutable meaning unless the result is stored in a variable it is essentially lost.</li>
+</ol>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+date.plusDays(10);
+System.out.println(date); //2020-01-20
+</code></pre>
+
+<p>Here we did not assign the updated date to the <code>date</code> variable, so the result was never updated.</p>
+
+<ol>
+<li>Logically speaking we can only add date units to dates anf time units to time, hence it doesn&rsquo;t make sense (nor will it compile) to add a time unit to a date or vice versa.</li>
+</ol>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+date = date.plusMinutes(1); // DOES NOT COMPILE
+</code></pre>
+
+<h3 id="working-with-periods">Working with Periods.</h3>
+
+<p>While dates and time give us a snapshot or an instance in time, a <code>Period</code> gives us a duration or an extended notion of time.</p>
+
+<p>Hence a date may be  2017-06-01 (2017 June 1) and another date maybe 2017-07-01 (2017 July 1). Here we have two dates, but the <em>period</em> between these dates is one month.</p>
+
+<pre><code class="language-java">Period annually = Period.ofYears(1); // every 1 year
+Period quarterly = Period.ofMonths(3); // every 3 months
+Period everyThreeWeeks = Period.ofWeeks(3); // every 3 weeks
+Period everyOtherDay = Period.ofDays(2); // every 2 days
+Period everyYearAndAWeek = Period.of(1, 0, 7); // 1 year, 0 months and 7 days
+</code></pre>
+
+<p>Periods are static methods and can not be chained as such.</p>
+
+<p>In the above you can see the helper methods such as <code>ofYears()</code>, <code>ofMonths()</code> etc. Under the hood these all passed to the <code>of()</code> method which takes a years, months and days.</p>
+
+<p>When printing out a period, only non zero values will be printed appended by the value they represent, eg Y for year, M for Month and D for day. All periods are pre-fixed with a capital &lsquo;P&rsquo;.</p>
+
+<pre><code class="language-java">System.out.printIn(Period.of(1,2,3));// P1Y2M3D
+
+System.out.printIn(Period.of(0,0,3));// P3D
+
+System.out.printIn(Period.ofWeeks(3));// P21D
+
+System.out.println(Period.of(0, 20, 47));// P20M47D
+</code></pre>
+
+<p>The second last example prints 21 days as there are 21 days in three weeks.</p>
+
+<p>The last example is also valid as twenty months is a valid <em>period of time</em> same as forty-seven days.</p>
+
+<p>Essentially Periods only work on LocalDate and LocalDateTime objects.</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2015, 1, 20);
+LocalTime time = LocalTime.of(6, 15);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+Period period = Period.ofMonths(1);
+
+System.out.println(date.plus(period)); // 2015–02–20
+
+System.out.println(dateTime.plus(period)); // 2015–02–20T06:15
+
+System.out.println(time.plus(period)); // UnsupportedTemporalTypeException
+</code></pre>
+
+<h3 id="working-with-durations">Working with Durations</h3>
+
+<p>Durations are similar to Periods except they generally work on <code>LocalTime</code> and<code>LocalDateTime</code> and refer to hours,minutes and seconds instead of years, months and days.
+All duration values are pre-fixed with PT (Period of Time)</p>
+
+<pre><code class="language-java">Duration daily = Duration.ofDays(1); // PT24H
+Duration hourly = Duration.ofHours(1); // PT1H
+Duration everyMinute = Duration.ofMinutes(1); // PT1M
+Duration everyTenSeconds = Duration.ofSeconds(10); // PT10S
+Duration everyMilli = Duration.ofMillis(1); // PT0.001S
+Duration everyNano = Duration.ofNanos(1); // PT0.000000001S
+</code></pre>
+
+<p>You can also specify a scalar value and a <code>ChronoUnit</code> value to denote the type as well, using the <code>of()</code> method.</p>
+
+<pre><code class="language-java">Duration daily = Duration.of(1, ChronoUnit.DAYS);
+Duration hourly = Duration.of(1, ChronoUnit.HOURS);
+Duration everyMinute = Duration.of(1, ChronoUnit.MINUTES);
+Duration everyTenSeconds = Duration.of(10, ChronoUnit.SECONDS);
+Duration everyMilli = Duration.of(1, ChronoUnit.MILLIS);
+Duration everyNano = Duration.of(1, ChronoUnit.NANOS);
+</code></pre>
+
+<p>Like our example with period adding or subtracting a duration to a date will fail to compile</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2015, 1, 20);
+LocalTime time = LocalTime.of(6, 15);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+Duration duration = Duration.ofHours(6);
+
+System.out.println(dateTime.plus(duration)); // 2015–01–20T12:15 works because we have a time component.
+System.out.println(time.plus(duration)); // 12:15
+
+System.out.println(date.plus(duration)); // UnsupportedTemporalException
+</code></pre>
+
+<h4 id="working-with-instants">Working with Instants</h4>
+
+<p>An <code>instant</code> is a special ZonedDateTime which is ALWAYS in GMT time.</p>
+
+<pre><code class="language-java">Instant now = Instant.now();
+// do something time consuming
+Instant later = Instant.now();
+
+Duration duration = Duration.between(now, later);
+
+System.out.println(duration.toMillis());
+</code></pre>
+
+<p>You can convert and <code>ZonedDateTime</code> object to an <code>Instant</code> by calling the <code>toInstant()</code> method</p>
+
+<pre><code class="language-java">Instant instant = zonedDateTime.toInstant();
+</code></pre>
+
+<p>If the time zone in the zonedDateTime is in a different region to GMT, Java will automatically convert it to the GMT time zone.</p>
+
+<p>An <code>Instant</code> also allows to do calculations, similar to the <code>Duration</code> that is it can calculate units that are a day or smaller. Using the <code>ChronoUnit</code> plus a scalar value.</p>
+
+<pre><code class="language-java">Instant nextDay = instant.plus(1, ChronoUnit.DAYS);
+System.out.println(nextDay); // 2015–05–26T15:55:00Z
+
+Instant nextHour = instant.plus(1, ChronoUnit.HOURS);
+System.out.println(nextHour); // 2015–05–25T16:55:00Z
+
+Instant nextWeek = instant.plus(1, ChronoUnit.WEEKS); // exception
+</code></pre>
+
+<h3 id="accounting-for-daylight-savings-time">Accounting for Daylight Savings Time</h3>
+
+<p>The <code>ZonedDateTime</code> class understands that some regions have daylight savings time and recognises when to skip or rewind an hour based on the date and time zone.</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2016, Month.MARCH, 13);
+LocalTime time = LocalTime.of(2, 30);
+ZoneId zone = ZoneId.of(&quot;US/Eastern&quot;);
+ZonedDateTime dateTime = ZonedDateTime.of(date, time, zone);
+System.out.println(dateTime); // 2016–03–13T03:30–04:00[US/Eastern]
+</code></pre>
+
+<p>Here Java knows in the eastern parts of burger land that March 13, daylight savings changeover skips an hour forward and hence 2:30 am becomes 3:30am.</p>
+
+<h2 id="reviewing-the-string-class">Reviewing the String class</h2>
+
+<p>When comparing String objects it is best to use the <code>equals()</code> method, to ensure we the values we are comparing are the same.</p>
+
+<p>Referencing the same string literal from the String pool may also result in equality but this should not be relied upon.</p>
+
+<pre><code class="language-java">String s1 = &quot;bunny&quot;;
+String s2 = &quot;bunny&quot;;
+String s3 = new String(&quot;bunny&quot;);
+
+System.out.println(s1 == s2); // true
+System.out.println(s1 == s3); // false
+System.out.println(s1.equals(s3)); // true
+</code></pre>
+
+<p>We can use the <code>+</code> operator to concatenate strings together. If using the <code>+</code> operator where one operand is a string, Java will convert the other operand to a string.</p>
+
+<p>Java evaluates expression from left to right.</p>
+
+<pre><code class="language-java">String s4 = &quot;1&quot; + 2 + 3;
+String s5 = 1 + 2 + &quot;3&quot;;
+
+System.out.println(s4); // 123
+System.out.println(s5); // 33
+</code></pre>
+
+<p>The string class often uses 0-based indices in their methods</p>
+
+<pre><code class="language-java">String s = &quot;abcde &quot;; //deliberate white space at the end
+s.trim().length(); // 5
+s.charAt(4); // e
+s.indexOf('e'); // 4
+s.indexOf(&quot;de&quot;); // 3
+s.substring(2, 4).toUpperCase(); // CD
+s.replace('a', '1'); // 1bcde
+s.contains(&quot;DE&quot;); // false
+s.startsWith(&quot;a&quot;); // true
+</code></pre>
+
+<p>If we want to constantly update the value of a string, it is better to use a <code>StringBuilder</code>, if you require thread-safety you optionally use <code>StringBuffer</code>.</p>
+
+<p>StringBuilder and StringBuffer are both mutable classes.</p>
+
+<pre><code class="language-java">StringBuilder b = new StringBuilder();
+b.append(12345).append('-');
+
+b.length(); // 6
+b.indexOf(&quot;-&quot;); // 5
+b.charAt(2); // 3
+
+StringBuilder b2 = b.reverse();
+b.toString(); // -54321
+System.out.println(b == b2); // true
+</code></pre>
+
+<p>Since most of the builder classes methods return the builder instance we can often chain method calls.</p>
+
+<pre><code class="language-java">StringBuilder s = new StringBuilder(&quot;abcde&quot;);
+
+s.insert(1, '-').delete(3, 4); // a-bcde --&gt; a-bde
+System.out.println(s); //a-bde
+System.out.println(s.substring(2, 4)); // bd
+</code></pre>
+
+<h2 id="adding-internationalization-and-localization">Adding Internationalization and Localization</h2>
+
+<p>Internationalisation refers to the ability of the program to adapt to other formats and languages. Localisation refers to being able to support a specific locale, where locale is defined as:</p>
+
+<blockquote>
+<p>a specific geographical, political, or cultural region.</p>
+</blockquote>
+
+<h3 id="picking-a-locale">Picking a Locale</h3>
+
+<p>To get the users current locale we can use. Note java just refers the locale value from the underlying OS.</p>
+
+<pre><code class="language-java">Locale locale = Locale.getDefault();
+System.out.println(locale); // en_AU 
+</code></pre>
+
+<p>A valid locale must have language element in lower-case, it can <em>optionally</em> a country as well, preceded by an underscore.</p>
+
+<pre><code class="language-java">US // can have a language without a country, but not the reverse
+enUS // missing underscore
+US_en // the country and language are reversed
+EN // language must be lowercase
+</code></pre>
+
+<p>Java allows three ways to create a <code>Locale</code>.</p>
+
+<ol>
+<li>You can use enums for common countries and languages, note denoting the language will just give you the language, while the name of the country will give you the country and the language</li>
+</ol>
+
+<pre><code class="language-java">System.out.println(Locale.GERMAN); // de
+System.out.println(Locale.GERMANY); // de_DE
+</code></pre>
+
+<ol>
+<li>You can also use the constructor to create a new locale. When using the constructor it is important to care when entering the locale as java does not validate that the language or region is correct and lead to unexpected behaviours later on in the program. You also have to ensure correct casing when entering the locale.</li>
+</ol>
+
+<pre><code class="language-java">System.out.println(new Locale(&quot;fr&quot;)); // fr
+System.out.println(new Locale(&quot;hi&quot;, &quot;IN&quot;)); // hi_IN
+</code></pre>
+
+<ol>
+<li>Locale also comes with an in-built builder class, that can be used to build a locale, note unlike  the constructor, the builder will correct your casing, but it still will <em>NOT</em> validate whether the locale actually exists.</li>
+</ol>
+
+<pre><code class="language-java">Locale l2 = new Locale.Builder()
+.setRegion(&quot;GB&quot;)
+.setLanguage(&quot;en&quot;)
+.build();
+
+Locale l3 = new Locale.Builder() // bad but legal
+.setRegion(&quot;au&quot;)
+.setLanguage(&quot;EN&quot;)
+.build();
+</code></pre>
+
+<p>You can also change the default locale using the <code>setLocale()</code> method.</p>
+
+<pre><code class="language-java">Locale locale = new Locale(&quot;fr&quot;);
+Locale.setDefault(locale); // change the default
+System.out.println(Locale.getDefault()); // fr
+</code></pre>
+
+<p>This only changes the locale for that java program.</p>
+
+<h3 id="using-a-resource-bundle">Using a Resource Bundle</h3>
+
+<blockquote>
+<p>A resource bundle contains the local specific objects to be used by a program. It is like a map with keys and values. The resource bundle can be in a property file or in a Java class. A property file is a file in a specific format with key/value pairs.</p>
+</blockquote>
+
+<p>Generally speaking it is common to specify the resource bundle as an external file. This allows to update the localisation without having to restart or re-compile the program.</p>
+
+<h4 id="creating-a-property-file-resource-bundle">Creating a Property File Resource Bundle</h4>
+
+<p>To create valid resource bundle file we specify the resource name followed by and underscore, followed by the locale&rsquo;s language.</p>
+
+<pre><code class="language-text">Zoo_en.properties
+  hello=Hello
+  open=The zoo is open.
+
+Zoo_fr.properties
+  hello=Bonjour
+  open=Le zoo est ouvert
+</code></pre>
+
+<p>To use the above files we can do the following:</p>
+
+<pre><code class="language-java">import java.util.*;
+public class ZooOpen {
+
+public static void main(String[] args) {
+  Locale us = new Locale(&quot;en&quot;, &quot;US&quot;);
+  Locale france = new Locale(&quot;fr&quot;, &quot;FR&quot;);
+
+  printProperties(us);
+  System.out.println();
+  printProperties(france);
+}
+
+public static void printProperties(Locale locale) {
+  ResourceBundle rb = ResourceBundle.getBundle(&quot;Zoo&quot;, locale);
+  System.out.println(rb.getString(&quot;hello&quot;));
+  System.out.println(rb.getString(&quot;open&quot;));
+ }
+}
+</code></pre>
+
+<p>The resource bundle file  can take key/value pairs in different ways
+1. using the <code>=</code> sign <code>key=value</code>
+2. using the <code>:</code> sign <code>key:value</code>
+3. using a space <code>key value</code></p>
+
+<p>Java  ignores any whitespace at the start of the line, but does <em>NOT</em> ignore white at the end of the line.</p>
+
+<p>You can use <code>!</code> or <code>#</code> to comment out a line.</p>
+
+<p>You can retrieve all the keys from a resource bundle by using the <code>keySet()</code> method</p>
+
+<pre><code class="language-java">Set&lt;String&gt; keys = rb.keySet();
+
+keys.stream().map(k -&gt; k + &quot; &quot; + rb.getString(k)).forEach(System.out::println);
+</code></pre>
+
+<p>A property file is similar to a resource bundle except it does <em>NOT</em> take a locale (just a file of key/value pairs).</p>
+
+<p>To retrieve a value we can use the <code>getProperty()</code> method instead of the <code>getString()</code> method. The <code>getProperty()</code> also allows us to pass in a default value if the file has no value for that key.</p>
+
+<pre><code class="language-java">System.out.println(props.getProperty(&quot;notReallyAProperty&quot;)); // returns null
+System.out.println(props.getProperty(&quot;notReallyAProperty&quot;, &quot;123&quot;)); // returns 123
+</code></pre>
+
+<h4 id="creating-a-java-class-resource-bundle">Creating a Java Class Resource Bundle</h4>
+
+<p>We can also create a resource bundle object. This has the advantage that the value of the key doesn&rsquo;t have to be a string.</p>
+
+<p>It also has the advantage that we can manipulate properties at runtime, without having to read and write from a file.</p>
+
+<p>To create an object resource bundle we must extend the <code>ListResourceBundle</code> abstract class.</p>
+
+<pre><code class="language-java">import java.util.*;
+public class Zoo_en extends ListResourceBundle {
+
+  protected Object[][] getContents() {
+    return new Object[][] {
+      { &quot;hello&quot;, &quot;Hello&quot; },
+      { &quot;open&quot;, &quot;The zoo is open&quot; } };
+  } 
+}
+</code></pre>
+
+<p>Here, Java looks at the class name delimited by the underscores. We can also specify the country as well by placing an underscore and stating the country.</p>
+
+<pre><code class="language-java">package resourcebundles;
+import java.util.*;
+
+public class Tax_en_US extends ListResourceBundle {
+  protected Object[][] getContents() {
+    return new Object[][] { { &quot;tax&quot;, new UsTaxCode() } };
+  }
+
+  public static void main(String[] args) {
+    ResourceBundle rb = ResourceBundle.getBundle(&quot;resourcebundles.Tax&quot;, Locale.US);
+    System.out.println(rb.getObject(&quot;tax&quot;));
+}}
+</code></pre>
+
+<p>Here we use the <code>getObject()</code> method to retrieve an object instead of string.</p>
+
+<p>To use the bundle we specify the name of the package and class, relative to our classpath. Hence our bundle class is called <code>Tax</code> and it is in the <code>resroucebundles</code> package.</p>
+
+<h4 id="determining-which-resource-bundle-to-use">Determining Which Resource Bundle to Use</h4>
+
+<p>If no locale is specified when requesting a resource bundle, Java will assume the system default locale.</p>
+
+<p>When looking for resource bundles Java, will look for the most specific match, language + country, then language, then it will assume the default locale. Java first looks for class files then properties files.</p>
+
+<p><img src="http://i.imgur.com/j9KhsPj.png" alt="Order of search" /></p>
+
+<p>Java&rsquo;s resource bundles are hierarchical (Actually it&rsquo;s more similar to JS prototype chain).</p>
+
+<p>Assuming there are valid property files or classes; <code>Zoo_fr_FR.java, Zoo_fr.java, Zoo.java</code>.</p>
+
+<p>If the requested resource bundle is for <code>Zoo_fr_FR.java</code> than java can retrieve  keys from any other of classes.</p>
+
+<p>If we have all the same classes again, but the requested resource bundle was <code>Zoo_fr.java</code>.</p>
+
+<p>Then Java could retrieve keys from <code>Zoo_fr.java, Zoo.java</code>.</p>
+
+<p>Hence we could have the following property files.</p>
+
+<pre><code>Zoo.properties
+  name=Vancouver Zoo
+
+Zoo_en.properties
+  hello=Hello
+  open=is open
+
+Zoo_en_CA.properties
+  visitor=Canada visitor
+
+Zoo_fr.properties
+  hello=Bonjour
+  open=est ouvert
+
+Zoo_fr_CA.properties
+  visitor=Canada visiteur
+</code></pre>
+
+<p>And the following code:</p>
+
+<pre><code class="language-java">Locale locale = new Locale(&quot;en&quot;, &quot;CA&quot;);
+ResourceBundle rb = ResourceBundle.getBundle(&quot;Zoo&quot;, locale);
+
+System.out.print(rb.getString(&quot;hello&quot;));
+System.out.print(&quot;. &quot;);
+
+System.out.print(rb.getString(&quot;name&quot;));
+System.out.print(&quot; &quot;);
+
+System.out.print(rb.getString(&quot;open&quot;));
+System.out.print(&quot; &quot;);
+
+System.out.print(rb.getString(&quot;visitor&quot;));
+</code></pre>
+
+<p>This prints out: &ldquo;Hello. Vancouver Zoo is open Canada visitor.&rdquo;</p>
+
+<p>Here because we specified both the language and the country we can also access the more generic files as well.</p>
+
+<h3 id="formatting-numbers">Formatting Numbers</h3>
+
+<p>We can format numbers using the <code>NumberFormat</code> class and any valid <code>Locale</code>.</p>
+
+<h4 id="format-and-parse-numbers-and-currency">Format and Parse Numbers and Currency</h4>
+
+<p>The format class can be used to format number, currency,percentages or decimals;</p>
+
+<p>Number:</p>
+
+<pre><code class="language-java">NumberFormat.getInstance();
+NumberFormat.getInstance(locale);
+</code></pre>
+
+<p>Currency:</p>
+
+<pre><code class="language-java">NumberFormat.getCurrencyInstance();
+NumberFormat.getCurrencyInstance(locale);
+</code></pre>
+
+<p>Percent:</p>
+
+<pre><code class="language-java">NumberFormat.getPercentInstance();
+NumberFormat.getPercentInstance(locale);
+</code></pre>
+
+<h4 id="formatting">Formatting</h4>
+
+<p>We can use the <code>format()</code> method to turn the number into a formatted string or you can call <code>parse()</code> to turn a string into a number.</p>
+
+<pre><code class="language-java">import java.text.*;
+import java.util.*;
+
+public class FormatNumbers {
+  public static void main(String[] args) {
+    int attendeesPerYear = 3_200_000;
+    int attendeesPerMonth = attendeesPerYear / 12;
+
+    NumberFormat us = NumberFormat.getInstance(Locale.US);
+    System.out.println(us.format(attendeesPerMonth));
+
+    NumberFormat g = NumberFormat.getInstance(Locale.GERMANY);
+    System.out.println(g.format(attendeesPerMonth));
+
+    NumberFormat ca = NumberFormat.getInstance(Locale.CANADA_FRENCH);
+    System.out.println(ca.format(attendeesPerMonth));
+  } 
+}
+
+Gives the following output:
+266,666 US
+266.666 GER
+266 666 CANFR
+</code></pre>
+
+<p>When we call the respective <code>getxxxInstance()</code> without a locale, Java will use the system default locale.</p>
+
+<pre><code class="language-java">double price = 48;
+NumberFormat aud = NumberFormat.getCurrencyInstance();
+System.out.println(aud.format(price)); // $48.00
+</code></pre>
+
+<h4 id="parsing">Parsing</h4>
+
+<p>Parsing goes the other way from formatting, when we parse, we parse an already formatted string or number and return the number.</p>
+
+<p>Java parses the input based on the locale as well, and will return the result when the whole input is parsed.</p>
+
+<p>If Java encounters a character that it can not parse for that particular locale Java will stop parsing and return what it&rsquo;s understood. If no characters can be parsed Java throws a <code>ParseException</code>.</p>
+
+<pre><code class="language-java">NumberFormat en = NumberFormat.getInstance(Locale.US);
+NumberFormat fr = NumberFormat.getInstance(Locale.FRANCE);
+
+String s = &quot;40.45&quot;;
+
+System.out.println(en.parse(s)); // 40.45
+System.out.println(fr.parse(s)); // 40
+</code></pre>
+
+<p>We can call the parse method on currency strings as well to get the number.</p>
+
+<pre><code class="language-java">String amt = &quot;$92,807.99&quot;;
+NumberFormat cf = NumberFormat.getCurrencyInstance();
+double value = (Double) cf.parse(amt); // parse() returns a Number object, hence we have to cast to a double.
+System.out.println(value); // 92807.99
+</code></pre>
+
+<h3 id="formatting-dates-and-time">Formatting Dates and Time</h3>
+
+<p>Java  8 provides the <code>DatTimeFormatter</code> class to help with formatting local-time, local-date, local-date-time and zoned-date-time objects.</p>
+
+<p>The <code>DateTimeFormatter</code> can be used to format any date or time object even the pre Java 8 date and time classes.</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+LocalTime time = LocalTime.of(11, 12, 34);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE)); // 2020–01–20
+System.out.println(time.format(DateTimeFormatter.ISO_LOCAL_TIME)); // 11:12:34
+System.out.println(dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)); // 2020–01–20T11:12:34
+</code></pre>
+
+<p><code>DateTimeFormatter</code> also has a  <code>ofLocalizedDate()</code> method which can return the formatted date/time in the users locale. There are also pre-defined styles that are common and can be accessed via <code>FormatStyle.SHORT</code> or <code>FormatStyle.MEDIUM</code></p>
+
+<pre><code class="language-java">DateTimeFormatter shortDateTime =
+DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+
+System.out.println(shortDateTime.format(dateTime)); // 20/01/20
+System.out.println(shortDateTime.format(date)); // 20/1/20
+
+System.out.println(shortDateTime.format(time)); // UnsupportedTemporalTypeException as the ofLocalizedDate method expects some part of the string to be a date.
+</code></pre>
+
+<p>For formatting time and date-time objects we can use the respective</p>
+
+<p><code>ofLocalizedDateTime()</code> for dates and times as well as date-time</p>
+
+<p><code>ofLocalizedTime()</code> ONLY for times</p>
+
+<p><code>ofLocalizedDate()</code> ONLY for dates</p>
+
+<pre><code class="language-java">LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+LocalTime time = LocalTime.of(11, 12, 34);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+DateTimeFormatter mediumF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+
+System.out.println(shortF.format(dateTime)); // 1/20/20 11:12 AM
+System.out.println(mediumF.format(dateTime)); // Jan 20, 2020 11:12:34 AM
+</code></pre>
+
+<p>We can also make custom formats using the  <code>ofPattern()</code> method.</p>
+
+<pre><code class="language-java">DateTimeFormatter f = DateTimeFormatter.ofPattern(&quot;MMMM dd, yyyy, hh:mm&quot;);
+System.out.println(dateTime.format(f)); // January 20, 2020, 11:12
+</code></pre>
+
+<blockquote>
+<p>MMMM, M represents the month. The more Ms you have, the more verbose the Java output. For example, M outputs 1, MM outputs 01, MMM outputs Jan, and MMMM outputs January.</p>
+
+<p>dd, d represents the day in the month. As with month, the more ds you have, the more verbose the Java output. dd means to include the leading zero for a single-digit day.</p>
+
+<p>, Use , if you want to output a comma (this also appears after the year).</p>
+
+<p>yyyy y represents the year. yy outputs a two-digit year and yyyy outputs a four-digit year.</p>
+
+<dl>
+<dt>hh, h represents the hour. Use hh to include the leading zero if you’re outputting a single-digit hour.</dt>
+</dl>
+
+<p>:, Use : if you want to output a colon.</p>
+
+<p>mm, m represents the minute omitting the leading zero if present. mm is more common and represents the minutes using two digits.</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/programming/">programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/study-notes/">study-notes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/" data-tooltip="Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/" data-tooltip="Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f26%2focjp-chapter-5-dates-strings-and-localisations%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/">
+                <h3 class="media-heading">OCJP Chapter 5: Dates, Strings and Localisations</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><hr />
+
+<p>Chapter 5 summary notes
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
+                <h3 class="media-heading">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
+
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
+                <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for chapter 4: Functional Programming in Java 8
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+                <h3 class="media-heading">OCJP Chapter 3: Generics and Collections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 3
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+                <h3 class="media-heading">Removing the need for @JsonProperty from classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Read the full post or skip to the answers section :)
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+                <h3 class="media-heading">OCJP Chapter 1: Advanced Class Design</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Whoop dee doop
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/">
+                <h3 class="media-heading">OCJP Chapter 2: Design Pattern and Principles</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 2
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/">
+                <h3 class="media-heading">Kotlin in Action: Chapter 2: Kotlin Basics</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Full length notes for <strong>Kotlin in Action</strong> chapter 2.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         9 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-lcevoqx3idqctdiel2oegt13zm6ydaxadnv0sqeswho6mmlbf2zitqgw83dp.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+
