@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/</loc>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/</loc>
     <lastmod>2017-06-26T14:28:09+10:00</lastmod>
   </url>
@@ -95,32 +100,32 @@
   </url>
   
   <url>
-    <loc>https://verric.github.io/tags/kotlin/</loc>
-    <lastmod>2017-05-05T17:02:50+10:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://verric.github.io/categories/kotlin/</loc>
     <lastmod>2017-05-05T17:02:50+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://verric.github.io/post/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <loc>https://verric.github.io/tags/kotlin/</loc>
+    <lastmod>2017-05-05T17:02:50+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://verric.github.io/tags/programming/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <loc>https://verric.github.io/post/</loc>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://verric.github.io/categories/programming/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://verric.github.io/tags/programming/</loc>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -131,25 +136,19 @@
   </url>
   
   <url>
-    <loc>https://verric.github.io/tags/study-notes/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <loc>https://verric.github.io/categories/study-notes/</loc>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://verric.github.io/categories/study-notes/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <loc>https://verric.github.io/tags/study-notes/</loc>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://verric.github.io/tags/</loc>
-    <lastmod>2017-06-21T17:02:50+10:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://verric.github.io/tags/tip-of-the-day/</loc>
     <lastmod>2017-06-21T17:02:50+10:00</lastmod>
     <priority>0</priority>
   </url>
@@ -161,8 +160,14 @@
   </url>
   
   <url>
+    <loc>https://verric.github.io/tags/tip-of-the-day/</loc>
+    <lastmod>2017-06-21T17:02:50+10:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://verric.github.io/</loc>
-    <lastmod>2017-06-26T14:28:09+10:00</lastmod>
+    <lastmod>2017-06-27T14:28:09+10:00</lastmod>
     <priority>0</priority>
   </url>
   

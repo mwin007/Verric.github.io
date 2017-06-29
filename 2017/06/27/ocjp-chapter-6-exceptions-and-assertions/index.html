@@ -23,25 +23,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.24">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>OCJP Chapter 1: Advanced Class Design</title>
+    <title>OCJP Chapter 6: Exceptions and Assertions</title>
     <meta name="author" content="Richard Vernali">
-    <meta name="keywords" content="OCJP, java, study-notes, chapter 1">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 6">
 
     <link rel="icon" href="https://verric.github.io/favicon.png">
     
 
     
-    <meta name="description" content="Whoop dee doop
+    <meta name="description" content="
+
+Chapter 6 summary notes
 ">
-    <meta property="og:description" content="Whoop dee doop
+    <meta property="og:description" content="
+
+Chapter 6 summary notes
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="OCJP Chapter 1: Advanced Class Design">
-    <meta property="og:url" content="/2017/05/25/ocjp-chapter-1-advanced-class-design/">
+    <meta property="og:title" content="OCJP Chapter 6: Exceptions and Assertions">
+    <meta property="og:url" content="/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/">
     <meta property="og:site_name" content="Verric&#39;s Blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Verric&#39;s Blog">
-    <meta name="twitter:description" content="Whoop dee doop
+    <meta name="twitter:description" content="
+
+Chapter 6 summary notes
 ">
     
       <meta name="twitter:creator" content="@verr1c">
@@ -218,18 +224,18 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      OCJP Chapter 1: Advanced Class Design
+      OCJP Chapter 6: Exceptions and Assertions
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-05-25T15:14:44&#43;10:00">
+    <time itemprop="datePublished" datetime="2017-06-27T14:28:09&#43;10:00">
       
   
   
   
   
-    2017-05-25
+    2017-06-27
   
 
     </time>
@@ -252,454 +258,462 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Whoop dee doop
-</p>
+              <hr />
 
-<h1 id="chapter-1-advanced-class-design">Chapter 1: Advanced Class Design</h1>
+<p>Chapter 6 summary notes
+</p>
 
 <h1 id="table-of-contents"></h1><nav id="TableOfContents">
 <ul>
-<li><a href="#chapter-1-advanced-class-design">Chapter 1: Advanced Class Design</a>
+<li><a href="#chapter-6-exceptions-and-assertions">Chapter 6: Exceptions and Assertions</a>
 <ul>
-<li><a href="#reviewing-oca-concepts">Reviewing OCA Concepts:</a>
+<li><a href="#chapter-goals">Chapter Goals:</a></li>
+<li><a href="#reviewing-exceptions">Reviewing Exceptions</a>
 <ul>
-<li><a href="#access-modifiers">Access Modifiers</a></li>
-<li><a href="#overloading-overriding">Overloading &amp; Overriding</a></li>
-<li><a href="#abstract-classes">Abstract Classes</a></li>
-<li><a href="#static-and-final">Static and Final</a></li>
-<li><a href="#imports">Imports</a></li>
-<li><a href="#using-instacnceof">Using InstacnceOf</a></li>
-<li><a href="#understanding-virtual-method-invocation">Understanding Virtual Method Invocation</a></li>
-<li><a href="#annotating-overridden-methods">Annotating Overridden Methods</a></li>
-<li><a href="#coding-equals-hashcode-and-tostring">Coding equals, hashCode, and toString</a>
-<ul>
-<li><a href="#tostring">toString</a></li>
-<li><a href="#equals">equals</a></li>
-<li><a href="#hashcode">hashcode</a></li>
+<li><a href="#categories-of-exceptions">Categories of Exceptions</a></li>
+<li><a href="#ocjp-exceptions">OCJP Exceptions</a></li>
+<li><a href="#try-statement">Try statement</a></li>
+<li><a href="#throw-vs-throws">Throw vs Throws</a></li>
 </ul></li>
-<li><a href="#working-with-enums">Working with Enums</a>
+<li><a href="#creating-custom-exceptions">Creating Custom Exceptions</a></li>
+<li><a href="#using-multi-catch">Using Multi-catch</a></li>
+<li><a href="#using-try-with-resources">Using Try with resources</a>
 <ul>
-<li><a href="#adding-constructors-fields-and-methods">Adding Constructors, Fields, and Methods</a></li>
+<li><a href="#try-with-resources-basics">Try-With-Resources Basics</a></li>
+<li><a href="#autocloseable">AutoCloseable</a></li>
+<li><a href="#suppressed-exceptions">Suppressed Exceptions</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#creating-nested-classes">Creating Nested Classes</a>
+<li><a href="#re-throwing-exceptions">Re-throwing Exceptions</a></li>
+<li><a href="#working-with-assertions">Working With Assertions</a>
 <ul>
-<li><a href="#member-inner-classes">Member Inner Classes</a></li>
-<li><a href="#local-inner-classes">Local Inner Classes</a></li>
-<li><a href="#anonymous-inner-class">Anonymous Inner Class</a></li>
-<li><a href="#static-nested-classes">Static Nested Classes</a></li>
+<li><a href="#the-assert-statement">The Assert Statement</a></li>
+<li><a href="#enabling-assertions">Enabling Assertions</a></li>
+<li><a href="#using-assertions">Using Assertions</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
 
-<h2 id="reviewing-oca-concepts">Reviewing OCA Concepts:</h2>
+<h1 id="chapter-6-exceptions-and-assertions">Chapter 6: Exceptions and Assertions</h1>
 
-<h3 id="access-modifiers">Access Modifiers</h3>
+<h2 id="chapter-goals">Chapter Goals:</h2>
 
-<p><img src="http://i.imgur.com/H3dQK2O.png" alt="access modifiers table" /></p>
-
-<h3 id="overloading-overriding">Overloading &amp; Overriding</h3>
-
-<pre><code class="language-java">1: public class Bobcat {
-2:   public void findDen() { }
-3: }
-1: public class BobcatKitten extends Bobcat {
-2:   public void findDen() { } // OVERRIDE
-3:   public void findDen(boolean b) { } //OVERLOAD
-4:   public int findDen() throws Exception { return 0; } //DIFFERENT METHOD
-5: }
-</code></pre>
+<p><em>Exceptions and Assertions</em></p>
 
 <ul>
-<li><strong><em>Overriding</em></strong> occurs when an inherited method declares a method with the same <strong>method signature</strong> as a method in its inheritance tree</li>
-<li><strong><em>Overloading</em></strong>  occurs when you have two or more methods have the same name, but different parameter list, that is, same name, different signatures.</li>
+<li>Use try-catch and throw statements</li>
+<li>Use catch, multi-catch, and finally clauses</li>
+<li>Use Autoclose resources with a try-with-resources statement</li>
+<li>Create custom exceptions and Auto-closeable resources</li>
+<li>Test invariants by using assertions</li>
 </ul>
 
-<p><strong>Overriding</strong></p>
+<h2 id="reviewing-exceptions">Reviewing Exceptions</h2>
 
-<ul>
-<li>The access modifier must be the same or more accessible.</li>
-<li>The return type must be the same or a more restrictive type, also known as covariant return types.</li>
-<li>If any checked exceptions are thrown, only the same exceptions or subclasses of those exceptions are allowed to be thrown.</li>
-</ul>
+<p>Exceptions are a way for Java and developers to handle situations where the program may fall off the &ldquo;happy path&rdquo; and how we should deal with scenarios.</p>
 
-<p><strong>Overloading</strong> &ndash; overloading matches occur in the following order
- - Exact match by type
- - Matching a superclass type
- - Converting to a larger primitive type
- - Converting to an autoboxed type
- - Varargs</p>
+<h3 id="categories-of-exceptions">Categories of Exceptions</h3>
 
-<h3 id="abstract-classes">Abstract Classes</h3>
+<p>There are two main exception type in Java;</p>
 
-<ul>
-<li>An abstract class can contain both abstract methods and concrete methods</li>
-<li>Abstract classes can <strong>not</strong> be instantiated,</li>
-<li>You can still use static members on abstract classes</li>
-<li>A class <strong>must</strong> be declared abstract if it contains at least one abstract method.</li>
-</ul>
+<p>Checked Exceptions -  must be declared and handled by the code
+Unchecked Exceptions - not required to be handled by the code, also known as &ldquo;RuntimeExceptions&rdquo;</p>
 
-<h3 id="static-and-final">Static and Final</h3>
+<p>There are also <code>java.lang.Error</code> in which it is neither recommend nor expected for the developer to handle these scenarios as they generally indicate a non recoverable situation.</p>
 
-<p><strong>Static</strong></p>
+<p><img src="http://i.imgur.com/tOEeCGx.png" alt="Exception class hierarchy" /></p>
 
-<ul>
-<li>Can be used on members and classes  to tie the member to a class (rather than an instance)</li>
-<li>You can not override a static method, you can only shadow it (hide it)</li>
-</ul>
+<p>A checked exception is any exception that extends directly or in-directly from <code>Exception</code>  but not <code>RuntimeException</code>.</p>
 
-<p><strong>Final</strong></p>
+<p>An unchecked exception is any exception that extends directly or in-directly from <code>RuntimeException</code></p>
 
-<ul>
-<li>Variables can not be reassigned once initialised</li>
-<li>Methods can not be overrriden</li>
-<li>Classes ca not be extended</li>
-</ul>
+<h3 id="ocjp-exceptions">OCJP Exceptions</h3>
 
-<h3 id="imports">Imports</h3>
+<p>Reviewing from OCA there are exceptions to remember.</p>
 
-<ul>
-<li>Direct import take precedence over wildcard imports</li>
-<li><code>import</code> imports classes from a package</li>
-<li><code>import static</code>imports <strong>static members</strong> from classes (eg, static fields and static methods)</li>
-<li><code>import static</code> is correct <code>static import</code> will fail to compile</li>
-</ul>
+<blockquote>
+<p>ArithmeticException: Thrown by the JVM when code attempts to divide by zero.</p>
 
-<h3 id="using-instacnceof">Using InstacnceOf</h3>
+<p>ArrayIndexOutOfBoundsException: Thrown by the JVM when code uses an illegal index to access an array.</p>
 
-<ul>
-<li>Same operator precedence as relational operators (higher than equality but lower than BEDMAS)</li>
-<li>Used to determine if a class is an instance of class , a subclass (directly or indirectly), or a class that implements an interface (directly or indirectly).</li>
-<li>If the two instances being compared <strong>share no heritage</strong> (other than inheriting from Object) you will get a compile time error.</li>
-<li>The compiler only does the mentioned inheritance check only on classes  (not interfaces)</li>
-<li><code>InstanceOf</code> only checks against interfaces at runtime</li>
-<li>Common use case for instanceOf is doing a check before casting, generally in <code>public boolean equals(Object o)</code></li>
-</ul>
+<p>ClassCastException: Thrown by the JVM when an attempt is made to cast an object to a subclass of which it is not an instance.</p>
 
-<h3 id="understanding-virtual-method-invocation">Understanding Virtual Method Invocation</h3>
+<p>IllegalArgumentException: Thrown by the program to indicate that a method has been passed an illegal or inappropriate argument.</p>
 
-<ul>
-<li>Virtual methods are just methods overridden in a subclass that get called at runtime.</li>
-<li>This works when the reference is to the super class but the object is to a subclass</li>
-<li>This only works on methods not instance fields</li>
-</ul>
+<p>NullPointerException: Thrown by the JVM when there is a null reference where an object is required.</p>
 
-<pre><code class="language-java">abstract class Animal {
-  public void careFor() {
-  play();
-  }
-  public void play() {
-  System.out.println(&quot;pet animal&quot;);
-  }
-}
+<p>NumberFormatException: Thrown by the program when an attempt is made to convert a string to a numeric type, but the string doesn’t have an appropriate format.</p>
+</blockquote>
 
-class Lion extends Animal {
-  public void play() {
-  System.out.println(&quot;toss in meat&quot;);
-  }
-}
-
-public class PlayWithAnimal {
-  public static void main(String... args) {
-  Animal animal = new Lion();
-  animal.careFor();
-  }
-}
-</code></pre>
-
-<p>Here even though the animal refers to an <code>Animal</code> and calls <code>play</code> the output is <code>&quot;toss in meat&quot;</code> as Java will look for any overridden method in the subclass (the class on the right hand side the &ldquo;=&rdquo;)</p>
-
-<h3 id="annotating-overridden-methods">Annotating Overridden Methods</h3>
-
-<ul>
-<li>The <strong>@Override</strong> annotation denotes to the compiler that the method should override a method from a parenting class or an interface.</li>
-<li>If the annotated method does <strong>not override</strong> a method the compiler will throw an exception.</li>
-<li>You can <strong>not override</strong> a field.</li>
-</ul>
-
-<h3 id="coding-equals-hashcode-and-tostring">Coding equals, hashCode, and toString</h3>
-
-<h4 id="tostring">toString</h4>
-
-<p>Signature  <strong><code>public String toString()</code></strong></p>
-
-<ul>
-<li>Generally used to information about the object in a human readable format.</li>
-<li><code>System.out.print(ln)</code> will automatically call <code>toString()</code> on the passed in object.</li>
-</ul>
-
-<h4 id="equals">equals</h4>
-
-<p>Signature <strong><code>public boolean equals(Object o)</code></strong></p>
-
-<ul>
-<li>Used to check whether two objects (<code>o</code> and <code>this</code>) are equal.</li>
-<li>If no custom implementation is provided. The default behaviour is equivalent to reference comparison<br /></li>
-</ul>
-
-<p>Conventions for consistent results</p>
+<p>New checked exceptions in OCJP</p>
 
 <ol>
-<li><p>It is reflexive: For any non‐null reference value x, x.equals(x) should return true.</p></li>
-
-<li><p>It is symmetric: For any non‐null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.</p></li>
-
-<li><p>It is transitive: For any non‐null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.</p></li>
-
-<li><p>It is consistent: For any non‐null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.</p></li>
-
-<li><p>For any non‐null reference value x, x.equals(null) should return false.</p></li>
+<li>java.text.ParseException</li>
+<li>java.io.IOException</li>
+<li>java.io.FileNotFound Exception</li>
+<li>java.io.NotSerializable Exception</li>
+<li>java.sql.SQLException</li>
 </ol>
 
-<h4 id="hashcode">hashcode</h4>
-
-<p>Signature <strong><code>public int hashCode()</code></strong></p>
-
-<ul>
-<li>The hash code is generally used for objects being stored in a collection such as a HashMap, HashSet etc.</li>
-<li>It is recommended practice to override <code>hashcode</code> when overriding <code>equals</code> so both are consistent with each other and are deterministic</li>
-</ul>
-
-<p>Conventions for overriding hashcode:</p>
+<p>New runtime exceptions in OCJP</p>
 
 <ol>
-<li>The code returned should based off (or calculated) a constant value in the object (not a variable), that is consistent with its <code>equals</code> method</li>
-<li>If calling <code>equals</code> on two methods returns true,  both objects should return the same hashcode</li>
-<li>If calling <code>equals</code> on two methods return false, there is no obligation for them to return different results.</li>
+<li>java.lang.ArrayStoreException</li>
+<li>java.time.DateTimeException</li>
+<li>java.util.MissingResourceException</li>
 </ol>
 
-<h3 id="working-with-enums">Working with Enums</h3>
+<p>As a general rule of thumb, any exceptions that deal with IO,databases and parsing are checked exceptions.</p>
 
-<p>Enums are used to represent a finite set of fixed values.
-The primary benefit of enums over constant values (<code>static final</code>) is they guarantee compile time type</p>
+<h3 id="try-statement">Try statement</h3>
 
-<hr />
+<p>The try statement usually deals with code that could throw an exception, but may also be used to ensure certain code is called unconditionally as such, with the <code>try-finally</code> construct.</p>
 
-<p>safety.</p>
+<p>A <code>try</code> statement <em>MUST</em> be accompanied by  a <code>catch</code> or <code>finally</code> clause, or both. Having neither will fail to compile.</p>
 
-<pre><code class="language-java">public enum Season{
-  WINTER, SPRING, SUMMER, FALL
-}
-</code></pre>
-
-<ul>
-<li>Under the hood enums are static final constants</li>
-<li>You can use  <code>==</code> to check if two enums are equal by value</li>
-<li>You can obtain an iterator from the enum by calling the  <code>values()</code> method</li>
-</ul>
-
-<p>As Enums are compile constants they can be used in switch statements.</p>
-
-<ul>
-<li>When using an enum in a switch statement you do not have to provide the enum class as part of the <code>case</code>.
-<code>java
-Season s...;
-switch(s) {
-case SUMMER: ...;
-case Season.WINTER ...; // Fails to compile
-}
-</code></li>
-</ul>
-
-<h4 id="adding-constructors-fields-and-methods">Adding Constructors, Fields, and Methods</h4>
-
-<p>It is possible for enums to have state as well as their values.</p>
-
-<pre><code class="language-java">public enum Season {
-  WINTER(&quot;Low&quot;), SPRING(&quot;Medium&quot;), SUMMER(&quot;High&quot;), FALL(&quot;Medium&quot;);
-  private String expectedVisitors;
-
-  private Season(String expectedVisitors) {
-    this.expectedVisitors = expectedVisitors;
-  }
-
-  public void printExpectedVisitors() {
-  System.out.println(expectedVisitors);
-   }
- }
-</code></pre>
-
-<p>Here it is important to note:</p>
-
-<ol>
-<li>We put a semi colon at the end of the enum declaration as they now have values.</li>
-<li>The constructor has to BE <code>private</code>, being public will cause a compiler error.</li>
-</ol>
-
-<p>The constructor is called exactly once, internally by the JVM, hence the constructor is allowed to be <code>private</code></p>
-
-<p>Enums can also have methods, you can declare a method and then use braces to &lsquo;override&rsquo; the method body.</p>
-
-<pre><code class="language-java">public enum Season {
-  WINTER {
-    public void printHours() { System.out.println(&quot;9am-3pm&quot;); }
-   },
-
-  SPRING {
-    public void printHours() { System.out.println(&quot;9am-5pm&quot;); }
-  },
-
-  SUMMER {
-    public void printHours() { System.out.println(&quot;9am-7pm&quot;); }
-  },
-
-  FALL {
-    public void printHours() { System.out.println(&quot;9am-5pm&quot;); }
-  }; // note semi-colon
-
-public void printHours() { System.out.println(&quot;default hours&quot;); }
-
-}
-</code></pre>
-
-<h2 id="creating-nested-classes">Creating Nested Classes</h2>
-
-<p>There are four types if inner classes in Java</p>
+<p>There are two (logical) rules to remember when dealing the try statement</p>
 
 <blockquote>
 <ol>
-<li>A member inner class is a class defined at the same level as instance variables. It is not static. Often, this is just referred to as an inner class without explicitly saying the type.</li>
-<li>A local inner class is defined within a method.</li>
-<li>An anonymous inner class is a special case of a local inner class that does not have a name.</li>
-<li>A static nested class is a static class that is defined at the same level as static variables.</li>
+<li><p>Java checks the catch blocks in the order in which they appear. It is illegal to declare a subclass exception in a catch block that is lower down in the list than a superclass exception because it will be unreachable code.</p></li>
+
+<li><p>Java will not allow you to declare a catch block for a checked exception type that cannot potentially be thrown by the try clause body. This is again to avoid unreachable code.</p></li>
 </ol>
 </blockquote>
 
-<h3 id="member-inner-classes">Member Inner Classes</h3>
+<h3 id="throw-vs-throws">Throw vs Throws</h3>
 
-<blockquote>
-<p>A member inner class is defined at the member level of a class (the same level as the methods,
-instance variables, and constructors). Member inner classes have the following properties:</p>
-</blockquote>
+<p>The <code>throws</code> keyword is used in a method declaration to denote that the method may throw an exception, forcing any calling code to either handle or re-declare the exception.</p>
 
-<ol>
-<li>Can be declared public, private, or protected or use default access</li>
-<li>Can extend any class and implement interfaces</li>
-<li>Can be abstract or final</li>
-<li>CANNOT declare static fields or methods</li>
-<li>Can access members of the outer class including private members</li>
-</ol>
+<p>the <code>throw</code> keyword is used to actually to <em>throw</em> an exception.</p>
 
-<pre><code class="language-java">public class Outer {
+<pre><code class="language-java">public String getDataFromDatabase() throws SQLException {
+  throw new UnsupportedOperationException();
+}
+</code></pre>
 
-  private String greeting = &quot;Hi&quot;;
+<h2 id="creating-custom-exceptions">Creating Custom Exceptions</h2>
 
-  protected class Inner {
-    public int repeat = 3;
+<p>You can create your own exceptions by inheriting from <code>Exception</code> or <code>RuntimeException</code>.</p>
 
-    public void go() {
-      for (int i = 0; i &lt; repeat; i++)
-        System.out.println(greeting);
-      }
-    }
+<pre><code class="language-java">class CannotSwimException extends Exception {}
 
-  public void callInner() {
-    Inner inner = new Inner();
-    inner.go();
-  }
+class DangerInTheWater extends RuntimeException {}
 
-  public static void main(String[] args) {
-    Outer outer = new Outer();
-    outer.callInner();
+class SharkInTheWaterException extends DangerInTheWater {}
+
+class Dolphin {
+  public void swim() throws CannotSwimException {
+    // logic here
   }
 }
 </code></pre>
 
-<p>This works fine as inner member classes can still access the outer classes private (non-static) members.</p>
+<p>Here <code>CannotSwimException</code> is a checked exception, as it directly extends from <code>Exception</code></p>
 
-<p>You could also create the inner instance directly by using dot notation followed by the <code>new</code> keyword</p>
+<p><code>DangerInTheWater</code> is runtime exception as it directly extends from <code>RuntimeException</code></p>
+
+<p><code>SharkInTheWaterException</code> is a runtime exception as it indirectly extends from <code>RuntimeException</code></p>
+
+<p>Any method that calls the Dolphin&rsquo;s <code>swim()</code> must either handle the <code>CannotSwimException</code> or themselves re-declare the exception.</p>
+
+<p>There are three main constructors to use when extending exceptions:</p>
+
+<pre><code class="language-java">public class CannotSwimException extends Exception {
+
+  public CannotSwimException() {
+    super();
+  }
+
+  public CannotSwimException(Exception e) {
+    super(e);
+  }
+
+  public CannotSwimException(String message) {
+    super(message);
+  }
+}
+</code></pre>
+
+<p>Here we can pass nothing, the exception or a message.</p>
+
+<p>Any exception or message passed to the <code>Exception</code> constructor will be printed in the exceptions stack trace.</p>
+
+<pre><code class="language-java">Exception in thread &quot;main&quot; CannotSwimException //empty constructor
+at CannotSwimException.main(CannotSwimException.java:18)
+
+Exception in thread &quot;main&quot; CannotSwimException: java.lang.RuntimeException //assume we called throw new CannotSwimException(new RuntimeException());
+at CannotSwimException.main(CannotSwimException.java:19)
+Caused by: java.lang.RuntimeException
+... 1 more
+
+Exception in thread &quot;main&quot; CannotSwimException: broken fin //assume we called throw new CannotSwimException(&quot;broken fin&quot;);
+at CannotSwimException.main(CannotSwimException.java:20)
+</code></pre>
+
+<h2 id="using-multi-catch">Using Multi-catch</h2>
+
+<p>Prior to Java 7, in order to catch multiple expiations in one try statement, the developer had to list multiple catch clauses, which code lead to convoluted code.</p>
 
 <pre><code class="language-java">public static void main(String[] args) {
-  Outer outer = new Outer();
-  Inner inner = outer.new Inner(); // create the inner class
-  inner.go();
+  try {
+    Path path = Paths.get(&quot;dolphinsBorn.txt&quot;);
+    String text = new String(Files.readAllBytes(path));
+    LocalDate date = LocalDate.parse(text);
+    System.out.println(date);
+
+  } catch (DateTimeParseException e) {
+    e.printStackTrace();
+    throw new RuntimeException(e);
+
+  } catch (IOException e) {
+    e.printStackTrace();
+    throw new RuntimeException(e);
+  } 
 }
 </code></pre>
 
-<h3 id="local-inner-classes">Local Inner Classes</h3>
+<p>Here we also have to remember that if exception is a related to another exception begin caught, the more specific (sub-class) exception must go first and the more generic exceptions be caught last (at the bottom).</p>
 
-<blockquote>
-<p>A local inner class is a nested class defined within a method. Like local variables, a local inner class declaration does not exist until the method is invoked, and it goes out of scope when the method returns.</p>
-</blockquote>
+<p>As of Java 7 we can use multi catch to help clean things up</p>
+
+<pre><code class="language-java">try {
+    ...
+
+  } catch (DateTimeParseException | IOException e) {
+    e.printStackTrace();
+    throw new RuntimeException(e);
+}
+</code></pre>
+
+<p>There are a few rules when using multi-catch:</p>
 
 <ol>
-<li>They do not have an access specifier.</li>
-<li>They cannot be declared static and cannot declare static fields or methods.</li>
-<li>They have access to all fields and methods of the enclosing class.</li>
-<li>They do not have access to local variables of a method unless those variables are final or effectively final.</li>
+<li><p>When using multi-catch there can only be <em>ONE</em> variable name (in the code above it&rsquo;s, &lsquo;e&rsquo;) and it must be declared at the end of the catch clause.</p></li>
+
+<li><p>Variables in a multi-catch clause are *effectively final   * meaning they can <em>NOT</em> be re-assigned.</p></li>
+
+<li><p>Multiple exception types cant be related (other than exception), eg cant have <code>catch (FileNotFoundException | IOException e) { } // DOES NOT COMPILE</code></p></li>
 </ol>
 
-<pre><code class="language-Java">public class Outer {
-  public void calculate() {
-    final int width = 20; //local variable has to be final or 'effectively final' if they are to be accessed by the local inner class
-    class Inner {
-      public void multiply() {
-        System.out.println(5 * width); //width variables used within `Inner` class
-      }
-    }
-    Inner inner = new Inner();
-    inner.multiply();  
+<h2 id="using-try-with-resources">Using Try with resources</h2>
+
+<p>A try with resources statement is often used when dealing with resources that have to be closed after use such as; files, database connections, network connections.</p>
+
+<p>Here since we want to close a resource we would always have to implement the <code>finally</code> clause to ensure the resource was properly closed.</p>
+
+<pre><code class="language-java">public void oldApproach(Path path1, Path path2) throws IOException {
+  BufferedReader in = null;
+  BufferedWriter out = null;
+  try {
+    in = Files.newBufferedReader(path1);
+    out = Files.newBufferedWriter(path2);
+    out.write(in.readLine());
+
+  } finally {
+      if (in != null) in.close();
+      if (out != null) out.close();
   }
 }
 </code></pre>
 
-<p>As an aside, the reason this concept is required is that Java will produce two classes here, the outer class will be compiled to <code>Outer.class</code> and the inner class will be compiled to <code>Outer$Inner.class</code></p>
+<p>Using try-with-resources the code above can be abbreviated to</p>
 
-<p>As they are two separate classes they do not share the same local variables, however if Java (the compiler at least) is able to guarantee that the value in a local variable is final (with or without the keyword) Java can &lsquo;copy&rsquo; of the variable and store it within the inner class.</p>
-
-<p>Java considers a variable <code>effectively final</code> if it is initialised and is never changed afterwards. (As if the final keyword had been applied)</p>
-
-<h3 id="anonymous-inner-class">Anonymous Inner Class</h3>
-
-<blockquote>
-<p>An anonymous inner class is a local inner class that does not have a name. It is declared and instantiated all in one statement using the new keyword.</p>
-</blockquote>
-
-<pre><code class="language-java">public class AnonInner {
-  abstract class SaleTodayOnly {
-  abstract int dollarsOff();
-  }
-
-  public int admission(int basePrice) {
-  SaleTodayOnly sale = new SaleTodayOnly() { //here we are providing the implementing body directly.
-    int dollarsOff() { return 3; }
-  }; //SEMI COLON as we are defining a variable here, called 'sale'
-
-  return basePrice - sale.dollarsOff();
+<pre><code class="language-java">public void newApproach(Path path1, Path path2) throws IOException {
+  try (BufferedReader in = Files.newBufferedReader(path1); BufferedWriter out = Files.newBufferedWriter(path2)) {
+    out.write(in.readLine());
   }
 }
 </code></pre>
 
-<p>As anonymous classes are essentially &lsquo;defining the method body of another class&rsquo;, generally abstract such as in abstract classes or interfaces, anonymous classes can not extend or implement any additionally interfaces.</p>
+<p>Here the <code>close()</code> methods are called implicitly.</p>
 
-<h3 id="static-nested-classes">Static Nested Classes</h3>
+<h3 id="try-with-resources-basics">Try-With-Resources Basics</h3>
 
-<blockquote>
-<p>A static nested class is a static class defined at the member level. It can be instantiated without an object of the enclosing class, so it can’t access the instance variables without an explicit object of the enclosing class.</p>
-</blockquote>
+<p>With a try-with-resources statement, any resources that should be closed are placed in a parenthesis next to the try.</p>
 
-<p>A static class has the following properties</p>
+<pre><code class="language-java">try(BufferedReader br = Files.newBufferReader();){}
+</code></pre>
+
+<p>A few rules about try-with-resources. (TWR)</p>
 
 <ol>
-<li>The nesting creates a namespace because the enclosing class name must be used to refer to it.</li>
-<li>It can be made private or use one of the other access modifiers to encapsulate it.</li>
-<li>The enclosing class can refer to the fields and methods of the static nested class.</li>
+<li>A TWR can have multiple <code>catch</code> clauses and up to  one <code>finally</code> clause</li>
+<li>There is an implicit call the <code>close()</code> on the resource that is <em>ALWAYS</em> called before any developer programmed catch or finally clauses.</li>
+<li>The resources scope is bound to the try statement, that is once the <code>try()</code> statements closing bracket is closed, the resource goes out of scope.</li>
+<li>The resource <em>MUST</em> implement the <code>AutoCloseable</code> interface.</li>
+<li>Java closes resources in the order they  were declared, if there are multiple resources.</li>
 </ol>
 
-<pre><code class="language-java">public class Enclosing {
-  static class Nested {
-    private int price = 6;
+<pre><code class="language-java">try (Scanner s = new Scanner(System.in)) {
+  s.nextLine();
+  } //try scope ends here and hence the scope of Scanner s.
+
+  catch(Exception e) { 
+    s.nextInt(); // DOES NOT COMPILE
+
+  } finally{
+    s.nextInt(); // DOES NOT COMPILE
+}
+</code></pre>
+
+<h3 id="autocloseable">AutoCloseable</h3>
+
+<p>In order for a class to be in the TRW statement, it must implement the <code>AutoCloseable</code> interface which has the following definition:</p>
+
+<pre><code class="language-java">public void close() throws Exception;
+</code></pre>
+
+<p>As before the implementing class doesn&rsquo;t have to throw an exception, but it cna if it wants to.</p>
+
+<pre><code class="language-java">public class TurkeyCage implements AutoCloseable {
+  public void close() {
+    System.out.println(&quot;Close gate&quot;);
   }
 
   public static void main(String[] args) {
-    Nested nested = new Nested(); // no need for new Enclosing.Nested();
-    System.out.println(nested.price); // Enclosing class can access private variables of the Nested class
+    try (TurkeyCage t = new TurkeyCage()) {
+    System.out.println(&quot;put turkeys in&quot;);
+    }
   }
 }
 </code></pre>
 
-<p><img src="http://i.imgur.com/VXLZz9Q.png" alt="Inner classes table" /></p>
+<p>Note however if the method implementing <code>close</code> does throw a checked exception, then it must be handled in the calling code or re-declared, just like normal checked exceptions.</p>
+
+<pre><code class="language-java">public class StuckTurkeyCage implements AutoCloseable {
+  public void close() throws Exception {
+    throw new Exception(&quot;Cage door does not close&quot;);
+  }
+
+  public static void main(String[] args) {
+    try (StuckTurkeyCage t = new StuckTurkeyCage()) { // DOES NOT COMPILE, needs to handle `Exception`
+    System.out.println(&quot;put turkeys in&quot;);
+    }
+  }
+}
+</code></pre>
+
+<p>Ideally the <code>close()</code> method according to best practices, should;</p>
+
+<ol>
+<li>Be <a href="https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation">idempotent</a></li>
+<li>Throw a more specific exception than <code>Exception</code>.</li>
+</ol>
+
+<h3 id="suppressed-exceptions">Suppressed Exceptions</h3>
+
+<blockquote>
+<p>When multiple exceptions are thrown, all but the first are called suppressed exceptions. The idea is that Java treats the first exception as the primary one and tacks on any that come up while automatically closing</p>
+</blockquote>
+
+<pre><code class="language-java">public class JammedTurkeyCage implements AutoCloseable {
+public void close() throws IllegalStateException {
+throw new IllegalStateException(&quot;Cage door does not close&quot;);
+}
+
+try (JammedTurkeyCage t = new JammedTurkeyCage()) {
+  throw new IllegalStateException(&quot;turkeys ran off&quot;);
+} 
+catch (IllegalStateException e) {
+  System.out.println(&quot;caught: &quot; + e.getMessage());
+  for (Throwable t: e.getSuppressed())
+  System.out.println(t.getMessage());
+}
+
+//output:
+caught: turkeys ran off
+Cage door does not close
+</code></pre>
+
+<p>Java closes resources in the order they  were declared.</p>
+
+<pre><code class="language-java">try (JammedTurkeyCage t1 = new JammedTurkeyCage(); JammedTurkeyCage t2 = new JammedTurkeyCage()) {
+  System.out.println(&quot;turkeys entered cages&quot;);
+}
+ catch (IllegalStateException e) {
+    System.out.println(&quot;caught: &quot; + e.getMessage());
+    for (Throwable t: e.getSuppressed())
+    System.out.println(t.getMessage());
+}
+
+//output
+turkeys entered cages
+caught: Cage door does not close
+Cage door does not close
+</code></pre>
+
+<p>Suppressed exceptions only apply to exceptions thrown from within the context of <code>try</code> or <code>TRW</code> statement, throwing an exception from a finally block or regular code must must handled like normal.</p>
+
+<h2 id="re-throwing-exceptions">Re-throwing Exceptions</h2>
+
+<p>//TODO not sure what to summarise, seems like standard java exception stuff</p>
+
+<h2 id="working-with-assertions">Working With Assertions</h2>
+
+<blockquote>
+<p>An assertion is a Boolean expression that you place at a point in your code where you expect something to be true.</p>
+</blockquote>
+
+<h3 id="the-assert-statement">The Assert Statement</h3>
+
+<p>The assert statement can take two forms.</p>
+
+<pre><code class="language-java">assert boolean_expression;
+assert boolean_expression: error_message;
+</code></pre>
+
+<p>If the assertion fails it throws an <code>AssertionError</code>. Here this is an <code>Error</code> not an <code>Exception</code>.</p>
+
+<p>When using an assertion java throws the error and as such, the program usually ends.</p>
+
+<p>If assertions are not enabled then Java simply <code>skips</code> over the asserting line.</p>
+
+<h3 id="enabling-assertions">Enabling Assertions</h3>
+
+<p>To enable assertions we must pass either:</p>
+
+<ol>
+<li>-enableassertions</li>
+<li>-ea</li>
+</ol>
+
+<p>to the JVM.</p>
+
+<p>Enabling assertions with no arguments makes assertions globally available except in the java core classes, however you can enable assertions for specific classes or packages.</p>
+
+<p>For specific class</p>
+
+<pre><code class="language-java">java -ea:com.wiley.demos.TestColors my.programs.Main
+</code></pre>
+
+<p>In a a package and sub-packages, here the 3 dots (&hellip;) means any classes and sub-packages</p>
+
+<pre><code class="language-java">java -ea:com.wiley.demos... my.programs.Main
+</code></pre>
+
+<p>You can also use <code>-da</code> to disable assertions for certain classes or packages.</p>
+
+<pre><code class="language-java">java -ea:com.wiley.demos... -da:com.wiley.demos.TestColors my.programs.Main
+</code></pre>
+
+<h3 id="using-assertions">Using Assertions</h3>
+
+<p>Common assertion scenarios include:</p>
+
+<blockquote>
+<p>Internal Invariants You assert that a value is within a certain constraint. assert x &lt; 0 is an example of an internal invariant.</p>
+
+<p>Class Invariants You assert the validity of an object’s state. Class invariants are typically private methods within the class that return a boolean . The upcoming Rectangle class demonstrates a class invariant.</p>
+
+<p>Control Flow Invariants You assert that a line of code you assume is unreachable is never reached. The upcoming TestSeasons class demonstrates a control fl ow invariant.</p>
+
+<p>Preconditions You assert that certain conditions are met before a method is invoked.</p>
+
+<p>Post Conditions You assert that certain conditions are met after a method executes successfully.</p>
+</blockquote>
+
+<p>Using assertions in production is commonly advised against as triggering an assertion may will most likely cause the program to end, assertions are often used in debugging or situations where its critical the program does not reach  a certain state.</p>
               
             </div>
           </div>
@@ -725,7 +739,7 @@ instance variables, and constructors). Member inner classes have the following p
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/" data-tooltip="Removing the need for @JsonProperty from classes">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml"></span>
@@ -733,7 +747,7 @@ instance variables, and constructors). Member inner classes have the following p
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/" data-tooltip="OCJP Chapter 2: Design Pattern and Principles">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/" data-tooltip="OCJP Chapter 5: Dates, Strings and Localisations">
           
             <span class="hide-xs hide-sm text-small icon-mr"></span>
             <i class="fa fa-angle-right"></i>
@@ -750,17 +764,17 @@ instance variables, and constructors). Member inner classes have the following p
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -796,7 +810,7 @@ instance variables, and constructors). Member inner classes have the following p
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/" data-tooltip="Removing the need for @JsonProperty from classes">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml"></span>
@@ -804,7 +818,7 @@ instance variables, and constructors). Member inner classes have the following p
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/" data-tooltip="OCJP Chapter 2: Design Pattern and Principles">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/" data-tooltip="OCJP Chapter 5: Dates, Strings and Localisations">
           
             <span class="hide-xs hide-sm text-small icon-mr"></span>
             <i class="fa fa-angle-right"></i>
@@ -821,17 +835,17 @@ instance variables, and constructors). Member inner classes have the following p
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -852,17 +866,17 @@ instance variables, and constructors). Member inner classes have the following p
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
         <i class="fa fa-google-plus"></i><span></span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
         <i class="fa fa-facebook-official"></i><span></span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f05%2f25%2focjp-chapter-1-advanced-class-design%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f06%2f27%2focjp-chapter-6-exceptions-and-assertions%2f">
         <i class="fa fa-twitter"></i><span></span>
       </a>
     </li>
