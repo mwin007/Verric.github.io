@@ -273,6 +273,25 @@
 <li><a href="#working-with-a-file-object">Working with a File Object</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#introducing-streams">Introducing Streams</a>
+<ul>
+<li><a href="#stream-fundamentals">Stream Fundamentals</a></li>
+<li><a href="#stream-nomenclature-https-www-google-com-au-search-q-define-3a-nomenclature-oq-define-3a-nomenclature-aqs-chrome-69i57j69i58-4255j0j7-sourceid-chrome-ie-utf-8">Stream <a href="https://www.google.com.au/search?q=define%3A+nomenclature&amp;oq=define%3A+nomenclature&amp;aqs=chrome..69i57j69i58.4255j0j7&amp;sourceid=chrome&amp;ie=UTF-8">Nomenclature</a></a>
+<ul>
+<li><a href="#byte-streams-vs-character-streams">Byte Streams vs. Character Streams</a></li>
+<li><a href="#input-and-output">Input and Output</a></li>
+<li><a href="#low-level-vs-high-level-streams">Low-Level vs. High-Level Streams</a></li>
+<li><a href="#stream-base-classes">Stream Base Classes</a></li>
+<li><a href="#decoding-java-i-o-class-names">Decoding Java I/O Class Names</a></li>
+</ul></li>
+<li><a href="#common-stream-operations">Common Stream Operations</a>
+<ul>
+<li><a href="#closing-the-stream">Closing the Stream</a></li>
+<li><a href="#flushing-the-stream">Flushing the Stream</a></li>
+<li><a href="#marking-the-stream">Marking the Stream</a></li>
+<li><a href="#skipping-over-data">Skipping over Data</a></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -390,6 +409,144 @@ zoo-backup.txt
 </code></pre>
 
 <p>Showing how using File to represent both files and directories can cut down on code size.</p>
+
+<h2 id="introducing-streams">Introducing Streams</h2>
+
+<p>Streams in the <code>java.io.*</code> package are used to often represent a stream of bytes in IO operations, such as reading/writing from a file, or network, they are not related to the new <code>Stream&lt;T&gt;</code> utility API in Java 8.</p>
+
+<h3 id="stream-fundamentals">Stream Fundamentals</h3>
+
+<p>Data from a file or network can be represented a stream or flow data, this allows us to work with large files in a reasonable manner, with having to load the whole object into memory (although we could if we wanted to).</p>
+
+<p>In Java all low-level streams work in bytes when dealing with resources, there are higher level streams that provide basic abstraction such as working with characters or blocks of bytes.</p>
+
+<p>Java uses streams whenever it can be beneficial to read and write data from a <em>sequential</em> data source, including files, network connections or the terminal, via <code>System.in</code>, <code>System.err</code> and <code>System.out</code>.</p>
+
+<h3 id="stream-nomenclature-https-www-google-com-au-search-q-define-3a-nomenclature-oq-define-3a-nomenclature-aqs-chrome-69i57j69i58-4255j0j7-sourceid-chrome-ie-utf-8">Stream <a href="https://www.google.com.au/search?q=define%3A+nomenclature&amp;oq=define%3A+nomenclature&amp;aqs=chrome..69i57j69i58.4255j0j7&amp;sourceid=chrome&amp;ie=UTF-8">Nomenclature</a></h3>
+
+<h4 id="byte-streams-vs-character-streams">Byte Streams vs. Character Streams</h4>
+
+<p>Differences between Streams and Readers/Writers</p>
+
+<ol>
+<li>The stream classes are used for inputting and outputting all types of binary or byte data.</li>
+<li>The reader and writer classes are used for inputting and outputting only character and String data.</li>
+</ol>
+
+<p>Readers adn Writers are often used by the developer as they allow to use a stream without having to worry about any binary or encoding that is happening.</p>
+
+<h4 id="input-and-output">Input and Output</h4>
+
+<p>Most classes have to variations depending on which way the data is flowing, in or out. This often relates to low level streams such  as <code>InputStream</code> and <code>OutputStream</code>. <code>Readers</code> are often higher level classes that deal with reading in data and writers, output data.</p>
+
+<h4 id="low-level-vs-high-level-streams">Low-Level vs. High-Level Streams</h4>
+
+<p>Generally speaking a low level stream directly interacts with the data source, such as a file, memory or network connection, they also often deal with bytes and do so one at a time, such as the <code>FileInputStream</code> class which reads bytes from a file.</p>
+
+<p>High level streams often wrap a low level stream and provide a more developer friendly experience for common operations, such as reading a line from a file with the default coding already specified; these include <code>FileWriter</code>  and <code>BufferedWriter</code> classes.</p>
+
+<pre><code class="language-java">try (BufferedReader bufferedReader = new BufferedReader(new FileReader(&quot;zoo-data.txt&quot;))) {
+System.out.println(bufferedReader.readLine());
+}
+</code></pre>
+
+<p>Note high level stream can take and wrap other high level streams as well</p>
+
+<pre><code class="language-java">try (ObjectInputStream objectStream = new ObjectInputStream( 
+    new BufferedInputStream(
+        new FileInputStream(&quot;zoo-data.txt&quot;)))) {
+System.out.println(objectStream.readObject());
+}
+</code></pre>
+
+<p>The only low level stream required for the exam are low level file reading stream, <code>FileInputStream</code>, <code>FileOutputStream</code>, <code>FileReader</code>, <code>FileWriter</code></p>
+
+<h4 id="stream-base-classes">Stream Base Classes</h4>
+
+<p>There are four base abstract classes often used in the <code>java.io</code> package</p>
+
+<ol>
+<li>InputStream</li>
+<li>OutputStream</li>
+<li>Reader</li>
+<li>Writer</li>
+</ol>
+
+<p>Many higher level stream take a reference to the base classes so any calling code can pass any other low level or high level streams or writers.</p>
+
+<p>However input streams can wrap only other input streams and output streams can only wrap other output streams, this is same for readers and writers as well, in many cases mixing these up will cause the compiler to fail.</p>
+
+<p>All examples below fail to compile.</p>
+
+<pre><code class="language-java">new BufferedInputStream(new FileReader(&quot;zoo-data.txt&quot;)); // BufferedInputSTREAM can not take a reader
+new BufferedWriter(new FileOutputStream(&quot;zoo-data.txt&quot;)); // BufferedWRITER can not take a stream
+new ObjectInputStream(new FileOutputStream(&quot;zoo-data.txt&quot;)); // We can not mix an input stream with an output stream
+new BufferedInputStream(new InputStream()); // InputStream is abstract and hence can not be instantiated.
+</code></pre>
+
+<h4 id="decoding-java-i-o-class-names">Decoding Java I/O Class Names</h4>
+
+<ol>
+<li>A class with the word InputStream or OutputStream in its name is used for reading or writing binary data, respectively.</li>
+<li>A class with the word Reader or Writer in its name is used for reading or writing character or string data, respectively.</li>
+<li>Most, but not all, input classes have a corresponding output class.</li>
+<li>A low-level stream connects directly with the source of the data.</li>
+<li>A high-level stream is built on top of another stream using wrapping.</li>
+<li>A class with Buffered in its name reads or writes data in groups of bytes or characters and often improves performance in sequential file systems.</li>
+<li>When wrapping a stream you can mix and match only types that inherit from the same abstract parent stream.</li>
+</ol>
+
+<p><img src="http://i.imgur.com/sCpcnIG.png" alt="List of stream and read/writer" /></p>
+
+<h3 id="common-stream-operations">Common Stream Operations</h3>
+
+<h4 id="closing-the-stream">Closing the Stream</h4>
+
+<p>Since streams are resources they often need to be closed in order to prevent other services from hanging,or un-necessarily consuming the resource, it can also lead to memory and other forms of leaks if left un-closed.</p>
+
+<h4 id="flushing-the-stream">Flushing the Stream</h4>
+
+<p>Since writing to a file or  network connection is a relatively expensive operation (in terms of time) often, the underlying OS will save data into batches to reduce the number of times data has to be written to the resource. In Java we can force data to be written using the <code>flush()</code> method. Note however using the <code>flush()</code> to liberally can cause a degradation in performance due to consistently hitting the disk or network.</p>
+
+<p>Most implementations of the <code>close()</code> method automatically call the flush method before closing the resource.</p>
+
+<h4 id="marking-the-stream">Marking the Stream</h4>
+
+<p>You can call the <code>mark(int)</code> and <code>reset()</code> on some streams to move to a certain point in the stream. Note only some streams have this functionality and you can check for it via the <code>markSupported()</code> method which returns true or false.</p>
+
+<p>You can specify a limit to read ahead in the mark method and then read upto that many number of bytes, if you want to go back to your original place in the stream you can call <code>reset()</code></p>
+
+<pre><code class="language-java">InputStream is = . . . //ABCD
+System.out.print ((char)is.read());
+if(is.markSupported()) {
+  is.mark(100);
+  System.out.print((char)is.read());
+  System.out.print((char)is.read());
+  is.reset();
+}
+
+System.out.print((char)is.read());
+System.out.print((char)is.read());
+System.out.print((char)is.read());
+
+// prints: ABCBCD
+</code></pre>
+
+<p>If you pass your mark limit and then call reset an exception may be thrown at runtime.</p>
+
+<h4 id="skipping-over-data">Skipping over Data</h4>
+
+<p>The <code>skip(long)</code> method skips over the number of bytes specified and is associated with <code>InputStream</code>&rsquo;s and <code>Reader</code>&rsquo;s. The skip method returns the number of bytes actually skipped or a negative number if it reached the end of the file.</p>
+
+<pre><code class="language-java">InputStream is = . . .// TIGERS
+System.out.print((char)is.read()); //prints T
+is.skip(2) // skips I,G
+is.read();// reads 'E&quot; but does nothing with it
+System.out.print((char)is.read());// prints R
+System.out.print((char)is.read());// prints S
+
+//prints: TRS
+</code></pre>
               
             </div>
           </div>
