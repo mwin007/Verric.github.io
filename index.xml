@@ -6,10 +6,30 @@
     <description>Recent content on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Tue, 27 Jun 2017 14:28:09 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jul 2017 14:28:09 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OCJP Chapter 8: IO</title>
+      <link>https://verric.github.io/2017/07/03/ocjp-chapter-8-io/</link>
+      <pubDate>Mon, 03 Jul 2017 14:28:09 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/07/03/ocjp-chapter-8-io/</guid>
+      <description>&lt;p&gt;Chapter 8 summary notes&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OCJP Chapter 7: Concurrency</title>
+      <link>https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/</link>
+      <pubDate>Sat, 01 Jul 2017 14:28:09 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>OCJP Chapter 6: Exceptions and Assertions</title>
@@ -17,9 +37,7 @@
       <pubDate>Tue, 27 Jun 2017 14:28:09 +1000</pubDate>
       
       <guid>https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/</guid>
-      <description>&lt;hr /&gt;
-
-&lt;p&gt;Chapter 6 summary notes
+      <description>&lt;p&gt;Chapter 6 summary notes
 &lt;/p&gt;</description>
     </item>
     
