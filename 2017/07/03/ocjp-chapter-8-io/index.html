@@ -320,6 +320,16 @@
 <ul>
 <li><a href="#other-stream-classes">Other Stream Classes</a></li>
 </ul></li>
+<li><a href="#interacting-with-users">Interacting with Users</a>
+<ul>
+<li><a href="#the-old-way">The Old Way</a></li>
+<li><a href="#the-new-way">The New Way</a></li>
+<li><a href="#reader-and-writer">reader() and writer()</a></li>
+<li><a href="#format-and-printf-1">format() and printf()</a></li>
+<li><a href="#flush">flush()</a></li>
+<li><a href="#readline">readLine()</a></li>
+<li><a href="#readpassword">readPassword()</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -906,6 +916,175 @@ public class PrintWriterSample {
 <p>The <code>InputStreamReader</code> and <code>OutputStreamWriter</code> both which convert a stream into a reader or writer.</p>
 
 <p>The <code>DataInputStream</code> and <code>DataOutputStream</code> which are similar to <code>ObjectInput/OutputStream</code> but can only serialize/de-serialize Strings and primitives, they also enforce tight data structures meaning the order of serialization and de-serialization is important.</p>
+
+<h3 id="interacting-with-users">Interacting with Users</h3>
+
+<p>Prior to Java 6 if program wanted to interact with a user through a CLI, they would have had to use <code>System.in</code> and <code>System.out</code>. Java 6 introduced the <code>Console</code> class as a better way to interact through a CLI environment.</p>
+
+<h4 id="the-old-way">The Old Way</h4>
+
+<p><code>System.in</code> returns an <code>InputStream</code> that is often wrapped in a <code>BufferedReader</code>, this is to give us access to the <code>readLine()</code> which reads a buffered input when the user hits the &ldquo;Enter&rdquo; key. We also dont close the stream as this would stop the program from reading an further input from the user.</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class SystemInSample {
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String userInput = reader.readLine();
+    System.out.println(&quot;You entered the following: &quot;+userInput);
+}
+}
+</code></pre>
+
+<p>Here we take an input and then print it straight back out.</p>
+
+<h4 id="the-new-way">The New Way</h4>
+
+<p>As dealing directly with streams can be repetitive(boiler-plate coding) and low level, the <code>Console</code> class was introduced to help make interacting with use easier.</p>
+
+<p>The console class is created when the JVM starts up and is a singleton class it can be accessed via the <code>System.console()</code> method which returns the console instance.</p>
+
+<p>If the environment does not support text based interactions then calling <code>System.console()</code> will return null.</p>
+
+<pre><code class="language-java">import java.io.Console;
+
+public class ConsoleSample {
+  public static void main(String[] args) {
+    Console console = System.console();
+    if(console != null) {
+      String userInput = console.readLine();
+  console.writer().println (&quot;You entered the following: &quot;+userInput);
+    }
+  }
+}
+</code></pre>
+
+<p>Here this looks somewhat familiar to the Input/OutputStreams example, and under the hood, the <code>Console</code> class uses these classes, but allows us to do so without having to worry about creating, wrapping and closing those streams.</p>
+
+<h4 id="reader-and-writer">reader() and writer()</h4>
+
+<blockquote>
+<p>The Console class provides access to an instance of Reader and PrintWriter using the methods reader() and writer(), respectively.</p>
+</blockquote>
+
+<p>The old way used streams (unless the developer themselves wrapped them in a reader or writer), here we use readers and writers so we don&rsquo;t have to worry about character encoding/decoding.</p>
+
+<h4 id="format-and-printf-1">format() and printf()</h4>
+
+<p>As with writers we can use <code>format()</code> and <code>print()</code> to print a formatted string to the user</p>
+
+<pre><code class="language-java">Console console = System.console();
+console.writer().format(new Locale(&quot;fr&quot;, &quot;CA&quot;),&quot;Hello World&quot;);
+</code></pre>
+
+<p>In the below we can use <code>format()</code> and <code>printf()</code> directly or can use the underlying <code>writer</code> instance</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class ConsoleSamplePrint {
+  public static void main(String[] args) throws NumberFormatException,IOException {
+    Console console = System.console();
+    if(console == null) {
+      throw new RuntimeException(&quot;Console not available&quot;);
+    } else {
+      console.writer().println(&quot;Welcome to Our Zoo!&quot;);
+      console.format(&quot;Our zoo has 391 animals and employs 25 people.&quot;);
+      console.writer().println();
+      console.printf(&quot;The zoo spans 128.91 acres.&quot;);
+    }
+  }
+}
+</code></pre>
+
+<h4 id="flush">flush()</h4>
+
+<blockquote>
+<p>The flush() method forces any buffered output to be written immediately.</p>
+</blockquote>
+
+<p>It is recommend to call flush before reading in user input via <code>readLine()</code> or <code>readPassword()</code> so as to ensure you are working with an empty buffer and still dont have any residual characters left.</p>
+
+<h4 id="readline">readLine()</h4>
+
+<blockquote>
+<p>The basic readLine() method retrieves a single line of text from the user, and the user presses the Enter key to terminate it.</p>
+</blockquote>
+
+<pre><code class="language-java">import java.io.*;
+
+public class ConsoleReadInputSample {
+public static void main(String[] args) throws NumberFormatException, IOException {
+  Console console = System.console();
+  if(console == null) {
+    throw new RuntimeException(&quot;Console not available&quot;);
+  } else {      
+    console.writer().print(&quot;How excited are you about your trip today? &quot;);
+    console.flush();
+
+    String excitementAnswer = console.readLine();
+    String name = console.readLine(“Please enter your name: “); //fig1
+    Integer age = null;
+    console.writer().print(&quot;What is your age? &quot;);
+    console.flush();
+
+    BufferedReader reader = new BufferedReader(console.reader()); //fig 2
+    String value = reader.readLine();
+    age = Integer.valueOf(value);
+
+    console.writer().println();
+    console.format(&quot;Your name is &quot;+name);
+    console.writer().println();
+    console.format(&quot;Your age is &quot;+age);
+    console.printf(&quot;Your excitement level is: &quot;+excitementAnswer);
+    }
+  }
+}
+</code></pre>
+
+<p>In the above you can see we have the option to directly call the <code>readLine()</code> method from the console, or we can access the underlying <code>BufferedReader()</code> and then call <code>readLine()</code>.</p>
+
+<p>Note all user input is read in as a <code>String</code> and must be converted to its appropriate type, as this is a text based interaction, will almost exclusively be working with strings and primitives.</p>
+
+<h4 id="readpassword">readPassword()</h4>
+
+<p><code>readPassword()</code> is nearly the same as <code>readLine()</code> except it doesn&rsquo;t echo back to the user&rsquo;s screen, this is to prevent people from reading the password over the users shoulder.</p>
+
+<p>The only other notable difference is that <code>readPassword()</code> returns a <code>char[]</code> instead of String. This is for security reasons, as String can be stored in the String pool and read by other parts of the program, until it is garbage collected.</p>
+
+<p>With a character array once you have read the password, you can then manually overwrite all the values essentially &ldquo;wiping&rdquo; the password clean from the array.</p>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.Arrays;
+
+public class PasswordCompareSample {
+  public static void main(String[] args) throws NumberFormatException,IOException {
+    Console console = System.console();
+    if(console == null) {
+      throw new RuntimeException(&quot;Console not available&quot;);
+    } else {
+
+      char[] password = console.readPassword(&quot;Enter your password: &quot;);
+      console.format(&quot;Enter your password again: &quot;);
+      console.flush();
+      char[] verify = console.readPassword();
+      boolean match = Arrays.equals(password,verify);
+
+      // Immediately clear passwords from memory
+      for(int i=0; i&lt;password.length; i++) {
+        password[i]='x';
+      }
+
+      for(int i=0; i&lt;verify.length; i++) {
+        verify[i]='x';
+      }
+
+      console.format(&quot;Your password was &quot;+(match ? &quot;correct&quot;: &quot;incorrect&quot;));
+      }
+  }
+}      
+</code></pre>
+
+<p>We could also have used <code>Array.fill(password,'x')</code> to put dummy data into the arrays.</p>
               
             </div>
           </div>
