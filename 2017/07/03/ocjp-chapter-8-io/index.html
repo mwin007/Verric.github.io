@@ -292,6 +292,35 @@
 <li><a href="#skipping-over-data">Skipping over Data</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#working-with-streams">Working with Streams</a>
+<ul>
+<li><a href="#the-fileinputstream-and-fileoutputstream-classes">The FileInputStream and FileOutputStream Classes</a>
+<ul>
+<li><a href="#the-bufferedinputstream-and-bufferedoutputstream-classes">The BufferedInputStream and BufferedOutputStream Classes</a></li>
+</ul></li>
+<li><a href="#the-filereader-and-filewriter-classes">The FileReader and FileWriter Classes</a>
+<ul>
+<li><a href="#the-bufferedreader-and-bufferedwriter-classes">The BufferedReader and BufferedWriter Classes</a></li>
+<li><a href="#comparing-the-two-copy-applications">Comparing the Two Copy Applications</a></li>
+</ul></li>
+<li><a href="#the-objectinputstream-and-objectoutputstream-classes">The ObjectInputStream and ObjectOutputStream Classes</a>
+<ul>
+<li><a href="#the-serializable-interface">The Serializable Interface</a></li>
+<li><a href="#serializing-and-deserializing-objects">Serializing and Deserializing Objects</a></li>
+<li><a href="#understanding-object-creation">Understanding Object Creation</a></li>
+</ul></li>
+<li><a href="#the-printstream-and-printwriter-classes">The PrintStream and PrintWriter Classes</a>
+<ul>
+<li><a href="#print">print()</a></li>
+<li><a href="#println">println()</a></li>
+<li><a href="#format-and-printf">format() and printf()</a></li>
+<li><a href="#sample-printwriter-application">Sample PrintWriter Application</a></li>
+</ul></li>
+<li><a href="#review-of-stream-classes">Review of Stream Classes</a>
+<ul>
+<li><a href="#other-stream-classes">Other Stream Classes</a></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -547,6 +576,336 @@ System.out.print((char)is.read());// prints S
 
 //prints: TRS
 </code></pre>
+
+<h2 id="working-with-streams">Working with Streams</h2>
+
+<h3 id="the-fileinputstream-and-fileoutputstream-classes">The FileInputStream and FileOutputStream Classes</h3>
+
+<p>The File*Streams are used to read and write bytes to a stream, they can take a <code>File</code> object in their constructor, denoting which file to read or write from or to.</p>
+
+<p>Most often the <code>read()</code> method which reads a byte is used to retrieve data. When the stream reaches the end of the file it returns <code>-1</code>.</p>
+
+<p>Although the these classes physically deal with bytes, the <code>read()</code> and <code>write()</code> method both return <code>int</code>s so they can use <code>-1</code> to show the end of the file has been reached.</p>
+
+<p>Both <code>FileInputStream</code> and <code>FileOutputStream</code> methods of <code>read(byte[])</code> and <code>write(byte[])</code> can be used to transfer read bytes from a file into a byte array allowing better performance as the program can store parts of the stream in memory and buffer any operations.</p>
+
+<pre><code class="language-java">import java.io.*;
+public class CopyFileSample {
+  public static void copy(File source, File destination) throws IOException {
+    try (InputStream in = new FileInputStream(source);
+      OutputStream out = new FileOutputStream(destination)) {
+      int b;
+      while((b = in.read()) != -1) {
+        out.write(b);
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Thr above method is how we could copy the contents from one file to another using low level streams.</p>
+
+<p>Note the copy method throws an IOException as the File*Streams both declare <code>FileNotFoundException</code></p>
+
+<h4 id="the-bufferedinputstream-and-bufferedoutputstream-classes">The BufferedInputStream and BufferedOutputStream Classes</h4>
+
+<p>The BufferedStreams are often used to wrap lower level streams, they provide buffering data operations which in turn can lead to caching, easier seeking and batch read writes,all which help with performance.
+When using a buffer stream we often pass in a low level stream that we want to operate on and a byte array (our buffer) where the data can be temporarily stored.</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class CopyBufferFileSample {
+  public static void copy(File source, File destination) throws IOException {
+    try (InputStream in = new BufferedInputStream(new FileInputStream(source));
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(destination))) {
+          byte[] buffer = new byte[1024];
+          int lengthRead;
+          while ((lengthRead = in.read(buffer)) &gt; 0) {
+            out.write(buffer,0,lengthRead); // args = buffer, offset, amount to read in
+            out.flush();
+          }
+    }
+  }
+}
+</code></pre>
+
+<p>Here we read in 1kb from the input file, then write the 1kb of data to the output file, finally we call flush at the end of every loop, although  a performance downgrade. Calling flush will ensure the buffer is written to disk before receiving the next 1kb of data.</p>
+
+<h3 id="the-filereader-and-filewriter-classes">The FileReader and FileWriter Classes</h3>
+
+<p>The file reader pair are have a similar role and API to their stream counter parts however the reader deals with chars not bytes and is often, used more when dealing with files.
+The File reader still have the <code>read()</code>, <code>write()</code>, <code>close()</code> and <code>flush()</code> methods.</p>
+
+<h4 id="the-bufferedreader-and-bufferedwriter-classes">The BufferedReader and BufferedWriter Classes</h4>
+
+<p>Since a buffered char or char[] is essentially a string, the BufferReader/Writer classes often allow developers to deal with strings instead characters or other primitive types.</p>
+
+<pre><code class="language-java">public static List&lt;String&gt; readFile(File source) throws IOException {
+  List&lt;String&gt; data = new ArrayList&lt;String&gt;();
+  try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
+    String s;
+    while((s = reader.readLine()) != null) {
+      data.add(s);
+  }
+}
+return data;
+}
+</code></pre>
+
+<p>Here we check of the buffer reader returns null because the <code>readLine()</code> returns a string (under the hood a char array gets converted into a string)</p>
+
+<h4 id="comparing-the-two-copy-applications">Comparing the Two Copy Applications</h4>
+
+<p>While streams can give us more control when it comes to reading and writing, such as the buffer size the which character set to be used for encoding/decoding, the reader and writer classes provide a more structured way of dealing with text based files.</p>
+
+<p>The reader and writers automatically deal with character encoding (by default the assume UTF-8)</p>
+
+<p>They also provide methods to work with strings instead of primitives or array of primitives making more developer friendly.</p>
+
+<p>However the reader and writer are really only used for text based data, other data such as from networks, or memory will most likely have to accessed via a low level stream.</p>
+
+<h3 id="the-objectinputstream-and-objectoutputstream-classes">The ObjectInputStream and ObjectOutputStream Classes</h3>
+
+<p>The Object streams allow us to read and write Java objects to and from a data source such as disk.</p>
+
+<blockquote>
+<p>The process of converting an in-memory object to a stored data format is referred to as serialization</p>
+
+<p>The process of converting stored data format into an in-memory object is referred to as de-serialization</p>
+</blockquote>
+
+<h4 id="the-serializable-interface">The Serializable Interface</h4>
+
+<p>Any classes that want to be serialised must implement the <code>Serializable</code> marker interface, meaning the interface does not declare any methods or variables. Implementing the <code>Serializable</code> denotes that not only is this object serializable but also any instance variables are also serializable.</p>
+
+<p>Attempting to serialise an object which itself or any of its instance variable does <em>NOT</em> implement the serializable interface will throw a <code>NotSerializableException</code>.</p>
+
+<p>If you do want a certain field to be serialized then you can add the <code>transient</code> keyword to the field, this means the field and its value will not be part of the serialization/de-serialization process.</p>
+
+<p>Static variable are not serialized either and would have to be copied to an instance variable if they have to be transferred.</p>
+
+<pre><code class="language-java">import java.io.Serializable;
+
+public class Animal implements Serializable {
+  private static final long serialVersionUID = 1L;
+  private String name;
+  private int age;
+  private char type;
+  public Animal(String name, int age, char type) {
+    this.name = name;
+    this.age = age;
+    this.type = type;
+  }
+
+  public String getName() { return name; }
+  public int getAge() { return age; }
+  public char getType() { return type; }
+  public String toString() {
+    return &quot;Animal [name=&quot; + name + &quot;, age=&quot; + age + &quot;, type=&quot; + type + &quot;]&quot;;
+  }
+}
+</code></pre>
+
+<p>The above class is completely serializable as all primitives are serializable and the <code>String</code> itself implements the <code>Serializable</code> interface.</p>
+
+<p>Here we also implement a <code>serialVersionUID</code> which must have the type of <code>long</code> and is declared as being static and final. The UID is used by Java to check whether a serialized object can be de-serialized back into an object, as fields and methods may change over time.</p>
+
+<p>Note: The <code>serialVersionUID</code> is static and hence it is not copied over during serialization however, it is a special <code>file descriptor</code> used by the ObjectInput/OutputStream classes, if the developer does not explicitly set the value of this field Java will do so for you, however it is considered best practice for the developer to explicitly state the version, so other developers can see the version, also the default implementation sued by Java can lead to inconsistencies across different JVM and runtime environments. See <a href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/protocol.html">here</a> for more.</p>
+
+<h4 id="serializing-and-deserializing-objects">Serializing and Deserializing Objects</h4>
+
+<p>Java provides two main classes for serializing and deserializing an object:</p>
+
+<ol>
+<li><p><code>ObjectOutputStream</code> - used to convert an in-memory object to a serialized form that can be saved to disk or sent over a network.</p></li>
+
+<li><p><code>ObjectInputStream</code> - used to convert a serialized object from disk to an object that can be read into memory.</p></li>
+</ol>
+
+<p>The main method to achieve serializing an object using the <code>ObjectOutputStream</code> is the <code>writeObject(Object)</code></p>
+
+<p>The main method to achieve serializing an object using the <code>ObjectInputStream</code> is the <code>readObject()</code> which returns a <code>java.lang.Object</code> and hence must be cast at runtime.</p>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.*;
+
+public class ObjectStreamSample {
+  public static List&lt;Animal&gt; getAnimals(File dataFile) throws IOException, ClassNotFoundException {
+  List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();
+  try (ObjectInputStream in = new ObjectInputStream(
+      new BufferedInputStream(new FileInputStream(dataFile)))) {
+    while(true) {
+      Object object = in.readObject();
+      if(object instanceof Animal)
+      animals.add((Animal)object);
+    }
+
+  } catch (EOFException e) {
+    // File end reached
+}
+  return animals;
+}
+
+public static void createAnimalsFile(List&lt;Animal&gt; animals, File dataFile) throws IOException {
+  try (ObjectOutputStream out = new ObjectOutputStream(
+      new BufferedOutputStream(new FileOutputStream(dataFile)))) {
+    for(Animal animal: animals)
+      out.writeObject(animal);
+  }
+}
+
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+  List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();
+  animals.add(new Animal(&quot;Tommy Tiger&quot;,5,'T'));
+  animals.add(new Animal(&quot;Peter Penguin&quot;,8,'P'));
+
+  File dataFile = new File(&quot;animal.data&quot;);
+
+  createAnimalsFile(animals,dataFile);
+  System.out.println(getAnimals(dataFile));
+  }
+}
+
+//prints: [Animal [name=Tommy Tiger, age=5, type=T], Animal [name=Peter Penguin, age=8,type=P]]
+</code></pre>
+
+<p>Here we wrap our streams in a <code>BufferedInput/OutputStream</code> for performance reasons.</p>
+
+<p>Also to unlike other streams where we check to see f we&rsquo;ve reached the end of the file, here catch an <code>EOFException</code>, this is the most common way when dealing with ObjectStreams as we want to make sure we have read every single byte.</p>
+
+<p>As we are casting an object to an instance it is best advised to use the <code>instanceOf</code> operator to ensure we dont get a <code>ClassCastException</code></p>
+
+<p>We also have handle or re-declare the <code>ClassNotFoundException</code> as the object&rsquo;s class we are de-serializing may not be available at runtime to that JRE if the object has come from another program.</p>
+
+<p>Finally the object stream classes do not support the serializing or de-serializing <code>null</code> values hence it is important to either enforce null checks or make sure there is no natural way for a variable to become null.</p>
+
+<h4 id="understanding-object-creation">Understanding Object Creation</h4>
+
+<p>When de-serializing an object Java essentially &ldquo;plugs-in&rdquo; the values to the object from the serialized object, this means Java skips any constructors, instance initialisers or static initialisers as well.</p>
+
+<p>Technically Java uses the first non-serializable objects constructor to create the object and then proxies in the values allowing to by-pass all the &ldquo;normal&rdquo; of instantiating or initialising an object.</p>
+
+<pre><code class="language-java">public class Animal implements Serializable {
+  private static final long serialVersionUID = 2L;
+  private transient String name;
+  private transient int age = 10;
+  private static char type = 'C';
+  {this.age = 14;}
+
+  public Animal() {
+    this.name = &quot;Unknown&quot;;
+    this.age = 12;
+    this.type = 'Q';
+  }
+
+  public Animal(String name, int age, char type) {
+    this.name = name;
+    this.age = age;
+    this.type = type;
+}
+// Same methods as before
+. . .
+}
+//prints: [Animal [name=null, age=0, type=P], Animal [name=null, age=0, type=P]]
+</code></pre>
+
+<p>Here our name and age fields are transient,so their values are not maintained during the process.</p>
+
+<p>The values of 10,14 and 12 are lost as Java does not use any constructors or initialiser when de-serializing an object.</p>
+
+<p>As for why the type prints &ldquo;p&rdquo;</p>
+
+<blockquote>
+<p>The sample program displays a value for type, as the variable is shared by all instances of the class and is the last value in our sample program.</p>
+</blockquote>
+
+<h3 id="the-printstream-and-printwriter-classes">The PrintStream and PrintWriter Classes</h3>
+
+<blockquote>
+<p>The PrintStream and PrintWriter classes are high-level stream classes that write formatted representation of Java objects to a text-based output stream.</p>
+</blockquote>
+
+<p>These classes can take an OutputStream and a Writer for their respective constructors.</p>
+
+<p>Both <code>System.out</code> and <code>System.err</code> are <code>PrintStream</code> objects and have the methods <code>write()</code>, <code>print()</code>, <code>println()</code>, <code>format()</code> and <code>printf()</code>.</p>
+
+<p>Since none of the print or write methods declare a checked exception we can use the classes <code>checkError()</code> to see of there where any error.</p>
+
+<h4 id="print">print()</h4>
+
+<p>The print method is a heavily overloaded method that can take all primitives, Strings and Object and prints to it&rsquo;s directed output.</p>
+
+<p>Under the hood many values are converted to the <code>String</code> class before being printed, either using the objects <code>toString()</code> or using <code>String.valueOf()</code> to create string representation of a primitive.</p>
+
+<pre><code class="language-java">out.print(5); // PrintWriter method
+out.write(String.valueOf(5)); // Writer method
+
+out.print(2.0); // PrintWriter method
+out.write(String.valueOf(2.0)); // Writer method
+
+Animal animal = new Animal();
+out.print(animal); // PrintWriter method
+out.write(animal==null ? &quot;null&quot;: animal.toString()); // Writer method
+</code></pre>
+
+<h4 id="println">println()</h4>
+
+<p><code>println()</code> is essentially identical to <code>print()</code> however it adds a line separator at the end of each print.</p>
+
+<p>Although we can manually pass in a line feed in the <code>print()</code> it is recommend to use <code>println()</code> as Java will deal with any specific OS dependant line separators.</p>
+
+<p>Such as &lsquo;\n&rsquo; for Mac/Linux vs &lsquo;\r\n&rsquo; for Windows.</p>
+
+<h4 id="format-and-printf">format() and printf()</h4>
+
+<p><code>format()</code> and <code>print()</code> both take in a string, locale and any number arguments and return a formatted string. These work identical to <code>String.format()</code></p>
+
+<p><code>printf()</code> is identical to <code>format()</code> but is used to make C developers  feel <code>more at home</code> (you use <code>printf()</code> in C to print to console, like Java uses <code>print()</code> and <code>println()</code>)</p>
+
+<pre><code class="language-java">public PrintWriter format(String format, Object args. . .)
+public PrintWriter printf(String format, Object args. . .)
+</code></pre>
+
+<h4 id="sample-printwriter-application">Sample PrintWriter Application</h4>
+
+<pre><code class="language-java">import java.io.*;
+
+public class PrintWriterSample {
+  public static void main(String[] args) throws IOException {
+    File source = new File(&quot;zoo.log&quot;);
+    try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(source)))) {
+      out.print(&quot;Today's weather is: &quot;);
+      out.println(&quot;Sunny&quot;);
+      out.print(&quot;Today's temperature at the zoo is: &quot;);
+      out.print(1/3.0);
+      out.println('C');
+      out.format(&quot;It has rained 10.12 inches this year&quot;);
+      out.println();
+      out.printf(&quot;It may rain 21.2 more inches this year&quot;);
+    }
+  }
+}
+
+//prints to file:
+// Today's weather is: Sunny
+// Today's temperature at the zoo is: 0.3333333333333333C
+// It has rained 10.12 inches this year
+// It may rain 21.2 more inches this year 
+</code></pre>
+
+<h3 id="review-of-stream-classes">Review of Stream Classes</h3>
+
+<p>You should be familiar with the following structure of the java.io stream classes.</p>
+
+<p><img src="http://i.imgur.com/rhFw7Fo.png" alt="streams tree diagram" /></p>
+
+<h4 id="other-stream-classes">Other Stream Classes</h4>
+
+<p>Other classes not need for the exam but are useful to know are:</p>
+
+<p>The <code>InputStreamReader</code> and <code>OutputStreamWriter</code> both which convert a stream into a reader or writer.</p>
+
+<p>The <code>DataInputStream</code> and <code>DataOutputStream</code> which are similar to <code>ObjectInput/OutputStream</code> but can only serialize/de-serialize Strings and primitives, they also enforce tight data structures meaning the order of serialization and de-serialization is important.</p>
               
             </div>
           </div>
