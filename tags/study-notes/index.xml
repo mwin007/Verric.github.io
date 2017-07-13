@@ -6,10 +6,20 @@
     <description>Recent content in Study Notes on Verric&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    <lastBuildDate>Tue, 04 Jul 2017 14:28:09 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jul 2017 14:28:09 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/tags/study-notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OCJP Chapter 10: JDBC</title>
+      <link>https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/</link>
+      <pubDate>Mon, 10 Jul 2017 14:28:09 +1000</pubDate>
+      
+      <guid>https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/</guid>
+      <description>&lt;p&gt;Chapter 10 notes:
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>OCJP Chapter 9: NIO.2</title>

@@ -1,0 +1,1332 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.24.1">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>OCJP Chapter 10: JDBC</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="OCJP, java, study-notes, chapter 10">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="Chapter 10 notes:
+">
+    <meta property="og:description" content="Chapter 10 notes:
+">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="OCJP Chapter 10: JDBC">
+    <meta property="og:url" content="/2017/07/10/ocjp-chapter-10-jdbc/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="Chapter 10 notes:
+">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/oMmCBiT.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ph2qukmvkthsrclqvqejhnf6wgadzikwy8xvsija3tglgsuhrbooocbhqjz1.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      OCJP Chapter 10: JDBC
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-10T14:28:09&#43;10:00">
+      
+  
+  
+  
+  
+    2017-07-10
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/study-notes">study-notes</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Chapter 10 notes:
+</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#chapter-10-jdbc">Chapter 10: JDBC</a>
+<ul>
+<li><a href="#chapter-goals">Chapter goals:</a></li>
+<li><a href="#introducing-relational-databases-and-sql">Introducing Relational Databases and SQL</a>
+<ul>
+<li><a href="#identifying-the-structure-of-a-relational-database">Identifying the Structure of a Relational Database</a></li>
+<li><a href="#writing-basic-sql-statements">Writing Basic SQL Statements</a></li>
+</ul></li>
+<li><a href="#introducing-the-interfaces-of-jdbc">Introducing the Interfaces of JDBC</a></li>
+<li><a href="#connecting-to-a-database">Connecting to a Database</a>
+<ul>
+<li><a href="#building-a-jdbc-url">Building a JDBC URL</a></li>
+<li><a href="#getting-a-database-connection">Getting a Database Connection</a></li>
+</ul></li>
+<li><a href="#obtaining-a-statement">Obtaining a Statement</a>
+<ul>
+<li><a href="#choosing-a-resultset-type">Choosing a ResultSet Type</a></li>
+<li><a href="#choosing-a-resultset-concurrency-mode">Choosing a ResultSet Concurrency Mode</a></li>
+</ul></li>
+<li><a href="#executing-a-statement">Executing a Statement</a>
+<ul>
+<li>
+<ul>
+<li><a href="#executeupdate">executeUpdate</a></li>
+<li><a href="#executequery">executeQuery</a></li>
+<li><a href="#execute">execute</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#getting-data-from-a-resultset">Getting Data from a ResultSet</a>
+<ul>
+<li><a href="#reading-a-resultset">Reading a ResultSet</a></li>
+<li><a href="#getting-data-for-a-column">Getting Data for a Column</a>
+<ul>
+<li><a href="#sql-date">sql date</a></li>
+<li><a href="#sql-time">sql time</a></li>
+<li><a href="#sql-timestamp">sql timestamp</a></li>
+<li><a href="#sql-object">sql object</a></li>
+</ul></li>
+<li><a href="#scrolling-resultset">Scrolling ResultSet</a>
+<ul>
+<li><a href="#absolute">absolute()</a></li>
+<li><a href="#relative">relative</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#closing-database-resources">Closing Database Resources</a></li>
+<li><a href="#dealing-with-exceptions">Dealing with Exceptions</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="chapter-10-jdbc">Chapter 10: JDBC</h1>
+
+<h2 id="chapter-goals">Chapter goals:</h2>
+
+<p><em>Building Database Applications with JDBC</em></p>
+
+<ol>
+<li><p>Describe the interfaces that make up the core of the JDBC API including the Driver, Connection, Statement, and ResultSet interfaces and their relationship to provider implementations</p></li>
+
+<li><p>Identify the components required to connect to a database using the DriverManager class including the JDBC URL</p></li>
+
+<li><p>Submit queries and read results from the database including creating statements, returning result sets, iterating through the results, and properly closing result sets, statements, and connections</p></li>
+</ol>
+
+<h2 id="introducing-relational-databases-and-sql">Introducing Relational Databases and SQL</h2>
+
+<h3 id="identifying-the-structure-of-a-relational-database">Identifying the Structure of a Relational Database</h3>
+
+<p>An SQL table consists of rows and column in which it stores data, each table must have <code>primary key</code> which uniquely identities a record (row) in the table.</p>
+
+<h3 id="writing-basic-sql-statements">Writing Basic SQL Statements</h3>
+
+<p>The exam assume you no zero knowledge of SQL, however there are some basic operations that should be studided for the exam</p>
+
+<ol>
+<li>INSERT -&gt; Creates an entry into to a table</li>
+<li>SELECT -&gt; Retrieves data from a table</li>
+<li>UPDATE -&gt; update the values of a table</li>
+<li>DELETE -&gt; Removes records from a table</li>
+</ol>
+
+<p>Unlike Java keywords in SQL are not case sensitive hence <code>select</code> and <code>SELECT</code> are considered the same.</p>
+
+<p><em>INSERT</em></p>
+
+<p>Inserts a record into a table</p>
+
+<pre><code class="language-sql">INSERT INTO species VALUES (3, 'Asian Elephant', 7.5);
+</code></pre>
+
+<p><em>SELECT</em></p>
+
+<p>Retrieves data from a table, can take a where clause to filter the requested data. A star (wildcard) means everything.</p>
+
+<pre><code class="language-sql">SELECT * FROM SPECIES WHERE ID = 3;
+</code></pre>
+
+<p><em>UPDATE</em></p>
+
+<p>Updates a record in  a table</p>
+
+<pre><code class="language-sql">UPDATE SPECIES SET NUM_ACRES = NUM_ACRES + .5 WHERE NAME = 'Asian Elephant';
+</code></pre>
+
+<p><em>DELETE</em></p>
+
+<p>Deletes a record or multiple records from a table.</p>
+
+<pre><code class="language-sql">DELETE FROM SPECIES WHERE NAME = 'Asian Elephant';
+</code></pre>
+
+<h2 id="introducing-the-interfaces-of-jdbc">Introducing the Interfaces of JDBC</h2>
+
+<blockquote>
+<p>For the exam you need to know four key interfaces of JDBC. The interfaces are declared in the JDK.</p>
+</blockquote>
+
+<p>When developing you will often only deal with the interfaces and let database team (the people who made the database) build the implementation.</p>
+
+<p>All sql related packages are in <code>java.sql...</code></p>
+
+<p>Interfaces:</p>
+
+<ol>
+<li>Driver &ndash;&gt; Knows how to get a connection to the database</li>
+<li>Connection &ndash;&gt; Knows how to communicate with the database</li>
+<li>Statement &ndash;&gt; Knows how to run the SQL</li>
+<li>ResultSet &ndash;&gt; Knows what was returned by a SELECT query</li>
+</ol>
+
+<p>A demo might look like</p>
+
+<pre><code class="language-java">import java.sql.*;
+
+public class MyFirstDatabaseConnection {
+  public static void main(String[] args) throws SQLException {
+    String url = &quot;jdbc:derby:zoo&quot;;
+
+    try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(&quot;select name from animal&quot;)) {
+
+    while (rs.next())
+      System.out.println(rs.getString(1));
+    }
+  }
+}
+</code></pre>
+
+<p>Note here we can use the a try-with-resources here to have the connection, statement and result set automatically be handled on close.</p>
+
+<h2 id="connecting-to-a-database">Connecting to a Database</h2>
+
+<h3 id="building-a-jdbc-url">Building a JDBC URL</h3>
+
+<p>A JDBC URL mainly consists of 3 major parts</p>
+
+<ol>
+<li>Protocol &ndash; Normally its jdbc</li>
+<li>Vendor Product &ndash; usually the name of the database being used.</li>
+<li>The actual network address and protocol as well as the database name</li>
+</ol>
+
+<pre><code>jdbc:postgresql://localhost/zoo
+jdbc:oracle:thin:@123.123.123.123:1521:zoo
+jdbc:mysql://localhost:3306/zoo?profileSQL=true
+</code></pre>
+
+<h3 id="getting-a-database-connection">Getting a Database Connection</h3>
+
+<p>There are two main ways to get a connection to a database</p>
+
+<ol>
+<li><p>DriveManager - uses factory methods to get a connection &ndash; covered by exam</p></li>
+
+<li><p>DataSource - can create connection, allows for pooling, can externalise database connection info &ndash; not covered on exam</p></li>
+</ol>
+
+<p>Here create a connection to a derby database named zoo</p>
+
+<pre><code class="language-java">import java.sql.*;
+
+public class TestConnect {
+  public static void main(String[] args) throws SQLException {
+    Connection conn = DriverManager.getConnection(&quot;jdbc:derby:zoo&quot;);
+    System.out.println(conn);
+  }
+}
+</code></pre>
+
+<p>We can also pass a user and password to the <code>DriverManager</code>, however this means who can read the code, can see the password.</p>
+
+<pre><code class="language-java">public class TestExternal {
+  public static void main(String[] args) throws SQLException {
+    Connection conn = DriverManager.getConnection(
+      &quot;jdbc:postgresql://localhost:5432/ocp-book&quot;,
+      &quot;username&quot;,
+      &quot;password&quot;);
+    System.out.println(conn); // org.postgresql.jdbc4.Jdbc4Connection@eed1f14
+  }
+}
+</code></pre>
+
+<p>Assuming we have access to a valid postgres database driver on the classpath.</p>
+
+<p>When we specify the confection, as of Java 6, Java will look for the vendor driver in the classpath and will throw an exception if it can not find it. That is any driver on the classpath that  was ponted to by
+<code>META-INF/service/java.sql.Driver</code></p>
+
+<p>Prior to Java 6 we had manually load the Driver using <code>Class.forName(&quot;Path to Driver&quot;);</code> which throws a ClassNotFoundException</p>
+
+<pre><code class="language-java">public static void main(String[] args) throws SQLException, ClassNotFoundException {
+  Class.forName(&quot;org.postgresql.Driver&quot;);
+  Connection conn = DriverManager.getConnection(
+    &quot;jdbc:postgresql://localhost:5432/ocp-book&quot;,
+    &quot;username&quot;,
+    &quot;password&quot;);
+}
+</code></pre>
+
+<h2 id="obtaining-a-statement">Obtaining a Statement</h2>
+
+<p>To execute SQL we mainly use the <code>Statement</code> class, we can get an instance of the <code>Statement</code> class by obtaining one from the <code>Connection</code> class, using the<code>createStatement()</code> method.
+The overloaded <code>createStatement()</code> has two main forms.</p>
+
+<p>The first returns a <code>Statement</code> with system and environmental defaults</p>
+
+<p>The second allows us to specify the type of the result set and the concurrency mode that should be used.</p>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement();
+
+Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+</code></pre>
+
+<h3 id="choosing-a-resultset-type">Choosing a ResultSet Type</h3>
+
+<p>The default mode for <code>ResultType</code> is <code>TYPE_FORWARD_ONLY</code> which means you can only access data in the order it is retrieved in, and can only do so once.</p>
+
+<p>The other two are:</p>
+
+<ol>
+<li><p>TYPE_SCROLL_INSENSITIVE &ndash;&gt; Allows you to scroll back and forth through the data, however it provides a <code>static</code> view of the results, that is if the result data changes while viewing it, the updated data will <em>NOT</em> be shown</p></li>
+
+<li><p>TYPE_SCROLL_SENSITIVE &ndash;&gt; Allows you to scroll back and forth through the data, however it provides a <code>dynamic</code> view of the results, that is if the result data changes while viewing it, you will always see the most up to date data.</p></li>
+</ol>
+
+<p>For the exam you have to know <code>TYPE_FORWARD_ONLY</code> and <code>TYPE_SCROLL_INSENSITIVE</code> but be aware <code>TYPE_SCROLL_SENSITIVE</code> exists.</p>
+
+<p>Most database providers do not supply drivers that can support <code>TYPE_SCROLL_SENSITIVE</code>.</p>
+
+<p><img src="http://i.imgur.com/J6e8Lz7.png" alt="Result Type" /></p>
+
+<h3 id="choosing-a-resultset-concurrency-mode">Choosing a ResultSet Concurrency Mode</h3>
+
+<p>The default mode for concurrency in a result set is <code>CONCUR_READ_ONLY</code>, meaning  you can <em>NOT</em> update the <code>ResultSet</code>. Usually you don&rsquo;t update the result set instead you update the database using; insert, update and delete etc and then retrieve the new result set.</p>
+
+<p>There is only one other mode:</p>
+
+<ol>
+<li><code>CONCUR_UPDATABLE</code> &ndash;&gt; allows the user to directly update the <code>ResultSet</code>, like <code>TYPE_SCROLL_INSENSITIVE</code> driver providers <em>NOT</em> required to implement this feature and is rarely done so.</li>
+</ol>
+
+<p>Directly updating a result set is considered bad practice as this can lead to inconsistent results from the database.</p>
+
+<h2 id="executing-a-statement">Executing a Statement</h2>
+
+<p>While you do not have to know SQL for the exam you should be able to understand the roles of <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code>.</p>
+
+<p>The main way to execute a statement is via <code>executeUpdate(string)</code>  method on the statement object.</p>
+
+<p>The <code>executeUpdate</code> method returns the number of rows affected as an <code>int</code>, by the SQL.</p>
+
+<p>Despite having <code>update</code> in the method name, it can be used with any of the main SQL operations that modify records in a table (create, update, delete) as listed above <em>EXCEPT</em> select.</p>
+
+<h4 id="executeupdate">executeUpdate</h4>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement();
+
+int result = stmt.executeUpdate(&quot;insert into species values(10, 'Deer', 3)&quot;);
+System.out.println(result); // 1
+
+result = stmt.executeUpdate(&quot;update species set name = '' where name = 'None'&quot;);
+System.out.println(result); // 0
+
+result = stmt.executeUpdate(&quot;delete from species where id = 10&quot;);
+System.out.println(result); // 1
+</code></pre>
+
+<h4 id="executequery">executeQuery</h4>
+
+<p>To retrieve a query, that is, using the <code>SELECT</code> operation we use <code>executeQuery(string)</code> on the statement object.</p>
+
+<p>The <code>executeQuery</code> returns a <code>ResultSet</code> object.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select * from species&quot;);
+</code></pre>
+
+<h4 id="execute">execute</h4>
+
+<p>The final way is to call the <code>execute(string)</code> method which can be used as a query or a to update the database in some way.</p>
+
+<p>The <code>execute</code> method returns a boolean to see if a <code>ResultSet</code> is returned or not.</p>
+
+<p>If true, the method returns a <code>ResultSet</code> if not it returns the number of rows altered.</p>
+
+<pre><code class="language-java">boolean isResultSet = stmt.execute(sql);
+if (isResultSet) {
+  ResultSet rs = stmt.getResultSet();
+  System.out.println(&quot;ran a query&quot;);
+} else {
+  int result = stmt.getUpdateCount();
+  System.out.println(&quot;ran an update&quot;);
+}
+</code></pre>
+
+<p>On the exam you are expected to know <code>Statement</code> as seen above, however in real world applications, it is far more common to use the <code>PreparedStatement</code> object which is a subclass that provides better functionality such as storing common queries as well as taking care of escaping strings, which can un-expected behaviour at runtime.</p>
+
+<p>Note:</p>
+
+<p>Calling a <code>select</code> operation within an <code>statement.executeUpdate()</code> method will throw an <code>SQLException</code> and calling an update operation inside <code>statement.executeQuery</code> will also return an <code>SQLException</code></p>
+
+<p>! <a href="http://i.imgur.com/ML0AHFc.png">Return types and exceptions</a></p>
+
+<h2 id="getting-data-from-a-resultset">Getting Data from a ResultSet</h2>
+
+<p>The most common and the default type for a <code>ResultSet</code> if a forward-type result.</p>
+
+<p>This allows for us to iterate over the results,once (iterate and exhaust) style.</p>
+
+<h3 id="reading-a-resultset">Reading a ResultSet</h3>
+
+<p>The <code>ResultSet</code> returns a <code>cursor</code>  (which has a similar API to an iterator) of the results, however you have to call the specific <code>get...</code> method to retrieve the type you want.</p>
+
+<p>We call <code>next()</code> to see if there is another record in the result, if true move to that record. If false (no more record) loop out.</p>
+
+<p>The <code>getInt(string | int)</code> and the <code>getString(string | int)</code> return the data in that field and cast it to the type specified in the method name.</p>
+
+<p>Here we can either pass the column name as a string, which is the preferred way or we can pass in an integer represent the column number.</p>
+
+<pre><code class="language-java">Map&lt;Integer, String&gt; idToNameMap = new HashMap&lt;&gt;();
+ResultSet rs = stmt.executeQuery(&quot;select id, name from species&quot;);
+
+while(rs.next()) {
+  int id = rs.getInt(&quot;id&quot;);
+  String name = rs.getString(&quot;name&quot;);
+  idToNameMap.put(id, name);
+}
+
+System.out.println(idToNameMap); // {1=African Elephant, 2=Zebra}
+</code></pre>
+
+<p>or we could access the column via numbers</p>
+
+<pre><code class="language-java">Map&lt;Integer, String&gt; idToNameMap = new HashMap&lt;&gt;();
+ResultSet rs = stmt. executeQuery (&quot;select id, name from species&quot;);
+
+while(rs.next()) {
+  int id = rs. getInt (1);
+  String name = rs. getString (2);
+  idToNameMap.put(id, name);
+}
+
+System.out.println(idToNameMap); // {1=African Elephant, 2=Zebra}
+</code></pre>
+
+<p>If you want to retrieve one record you can wrap <code>rs.next()</code> in an if statement.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select count(*) from animal&quot;);
+if(rs.next())
+System.out.println(rs.getInt(1));
+</code></pre>
+
+<p>It is always import to check <code>rs.next()</code> returns true as trying to perform an action when there are no more results throws an <code>SQLException</code></p>
+
+<p>It is also important to remember when retrieving data is that columns  start with the index 1 and not 0, like arrays.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select count(*) from animal&quot;);
+if(rs.next())
+  System.out.println(rs.getInt(&quot;count&quot;));
+int id = rs. getInt (0); // BAD CODE throws SQLException
+</code></pre>
+
+<p>There are a few tricks to watch out for:</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select * from animal where name= 'Not in table'&quot;); //assume no results returned
+rs.next(); //returns false
+rs.getInt(1); // throws SQLException
+</code></pre>
+
+<p>The above throws an exception as calling a getter when the cursor points to nothing throws an exception.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select count(*) from animal&quot;);
+rs.getInt(1); // throws SQLException
+</code></pre>
+
+<p>The above throws an exception as we did not call <code>rs.next()</code> meaning the cursor is not pointing to an results (assuming the statement returns a valid <code>ResultSet</code>).</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select count(*) from animal&quot;);
+rs.next();
+rs.getInt(0); // throws SQLException
+</code></pre>
+
+<p>The above throws an exception is columns start with the index of 1, hence the code is trying to access an invalid column number.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select id from animal&quot;);
+rs.next();
+rs.getInt(&quot;badColumn&quot;); // throws SQLException
+</code></pre>
+
+<p>The above throws an exception as &ldquo;badColumn&rdquo; does not exists in the database (this will be told to for the exam).</p>
+
+<h3 id="getting-data-for-a-column">Getting Data for a Column</h3>
+
+<p>The are numerous <code>get..</code> methods which return different types. you only need to know the ones on the following time, mainly primitives, strings and sql date and sql date-time objects.</p>
+
+<p><img src="http://i.imgur.com/73rSZkC.png" alt="result set getter" /></p>
+
+<h4 id="sql-date">sql date</h4>
+
+<p>Note that dates returned from a result set are of type <code>java.sql.date</code> this is different to the new Java 8 <code>LocalDate</code> class and different again from the legacy <code>java.util.Date</code> class.</p>
+
+<p>However you can convert from a SQL date object to a local date object using the <code>toLocalDate()</code> method</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select date_born from animal where name = 'Elsa'&quot;);
+if (rs.next()) {
+  java.sql.Date sqlDate = rs.getDate(1);
+  LocalDate localDate = sqlDate.toLocalDate();
+  System.out.println(localDate); // 2001―05―06
+}
+</code></pre>
+
+<h4 id="sql-time">sql time</h4>
+
+<p>We have a similar pattern when dealing with time as well.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select date_born from animal where name = 'Elsa'&quot;);
+if (rs.next()) {
+  java.sql.Time sqlTime = rs.getTime(1);
+  LocalTime localTime = sqlTime.toLocalTime();
+  System.out.println(localTime); // 02:15
+}
+</code></pre>
+
+<h4 id="sql-timestamp">sql timestamp</h4>
+
+<p>Lastly we can get a date-time from a SQL timestamp method by calling <code>toLocalDateTime()</code></p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select date_born from animal where name = 'Elsa'&quot;);
+if (rs.next()) {
+  java.sql.Timestamp sqlTimeStamp = rs.getTimestamp(1);
+  LocalDateTime localDateTime = sqlTimeStamp.toLocalDateTime();
+  System.out.println(localDateTime); // 2001―05―06T02:15
+}
+</code></pre>
+
+<h4 id="sql-object">sql object</h4>
+
+<p>We can also request an object  to return any type from the database. As the return type is <code>Object</code> we have to pay care to make sure of its type before casting.</p>
+
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select id, name from species&quot;);
+while(rs.next()) {
+  Object idField = rs.getObject(&quot;id&quot;);
+  Object nameField = rs.getObject(&quot;name&quot;);
+
+  if (idField instanceof Integer) {
+    int id = (Integer) idField;
+    System.out.println(id);
+  }
+
+  if (nameField instanceof String) {
+    String name = (String) nameField;
+    System.out.println(name);
+  }
+}
+</code></pre>
+
+<h3 id="scrolling-resultset">Scrolling ResultSet</h3>
+
+<p>A scrollable result set is one that can go not only backwards and forwards but also to any point in the result set. There are also utility methods such as <code>first()</code> and <code>last()</code> which returns te cursor to the first or last entry respectively. We can also call <code>beforeFirst()</code> and <code>afterLast()</code> to set the cursor to just before or just after the result set.</p>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery(&quot;select id from species order by id&quot;);
+
+rs.afterLast();
+System.out.println(rs.previous()); // true
+System.out.println(rs.getInt(1)); // 2
+
+System.out.println(rs.previous()); // true
+System.out.println(rs.getInt(1)); // 1
+
+System.out.println(rs.last()); // true
+System.out.println(rs.getInt(1)); // 2
+
+System.out.println(rs.first()); // true
+System.out.println(rs.getInt(1)); // 1
+
+rs.beforeFirst();
+System.out.println(rs.getInt(1)); // throws SQLException
+</code></pre>
+
+<p>The above throws an exception as the cursor is not pointing to an particular record.</p>
+
+<p>If there are no records, <code>first()</code> and <code>last()</code> will return false.</p>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery(&quot;select id from species where id = -99&quot;);
+System.out.println(rs.first()); // false
+System.out.println(rs.last()); // false
+</code></pre>
+
+<h4 id="absolute">absolute()</h4>
+
+<p>The <code>absolute(int)</code> allows us to take to a particular row using the int as the row number. The <code>absolute</code> method handles the parameter in different ways depending on a few things.</p>
+
+<p>It also returns true, if there is a record at that particular row.</p>
+
+<ol>
+<li><p>If the int is a positive number then it moves to that row starting from the start of the result set.</p></li>
+
+<li><p>If the number is zero then it points to just before the result set.</p></li>
+
+<li><p>If the number is a negative number then it moves to that row starting from the end of the result set.</p></li>
+</ol>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery(&quot;select id from animal order by id&quot;);
+
+System.out.println(rs.absolute(2)); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 2
+
+System.out.println(rs.absolute(0)); // false
+
+System.out.println(rs.absolute(5)); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 5
+
+System.out.println(rs.absolute(-2)); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 4
+</code></pre>
+
+<h4 id="relative">relative</h4>
+
+<p>The <code>relative(int)</code> method moves the cursor back or forth a the requested number of rows.</p>
+
+<p>It returns true if it points to a valid record.</p>
+
+<pre><code class="language-java">Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+ResultSet rs = stmt.executeQuery(&quot;select id from animal order by id&quot;);
+
+System.out.println(rs.next()); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 1
+
+System.out.println(rs.relative(2)); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 3
+
+System.out.println(rs.relative(-1)); // true
+System.out.println(rs.getString(&quot;id&quot;)); // 2
+
+System.out.println(rs.relative(4)); // false
+</code></pre>
+
+<h2 id="closing-database-resources">Closing Database Resources</h2>
+
+<p>As database connections are expensive, it is important to close them properly to ensure no &ldquo;leaks&rdquo; occur.</p>
+
+<p>As of Java 7, nearly all JDBC interfaces allow for the try-with-resources action.</p>
+
+<pre><code class="language-java">public static void main(String[] args) throws SQLException {
+  String url = &quot; jdbc:derby:zoo&quot;;
+  try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery(&quot;select name from animal&quot;)) {
+    while (rs.next())
+      System.out.println(rs.getString(1));
+  }
+}
+</code></pre>
+
+<h2 id="dealing-with-exceptions">Dealing with Exceptions</h2>
+
+<p>The <code>SQLException</code> class has three mai ways tor retrieve error states</p>
+
+<ol>
+<li>SQLException#getMessage &ndash;&gt; Returns a human readable message of what went wrong</li>
+<li>SQLException#getsqlState &ndash;&gt; returns the state of sql</li>
+<li>SQLException#getErrorCode &ndash;&gt; Returns the vendor specific error code</li>
+</ol>
+
+<pre><code class="language-java">String url = &quot; jdbc:derby:zoo&quot;;
+try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(&quot;select not_a_column from animal&quot;)) {
+  while (rs.next())
+    System.out.println(rs.getString(1));
+  } catch (SQLException e) {
+
+    System.out.println(e.getMessage()); // ERROR: column &quot;not_a_column&quot; does not exist Position: 8
+    System.out.println(e.getSQLState());// 42703
+    System.out.println(e.getErrorCode());// 0
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/programming/">programming</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/study-notes/">study-notes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/" data-tooltip="OCJP Chapter 9: NIO.2">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/" data-tooltip="OCJP Chapter 9: NIO.2">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#table-of-contents">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f10%2focjp-chapter-10-jdbc%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/">
+                <h3 class="media-heading">OCJP Chapter 10: JDBC</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 10 notes:
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/">
+                <h3 class="media-heading">OCJP Chapter 9: NIO.2</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 9 summary notes</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/03/ocjp-chapter-8-io/">
+                <h3 class="media-heading">OCJP Chapter 8: IO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 8 summary notes</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/">
+                <h3 class="media-heading">OCJP Chapter 7: Concurrency</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/">
+                <h3 class="media-heading">OCJP Chapter 6: Exceptions and Assertions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 6 summary notes
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/">
+                <h3 class="media-heading">OCJP Chapter 5: Dates, Strings and Localisations</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><hr />
+
+<p>Chapter 5 summary notes
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
+                <h3 class="media-heading">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
+
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
+                <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for chapter 4: Functional Programming in Java 8
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+                <h3 class="media-heading">OCJP Chapter 3: Generics and Collections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 3
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/">
+                <h3 class="media-heading">Removing the need for @JsonProperty from classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Read the full post or skip to the answers section :)
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         14 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-lcevoqx3idqctdiel2oegt13zm6ydaxadnv0sqeswho6mmlbf2zitqgw83dp.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+
