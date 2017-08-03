@@ -1,0 +1,1135 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.25.1">
+    <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
+    <title>Java Inner classes</title>
+    <meta name="author" content="Richard Vernali">
+    <meta name="keywords" content="classes, java">
+
+    <link rel="icon" href="https://verric.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Java Inner classes">
+    <meta property="og:url" content="/2017/07/31/java-inner-classes/">
+    <meta property="og:site_name" content="Verric&#39;s Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verric&#39;s Blog">
+    <meta name="twitter:description" content="">
+    
+      <meta name="twitter:creator" content="@verr1c">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=640">
+    
+
+    
+      <meta property="og:image" content="http://i.imgur.com/kerlByK.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
+    
+    
+    <link rel="stylesheet" href="https://verric.github.io/css/style-ph2qukmvkthsrclqvqejhnf6wgadzikwy8xvsija3tglgsuhrbooocbhqjz1.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://verric.github.io/">Verric&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://verric.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://verric.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">Richard Vernali</h4>
+        
+          <h5 class="sidebar-profile-bio">The life and not so great times of Richard</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1982646/jeff-higgins" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Verric" target="_blank">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://verric.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Java Inner classes
+    </h1>
+  
+  <div class="postShorten-meta post-meta">
+  
+    <time itemprop="datePublished" datetime="2017-07-31T17:02:50&#43;10:00">
+      
+  
+  
+  
+  
+    2017-07-31
+  
+
+    </time>
+  
+  
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://verric.github.io/categories/programming">programming</a>, 
+    
+      <a class="category-link" href="https://verric.github.io/categories/indepth">inDepth</a>
+    
+  
+
+
+</div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p></p>
+
+<p>There are  four main types of nested classes in Java; Inner, Local, Anonymous and Static which fall mainly into two groups, member level and local level.</p>
+
+<p>The inner class and static both apply to nested classes made at the member level (fields and methods).</p>
+
+<p>Local and Anonymous classes are defined within methods.</p>
+
+<h2 id="inner-classes">Inner Classes</h2>
+
+<p>Briefly an inner class can:</p>
+
+<ol>
+<li>Be declared public, private, or protected or use default access</li>
+<li>Extend any class and implement interfaces</li>
+<li>Be abstract or final</li>
+<li>Not declare static fields or methods</li>
+<li>Access members of the outer class including private members.</li>
+</ol>
+
+<p>Because a member inner class is not static we first have to instantiate the outer class before we can try instantiate and access the inner class.</p>
+
+<pre><code class="language-java">public class Outer {
+  private String name = &quot;Bob&quot;;
+
+  public class Inner {
+    public void go(){
+        System.out.println(name);
+        }
+  }
+
+  public static void main(String[] args) {
+    Outer outer = new Outer();
+    Inner inner = outer.new Inner();
+    inner.go();
+  }
+}
+</code></pre>
+
+<p>If we compile the above code</p>
+
+<pre><code>javac Outer.java
+</code></pre>
+
+<p>We get two files</p>
+
+<p><code>Outer.class</code> and <code>Outer$Inner.class</code></p>
+
+<p>An interesting thing to note is point number 5 in our list, the inner class can access private members of the outer class, naturally we should be able to do so, methods can access class variables as per the normal rules for scoping.
+However we have a nested class and private members are only known to that class.</p>
+
+<p>So how does Java reconcile the two, that is; no class should be able to naturally access another classes private members (insert memes here) but still allow for &lsquo;normal&rsquo; block scoping?</p>
+
+<p>In short, composition.</p>
+
+<p>Below we can see the decompiled version of our <code>Outer</code> class file</p>
+
+<pre><code>javap -p Outer
+Compiled from &quot;Outer.java&quot;
+public class Outer {
+  private java.lang.String name;
+  public Outer();
+  public static void main(java.lang.String[]);
+  static java.lang.String access$000(Outer);
+}
+</code></pre>
+
+<p>Here we can see our usual stuff, our String field, a default constructor added by Java, most interesting is the last method which was added by Java <code>access$000</code>.</p>
+
+<p>It is a default-package level static method that returns a string and takes an instance of the type <code>Outer</code>.</p>
+
+<p>Looking now to our <code>Inner</code> class, the decompiled version looks like this.</p>
+
+<pre><code>javap -p Outer\$Inner
+Compiled from &quot;Outer.java&quot;
+public class Outer$Inner {
+  final Outer this$0;
+  public Outer$Inner(Outer);
+  public void go();
+}
+</code></pre>
+
+<p>We see java has added a constructor that takes an <code>Outer</code> object and assigns it to a final field. Since this is a member inner class Java will automatically pass an instance of <code>Outer</code> to the <code>Inner</code> class.</p>
+
+<p>Hopefully we can sort of see how this works.</p>
+
+<ol>
+<li>Outer class provides a method to access a type from itself.</li>
+<li>Inner class receives an instance of the outer type.</li>
+<li>Inner class calls the access method on the outer class passing in its instance of the outer class.</li>
+</ol>
+
+<p>We can confirm this by verbosely decompiling our inner class.</p>
+
+<pre><code>javap -verbose Outer\$Inner
+public void go();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: aload_0
+         4: getfield      #1                  // Field this$0:LOuter;
+         7: invokestatic  #4                  // Method Outer.access$000:(LOuter;)Ljava/lang/String;  &lt;--- call the access method passing in our instance of `Outer`
+        10: invokevirtual #5                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        13: return
+      LineNumberTable:
+        line 6: 0
+        line 7: 13
+}
+
+</code></pre>
+
+<p>The decompiled access method simply returns the value requested from the instance passed. Since the object being passed is the <code>same type</code> as the class it is allowed to access private members like normal, we can confirm this by looking at the decompilation.</p>
+
+<pre><code>static java.lang.String access$000(Outer);
+    descriptor: (LOuter;)Ljava/lang/String;
+    flags: ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #1                  // Field name:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 1: 0
+}
+</code></pre>
+
+<p>The synthetic flag simply means Java has generated this method and not the developer.</p>
+
+<p>In fact since there is no magic, just composition and what some could argue is a technicality (a class can read its own private member even if its from another reference of the same type and not <code>this</code>) we could re-write our original to mimic this behaviour.</p>
+
+<p>Our re-wrttien example would look like this</p>
+
+<pre><code class="language-java">public class Outer {
+  private String name = &quot;Bob&quot;;
+
+// ------------ start inner class -----------
+  public class Inner {
+      final Outer outer;
+      public Inner(Outer outer) {
+          this.outer = outer;
+      }
+
+      public void go(){
+        System.out.println(Outer.access$000(this.outer));
+        }
+  }
+// ------------ end inner class --------------
+
+      static String access$000(Outer outer) {
+        return outer.name; // since we are in the Outer class we can access private fields even if the instance  passed is not `this`
+    }
+
+  public static void main(String[] args) {
+    Outer outer = new Outer();
+    Inner inner = outer.new Inner(outer);
+    inner.go();
+  }
+}
+</code></pre>
+
+<p>Interesting to note is that the code that is generated by Java is almost package level meaning other classes in the declared packaged could access these generated methods or field.</p>
+
+<p>The access method is static and as such is not subjected to virtual invocation, essentially meaning it can&rsquo;t be overridden by a sub class, as static method can only be <code>shadowed</code> and not overridden.</p>
+
+<h2 id="static-nested-classes">Static Nested Classes</h2>
+
+<p>Similar to Inner classes but the nested class is tied to the outer class an not an instance, this means  unlike <code>Member Inner classes</code> a static nested class does not require an instance of the outer class to be present.</p>
+
+<p>Briefly:</p>
+
+<ol>
+<li>The nesting creates a namespace because the enclosing class name must be used to refer to it.</li>
+<li>It can be made private or use one of the other access modifiers to encapsulate it.</li>
+<li>The enclosing class can refer to the fields and methods of the static nested class.</li>
+</ol>
+
+<p>The static nested class works much the same as an instance inner class, but with the usual static semantics (you cant call instance members from a static context), static can only access static members, to access instance methods you have to create the object.</p>
+
+<p>A static example of the Nested class in the previous topic could look like this.</p>
+
+<pre><code class="language-java"> public class Enclosing {
+     private static String name = &quot;Bob&quot;;
+
+     static class Nested {
+         private void go() {
+             System.out.println(name);
+        }
+    }
+
+    public static void main(String[] args) {
+        Nested nested = new Nested();
+        nested.go();
+        } 
+}
+</code></pre>
+
+<p>It is important to remember that even though it is a nested static class, it is a class and can still be instantiated. Here we can create an instance of the static class from the main method as the main method itself is static, hence we are referencing a static member from a static context which is perfectly fine.</p>
+
+<p>Instance methods can access static variables just like normal even if it&rsquo;s in the outer class like here.</p>
+
+<p>Java uses the same idea of composition for classes to get access to other classes private fields.</p>
+
+<p>The decompiled class are shown below</p>
+
+<p><code>Enclosing.class</code></p>
+
+<pre><code>▶ javap -p Enclosing
+Compiled from &quot;Enclosing.java&quot;
+public class Enclosing {
+  private static java.lang.String name;
+  public Enclosing();
+  public static void main(java.lang.String[]);
+  static java.lang.String access$000();
+  static {};
+}
+</code></pre>
+
+<p><code>Enclosing$Nested.class</code></p>
+
+<pre><code>▶ javap -p Enclosing\$Nested
+Compiled from &quot;Enclosing.java&quot;
+class Enclosing$Nested {
+  Enclosing$Nested();
+  private void go();
+  static void access$100(Enclosing$Nested);
+}
+</code></pre>
+
+<p>We can see because the inner class is static it does not require the outer class to be instantiated to come into scope, hence we never pass in a instance of the outer class to the inner classes constructor like an instance inner class, instead each class provides its own static methods to access each others data, in this case the static inner class generates <code>static void access$100(Enclosed$Nested)</code> to access the <code>go</code> method and the outer class provides the <code>static java.lang.String access$000();</code> to access the <code>name</code> field. This latter method is conceptually the same as a getter but in a static way.</p>
+
+<p>Once again this static getter is interesting as it has package/default as its access modifier meaning other classes in the same package can conceptually retrieve the value even though the developer obviously never had this intention.</p>
+
+<p>A key primary difference between the static and non static nested class is that the nested static class generates static wrappers for its instance methods, here <code>Enclosing$Nested</code> creates <code>static void access$100(Enclosing$Nested);</code>
+which delegates a call to the <code>go</code> method.</p>
+
+<p>However unlike the instance inner class Java has to use a special invocation  internally.</p>
+
+<pre><code>javap -p -verbose Enclosing$Nested
+static void access$100(Enclosing$Nested);
+    descriptor: (LEnclosing$Nested;)V
+    flags: ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method go:()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+}
+</code></pre>
+
+<p>The <a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-6.html#jvms-6.5.invokespecial">jvm specs define invoke special as</a></p>
+
+<blockquote>
+<p>The difference between the invokespecial instruction and the invokevirtual instruction (§invokevirtual) is that invokevirtual invokes a method based on the class of the object. The invokespecial instruction is used to invoke instance initialization methods (§2.9) as well as private methods and methods of a superclass of the current class.</p>
+</blockquote>
+
+<p>A re-written example may look like</p>
+
+<pre><code class="language-java">
+ public class Enclosing {
+     private static String name = &quot;Bob&quot;;
+
+// ------- Start static inner class -----------
+     static class Nested {
+         private void go() {
+             System.out.println(Enclosing.access$000());
+        }
+        
+        static void access$100(Nested nested) {
+         nested.go();
+        }
+    }
+// ------- End static inner class -----------
+
+   static String access$000() {
+       return name;
+   }
+
+    public static void main(String[] args) {
+        Nested nested = new Nested();
+        Nested.access$100(nested); // essentially  --&gt; nested.go();
+        } 
+}
+</code></pre>
+
+<p>Hopefully we can see that inner classes and static inner classes are roughly the same and static classes still hold similar semantics to those of static fields vs instance fields and static methods vs instance methods.</p>
+
+<p>Next we&rsquo;ll look at local inner classes and anonymous inner classes and how they are essentially the same thing.</p>
+
+<h2 id="local-inner-classes">Local Inner classes</h2>
+
+<blockquote>
+<p>A local inner class is a nested class defined within a method. Like local variables, a local inner class declaration does not exist until the method is invoked, and it goes out of scope when the method returns.</p>
+</blockquote>
+
+<p>Local classes are slightly weird in that they inherit their context from the method, that is the get access modifier and whether or not they are static from method they are declared. If the method is static then the local inner class can only access static members unless an instance is explicitly passed to it, however if the enclosing method is not-static than it acts a s regular instance member class.</p>
+
+<p>Having a class inside a method provides some unique differences than member level nested classes (instance or static) most notable will be how Java passes around private data and scoping.</p>
+
+<p>With member inner classes since the  inner class is alive as long as the outer class is alive, there is no real concern the outer class could go out of scope while there was an instance of the inner class. As we&rsquo;ve seen because of this  Java passes and instance of the outer class to the inner class to have access to its fields and methods.</p>
+
+<p>With static member classes as long as the class is loaded you can access all static members, so there is no issue there as well.</p>
+
+<p>With local classes however it is not possible to pass in an instance of the outer class to the local class to obtain local method variables, block scoping doesn&rsquo;t naturally work this way (note an instance of the outer class may be passed to the inner class so it can access member level fields like those of member inner classes)</p>
+
+<p>So how does Java allow the local class to access variables from the same local method ???</p>
+
+<p>In short Java makes a copy of each local variable and passes it to the constructor of the local class. primarily as  Java doesn&rsquo;t really support <code>closures</code> or <code>capturing</code> as it is known in other languages.</p>
+
+<p>What if the local variable changes, causing in-ies between the local variable and the variable in the inner local class? Java does not update the copied over variable passed to the local class.</p>
+
+<p>To stop this situation Java only allows local variables that are used by the local class to be final, that is, there is no way the value can be changed once it is set.</p>
+
+<p>An example might be</p>
+
+<pre><code class="language-java">public class Outer {
+
+    public void foo() {
+         String name = &quot;Bob&quot;; // Java  8+
+// -----------start local class----------
+        class Inner {
+            public void go() {
+                System. out .println(name);
+                }
+            }
+// -----------End local class----------
+            Inner inner = new Inner();
+            inner.go();
+        }
+        
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        outer.foo();
+    }
+}
+</code></pre>
+
+<p>The decompiled inner class might look like this</p>
+
+<pre><code>▶ javap -p  Outer\$1Inner
+Compiled from &quot;Outer.java&quot;
+class Outer$1Inner {
+  final java.lang.String val$name;
+  final Outer this$0;
+  Outer$1Inner();
+  public void go();
+}
+</code></pre>
+
+<p>Here we can Java has made a final field in the inner class of type String.</p>
+
+<p>A closer inspection of the Inner classes constructor shows us the assignments.</p>
+
+<pre><code>▶ javap -p -l -c Outer\$1Inner
+Compiled from &quot;Outer.java&quot;
+class Outer$1Inner {
+  final java.lang.String val$name;
+
+  final Outer this$0;
+
+  Outer$1Inner();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1    !!Here!!     // Field this$0:LOuter;
+       5: aload_0
+       6: aload_2
+       7: putfield      #2   !!Here!!     // Field val$name:Ljava/lang/String;
+      10: aload_0
+      11: invokespecial #3                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+      14: return
+    LineNumberTable:
+      line 6: 0
+</code></pre>
+
+<p>You&rsquo;ll notice in our source code we didn&rsquo;t explicitly put the <code>final</code> keyword although the name variable never changes, Java makes a final copy of it. This is known as an <code>effectively final</code> variable, that is a variable that fits the behaviour of a final variable (it never has its value changed) but does no require an explicit declaration of the final keyword.</p>
+
+<h2 id="anonymous-inner-classes">Anonymous Inner classes</h2>
+
+<p>Quite literally the same as a local inner class, but you do not declare a new class type, instead you often use anonymous classes to instantiate an abstract class or interface on the fly.</p>
+
+<p>As instantiating a class is a statement, it is one of the few places in Java you will see a semi-colon placed after a closing bracket (&hellip;};).</p>
+
+<p>Java  8 lambdas are quintessentially anonymous classes, the examples below are mostly equivalent, I say mostly as Java lambdas have properties such as lazy evaluation and the likes, but the source code is equivalent.</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; wordFilter = s -&gt; s.length() == 5;
+</code></pre>
+
+<p>and</p>
+
+<pre><code class="language-java">Predicate wordFilter = new Predicate&lt;String&gt;() {
+    @Override
+    public boolean test(String s) {
+        return s.length() == 5;
+    };
+</code></pre>
+
+<p>Since lambdas essentially anonymous classes which are the same as local classes, any local variables still have to be final or effectively final, for the lambda to access them.</p>
+
+<p>Hopefully it should be obvious, but with anonymous classes, since you are declaring a class you can&rsquo;t extend other classes/interfaces or implement interfaces from within the anonymous class.</p>
+
+<p>A cheat sheet from the official Java 8 study shows the main properties of the different types of classes</p>
+
+<p><img src="http://i.imgur.com/VXLZz9Q.png" alt="Cheat sheet" /></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/inner-classes/">inner classes</a>
+
+  <a class="tag tag--primary tag--small" href="https://verric.github.io/tags/java/">java</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/" data-tooltip="OCJP Chapter 10: JDBC">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/Verric">Verric</a><span> Built with <a href="https://github.com/spf13/hugo">Hugo</a>, using theme <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a> provided by </span> <a href="https://github.com/kakawait">kakawait</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  <nav>
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+            <i class="fa fa-angle-left"></i>
+            <span class="hide-xs hide-sm text-small icon-ml"></span>
+          </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/" data-tooltip="OCJP Chapter 10: JDBC">
+          
+            <span class="hide-xs hide-sm text-small icon-mr"></span>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </nav>
+  <ul class="post-actions post-action-share">
+    
+      <li class="post-action hide-lg hide-md hide-sm">
+        <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <i class="fa fa-share-alt"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-google-plus"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-facebook-official"></i>
+        </a>
+      </li>
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+    
+    
+    <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default" href="#">
+      
+        <i class="fa fa-list"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <ul class="share-options">
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+        <i class="fa fa-google-plus"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+        <i class="fa fa-facebook-official"></i><span></span>
+      </a>
+    </li>
+    <li class="share-option">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fverric.github.io%2f2017%2f07%2f31%2fjava-inner-classes%2f">
+        <i class="fa fa-twitter"></i><span></span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/212485dba9fc6250b2e17b0e34c54770?s=110" alt="" />
+    
+    <h4 id="about-card-name">Richard Vernali</h4>
+    
+      <div id="about-card-bio">The life and not so great times of Richard</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Junior-Mid level Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/31/java-inner-classes/">
+                <h3 class="media-heading">Java Inner classes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/">
+                <h3 class="media-heading">OCJP Chapter 10: JDBC</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 10 notes:
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/">
+                <h3 class="media-heading">OCJP Chapter 9: NIO.2</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 9 summary notes</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/03/ocjp-chapter-8-io/">
+                <h3 class="media-heading">OCJP Chapter 8: IO</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 8 summary notes</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/">
+                <h3 class="media-heading">OCJP Chapter 7: Concurrency</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 7
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/">
+                <h3 class="media-heading">OCJP Chapter 6: Exceptions and Assertions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Chapter 6 summary notes
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/">
+                <h3 class="media-heading">OCJP Chapter 5: Dates, Strings and Localisations</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><hr />
+
+<p>Chapter 5 summary notes
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/">
+                <h3 class="media-heading">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>You can add any css files to the <code>angular-cli.json</code> styles field to have them globally added to your angular <sup>2</sup>&frasl;<sub>4</sub> project</p>
+
+<pre><code class="language-json">&quot;styles&quot;: [
+         &quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
+        &quot;styles.css&quot;,
+      ]
+</code></pre>
+
+<p>Here we added boostrap to our global styles, so now we can do the following without any extra imports.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;panel panel-primary&quot;&gt;
+  {{componentHeader}}
+  &lt;/div&gt;  
+&lt;/div&gt;
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/">
+                <h3 class="media-heading">OCJP Chapter 4: Functional Programming</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for chapter 4: Functional Programming in Java 8
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/">
+                <h3 class="media-heading">OCJP Chapter 3: Generics and Collections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Summary notes for Chapter 3
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         15 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://verric.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
+
+
+<script src="https://verric.github.io/js/script-lcevoqx3idqctdiel2oegt13zm6ydaxadnv0sqeswho6mmlbf2zitqgw83dp.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight').each(function(i, block) {
+    var code = "";
+    hljs.highlightAuto(block.innerText).value.split(/\r\n|\r|\n/).forEach(function(line) {
+      code += "<span class=\"line\">" + line + "</span><br>";
+    });
+    if (code.length > 0) {
+      block.innerHTML = code;  
+    }
+  });
+  $('pre > code').each(function(i, block) {
+    $(this).addClass('codeblock');
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+  
+    
+  
+
+
+
+
+
+    
+  </body>
+</html>
+
