@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Docker Notes  &middot; Verric&#39;s blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="Docker, ">
+
+<link rel="author" href="http://plus.google.com/+Myprofile">
+
+
+<meta property="og:title" content="Docker Notes  &middot; Verric&#39;s blog ">
+<meta property="og:site_name" content="Verric&#39;s blog"/>
+<meta property="og:url" content="https://verric.github.io/2017/11/16/masterdockernotes/" />
+<meta property="og:locale" content="en">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-11-16T14:28:09&#43;10:00" />
+<meta property="og:article:modified_time" content="2017-11-16T14:28:09&#43;10:00" />
+
+  
+    
+<meta property="og:article:tag" content="Docker">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Myprofile" />
+<meta name="twitter:creator" content="@Myprofile" />
+<meta name="twitter:title" content="Docker Notes" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://verric.github.io/2017/11/16/masterdockernotes/" />
+<meta name="twitter:domain" content="https://verric.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Docker Notes",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+Myprofile?rel=author"
+    },
+    "datePublished": "2017-11-16",
+    "description": "",
+    "wordCount": 3191
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://verric.github.io/2017/11/16/masterdockernotes/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://verric.github.io/touch-icon-144-precomposed.png">
+<link rel="icon" href="https://verric.github.io/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://verric.github.io/css/bootswatch/paper/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://verric.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://verric.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://verric.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+        <a class="navbar-brand" href="https://verric.github.io/">
+          Verric&#39;s blog
+          
+          
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://verric.github.io/about" >
+                <i class='fa fa-road'></i>
+                About
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://verric.github.io/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Docker Notes
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-11-16">16 Nov, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 15 min
+  &middot; (3191 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Docker%20Notes&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f&amp;title=Docker%20Notes" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Docker%20Notes&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://verric.github.io/tags/docker" class="label label-primary">Docker</a>
+  
+  <a href="https://verric.github.io/tags/study-notes" class="label label-primary">study-notes</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  
+
+<h1 id="mastering-docker">Mastering Docker</h1>
+
+<h2 id="docker-overview">Docker Overview</h2>
+
+<p>Docker aims to provide a fully consistent envorinment throughout the development and deployment of software projects. It primarilry elimates different factors that may occur between development and production or other deployment environment, such as; OS differences (Mac vs Linux vs Windows) configurations used in dev, version of softwares, etc.</p>
+
+<p>Docker does this by providing virtualised containers that run on the docker platform.
+These containers define the environment to be created within them (inside  a dockerfile).</p>
+
+<p>The pictures below portray the differnce between a physical machine, using virtual machines and using docker</p>
+
+<p><img src="https://www.packtpub.com/graphics/9781787280243/graphics/B06565_01_02.png" alt="native vs Virtual Machine" /></p>
+
+<p>Docker system
+<img src="https://www.packtpub.com/graphics/9781787280243/graphics/B06565_01_03.png" alt="enter image description here" /></p>
+
+<h2 id="defining-a-container-image">Defining a container image</h2>
+
+<h3 id="the-docker-file">The Docker file</h3>
+
+<p>A Docker file is the blueprint for docker images, an instance of an image is a container. The Docker file contains all the steps necessary to build the desired image.</p>
+
+<p>An example docker file is below</p>
+
+<p>The below file could be built into an image by running the command</p>
+
+<p><code>docker image build</code> in the CWD</p>
+
+<pre><code class="language-docker">FROM alpine:latest
+LABEL maintainer=&quot;Russ McKendrick&quot;
+LABEL description=&quot;This example Dockerfile installs NGINX.&quot;
+
+RUN apk add --update nginx &amp;&amp; \
+        rm -rf /var/cache/apk/* &amp;&amp; \
+        mkdir -p /tmp/nginx/
+
+COPY files/nginx.conf /etc/nginx/nginx.conf
+COPY files/default.conf /etc/nginx/conf.d/default.conf
+ADD files/html.tar.gz /usr/share/nginx/
+
+EXPOSE 80/tcp
+
+ENTRYPOINT [&quot;nginx&quot;]
+CMD [&quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+
+<h4 id="explaing-the-commands">Explaing the commands</h4>
+
+<p><code>FROM</code>: Tells docker to use another image as the base image for this docker file. In this case we are pulling  another docker image for the Alpine OS.</p>
+
+<p><code>LABEL</code>: Is a meta-data command that can give a bit of extra information about this image, you can view label data via the <code>docker image inspect &lt;image_id&gt;</code> command.</p>
+
+<p>Note: Prior to Docker 17.05 it was recommended to keep label commands to a minimum as each command built an extra layer leading to increased build times, however this should no longer be an issue in recent versions for the label command.</p>
+
+<p><code>RUN</code>:  The run command is a common point of interaction and allows us to run commands inside the image. In the above we use <code>run</code> to install nginx from within the images terminal, apk is the package manager used by Alpine Linux.</p>
+
+<p>Note: For <code>run</code>, <code>copy</code> and <code>add</code> it is better to keep these commnads to a minimum as each command DOES add extra time to the build phase. That is why it is preferable have;</p>
+
+<p>Good</p>
+
+<pre><code class="language-docker">RUN apk add --update nginx &amp;&amp; \
+        rm -rf /var/cache/apk/* &amp;&amp; \
+        mkdir -p /tmp/nginx/
+</code></pre>
+
+<p>VS</p>
+
+<p>Not as good</p>
+
+<pre><code class="language-docker">RUN apk add --update nginx
+RUN rm -rf /var/cache/apk/*
+RUN mkdir -p /tmp/nginx/
+</code></pre>
+
+<p><code>COPY</code>: Copies files from the current directory on the host machine into the specifieed path in the docker image</p>
+
+<pre><code class="language-docker">COPY files/nginx.conf /etc/nginx/nginx.conf
+</code></pre>
+
+<p>copies the files from <code>files/nginx.conf</code> on the local machine into <code>/etc/nginx.conf</code> inside the docker image</p>
+
+<p><code>ADD</code>  Add  is similar to copy in that it copies files from the local machine into the docker container. However add has does some extra things behind the scenes, such as extraction of comprssed files, as seen in the example above</p>
+
+<pre><code class="language-docker">ADD files/html.tar.gz /usr/share/nginx/
+</code></pre>
+
+<p>This will copy the tar across and then unzip in the supplied directory.</p>
+
+<p><code>EXPOSE</code>: Tells Docker to open the specfied port for that container, note however that this port does not allow access from the local machine, but exposes the port for the container network, (containers running on the Docker platform).</p>
+
+<p><code>ENTRYPOINT</code>:  Entry point allows for a command to be automatically ran after a container is loaded, here once we&rsquo;ve installed and configured nginx we want nginx to start when the container has finished firing up.</p>
+
+<pre><code class="language-docker">ENTRYPOINT [&quot;nginx&quot;]
+</code></pre>
+
+<p><code>CMD</code>:  Tells Docker to run a command with the supplied arguments. Entrypoint and cmd are often used in conjuction to supply cli args to a program when the container loads</p>
+
+<pre><code class="language-docker">ENTRYPOINT [&quot;nginx&quot;]
+CMD [&quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+
+<p>The above will essetntially run <code>nginx -g daemon off;</code> within the container.</p>
+
+<h4 id="other-dockerfile-commands">Other Dockerfile Commands</h4>
+
+<p><code>USER</code>:
+TODO this book seems to cover this command poorly, check
+- IS the user a local machine user / container user
+-  How does Docker know the permissions of <code>USER</code></p>
+
+<p><code>WORKDIR</code>:  Sets the argument as working directory in the container, this means all other commands  and files in the container execute relative to the directory specified.</p>
+
+<p><code>ONBUILD</code>: Can be used on conjunction with an add or run command, this command will execute every time the image is being built.</p>
+
+<p><code>ENV</code>: Used  to create and set environmental variables such as <code>JDK_HOME</code> and stuff.</p>
+
+<h4 id="best-practices">Best Practices</h4>
+
+<ul>
+<li>Each Docker image should do one thing, if you need to run a web app on an nginx server, create an image for your web app and antoher image for nginx, this allows for re-use of containers, keeps each container small and allows for independant devolopemtn for each image.</li>
+<li>Have one folder per docker image, when you build images into contaiers docker looks around the current folder to find any resources it may need, kepping everyhting in its own folder makes maintaining this genernally easier.</li>
+</ul>
+
+<h3 id="building-docker-images">Building Docker Images</h3>
+
+<p>You can turn a dockerfile image into a container using the image build command.</p>
+
+<pre><code class="language-bash"> docker image build
+</code></pre>
+
+<p>This will look for a Dockerfile in the current directory and build it. If the image file is not in the current directory you specify it using the -f switch</p>
+
+<pre><code class="language-bash">docker image build -f ~/path/to/docker/image
+</code></pre>
+
+<p>Note this can get tricky when copying files to your image being built as the file paths are releative to the directory you executed the build rather than direcotry where the Dockerfile is located.</p>
+
+<p>You can also use the <code>-t/ --tag</code> switch to specify a tag for the docker container built, this is usally a description and/or a version of the newly built container.</p>
+
+<pre><code class="language-bash">docker image build --tag local:dockerfile-example
+</code></pre>
+
+<p>There are vastly more switches but they are less common.</p>
+
+<p>You can view all your images using, note this includes images you&rsquo;ve pull from a remote repository.</p>
+
+<pre><code class="language-bash">docker image ls
+</code></pre>
+
+<h3 id="using-an-existing-container">Using an existing container</h3>
+
+<p>You can use an existing image from another location using <code>docker pull</code>, generally speaking this will be from DockerHub, at least for offical images.</p>
+
+<pre><code class="language-bash">docker image pull alpine:latest
+</code></pre>
+
+<p>Downloads the alpine image with the tag <code>latest</code></p>
+
+<p>You can the run the image in a container using</p>
+
+<pre><code class="language-bash">docker container run -it --name alpine-test alpine
+</code></pre>
+
+<h4 id="environmental-variables">Environmental variables</h4>
+
+<p>There are two main ways of specifing env in a Dockerfile</p>
+
+<pre><code class="language-docker">ENV key val
+# or
+ENV key=val
+</code></pre>
+
+<p>The second way allows for multiple key val pairs to specificed on a line, the first option does not support this</p>
+
+<pre><code class="language-docker">ENV key1=val1 key2=val2
+</code></pre>
+
+<p>You can view the ENV varaibles for an image using the <code>docker image inspect image_id</code> command.</p>
+
+<h3 id="demo">Demo</h3>
+
+<pre><code class="language-docker">FROM alpine:latest
+LABEL maintainer=&quot;Russ McKendrick&quot;
+LABEL description=&quot;This example Dockerfile installs Apache &amp; PHP.&quot;
+
+ENV PHPVERSION 7
+
+RUN apk add --update apache2 php${PHPVERSION}-apache2 php${PHPVERSION} &amp;&amp; \
+    rm -rf /var/cache/apk/* &amp;&amp; \
+    mkdir /run/apache2/ &amp;&amp; \
+    rm -rf /var/www/localhost/htdocs/index.html &amp;&amp; \
+    echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt; /var/www/localhost/htdocs/index.php &amp;&amp; \
+    chmod 755 /var/www/localhost/htdocs/index.php
+
+EXPOSE 80/tcp
+
+ENTRYPOINT [&quot;httpd&quot;]
+CMD [&quot;-D&quot;, &quot;FOREGROUND&quot;]
+</code></pre>
+
+<p>Here we use a env variable to store the version of php we want to install and use which can be evaluated using the <code>${env variable}</code> syntax. The run command installs and the sets up an apache server. It swaps out index.html for index.php, gives the php file executeable permissions. Exposing the port and the defining what happens with the conaiter is ran.</p>
+
+<h2 id="storing-and-distributing-docker-images">Storing And Distributing Docker Images</h2>
+
+<p>There are many different ways to store, host and  distribute Docker images</p>
+
+<h3 id="docker-hub">Docker Hub</h3>
+
+<p>Similar in name and style to Github you can push and pull Docker images from DockerHub and is the default location for pulling an image. Only notebale thing is that docker hub lets automate a Docker build from Github, that is pushing to a branch in Github will lead to Docker hub building the new image.</p>
+
+<h3 id="docker-store">Docker Store</h3>
+
+<p>Simiilar to hub you can also download Docker Enterprise Edition and plugins, as well as images.</p>
+
+<h3 id="docker-registry">Docker Registry</h3>
+
+<p>Docker registry is an application that allows to create your own registry and Docker repos, Docker Hub is a Docker registry hoseted by Docker, however you can host your own Docker registry for internal purposes, particualry for organisationsv who want host their own private docker images without paying for a private cloud repository.</p>
+
+<h4 id="deploying-your-own-registry">Deploying your own registry</h4>
+
+<p>Interestingly enough you can download Docker registry as a Docker image and run it in a contianer.</p>
+
+<pre><code class="language-bash">docker image pull registry:2
+docker container run -d -p 5000:5000 --name registry registry:2
+</code></pre>
+
+<p>Here we run our registry in a container and map the container to port 5000.</p>
+
+<p>We can the download any image we want, tag it, so we can identify which image is local and which is remote and then push to our repository.</p>
+
+<pre><code class="language-bash">docker image tag alpine localhost:5000/localalpine
+docker image push localhost:5000/localalpine
+</code></pre>
+
+<p>Note: WIth <code>docker push</code> and <code>docker pull</code> if you do not specify a host, Docker will search Docker Hub for that image, if you do specify a host, such  as <code>localhost:5000</code> as we did in the above, docker will push to a registry at that location.</p>
+
+<p>If at any time we wanted to pull an image from our locally created registry we can just do</p>
+
+<pre><code class="language-bash">docker image pull localhost:5000/image
+</code></pre>
+
+<p>You can also host your own Docker registry on cloud providers suchs GooGle Drive, MS Azure, Amazon S3, etc</p>
+
+<h2 id="managing-containers">Managing Containers</h2>
+
+<p>When we run an image in Docker it is placed into a container. A container can either be running, stopped and paused. The container manages things such as connection to the host machine as well as resources for the running image.</p>
+
+<h3 id="docker-container-commands">Docker Container Commands</h3>
+
+<h4 id="ls">ls</h4>
+
+<p><code>docker container ls</code> is used to list all the currently <strong>running</strong>  containers. In order to view all containers, including stopped containers we can use the <code>-a</code> switch.</p>
+
+<h4 id="run">run</h4>
+
+<p><code>dokcer container run &lt;docker_image&gt;</code> is used to start a container with the given image</p>
+
+<p>Docker run has a few common switches:
+<code>--name</code> Gives the container instance a name, if you do not specify a name, Docker will give you a random name. The container name is used to identify and reference the container in future operations.</p>
+
+<p><code>-d</code> Detactehs the container instance from the terminal, stops the container from running in the foreground</p>
+
+<p><code>-p / --port &lt;local_port&gt;:&lt;image_port&gt;</code> Maps a port  on the Docker container to a port on the local machine.</p>
+
+<p>As an example if in our Docker image we had a web server running on port 80  <code>EXPOSE 80/tcp</code> then we could map that port to our local machine by <code>docker container run -p 8080:80</code>. This would mean if we went to <code>http://localhost:8080</code> on our local machine we would be able to communcate with the web server running in the container.</p>
+
+<h3 id="docker-networking-volumes">Docker Networking &amp; Volumes</h3>
+
+<h4 id="docker-netowork">Docker Netowork</h4>
+
+<p>You can explicicty create a Docker network using <code>docker network create &lt;your-network_name&gt;</code>.
+You can then run containers on the Docker network to allow for containers to communicate to each other.</p>
+
+<pre><code class="language-bash">docker image pull redis:alpine
+docker image pull russmckendrick/moby-counter
+docker network create moby-counter
+</code></pre>
+
+<p>In the above we pulled two images and created a Docker network named moby-counter.</p>
+
+<p>We can get these two images to talk to each other over the <code>moby-counter</code> using</p>
+
+<pre><code class="language-bash"> docker container run -d --name redis --network moby-counter redis:alpine
+ docker container run -d --name moby-counter --network moby-counter -p 8080:80 russmckendrick/moby-counter
+</code></pre>
+
+<p>Notice in the above we run both images with <code>--network moby-counter</code>. As mentioned abover the Redis image already exposes a port to Docker, port 6379 for which the moby image can connect to.</p>
+
+<p><code>network ls</code>:
+You can run <code>docker network ls</code> to view your docker networks.</p>
+
+<p>We can run <code>docker container stop moby-counter redis</code> to stop our two containers.</p>
+
+<h4 id="docker-volumes">Docker Volumes</h4>
+
+<p>Docker volumes allow you to persist data across a container lifecycle and even across containers.
+Similair to     <code>EXPOSE</code> and the <code>--port</code> switch there is a <code>-v</code> switch on <code>docker container</code> and a <code>VOLUME</code> keyword that is used in a Docker image as well as a <code>docker volume</code> command</p>
+
+<p>Redis Docker image excerpt</p>
+
+<pre><code class="language-docker">...
+RUN mkdir /data &amp;&amp; chown redis:redis /data
+VOLUME /data
+WORKDIR /data
+...
+</code></pre>
+
+<p>Here in the Docker image we use the <code>VOLUME</code> keyword this will instruct Docker to create a volume, and map to the container automatically.</p>
+
+<p>All volumes can be seen using the <code>docker volume ls</code> command.</p>
+
+<p>You can also maunally create and and map your own volumes.</p>
+
+<pre><code class="language-bash">docker volume create my_volume
+docker container run -d --name redis -v redis_data:/data redis:alpine
+</code></pre>
+
+<p>In the above we are creating a redis container and mapping our previously created volume to  <code>/data</code> which is the directory in the Docker image where volume is mounted to.</p>
+
+<h2 id="docker-machine">Docker Machine</h2>
+
+<blockquote>
+<p>Docker Machine is a tool that lets you install Docker Engine on virtual hosts, and manage the hosts with docker-machine commands.</p>
+</blockquote>
+
+<p>In short a docker machine is a minimilistic VM that is meant soley for running Docker containers and stuff.</p>
+
+<p>Hence the Docker machine provides a consistent API for dealing with Docker regardless of your platform, locally(WIndows, Mac, Linux) or cloud based such as Azure and AWS.</p>
+
+<h3 id="deploying-local-docker-hosts-with-docker-machine">Deploying local Docker hosts with Docker Machine</h3>
+
+<pre><code class="language-bash">docker-machine create --driver virtualbox docker-local
+</code></pre>
+
+<p>This creates a Docker machine using virtualbox as the underlying VM and will be called <code>docker-local</code></p>
+
+<p><code>docker-machine ls</code> Allows you to view all your Docker-machine instances.</p>
+
+<p>If we wanted to go from out default Docker env to ourly new created machine we could use</p>
+
+<pre><code class="language-bash">eval $(docker-machine env docker-local)
+</code></pre>
+
+<p>And now our Docker commands will run in the contenxt of our docker-local machine.</p>
+
+<h4 id="ssh-into-docker-machine">SSH Into Docker Machine</h4>
+
+<p>If however we just wanted ssh into a Docker machine we could simply run</p>
+
+<pre><code class="language-bash">docker-machine ssh docker-local
+</code></pre>
+
+<h4 id="common-docker-machine-commands">Common Docker-machine Commands</h4>
+
+<pre><code class="language-bash">docker-machine stop docker-local
+docker-machine start docker-local
+docker-machine restart docker-local
+docker-machine rm docker-local
+
+docker-machine inspect docker-local
+docker-machine config docker-local
+docker-machine status docker-local
+docker-machine url docker-local
+</code></pre>
+
+<h2 id="launching-docker-hosts-in-the-cloud-example">Launching Docker hosts in the cloud example</h2>
+
+<p>Many different cloud provider have their own docker driver.</p>
+
+<h3 id="digital-ocean">Digital Ocean</h3>
+
+<p>To create a docker machine on digitalOcean we can use</p>
+
+<pre><code class="language-bash">docker-machine create
+  --driver digitalocean \
+  --digitalocean-access-token &lt;your_digital_ocean_api_token&gt; \
+  docker-digitalocean
+</code></pre>
+
+<p>As before if you wanted to run your Docker client  through the DigitalOcean  docker machine you could use</p>
+
+<pre><code>eval $(docker-machine env docker-digitalocean)
+</code></pre>
+
+<p>or if you simply wanted to ssh into it, you could use.</p>
+
+<pre><code>docker-machine ssh docker-digitalocean
+</code></pre>
+
+<h3 id="aws">AWS</h3>
+
+<p>Use <code>aws ec2 --region &lt;your_domestic_region&gt; describe-vpcs</code> to get your vpc details</p>
+
+<p>You can then run</p>
+
+<pre><code>docker-machine create \
+    --driver amazonec2 \
+    --amazonec2-vpc-id &lt;your_vpcId&gt; \
+docker-aws
+</code></pre>
+
+<p>This assumes you have an AWS account and already authenticated via the CLI.</p>
+
+<h3 id="weave">Weave</h3>
+
+<p>next section talks about <a href="https://www.weave.works/">Weave</a> which is a cloud deployment platform where you can deploy Docker. Not goiing to writenotes on it for now.</p>
+
+<h2 id="docker-compose">Docker Compose</h2>
+
+<p>As previously show we can set up up multiple Docker containers and get them to talk to each other manually through the CLI, however in most real world cases you&rsquo;re going to have a Docker container for your web app, your server, your database and so forth. Running these manually each time in various environments (dev, beta, prod) is a hastle.</p>
+
+<p>Docker Compose lets you <em>script</em> running multiple containers, to ease this process and make it more repeatable.</p>
+
+<h3 id="compsing-our-docker-app">Compsing Our Docker App</h3>
+
+<p>Previously from the CLI we may have ran our app (discussed earlier on, in the notes) via the CLI</p>
+
+<pre><code class="language-bash">$ docker image pull redis:alpine
+$ docker image pull russmckendrick/moby-counter
+$ docker network create moby-counter
+$ docker container run -d --name redis --network moby-counter redis:alpine
+$ docker container run -d --name moby-counter --network moby-counter -p 8080:80 russmckendrick/moby-counter
+</code></pre>
+
+<p>This creates a network and then allows the two containers to run on the same netwotk.</p>
+
+<p>In Docker compose the above could be transformed in to a YAML file as such.</p>
+
+<p>This is generally called <code>docker-compose.yml</code></p>
+
+<pre><code class="language-yaml">version: &quot;3&quot;
+
+services:
+  redis:
+   image: redis:alpine
+   volumes:
+      - redis_data:/data
+   restart: always
+
+  mobycounter:
+   depends_on:
+      - redis
+   image: russmckendrick/moby-counter
+   ports:
+      - &quot;8080:80&quot;
+   restart: always
+
+volumes:
+  redis_data:
+</code></pre>
+
+<p>To run the above file we use the command</p>
+
+<pre><code class="language-bash">docker-compose up
+</code></pre>
+
+<h3 id="docker-compose-file">Docker Compose File</h3>
+
+<p><code>version</code>: This specfies the version of the compose file and relates to compatible Docker engine versions.</p>
+
+<p>The next part are the services, all containres defined under services are placed on a docker network for communication, you can override or extend this default behaviour.</p>
+
+<pre><code>services:
+--&gt; container name:
+----&gt; container options
+--&gt; container name:
+----&gt; container options
+</code></pre>
+
+<h4 id="container-options">Container Options</h4>
+
+<p>We can see there are simialrites to between our compose file and the <code>docker container...</code> commands such as image, volume, ports etc.</p>
+
+<p>A noteable option in compose is <code>depends_on &lt;other container&gt;</code> this tells docker-compose not to start this container until the other container is up and running.</p>
+
+<p>Under the <code>services</code> field we declare our <code>volumes</code> field, this tells docker-compose what volumes we need.</p>
+
+<pre><code class="language-yaml">volume:
+  redis_data
+</code></pre>
+
+<h4 id="networks"><code>networks</code></h4>
+
+<p>We can specify which internal Docker networks we want our containers to run on, here we are saying this container has access to the <code>front-tier</code> network and the <code>back-tier</code> network. Naturally containers will only be able to communicate with other containers on the same network.</p>
+
+<pre><code class="language-yaml">...
+    ports:
+      - &quot;5000:80&quot;
+    networks:
+      - front-tier
+      - back-tier
+ ...
+</code></pre>
+
+<p>Similar to <code>volumes</code>, <code>networks</code> must be speicfied a the end of the file.</p>
+
+<pre><code class="language-yaml">volumes:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
+</code></pre>
+
+<h4 id="container-name">container_name</h4>
+
+<p>Provides the name of the container instead of letting Docker give you random one,</p>
+
+<pre><code class="language-yaml">webapp:
+    image: mywebbapp:latest
+    container_name: webApp
+...
+</code></pre>
+
+<h3 id="docker-compose-commands">Docker Compose Commands</h3>
+
+<p>A thing to remember when using <code>docker-compose</code> is that it looks for <code>docker-compose.yaml</code> in the current directory.
+If no compose file is found <code>docker-compose</code> will just fall down and do nothing.</p>
+
+<h4 id="up"><code>up</code></h4>
+
+<p>To run your docker compose file you can use:</p>
+
+<pre><code class="language-bash">docker-compose up # or
+docker-compose up -d
+</code></pre>
+
+<p>Running with <code>-d</code>  will launch in detacthed mode  (essentially running in the background)</p>
+
+<h4 id="ps"><code>ps</code></h4>
+
+<p>You can view the docker contaiers running via</p>
+
+<pre><code class="language-bash">docker-compose ps
+</code></pre>
+
+<p>This command is similar to the <code>docker container ps</code> in its output.</p>
+
+<h4 id="pull"><code>pull</code></h4>
+
+<p>This will pull any images that need to be ecternally fetched for your docker-compose file. This is useful if you want to pre-fetch or update and images without running the composed containers.</p>
+
+<h4 id="build"><code>build</code></h4>
+
+<p>The build commnads builds images that are needed by the compose file, that is if you created your own docker image,
+<code>docker-compose build</code> will build the image for composing. Once again this is useful as you can update your compose containers without hacing to run them.</p>
+
+<h4 id="create"><code>create</code></h4>
+
+<p><code>docker-compose create</code> will create any uncreated images specified in the file but will not run them.</p>
+
+<h4 id="the-usuals">The usuals</h4>
+
+<pre><code class="language-bash">docker-compose start
+docker-compose stop
+docker-compose restart
+docker-compose pause
+docker-compose unpause
+</code></pre>
+
+<blockquote>
+<p>Note: you can target a specific container running in your compose file eg
+<code>docker-compose restart postgres</code> will only restart the container named <code>postgres</code></p>
+</blockquote>
+
+<h4 id="down"><code>down</code></h4>
+
+<p><code>docker-compose down</code> has the opposite effect of up (naturally) which stops and removes the containers and networks.
+If we want to completetly remove everything we can ise the <code>--rmi all</code> flag
+<code>docker-compose down --remi all</code>. This will remove not only all containers but any pulled or built images.</p>
+
+<h4 id="kill"><code>kill</code></h4>
+
+<p><code>docker-compose kill</code> will terminate the composed containers.</p>
+
+<blockquote>
+<p>Note: kill will not let the containers exit normally and thus lead to errors down the track.</p>
+</blockquote>
+
+<h2 id="docker-swarm">Docker Swarm</h2>
+
+<p>Docker swarm is Docker&rsquo;s  cluster solution, alowing for larger scaling of Docker hosts.</p>
+
+<h3 id="docker-swarm-roles">Docker Swarm Roles</h3>
+
+<p>There are two primary roles in a Docker swarm environment.</p>
+
+<ul>
+<li>Swarm Manager: A central point of authority for a given swarm. The swarm manager can add,remove, stop and hosts or nodes from a swarm.</li>
+<li>Swarm Worker: Are usually hosts that hold and run the Docker containers.</li>
+</ul>
+
+<h3 id="using-docker-swarm">Using Docker Swarm</h3>
+
+<p>// TODO &ndash; obvs complete not</p>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Docker%20Notes&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f&amp;title=Docker%20Notes" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Docker%20Notes&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f11%2f16%2fmasterdockernotes%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://verric.github.io/2017/07/31/javainnerclasses/" title="Java Inner classes">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//shortname.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://verric.github.io/2017/11/16/masterdockernotes/">Docker Notes</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/31/javainnerclasses/">Java Inner classes</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/10/chapter10/">OCJP Chapter 10: JDBC</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/04/chapter9/">OCJP Chapter 9: NIO.2</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/03/chapter8/">OCJP Chapter 8: IO</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/01/chapter7/">OCJP Chapter 7: Concurrency</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/27/chapter6/">OCJP Chapter 6: Exceptions and Assertions</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/26/chapter5/">OCJP Chapter 5: Dates, Strings and Localisations</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/21/angular-bootstrap-css/">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/14/chapter4/">OCJP Chapter 4: Functional Programming</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="https://verric.github.io/tags/study-notes">study-notes</a></li><li><a href="https://verric.github.io/tags/programming">programming</a></li><li><a href="https://verric.github.io/tags/angular2">angular2</a></li><li><a href="https://verric.github.io/tags/bootstrap">bootstrap</a></li><li><a href="https://verric.github.io/tags/docker">docker</a></li><li><a href="https://verric.github.io/tags/inner-classes">inner-classes</a></li><li><a href="https://verric.github.io/tags/introduction">introduction</a></li><li><a href="https://verric.github.io/tags/jackson">jackson</a></li><li><a href="https://verric.github.io/tags/java">java</a></li><li><a href="https://verric.github.io/tags/java-8">java-8</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+<a href="https://verric.github.io/disclaimer/">Disclaimer</a> <i>&middot;</i>
+
+<a href="https://verric.github.io/terms/">Terms</a> 
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  code with <i class='fa fa-heart'></i>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; 2017 Copyright my blog
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="https://verric.github.io/js/jquery.min.js"></script>
+<script src="https://verric.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://verric.github.io/js/highlight.pack.js"></script>
+<script src="https://verric.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER =  false , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+
