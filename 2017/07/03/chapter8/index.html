@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>OCJP Chapter 8: IO  &middot; Verric&#39;s blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="OCJP, java, study-notes, chapter 8, ">
+
+<link rel="author" href="http://plus.google.com/+Myprofile">
+
+
+<meta property="og:title" content="OCJP Chapter 8: IO  &middot; Verric&#39;s blog ">
+<meta property="og:site_name" content="Verric&#39;s blog"/>
+<meta property="og:url" content="https://verric.github.io/2017/07/03/chapter8/" />
+<meta property="og:locale" content="en">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-07-03T14:28:09&#43;10:00" />
+<meta property="og:article:modified_time" content="2017-07-03T14:28:09&#43;10:00" />
+
+  
+    
+<meta property="og:article:tag" content="OCJP">
+    
+<meta property="og:article:tag" content="java">
+    
+<meta property="og:article:tag" content="study-notes">
+    
+<meta property="og:article:tag" content="chapter 8">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Myprofile" />
+<meta name="twitter:creator" content="@Myprofile" />
+<meta name="twitter:title" content="OCJP Chapter 8: IO" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://verric.github.io/2017/07/03/chapter8/" />
+<meta name="twitter:domain" content="https://verric.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "OCJP Chapter 8: IO",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+Myprofile?rel=author"
+    },
+    "datePublished": "2017-07-03",
+    "description": "",
+    "wordCount": 4501
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://verric.github.io/2017/07/03/chapter8/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://verric.github.io/touch-icon-144-precomposed.png">
+<link rel="icon" href="https://verric.github.io/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://verric.github.io/css/bootswatch/paper/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://verric.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://verric.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://verric.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+        <a class="navbar-brand" href="https://verric.github.io/">
+          Verric&#39;s blog
+          
+          
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://verric.github.io/about" >
+                <i class='fa fa-road'></i>
+                About
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://verric.github.io/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>OCJP Chapter 8: IO
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-07-03">3 Jul, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 22 min
+  &middot; (4501 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%208%3a%20IO&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f&amp;title=OCJP%20Chapter%208%3a%20IO" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%208%3a%20IO&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://verric.github.io/tags/programming" class="label label-primary">programming</a>
+  
+  <a href="https://verric.github.io/tags/study-notes" class="label label-primary">study-notes</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <p>Chapter 8 summary notes</p>
+
+<p></p>
+
+<!--toc-->
+
+<h1 id="chapter-8-io">Chapter 8: IO</h1>
+
+<h2 id="chapter-goals">Chapter goals:</h2>
+
+<p>Java I/O Fundamentals</p>
+
+<ul>
+<li>Read and write data from the console</li>
+<li>Use BufferedReader, BufferedWriter, File, FileReader, FileWriter, FileInputStream, FileOutputStream,ObjectOutputStream, ObjectInputStream, and PrintWriter in the java.io.package.</li>
+</ul>
+
+<h2 id="understanding-files-and-directories">Understanding Files and Directories</h2>
+
+<p>Java&rsquo;s <code>java.io.File</code> is a major component  in understanding Java&rsquo;s IO structure for files and directories.</p>
+
+<h3 id="conceptualizing-the-file-system">Conceptualizing the File System</h3>
+
+<p>Java describes the following:</p>
+
+<blockquote>
+<p>A file is record within a file system that stores user and system data.</p>
+
+<p>A directory is a record within a file system that contains files as well as other directories. For simplicity, we often refer to a directory reference as a file record throughout this chapter</p>
+
+<p>A path is a String representation of a fi le or directory within a fi le system.</p>
+</blockquote>
+
+<p>Many different operating systems use their own file system to store their data, Java attempts to provide a uniform interface for dealing with files and directories across Linux,Mac and Windows.</p>
+
+<h3 id="introducing-the-file-class">Introducing the File Class</h3>
+
+<p>The <code>File</code> class is used to represent a file or  a file record (directory) on a file-system, an instance of the file class is used to represent a path on the file system.</p>
+
+<p>The <code>File</code> can not directly read and write from a from a file, but it can be passed to a number of operations which do read and write from a file.</p>
+
+<h4 id="creating-a-file-object">Creating a File Object</h4>
+
+<p>You create can create a <code>File</code> instance by passing a an absolute or relative path (as a string) to the classes constructor. We can also construct a path by passing in a parent file object and a path, to build an absolute path.</p>
+
+<pre><code class="language-java">File file = new File(&quot;/home/smith/data/zoo.txt&quot;);
+File file = new File(&quot;data/zoo.txt&quot;); //assuming we are working in the directory /home/smith/
+
+File parent = new File(&quot;/home/smith&quot;);
+File child = new File(parent,&quot;data/zoo.txt&quot;);
+</code></pre>
+
+<p>As file systems use different path separators, some use backslash and some use forward slash, Java allows us to retrieve the separator via two ways.</p>
+
+<pre><code class="language-java">System.out.println(System.getProperty(&quot;file.separator&quot;));
+System.out.println(java.io.File.separator);
+</code></pre>
+
+<p>When you create a file object, Java does not check for the validity of the file or directory.</p>
+
+<pre><code class="language-java">File file = new File(&quot;/dskfdknfdnf/eworieor/dvmdkl/g/h/fh/data/ooz.xtx&quot;);// no issue here even if this is NOT a valid path, Java creates the File object like normal.
+</code></pre>
+
+<p>This is because a file object represents a path on the file system, only when Java interacts or performs an operation on the file system does it realise, this path does not exist.</p>
+
+<h4 id="working-with-a-file-object">Working with a File Object</h4>
+
+<p>There a few instance methods you can use when dealing with a file object.</p>
+
+<p><img src="http://i.imgur.com/hWixSKi.png" alt="File object methods" /></p>
+
+<pre><code class="language-java">import java.io.File;
+
+public class ReadFileInformation {
+  public static void main(String[] args) {
+  File file = new File(&quot;C:\\data\\zoo.txt&quot;);
+  System.out.println(&quot;File Exists: &quot;+file.exists());
+
+  if(file.exists()) {
+    System.out.println(&quot;Absolute Path: &quot;+file.getAbsolutePath());
+    System.out.println(&quot;Is Directory: &quot;+file.isDirectory());
+    System.out.println(&quot;Parent Path: &quot;+file.getParent());
+
+    if(file.isFile()) {
+      System.out.println(&quot;File size: &quot;+file.length());
+      System.out.println(&quot;File LastModified: &quot;+file.lastModified());
+
+    } else {
+      for(File subfile: file.listFiles()) {
+        System.out.println(&quot;\t&quot;+subfile.getName());
+      }
+    }
+  }
+  }
+}
+</code></pre>
+
+<p>Here if we pass a valid file we can get</p>
+
+<pre><code>File Exists: true
+Absolute Path: C:\data\zoo.txt
+Parent Path: C:\data
+Is Directory: false
+File size: 12382
+File LastModified: 1420070400000
+</code></pre>
+
+<p>But if we pass a directory</p>
+
+<pre><code>File Exists: true
+Absolute Path: C:\data
+Parent Path: C:\
+Is Directory: true
+employees.txt
+zoo.txt
+zoo-backup.txt
+</code></pre>
+
+<p>Showing how using File to represent both files and directories can cut down on code size.</p>
+
+<h2 id="introducing-streams">Introducing Streams</h2>
+
+<p>Streams in the <code>java.io.*</code> package are used to often represent a stream of bytes in IO operations, such as reading/writing from a file, or network, they are not related to the new <code>Stream&lt;T&gt;</code> utility API in Java 8.</p>
+
+<h3 id="stream-fundamentals">Stream Fundamentals</h3>
+
+<p>Data from a file or network can be represented a stream or flow data, this allows us to work with large files in a reasonable manner, with having to load the whole object into memory (although we could if we wanted to).</p>
+
+<p>In Java all low-level streams work in bytes when dealing with resources, there are higher level streams that provide basic abstraction such as working with characters or blocks of bytes.</p>
+
+<p>Java uses streams whenever it can be beneficial to read and write data from a <em>sequential</em> data source, including files, network connections or the terminal, via <code>System.in</code>, <code>System.err</code> and <code>System.out</code>.</p>
+
+<h3 id="stream-nomenclature-https-www-google-com-au-search-q-define-3a-nomenclature-oq-define-3a-nomenclature-aqs-chrome-69i57j69i58-4255j0j7-sourceid-chrome-ie-utf-8">Stream <a href="https://www.google.com.au/search?q=define%3A+nomenclature&amp;oq=define%3A+nomenclature&amp;aqs=chrome..69i57j69i58.4255j0j7&amp;sourceid=chrome&amp;ie=UTF-8">Nomenclature</a></h3>
+
+<h4 id="byte-streams-vs-character-streams">Byte Streams vs. Character Streams</h4>
+
+<p>Differences between Streams and Readers/Writers</p>
+
+<ol>
+<li>The stream classes are used for inputting and outputting all types of binary or byte data.</li>
+<li>The reader and writer classes are used for inputting and outputting only character and String data.</li>
+</ol>
+
+<p>Readers adn Writers are often used by the developer as they allow to use a stream without having to worry about any binary or encoding that is happening.</p>
+
+<h4 id="input-and-output">Input and Output</h4>
+
+<p>Most classes have to variations depending on which way the data is flowing, in or out. This often relates to low level streams such  as <code>InputStream</code> and <code>OutputStream</code>. <code>Readers</code> are often higher level classes that deal with reading in data and writers, output data.</p>
+
+<h4 id="low-level-vs-high-level-streams">Low-Level vs. High-Level Streams</h4>
+
+<p>Generally speaking a low level stream directly interacts with the data source, such as a file, memory or network connection, they also often deal with bytes and do so one at a time, such as the <code>FileInputStream</code> class which reads bytes from a file.</p>
+
+<p>High level streams often wrap a low level stream and provide a more developer friendly experience for common operations, such as reading a line from a file with the default coding already specified; these include <code>FileWriter</code>  and <code>BufferedWriter</code> classes.</p>
+
+<pre><code class="language-java">try (BufferedReader bufferedReader = new BufferedReader(new FileReader(&quot;zoo-data.txt&quot;))) {
+System.out.println(bufferedReader.readLine());
+}
+</code></pre>
+
+<p>Note high level stream can take and wrap other high level streams as well</p>
+
+<pre><code class="language-java">try (ObjectInputStream objectStream = new ObjectInputStream( 
+    new BufferedInputStream(
+        new FileInputStream(&quot;zoo-data.txt&quot;)))) {
+System.out.println(objectStream.readObject());
+}
+</code></pre>
+
+<p>The only low level stream required for the exam are low level file reading stream, <code>FileInputStream</code>, <code>FileOutputStream</code>, <code>FileReader</code>, <code>FileWriter</code></p>
+
+<h4 id="stream-base-classes">Stream Base Classes</h4>
+
+<p>There are four base abstract classes often used in the <code>java.io</code> package</p>
+
+<ol>
+<li>InputStream</li>
+<li>OutputStream</li>
+<li>Reader</li>
+<li>Writer</li>
+</ol>
+
+<p>Many higher level stream take a reference to the base classes so any calling code can pass any other low level or high level streams or writers.</p>
+
+<p>However input streams can wrap only other input streams and output streams can only wrap other output streams, this is same for readers and writers as well, in many cases mixing these up will cause the compiler to fail.</p>
+
+<p>All examples below fail to compile.</p>
+
+<pre><code class="language-java">new BufferedInputStream(new FileReader(&quot;zoo-data.txt&quot;)); // BufferedInputSTREAM can not take a reader
+new BufferedWriter(new FileOutputStream(&quot;zoo-data.txt&quot;)); // BufferedWRITER can not take a stream
+new ObjectInputStream(new FileOutputStream(&quot;zoo-data.txt&quot;)); // We can not mix an input stream with an output stream
+new BufferedInputStream(new InputStream()); // InputStream is abstract and hence can not be instantiated.
+</code></pre>
+
+<h4 id="decoding-java-i-o-class-names">Decoding Java I/O Class Names</h4>
+
+<ol>
+<li>A class with the word InputStream or OutputStream in its name is used for reading or writing binary data, respectively.</li>
+<li>A class with the word Reader or Writer in its name is used for reading or writing character or string data, respectively.</li>
+<li>Most, but not all, input classes have a corresponding output class.</li>
+<li>A low-level stream connects directly with the source of the data.</li>
+<li>A high-level stream is built on top of another stream using wrapping.</li>
+<li>A class with Buffered in its name reads or writes data in groups of bytes or characters and often improves performance in sequential file systems.</li>
+<li>When wrapping a stream you can mix and match only types that inherit from the same abstract parent stream.</li>
+</ol>
+
+<p><img src="http://i.imgur.com/sCpcnIG.png" alt="List of stream and read/writer" /></p>
+
+<h3 id="common-stream-operations">Common Stream Operations</h3>
+
+<h4 id="closing-the-stream">Closing the Stream</h4>
+
+<p>Since streams are resources they often need to be closed in order to prevent other services from hanging,or un-necessarily consuming the resource, it can also lead to memory and other forms of leaks if left un-closed.</p>
+
+<h4 id="flushing-the-stream">Flushing the Stream</h4>
+
+<p>Since writing to a file or  network connection is a relatively expensive operation (in terms of time) often, the underlying OS will save data into batches to reduce the number of times data has to be written to the resource. In Java we can force data to be written using the <code>flush()</code> method. Note however using the <code>flush()</code> to liberally can cause a degradation in performance due to consistently hitting the disk or network.</p>
+
+<p>Most implementations of the <code>close()</code> method automatically call the flush method before closing the resource.</p>
+
+<h4 id="marking-the-stream">Marking the Stream</h4>
+
+<p>You can call the <code>mark(int)</code> and <code>reset()</code> on some streams to move to a certain point in the stream. Note only some streams have this functionality and you can check for it via the <code>markSupported()</code> method which returns true or false.</p>
+
+<p>You can specify a limit to read ahead in the mark method and then read upto that many number of bytes, if you want to go back to your original place in the stream you can call <code>reset()</code></p>
+
+<pre><code class="language-java">InputStream is = . . . //ABCD
+System.out.print ((char)is.read());
+if(is.markSupported()) {
+  is.mark(100);
+  System.out.print((char)is.read());
+  System.out.print((char)is.read());
+  is.reset();
+}
+
+System.out.print((char)is.read());
+System.out.print((char)is.read());
+System.out.print((char)is.read());
+
+// prints: ABCBCD
+</code></pre>
+
+<p>If you pass your mark limit and then call reset an exception may be thrown at runtime.</p>
+
+<h4 id="skipping-over-data">Skipping over Data</h4>
+
+<p>The <code>skip(long)</code> method skips over the number of bytes specified and is associated with <code>InputStream</code>&rsquo;s and <code>Reader</code>&rsquo;s. The skip method returns the number of bytes actually skipped or a negative number if it reached the end of the file.</p>
+
+<pre><code class="language-java">InputStream is = . . .// TIGERS
+System.out.print((char)is.read()); //prints T
+is.skip(2) // skips I,G
+is.read();// reads 'E&quot; but does nothing with it
+System.out.print((char)is.read());// prints R
+System.out.print((char)is.read());// prints S
+
+//prints: TRS
+</code></pre>
+
+<h2 id="working-with-streams">Working with Streams</h2>
+
+<h3 id="the-fileinputstream-and-fileoutputstream-classes">The FileInputStream and FileOutputStream Classes</h3>
+
+<p>The File*Streams are used to read and write bytes to a stream, they can take a <code>File</code> object in their constructor, denoting which file to read or write from or to.</p>
+
+<p>Most often the <code>read()</code> method which reads a byte is used to retrieve data. When the stream reaches the end of the file it returns <code>-1</code>.</p>
+
+<p>Although the these classes physically deal with bytes, the <code>read()</code> and <code>write()</code> method both return <code>int</code>s so they can use <code>-1</code> to show the end of the file has been reached.</p>
+
+<p>Both <code>FileInputStream</code> and <code>FileOutputStream</code> methods of <code>read(byte[])</code> and <code>write(byte[])</code> can be used to transfer read bytes from a file into a byte array allowing better performance as the program can store parts of the stream in memory and buffer any operations.</p>
+
+<pre><code class="language-java">import java.io.*;
+public class CopyFileSample {
+  public static void copy(File source, File destination) throws IOException {
+    try (InputStream in = new FileInputStream(source);
+      OutputStream out = new FileOutputStream(destination)) {
+      int b;
+      while((b = in.read()) != -1) {
+        out.write(b);
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>Thr above method is how we could copy the contents from one file to another using low level streams.</p>
+
+<p>Note the copy method throws an IOException as the File*Streams both declare <code>FileNotFoundException</code></p>
+
+<h4 id="the-bufferedinputstream-and-bufferedoutputstream-classes">The BufferedInputStream and BufferedOutputStream Classes</h4>
+
+<p>The BufferedStreams are often used to wrap lower level streams, they provide buffering data operations which in turn can lead to caching, easier seeking and batch read writes,all which help with performance.
+When using a buffer stream we often pass in a low level stream that we want to operate on and a byte array (our buffer) where the data can be temporarily stored.</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class CopyBufferFileSample {
+  public static void copy(File source, File destination) throws IOException {
+    try (InputStream in = new BufferedInputStream(new FileInputStream(source));
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(destination))) {
+          byte[] buffer = new byte[1024];
+          int lengthRead;
+          while ((lengthRead = in.read(buffer)) &gt; 0) {
+            out.write(buffer,0,lengthRead); // args = buffer, offset, amount to read in
+            out.flush();
+          }
+    }
+  }
+}
+</code></pre>
+
+<p>Here we read in 1kb from the input file, then write the 1kb of data to the output file, finally we call flush at the end of every loop, although  a performance downgrade. Calling flush will ensure the buffer is written to disk before receiving the next 1kb of data.</p>
+
+<h3 id="the-filereader-and-filewriter-classes">The FileReader and FileWriter Classes</h3>
+
+<p>The file reader pair are have a similar role and API to their stream counter parts however the reader deals with chars not bytes and is often, used more when dealing with files.
+The File reader still have the <code>read()</code>, <code>write()</code>, <code>close()</code> and <code>flush()</code> methods.</p>
+
+<h4 id="the-bufferedreader-and-bufferedwriter-classes">The BufferedReader and BufferedWriter Classes</h4>
+
+<p>Since a buffered char or char[] is essentially a string, the BufferReader/Writer classes often allow developers to deal with strings instead characters or other primitive types.</p>
+
+<pre><code class="language-java">public static List&lt;String&gt; readFile(File source) throws IOException {
+  List&lt;String&gt; data = new ArrayList&lt;String&gt;();
+  try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
+    String s;
+    while((s = reader.readLine()) != null) {
+      data.add(s);
+  }
+}
+return data;
+}
+</code></pre>
+
+<p>Here we check of the buffer reader returns null because the <code>readLine()</code> returns a string (under the hood a char array gets converted into a string)</p>
+
+<h4 id="comparing-the-two-copy-applications">Comparing the Two Copy Applications</h4>
+
+<p>While streams can give us more control when it comes to reading and writing, such as the buffer size the which character set to be used for encoding/decoding, the reader and writer classes provide a more structured way of dealing with text based files.</p>
+
+<p>The reader and writers automatically deal with character encoding (by default the assume UTF-8)</p>
+
+<p>They also provide methods to work with strings instead of primitives or array of primitives making more developer friendly.</p>
+
+<p>However the reader and writer are really only used for text based data, other data such as from networks, or memory will most likely have to accessed via a low level stream.</p>
+
+<h3 id="the-objectinputstream-and-objectoutputstream-classes">The ObjectInputStream and ObjectOutputStream Classes</h3>
+
+<p>The Object streams allow us to read and write Java objects to and from a data source such as disk.</p>
+
+<blockquote>
+<p>The process of converting an in-memory object to a stored data format is referred to as serialization</p>
+
+<p>The process of converting stored data format into an in-memory object is referred to as de-serialization</p>
+</blockquote>
+
+<h4 id="the-serializable-interface">The Serializable Interface</h4>
+
+<p>Any classes that want to be serialised must implement the <code>Serializable</code> marker interface, meaning the interface does not declare any methods or variables. Implementing the <code>Serializable</code> denotes that not only is this object serializable but also any instance variables are also serializable.</p>
+
+<p>Attempting to serialise an object which itself or any of its instance variable does <em>NOT</em> implement the serializable interface will throw a <code>NotSerializableException</code>.</p>
+
+<p>If you do want a certain field to be serialized then you can add the <code>transient</code> keyword to the field, this means the field and its value will not be part of the serialization/de-serialization process.</p>
+
+<p>Static variable are not serialized either and would have to be copied to an instance variable if they have to be transferred.</p>
+
+<pre><code class="language-java">import java.io.Serializable;
+
+public class Animal implements Serializable {
+  private static final long serialVersionUID = 1L;
+  private String name;
+  private int age;
+  private char type;
+  public Animal(String name, int age, char type) {
+    this.name = name;
+    this.age = age;
+    this.type = type;
+  }
+
+  public String getName() { return name; }
+  public int getAge() { return age; }
+  public char getType() { return type; }
+  public String toString() {
+    return &quot;Animal [name=&quot; + name + &quot;, age=&quot; + age + &quot;, type=&quot; + type + &quot;]&quot;;
+  }
+}
+</code></pre>
+
+<p>The above class is completely serializable as all primitives are serializable and the <code>String</code> itself implements the <code>Serializable</code> interface.</p>
+
+<p>Here we also implement a <code>serialVersionUID</code> which must have the type of <code>long</code> and is declared as being static and final. The UID is used by Java to check whether a serialized object can be de-serialized back into an object, as fields and methods may change over time.</p>
+
+<p>Note: The <code>serialVersionUID</code> is static and hence it is not copied over during serialization however, it is a special <code>file descriptor</code> used by the ObjectInput/OutputStream classes, if the developer does not explicitly set the value of this field Java will do so for you, however it is considered best practice for the developer to explicitly state the version, so other developers can see the version, also the default implementation sued by Java can lead to inconsistencies across different JVM and runtime environments. See <a href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/protocol.html">here</a> for more.</p>
+
+<h4 id="serializing-and-deserializing-objects">Serializing and Deserializing Objects</h4>
+
+<p>Java provides two main classes for serializing and deserializing an object:</p>
+
+<ol>
+<li><p><code>ObjectOutputStream</code> - used to convert an in-memory object to a serialized form that can be saved to disk or sent over a network.</p></li>
+
+<li><p><code>ObjectInputStream</code> - used to convert a serialized object from disk to an object that can be read into memory.</p></li>
+</ol>
+
+<p>The main method to achieve serializing an object using the <code>ObjectOutputStream</code> is the <code>writeObject(Object)</code></p>
+
+<p>The main method to achieve serializing an object using the <code>ObjectInputStream</code> is the <code>readObject()</code> which returns a <code>java.lang.Object</code> and hence must be cast at runtime.</p>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.*;
+
+public class ObjectStreamSample {
+  public static List&lt;Animal&gt; getAnimals(File dataFile) throws IOException, ClassNotFoundException {
+  List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();
+  try (ObjectInputStream in = new ObjectInputStream(
+      new BufferedInputStream(new FileInputStream(dataFile)))) {
+    while(true) {
+      Object object = in.readObject();
+      if(object instanceof Animal)
+      animals.add((Animal)object);
+    }
+
+  } catch (EOFException e) {
+    // File end reached
+}
+  return animals;
+}
+
+public static void createAnimalsFile(List&lt;Animal&gt; animals, File dataFile) throws IOException {
+  try (ObjectOutputStream out = new ObjectOutputStream(
+      new BufferedOutputStream(new FileOutputStream(dataFile)))) {
+    for(Animal animal: animals)
+      out.writeObject(animal);
+  }
+}
+
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+  List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();
+  animals.add(new Animal(&quot;Tommy Tiger&quot;,5,'T'));
+  animals.add(new Animal(&quot;Peter Penguin&quot;,8,'P'));
+
+  File dataFile = new File(&quot;animal.data&quot;);
+
+  createAnimalsFile(animals,dataFile);
+  System.out.println(getAnimals(dataFile));
+  }
+}
+
+//prints: [Animal [name=Tommy Tiger, age=5, type=T], Animal [name=Peter Penguin, age=8,type=P]]
+</code></pre>
+
+<p>Here we wrap our streams in a <code>BufferedInput/OutputStream</code> for performance reasons.</p>
+
+<p>Also to unlike other streams where we check to see f we&rsquo;ve reached the end of the file, here catch an <code>EOFException</code>, this is the most common way when dealing with ObjectStreams as we want to make sure we have read every single byte.</p>
+
+<p>As we are casting an object to an instance it is best advised to use the <code>instanceOf</code> operator to ensure we dont get a <code>ClassCastException</code></p>
+
+<p>We also have handle or re-declare the <code>ClassNotFoundException</code> as the object&rsquo;s class we are de-serializing may not be available at runtime to that JRE if the object has come from another program.</p>
+
+<p>Finally the object stream classes do not support the serializing or de-serializing <code>null</code> values hence it is important to either enforce null checks or make sure there is no natural way for a variable to become null.</p>
+
+<h4 id="understanding-object-creation">Understanding Object Creation</h4>
+
+<p>When de-serializing an object Java essentially &laquo;plugs-in&raquo; the values to the object from the serialized object, this means Java skips any constructors, instance initialisers or static initialisers as well.</p>
+
+<p>Technically Java uses the first non-serializable objects constructor to create the object and then proxies in the values allowing to by-pass all the &laquo;normal&raquo; of instantiating or initialising an object.</p>
+
+<pre><code class="language-java">public class Animal implements Serializable {
+  private static final long serialVersionUID = 2L;
+  private transient String name;
+  private transient int age = 10;
+  private static char type = 'C';
+  {this.age = 14;}
+
+  public Animal() {
+    this.name = &quot;Unknown&quot;;
+    this.age = 12;
+    this.type = 'Q';
+  }
+
+  public Animal(String name, int age, char type) {
+    this.name = name;
+    this.age = age;
+    this.type = type;
+}
+// Same methods as before
+. . .
+}
+//prints: [Animal [name=null, age=0, type=P], Animal [name=null, age=0, type=P]]
+</code></pre>
+
+<p>Here our name and age fields are transient,so their values are not maintained during the process.</p>
+
+<p>The values of 10,14 and 12 are lost as Java does not use any constructors or initialiser when de-serializing an object.</p>
+
+<p>As for why the type prints &laquo;p&raquo;</p>
+
+<blockquote>
+<p>The sample program displays a value for type, as the variable is shared by all instances of the class and is the last value in our sample program.</p>
+</blockquote>
+
+<h3 id="the-printstream-and-printwriter-classes">The PrintStream and PrintWriter Classes</h3>
+
+<blockquote>
+<p>The PrintStream and PrintWriter classes are high-level stream classes that write formatted representation of Java objects to a text-based output stream.</p>
+</blockquote>
+
+<p>These classes can take an OutputStream and a Writer for their respective constructors.</p>
+
+<p>Both <code>System.out</code> and <code>System.err</code> are <code>PrintStream</code> objects and have the methods <code>write()</code>, <code>print()</code>, <code>println()</code>, <code>format()</code> and <code>printf()</code>.</p>
+
+<p>Since none of the print or write methods declare a checked exception we can use the classes <code>checkError()</code> to see of there where any error.</p>
+
+<h4 id="print">print()</h4>
+
+<p>The print method is a heavily overloaded method that can take all primitives, Strings and Object and prints to it&rsquo;s directed output.</p>
+
+<p>Under the hood many values are converted to the <code>String</code> class before being printed, either using the objects <code>toString()</code> or using <code>String.valueOf()</code> to create string representation of a primitive.</p>
+
+<pre><code class="language-java">out.print(5); // PrintWriter method
+out.write(String.valueOf(5)); // Writer method
+
+out.print(2.0); // PrintWriter method
+out.write(String.valueOf(2.0)); // Writer method
+
+Animal animal = new Animal();
+out.print(animal); // PrintWriter method
+out.write(animal==null ? &quot;null&quot;: animal.toString()); // Writer method
+</code></pre>
+
+<h4 id="println">println()</h4>
+
+<p><code>println()</code> is essentially identical to <code>print()</code> however it adds a line separator at the end of each print.</p>
+
+<p>Although we can manually pass in a line feed in the <code>print()</code> it is recommend to use <code>println()</code> as Java will deal with any specific OS dependant line separators.</p>
+
+<p>Such as &lsquo;\n&rsquo; for Mac/Linux vs &lsquo;\r\n&rsquo; for Windows.</p>
+
+<h4 id="format-and-printf">format() and printf()</h4>
+
+<p><code>format()</code> and <code>print()</code> both take in a string, locale and any number arguments and return a formatted string. These work identical to <code>String.format()</code></p>
+
+<p><code>printf()</code> is identical to <code>format()</code> but is used to make C developers  feel <code>more at home</code> (you use <code>printf()</code> in C to print to console, like Java uses <code>print()</code> and <code>println()</code>)</p>
+
+<pre><code class="language-java">public PrintWriter format(String format, Object args. . .)
+public PrintWriter printf(String format, Object args. . .)
+</code></pre>
+
+<h4 id="sample-printwriter-application">Sample PrintWriter Application</h4>
+
+<pre><code class="language-java">import java.io.*;
+
+public class PrintWriterSample {
+  public static void main(String[] args) throws IOException {
+    File source = new File(&quot;zoo.log&quot;);
+    try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(source)))) {
+      out.print(&quot;Today's weather is: &quot;);
+      out.println(&quot;Sunny&quot;);
+      out.print(&quot;Today's temperature at the zoo is: &quot;);
+      out.print(1/3.0);
+      out.println('C');
+      out.format(&quot;It has rained 10.12 inches this year&quot;);
+      out.println();
+      out.printf(&quot;It may rain 21.2 more inches this year&quot;);
+    }
+  }
+}
+
+//prints to file:
+// Today's weather is: Sunny
+// Today's temperature at the zoo is: 0.3333333333333333C
+// It has rained 10.12 inches this year
+// It may rain 21.2 more inches this year 
+</code></pre>
+
+<h3 id="review-of-stream-classes">Review of Stream Classes</h3>
+
+<p>You should be familiar with the following structure of the java.io stream classes.</p>
+
+<p><img src="http://i.imgur.com/rhFw7Fo.png" alt="streams tree diagram" /></p>
+
+<h4 id="other-stream-classes">Other Stream Classes</h4>
+
+<p>Other classes not need for the exam but are useful to know are:</p>
+
+<p>The <code>InputStreamReader</code> and <code>OutputStreamWriter</code> both which convert a stream into a reader or writer.</p>
+
+<p>The <code>DataInputStream</code> and <code>DataOutputStream</code> which are similar to <code>ObjectInput/OutputStream</code> but can only serialize/de-serialize Strings and primitives, they also enforce tight data structures meaning the order of serialization and de-serialization is important.</p>
+
+<h2 id="interacting-with-users">Interacting with Users</h2>
+
+<p>Prior to Java 6 if program wanted to interact with a user through a CLI, they would have had to use <code>System.in</code> and <code>System.out</code>. Java 6 introduced the <code>Console</code> class as a better way to interact through a CLI environment.</p>
+
+<h4 id="the-old-way">The Old Way</h4>
+
+<p><code>System.in</code> returns an <code>InputStream</code> that is often wrapped in a <code>BufferedReader</code>, this is to give us access to the <code>readLine()</code> which reads a buffered input when the user hits the &laquo;Enter&raquo; key. We also dont close the stream as this would stop the program from reading an further input from the user.</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class SystemInSample {
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String userInput = reader.readLine();
+    System.out.println(&quot;You entered the following: &quot;+userInput);
+}
+}
+</code></pre>
+
+<p>Here we take an input and then print it straight back out.</p>
+
+<h4 id="the-new-way">The New Way</h4>
+
+<p>As dealing directly with streams can be repetitive(boiler-plate coding) and low level, the <code>Console</code> class was introduced to help make interacting with use easier.</p>
+
+<p>The console class is created when the JVM starts up and is a singleton class it can be accessed via the <code>System.console()</code> method which returns the console instance.</p>
+
+<p>If the environment does not support text based interactions then calling <code>System.console()</code> will return null.</p>
+
+<pre><code class="language-java">import java.io.Console;
+
+public class ConsoleSample {
+  public static void main(String[] args) {
+    Console console = System.console();
+    if(console != null) {
+      String userInput = console.readLine();
+  console.writer().println (&quot;You entered the following: &quot;+userInput);
+    }
+  }
+}
+</code></pre>
+
+<p>Here this looks somewhat familiar to the Input/OutputStreams example, and under the hood, the <code>Console</code> class uses these classes, but allows us to do so without having to worry about creating, wrapping and closing those streams.</p>
+
+<h4 id="reader-and-writer">reader() and writer()</h4>
+
+<blockquote>
+<p>The Console class provides access to an instance of Reader and PrintWriter using the methods reader() and writer(), respectively.</p>
+</blockquote>
+
+<p>The old way used streams (unless the developer themselves wrapped them in a reader or writer), here we use readers and writers so we don&rsquo;t have to worry about character encoding/decoding.</p>
+
+<h4 id="format-and-printf-1">format() and printf()</h4>
+
+<p>As with writers we can use <code>format()</code> and <code>print()</code> to print a formatted string to the user</p>
+
+<pre><code class="language-java">Console console = System.console();
+console.writer().format(new Locale(&quot;fr&quot;, &quot;CA&quot;),&quot;Hello World&quot;);
+</code></pre>
+
+<p>In the below we can use <code>format()</code> and <code>printf()</code> directly or can use the underlying <code>writer</code> instance</p>
+
+<pre><code class="language-java">import java.io.*;
+
+public class ConsoleSamplePrint {
+  public static void main(String[] args) throws NumberFormatException,IOException {
+    Console console = System.console();
+    if(console == null) {
+      throw new RuntimeException(&quot;Console not available&quot;);
+    } else {
+      console.writer().println(&quot;Welcome to Our Zoo!&quot;);
+      console.format(&quot;Our zoo has 391 animals and employs 25 people.&quot;);
+      console.writer().println();
+      console.printf(&quot;The zoo spans 128.91 acres.&quot;);
+    }
+  }
+}
+</code></pre>
+
+<h4 id="flush">flush()</h4>
+
+<blockquote>
+<p>The flush() method forces any buffered output to be written immediately.</p>
+</blockquote>
+
+<p>It is recommend to call flush before reading in user input via <code>readLine()</code> or <code>readPassword()</code> so as to ensure you are working with an empty buffer and still dont have any residual characters left.</p>
+
+<h4 id="readline">readLine()</h4>
+
+<blockquote>
+<p>The basic readLine() method retrieves a single line of text from the user, and the user presses the Enter key to terminate it.</p>
+</blockquote>
+
+<pre><code class="language-java">import java.io.*;
+
+public class ConsoleReadInputSample {
+public static void main(String[] args) throws NumberFormatException, IOException {
+  Console console = System.console();
+  if(console == null) {
+    throw new RuntimeException(&quot;Console not available&quot;);
+  } else {      
+    console.writer().print(&quot;How excited are you about your trip today? &quot;);
+    console.flush();
+
+    String excitementAnswer = console.readLine();
+    String name = console.readLine(“Please enter your name: “); //fig1
+    Integer age = null;
+    console.writer().print(&quot;What is your age? &quot;);
+    console.flush();
+
+    BufferedReader reader = new BufferedReader(console.reader()); //fig 2
+    String value = reader.readLine();
+    age = Integer.valueOf(value);
+
+    console.writer().println();
+    console.format(&quot;Your name is &quot;+name);
+    console.writer().println();
+    console.format(&quot;Your age is &quot;+age);
+    console.printf(&quot;Your excitement level is: &quot;+excitementAnswer);
+    }
+  }
+}
+</code></pre>
+
+<p>In the above you can see we have the option to directly call the <code>readLine()</code> method from the console, or we can access the underlying <code>BufferedReader()</code> and then call <code>readLine()</code>.</p>
+
+<p>Note all user input is read in as a <code>String</code> and must be converted to its appropriate type, as this is a text based interaction, will almost exclusively be working with strings and primitives.</p>
+
+<h4 id="readpassword">readPassword()</h4>
+
+<p><code>readPassword()</code> is nearly the same as <code>readLine()</code> except it doesn&rsquo;t echo back to the user&rsquo;s screen, this is to prevent people from reading the password over the users shoulder.</p>
+
+<p>The only other notable difference is that <code>readPassword()</code> returns a <code>char[]</code> instead of String. This is for security reasons, as String can be stored in the String pool and read by other parts of the program, until it is garbage collected.</p>
+
+<p>With a character array once you have read the password, you can then manually overwrite all the values essentially &laquo;wiping&raquo; the password clean from the array.</p>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.Arrays;
+
+public class PasswordCompareSample {
+  public static void main(String[] args) throws NumberFormatException,IOException {
+    Console console = System.console();
+    if(console == null) {
+      throw new RuntimeException(&quot;Console not available&quot;);
+    } else {
+
+      char[] password = console.readPassword(&quot;Enter your password: &quot;);
+      console.format(&quot;Enter your password again: &quot;);
+      console.flush();
+      char[] verify = console.readPassword();
+      boolean match = Arrays.equals(password,verify);
+
+      // Immediately clear passwords from memory
+      for(int i=0; i&lt;password.length; i++) {
+        password[i]='x';
+      }
+
+      for(int i=0; i&lt;verify.length; i++) {
+        verify[i]='x';
+      }
+
+      console.format(&quot;Your password was &quot;+(match ? &quot;correct&quot;: &quot;incorrect&quot;));
+      }
+  }
+}      
+</code></pre>
+
+<p>We could also have used <code>Array.fill(password,'x')</code> to put dummy data into the arrays.</p>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%208%3a%20IO&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f&amp;title=OCJP%20Chapter%208%3a%20IO" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%208%3a%20IO&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f07%2f03%2fchapter8%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://verric.github.io/2017/07/01/chapter7/" title="OCJP Chapter 7: Concurrency">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://verric.github.io/2017/07/04/chapter9/" title="OCJP Chapter 9: NIO.2">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//shortname.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/31/javainnerclasses/">Java Inner classes</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/10/chapter10/">OCJP Chapter 10: JDBC</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/04/chapter9/">OCJP Chapter 9: NIO.2</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/03/chapter8/">OCJP Chapter 8: IO</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/01/chapter7/">OCJP Chapter 7: Concurrency</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/27/chapter6/">OCJP Chapter 6: Exceptions and Assertions</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/26/chapter5/">OCJP Chapter 5: Dates, Strings and Localisations</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/21/angular-bootstrap-css/">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/14/chapter4/">OCJP Chapter 4: Functional Programming</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/11/chapter3/">OCJP Chapter 3: Generics and Collections</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="https://verric.github.io/tags/programming">programming</a></li><li><a href="https://verric.github.io/tags/study-notes">study-notes</a></li><li><a href="https://verric.github.io/tags/angular2">angular2</a></li><li><a href="https://verric.github.io/tags/bootstrap">bootstrap</a></li><li><a href="https://verric.github.io/tags/inner-classes">inner-classes</a></li><li><a href="https://verric.github.io/tags/introduction">introduction</a></li><li><a href="https://verric.github.io/tags/jackson">jackson</a></li><li><a href="https://verric.github.io/tags/java">java</a></li><li><a href="https://verric.github.io/tags/java-8">java-8</a></li><li><a href="https://verric.github.io/tags/json">json</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+<a href="https://verric.github.io/disclaimer/">Disclaimer</a> <i>&middot;</i>
+
+<a href="https://verric.github.io/terms/">Terms</a> 
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  code with <i class='fa fa-heart'></i>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; 2017 Copyright my blog
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="https://verric.github.io/js/jquery.min.js"></script>
+<script src="https://verric.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://verric.github.io/js/highlight.pack.js"></script>
+<script src="https://verric.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER =  false , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

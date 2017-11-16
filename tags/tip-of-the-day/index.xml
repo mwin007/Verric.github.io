@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tip Of The Day on Verric&#39;s Blog</title>
+    <title>Tip of the Day on Verric&#39;s blog</title>
     <link>https://verric.github.io/tags/tip-of-the-day/</link>
-    <description>Recent content in Tip Of The Day on Verric&#39;s Blog</description>
+    <description>Recent content in Tip of the Day on Verric&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-GB</language>
+    <language>en</language>
+    <managingEditor>beijing-planes@hotmail.com (verric)</managingEditor>
+    <webMaster>beijing-planes@hotmail.com (verric)</webMaster>
+    <copyright>(c) 2017 Copyright my blog</copyright>
     <lastBuildDate>Wed, 21 Jun 2017 17:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/tags/tip-of-the-day/index.xml" rel="self" type="application/rss+xml" />
@@ -13,11 +16,11 @@
     
     <item>
       <title>Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</title>
-      <link>https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/</link>
+      <link>https://verric.github.io/2017/06/21/angular-bootstrap-css/</link>
       <pubDate>Wed, 21 Jun 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/</guid>
-      <description>&lt;p&gt;You can add any css files to the &lt;code&gt;angular-cli.json&lt;/code&gt; styles field to have them globally added to your angular &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt; project&lt;/p&gt;
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/21/angular-bootstrap-css/</guid>
+      <description>&lt;p&gt;You can add any css files to the &lt;code&gt;angular-cli.json&lt;/code&gt; styles field to have them globally added to your angular 2/4 project&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;styles&amp;quot;: [
          &amp;quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&amp;quot;,

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kotlin on Verric&#39;s Blog</title>
+    <title>Kotlin on Verric&#39;s blog</title>
     <link>https://verric.github.io/tags/kotlin/</link>
-    <description>Recent content in Kotlin on Verric&#39;s Blog</description>
+    <description>Recent content in Kotlin on Verric&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-GB</language>
+    <language>en</language>
+    <managingEditor>beijing-planes@hotmail.com (verric)</managingEditor>
+    <webMaster>beijing-planes@hotmail.com (verric)</webMaster>
+    <copyright>(c) 2017 Copyright my blog</copyright>
     <lastBuildDate>Fri, 05 May 2017 17:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
@@ -13,10 +16,10 @@
     
     <item>
       <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
-      <link>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</link>
+      <link>https://verric.github.io/2017/05/05/summary_notes_ch2/</link>
       <pubDate>Fri, 05 May 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/05/05/summary_notes_ch2/</guid>
       <description>&lt;p&gt;Full length notes for &lt;strong&gt;Kotlin in Action&lt;/strong&gt; chapter 2.
 &lt;/p&gt;</description>
     </item>

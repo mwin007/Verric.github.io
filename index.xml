@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Verric&#39;s Blog</title>
+    <title>Verric&#39;s blog</title>
     <link>https://verric.github.io/</link>
-    <description>Recent content on Verric&#39;s Blog</description>
+    <description>Recent content on Verric&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-GB</language>
+    <language>en</language>
+    <managingEditor>beijing-planes@hotmail.com (verric)</managingEditor>
+    <webMaster>beijing-planes@hotmail.com (verric)</webMaster>
+    <copyright>(c) 2017 Copyright my blog</copyright>
     <lastBuildDate>Mon, 31 Jul 2017 17:02:50 +1000</lastBuildDate>
     
 	<atom:link href="https://verric.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -13,29 +16,29 @@
     
     <item>
       <title>Java Inner classes</title>
-      <link>https://verric.github.io/2017/07/31/java-inner-classes/</link>
+      <link>https://verric.github.io/2017/07/31/javainnerclasses/</link>
       <pubDate>Mon, 31 Jul 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/07/31/java-inner-classes/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/07/31/javainnerclasses/</guid>
       <description>&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 10: JDBC</title>
-      <link>https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/</link>
+      <link>https://verric.github.io/2017/07/10/chapter10/</link>
       <pubDate>Mon, 10 Jul 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/07/10/ocjp-chapter-10-jdbc/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/07/10/chapter10/</guid>
       <description>&lt;p&gt;Chapter 10 notes:
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 9: NIO.2</title>
-      <link>https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/</link>
+      <link>https://verric.github.io/2017/07/04/chapter9/</link>
       <pubDate>Tue, 04 Jul 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/07/04/ocjp-chapter-9-nio.2/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/07/04/chapter9/</guid>
       <description>&lt;p&gt;Chapter 9 summary notes&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -43,10 +46,10 @@
     
     <item>
       <title>OCJP Chapter 8: IO</title>
-      <link>https://verric.github.io/2017/07/03/ocjp-chapter-8-io/</link>
+      <link>https://verric.github.io/2017/07/03/chapter8/</link>
       <pubDate>Mon, 03 Jul 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/07/03/ocjp-chapter-8-io/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/07/03/chapter8/</guid>
       <description>&lt;p&gt;Chapter 8 summary notes&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -54,30 +57,30 @@
     
     <item>
       <title>OCJP Chapter 7: Concurrency</title>
-      <link>https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/</link>
+      <link>https://verric.github.io/2017/07/01/chapter7/</link>
       <pubDate>Sat, 01 Jul 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/07/01/ocjp-chapter-7-concurrency/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/07/01/chapter7/</guid>
       <description>&lt;p&gt;Summary notes for Chapter 7
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 6: Exceptions and Assertions</title>
-      <link>https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/</link>
+      <link>https://verric.github.io/2017/06/27/chapter6/</link>
       <pubDate>Tue, 27 Jun 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/27/ocjp-chapter-6-exceptions-and-assertions/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/27/chapter6/</guid>
       <description>&lt;p&gt;Chapter 6 summary notes
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 5: Dates, Strings and Localisations</title>
-      <link>https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/</link>
+      <link>https://verric.github.io/2017/06/26/chapter5/</link>
       <pubDate>Mon, 26 Jun 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/26/ocjp-chapter-5-dates-strings-and-localisations/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/26/chapter5/</guid>
       <description>&lt;hr /&gt;
 
 &lt;p&gt;Chapter 5 summary notes
@@ -86,11 +89,11 @@
     
     <item>
       <title>Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</title>
-      <link>https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/</link>
+      <link>https://verric.github.io/2017/06/21/angular-bootstrap-css/</link>
       <pubDate>Wed, 21 Jun 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/21/tip-du-jour-incorpriating-bootstrap-styling-in-angular-2/4-with-ng-cli/</guid>
-      <description>&lt;p&gt;You can add any css files to the &lt;code&gt;angular-cli.json&lt;/code&gt; styles field to have them globally added to your angular &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt; project&lt;/p&gt;
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/21/angular-bootstrap-css/</guid>
+      <description>&lt;p&gt;You can add any css files to the &lt;code&gt;angular-cli.json&lt;/code&gt; styles field to have them globally added to your angular 2/4 project&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;styles&amp;quot;: [
          &amp;quot;../node_modules/bootstrap/dist/css/bootstrap.min.css&amp;quot;,
@@ -112,60 +115,60 @@
     
     <item>
       <title>OCJP Chapter 4: Functional Programming</title>
-      <link>https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/</link>
+      <link>https://verric.github.io/2017/06/14/chapter4/</link>
       <pubDate>Wed, 14 Jun 2017 14:28:09 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/14/ocjp-chapter-4-functional-programming/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/14/chapter4/</guid>
       <description>&lt;p&gt;Summary notes for chapter 4: Functional Programming in Java 8
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 3: Generics and Collections</title>
-      <link>https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/</link>
+      <link>https://verric.github.io/2017/06/11/chapter3/</link>
       <pubDate>Sun, 11 Jun 2017 15:14:44 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/11/ocjp-chapter-3-generics-and-collections/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/11/chapter3/</guid>
       <description>&lt;p&gt;Summary notes for Chapter 3
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Removing the need for @JsonProperty from classes</title>
-      <link>https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/</link>
+      <link>https://verric.github.io/2017/06/08/jsonproperty/</link>
       <pubDate>Thu, 08 Jun 2017 11:10:44 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/06/08/removing-the-need-for-jsonproperty-from-classes/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/06/08/jsonproperty/</guid>
       <description>&lt;p&gt;Read the full post or skip to the answers section :)
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 1: Advanced Class Design</title>
-      <link>https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/</link>
+      <link>https://verric.github.io/2017/05/25/chapter1/</link>
       <pubDate>Thu, 25 May 2017 15:14:44 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/25/ocjp-chapter-1-advanced-class-design/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/05/25/chapter1/</guid>
       <description>&lt;p&gt;Whoop dee doop
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OCJP Chapter 2: Design Pattern and Principles</title>
-      <link>https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/</link>
+      <link>https://verric.github.io/2017/05/25/chapter2/</link>
       <pubDate>Thu, 25 May 2017 15:14:44 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/25/ocjp-chapter-2-design-pattern-and-principles/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/05/25/chapter2/</guid>
       <description>&lt;p&gt;Summary notes for Chapter 2
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Kotlin in Action: Chapter 2: Kotlin Basics</title>
-      <link>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</link>
+      <link>https://verric.github.io/2017/05/05/summary_notes_ch2/</link>
       <pubDate>Fri, 05 May 2017 17:02:50 +1000</pubDate>
-      
-      <guid>https://verric.github.io/2017/05/05/kotlin-in-action-chapter-2-kotlin-basics/</guid>
+      <author>beijing-planes@hotmail.com (verric)</author>
+      <guid>https://verric.github.io/2017/05/05/summary_notes_ch2/</guid>
       <description>&lt;p&gt;Full length notes for &lt;strong&gt;Kotlin in Action&lt;/strong&gt; chapter 2.
 &lt;/p&gt;</description>
     </item>

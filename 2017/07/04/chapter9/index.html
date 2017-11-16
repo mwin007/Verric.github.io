@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>OCJP Chapter 9: NIO.2  &middot; Verric&#39;s blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="OCJP, java, study-notes, chapter 9, ">
+
+<link rel="author" href="http://plus.google.com/+Myprofile">
+
+
+<meta property="og:title" content="OCJP Chapter 9: NIO.2  &middot; Verric&#39;s blog ">
+<meta property="og:site_name" content="Verric&#39;s blog"/>
+<meta property="og:url" content="https://verric.github.io/2017/07/04/chapter9/" />
+<meta property="og:locale" content="en">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-07-04T14:28:09&#43;10:00" />
+<meta property="og:article:modified_time" content="2017-07-04T14:28:09&#43;10:00" />
+
+  
+    
+<meta property="og:article:tag" content="OCJP">
+    
+<meta property="og:article:tag" content="java">
+    
+<meta property="og:article:tag" content="study-notes">
+    
+<meta property="og:article:tag" content="chapter 9">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Myprofile" />
+<meta name="twitter:creator" content="@Myprofile" />
+<meta name="twitter:title" content="OCJP Chapter 9: NIO.2" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://verric.github.io/2017/07/04/chapter9/" />
+<meta name="twitter:domain" content="https://verric.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "OCJP Chapter 9: NIO.2",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+Myprofile?rel=author"
+    },
+    "datePublished": "2017-07-04",
+    "description": "",
+    "wordCount": 4819
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://verric.github.io/2017/07/04/chapter9/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://verric.github.io/touch-icon-144-precomposed.png">
+<link rel="icon" href="https://verric.github.io/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://verric.github.io/css/bootswatch/paper/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://verric.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://verric.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://verric.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+        <a class="navbar-brand" href="https://verric.github.io/">
+          Verric&#39;s blog
+          
+          
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://verric.github.io/about" >
+                <i class='fa fa-road'></i>
+                About
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://verric.github.io/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>OCJP Chapter 9: NIO.2
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-07-04">4 Jul, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 23 min
+  &middot; (4819 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%209%3a%20NIO.2&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f&amp;title=OCJP%20Chapter%209%3a%20NIO.2" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%209%3a%20NIO.2&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://verric.github.io/tags/programming" class="label label-primary">programming</a>
+  
+  <a href="https://verric.github.io/tags/study-notes" class="label label-primary">study-notes</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <p>Chapter 9 summary notes</p>
+
+<p></p>
+
+<!--toc-->
+
+<h1 id="chapter-9-nio-2">Chapter 9: NIO.2</h1>
+
+<h2 id="chapter-goals">Chapter goals:</h2>
+
+<p>Java File I/O (NIO.2)</p>
+
+<ol>
+<li>Use Path interface to operate on file and directory paths</li>
+<li>Use Files class to check, read, delete, copy, move, manage metadata of a file or directory</li>
+<li>Use Stream API with NIO.2</li>
+</ol>
+
+<h2 id="introducing-nio-2">Introducing NIO.2</h2>
+
+<blockquote>
+<p>Java 7 introduced the NIO.2 API. While the NIO API was intended as a replacement for java.io streams, the NIO.2 API is actually a replacement for the java.io.File class and related interactions that we discussed in Chapter 8.</p>
+</blockquote>
+
+<h3 id="introducing-path">Introducing Path</h3>
+
+<blockquote>
+<p>A Path object represents a hierarchical path on the storage system to a file or directory</p>
+</blockquote>
+
+<p>Path is similar to java.io.File in that they both represent am absolute path, a relative path or a directory. However the NIO.2 path has they added capability of being able to represent a symbolic link or file. Note unlike the <code>File</code> class, <code>Path</code> is an interface and can not be directly instantiated.</p>
+
+<blockquote>
+<p>A symbolic link is a special file within an operating system that serves as a reference or pointer to another file or directory.</p>
+</blockquote>
+
+<h4 id="creating-instances-with-factory-and-helper-classes">Creating Instances with Factory and Helper Classes</h4>
+
+<p>The majority of the NIO.2 API uses interfaces and factory method. The use of factory methods enables java to configure behaviour that OS dependent without having to change much on the developer side of the code.</p>
+
+<p>The NIO.2 API has convention where the interface or class uses the singular form <code>Path</code> (the interface) and the factory methods or helper methods use the plural form <code>Paths</code></p>
+
+<pre><code>interface | Factory/helper
+FileSystem --&gt; FileSystems;
+Path --&gt; Paths
+</code></pre>
+
+<h3 id="creating-paths">Creating Paths</h3>
+
+<h4 id="using-the-paths-class">Using the Paths Class</h4>
+
+<p>The most common way of obtaining a path is using the <code>Paths</code> static factory method <code>get(String|URI)</code></p>
+
+<pre><code class="language-java">Path path1 = Paths.get(&quot;pandas/cuddly.png&quot;);
+Path path2 = Paths.get(&quot;c:\\zooinfo\\November\\employees.txt&quot;);
+Path path3 = Paths.get(&quot;/home/zoodirector&quot;);
+</code></pre>
+
+<p>Since different OS&rsquo;s understand different absolut paths differently we can assume the following on the exam:</p>
+
+<ol>
+<li>If a path starts with a forward slash, it is an absolute path, such as /bird/parrot.</li>
+<li>If a path starts with a drive letter, it is an absolute path, such as C:\bird\emu.</li>
+<li>Otherwise, it is a relative path, such as ..\eagle.</li>
+</ol>
+
+<p>If you want reach a file where you do not know the underlying OS we can specfiy a number of strings to the <code>get()</code> method and Java will put in the correct file separator (backslash or forward slash)</p>
+
+<pre><code class="language-java">Path path1 = Paths.get(&quot;pandas&quot;,&quot;cuddly.png&quot;);
+Path path2 = Paths.get(&quot;c:&quot;,&quot;zooinfo&quot;,&quot;November&quot;,&quot;employees.txt&quot;);
+Path path3 = Paths.get(&quot;/&quot;,&quot;home&quot;,&quot;zoodirector&quot;);
+</code></pre>
+
+<p>We can also create a <code>Path</code> by passing in a URI to the <code>get()</code> method.</p>
+
+<pre><code class="language-java">Path path1 = Paths.get(new URI(&quot;file://pandas/cuddly.png&quot;)); // THROWS EXCEPTION
+// AT RUNTIME
+Path path2 = Paths.get(new URI(&quot;file:///c:/zoo-info/November/employees.txt&quot;));
+Path path3 = Paths.get(new URI(&quot;file:///home/zoodirectory&quot;));
+</code></pre>
+
+<p>The first example throws an exception because URI&rsquo;s <em>MUST</em> reference an absolute path and not a relative path.</p>
+
+<p>The URI must be preceded by a protocol schema other wise it will throw  <code>MalformedURIException</code></p>
+
+<p>You can obtain a URI from a <code>Path</code> instance by calling the <code>toUri()</code> method.</p>
+
+<pre><code class="language-java">Path path4 = Paths.get(new URI(&quot;http://www.wiley.com&quot;));
+URI uri4 = path4.toUri();
+</code></pre>
+
+<h4 id="accessing-the-underlying-filesystem-object">Accessing the Underlying FileSystem Object</h4>
+
+<p>We can also obtain a <code>Path</code> by using the <code>getPath()</code> method on <code>FileSystem</code> interface, as mentioned before we can get an instance of the <code>FileSystem</code> by using it&rsquo;s factory class <code>FileSystems</code></p>
+
+<pre><code class="language-java">Path path1 = FileSystems.getDefault().getPath(&quot;pandas/cuddly.png&quot;);
+Path path2 = FileSystems.getDefault().getPath(&quot;c:&quot;,&quot;zooinfo&quot;,&quot;November&quot;,&quot;employees.txt&quot;);
+Path path3 = FileSystems.getDefault().getPath(&quot;/home/zoodirector&quot;);
+</code></pre>
+
+<p>The <code>FileSystem</code> can also connect to remote file systems making it easy to obtain and modify files on the other system</p>
+
+<pre><code class="language-java">FileSystem fileSystem = FileSystems.getFileSystem(new URI(&quot;http://www.selikoff.net&quot;));
+Path path = fileSystem.getPath(&quot;duck.txt&quot;);
+</code></pre>
+
+<h4 id="working-with-legacy-file-instances">Working with Legacy File Instances</h4>
+
+<p>We can easily switch between the old <code>java.io.File</code> class and the new <code>java.nio.Path</code> interface using the <code>toFile()</code> and the <code>toPath()</code> methods.</p>
+
+<pre><code class="language-java">File file = new File(&quot;pandas/cuddly.png&quot;);
+Path path = file.toPath();
+
+Path path = Paths.get(&quot;cuddly.png&quot;);
+File file = path.toFile();
+</code></pre>
+
+<p>This is help with  backwards compatibility.</p>
+
+<h2 id="interacting-with-paths-and-files">Interacting with Paths and Files</h2>
+
+<blockquote>
+<p>One thing to keep in mind when reading this section is that a Path object is not a file but a representation of a location within the file system.</p>
+</blockquote>
+
+<p>This means some operations may appear to work, even if the request file or directly does not exist. Only when Java actually requests the resource, is it&rsquo;s existence and validity checked.</p>
+
+<h3 id="providing-optional-arguments">Providing Optional Arguments</h3>
+
+<p>Many of the operations in the NIO.2 API take optional arguments on how to process the file system, these are all implemented as enums and can be passed to most methods.</p>
+
+<p><img src="http://i.imgur.com/CdBxnyV.png" alt="optional args" /></p>
+
+<p>Many of these methods are attached to the <code>StandardCopyOption</code> enum</p>
+
+<h3 id="using-path-objects">Using Path Objects</h3>
+
+<p>The <code>Path</code> interface often returns an instance to of itself or a reference to a new <code>Path</code>, allowing for method chaining leading.</p>
+
+<pre><code class="language-java">Paths.get(&quot;/zoo/../home&quot;).getParent().normalize().toAbsolutePath();
+</code></pre>
+
+<h4 id="viewing-the-path-with-tostring-getnamecount-and-getname">Viewing the Path with toString(), getNameCount(), and getName()</h4>
+
+<p><code>toString()</code> returns a string representation of the path.</p>
+
+<p><code>getNameCount()</code> returns the number of sub-paths are in the path.</p>
+
+<p><code>getName(int)</code> returns that sub-path at that level</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/land/hippo/harry.happy&quot;);
+System.out.println(&quot;The Path Name is: &quot;+path);
+
+for(int i=0; i&lt;path.getNameCount(); i++) {
+  System.out.println(&quot; Element &quot;+i+&quot; is: &quot;+path.getName(i));
+}
+//prints:
+// The Path Name is: /land/hippo/harry.happy
+// Element 0 is: land
+// Element 1 is: hippo
+// Element 2 is: harry.happy
+</code></pre>
+
+<p>It is important to note that the root path (&laquo;/&raquo;) is ignored in the <code>getNameCount/getName()</code> methods.</p>
+
+<p>If we only passed in the root path then <code>getNameCount()</code> would return 0;</p>
+
+<p>We would also get the exact same output if we passed in a relative path such as:</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;land/hippo/harry.happy&quot;);
+System.out.println(&quot;The Path Name is: &quot;+path);
+
+for(int i=0; i&lt;path.getNameCount(); i++) {
+  System.out.println(&quot; Element &quot;+i+&quot; is: &quot;+path.getName(i));
+}
+//prints:
+// The Path Name is: land/hippo/harry.happy
+// Element 0 is: land
+// Element 1 is: hippo
+// Element 2 is: harry.happy
+</code></pre>
+
+<p>Also the <code>getName()</code> is zero-based like Java arrays.</p>
+
+<h4 id="accessing-path-components-with-getfilename-getparent-and-getroot">Accessing Path Components with getFileName(), getParent(), and getRoot()</h4>
+
+<blockquote>
+<p>The Path interface contains numerous methods for retrieving specific subelements of a Path object, returned as Path objects themselves.</p>
+</blockquote>
+
+<p><code>getFileName()</code> returns just the name of the file and that is all, as new instance of <code>Path</code></p>
+
+<p><code>getParent()</code> returns a <code>Path</code> instance with just the parent path or null if none exists. If using a relative path <code>getParent()</code> will not go beyond the top most level specified in the <code>Path</code> instance.</p>
+
+<p><code>getRoot()</code> returns a <code>Path</code> instance representing the root element of path or returns null if a relative path was used.</p>
+
+<pre><code class="language-java">import java.nio.file.*;
+
+public class PathFilePathTest {
+  public static void printPathInformation(Path path) {
+    System.out.println(&quot;Filename is: &quot;+path.getFileName());
+    System.out.println(&quot;Root is: &quot;+path.getRoot());
+    Path currentParent = path;
+    while((currentParent = currentParent.getParent()) != null) {
+      System.out.println(&quot; Current parent is: &quot;+currentParent);
+    }
+  }
+
+  public static void main(String[] args) {
+    printPathInformation(Paths.get(&quot;/zoo/armadillo/shells.txt&quot;));
+    System.out.println();
+    printPathInformation(Paths.get(&quot;armadillo/shells.txt&quot;));
+  }
+}
+//prints:
+// Filename is: shells.txt
+// Root is: /
+// Current parent is: /zoo/armadillo
+// Current parent is: /zoo
+// Current parent is: /
+//
+
+// Filename is: shells.txt
+// Root is: null
+// Current parent is: armadillo
+</code></pre>
+
+<h4 id="checking-path-type-with-isabsolute-and-toabsolutepath-the-path">Checking Path Type with isAbsolute() and toAbsolutePath() The Path</h4>
+
+<blockquote>
+<p>The Path interface contains two methods for assisting with relative and absolute paths.</p>
+</blockquote>
+
+<p><code>isAbsolute()</code>  returns true or false based whether or not the path specified is absolute.</p>
+
+<p><code>toAbsolutePath()</code> returns an absolute path, by joining the specified path with the current working directory.</p>
+
+<pre><code class="language-java">Path path1 = Paths.get(&quot;C:\\birds\\egret.txt&quot;);
+System.out.println(&quot;Path1 is Absolute? &quot;+path1.isAbsolute());
+System.out.println(&quot;Absolute Path1: &quot;+path1.toAbsolutePath());
+
+// Path1 is Absolute? true
+// Absolute Path1: C:\birds\egret.txt
+
+Path path2 = Paths.get(&quot;birds/condor.txt&quot;);
+System.out.println(&quot;Path2 is Absolute? &quot;+path2.isAbsolute());
+System.out.println(&quot;Absolute Path2 &quot;+path2.toAbsolutePath());
+
+// Path2 is Absolute? false
+// Absolute Path2 /home/birds/condor.txt
+</code></pre>
+
+<p>If the path is already absolute, calling <code>toAbsolutePath()</code> will return a new <code>Path</code> object with the exact same value.</p>
+
+<p>Note <code>isAbsolute()</code> is one of the few OS dependent methods, as Windows will expect a drive letter to be present for an absolute path and Mac/Linux will expect a forward slash to denote the root path.</p>
+
+<h4 id="creating-a-new-path-with-subpath">Creating a New Path with subpath()</h4>
+
+<blockquote>
+<p>The method subpath(int,int) returns a relative subpath of the Path object, referenced by an inclusive start index and an exclusive end index.</p>
+</blockquote>
+
+<p>It is often used to create or extract some part of an existing path.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/mammal/carnivore/raccoon.image&quot;);
+
+System.out.println(&quot;Path is: &quot;+path);
+
+System.out.println(&quot;Subpath from 0 to 3 is: &quot;+path.subpath(0,3));
+System.out.println(&quot;Subpath from 1 to 3 is: &quot;+path.subpath(1,3));
+System.out.println(&quot;Subpath from 1 to 2 is: &quot;+path.subpath(1,2));
+
+// prints:
+// Path is: /mammal/carnivore/raccoon.image
+// Subpath from 0 to 3 is: mammal/carnivore/raccoon.image
+// Subpath from 1 to 3 is: carnivore/raccoon.image
+//Subpath from 1 to 2 is: carnivore
+</code></pre>
+
+<p>Similar to <code>getName(int)</code> it takes a zero based index up to the number sub-paths available, requesting a sub-path outside of this range returns a runtime exception.</p>
+
+<h4 id="using-path-symbols">Using Path Symbols</h4>
+
+<p><code>.</code> Single period denotes the current directory.</p>
+
+<p><code>..</code> Double period denotes the previous directory.</p>
+
+<pre><code>../beart.txt
+</code></pre>
+
+<p>means there is a bear.txt file in the parent directory.</p>
+
+<h4 id="deriving-a-path-with-relativize">Deriving a Path with relativize()</h4>
+
+<blockquote>
+<p>The Path interface provides a method relativize(Path) for constructing the relative path from one Path object to another.</p>
+</blockquote>
+
+<pre><code class="language-java">Path path1 = Paths.get(&quot;fish.txt&quot;);
+Path path2 = Paths.get(&quot;birds.txt&quot;);
+
+System.out.println(path1.relativize(path2));
+System.out.println(path2.relativize(path1));
+
+// prints:
+// ..\birds.txt
+// ..\fish.txt
+</code></pre>
+
+<p>As both files are relative to begin with Java assumes they are in the same directory. The &laquo;..\&raquo; means both files are part of the same parent directory.</p>
+
+<p>If paths are absolute Java will always compute a relative, relative to the root path.</p>
+
+<pre><code class="language-java">Path path3 = Paths.get(&quot;E:\\habitat&quot;);
+Path path4 = Paths.get(&quot;E:\\sanctuary\\raven&quot;);
+
+System.out.println(path3.relativize(path4)); //  ..\sanctuary\raven
+System.out.println(path4.relativize(path3));//   ..\..\habitat
+</code></pre>
+
+<p>Note you can only use either two relative paths or two absolute paths, passing one relative and one absolute will throw an <code>IllegalArgumentException</code></p>
+
+<h4 id="joining-path-objects-with-resolve">Joining Path Objects with resolve()</h4>
+
+<blockquote>
+<p>The Path interface includes a resolve(Path) method for creating a new Path by joining an existing path to the current path.</p>
+</blockquote>
+
+<p>When dealing with resolve the object calling the resolve method is the base path with the supplied argument being appended to this.</p>
+
+<pre><code class="language-java">final Path path1 = Paths.get(&quot;/cats/../panther&quot;);
+final Path path2 = Paths.get(&quot;food&quot;);
+System.out.println(path1.resolve(path2));//   /cats/../panther/food
+</code></pre>
+
+<p>If we we are deal with two absolute paths then, the path being passed as the argument is effectively what&rsquo;s written out, as you can&rsquo;t append an absolute path to something</p>
+
+<pre><code class="language-java">final Path path1 = Paths.get(&quot;/turkey/food&quot;);
+final Path path2 = Paths.get(&quot;/tiger/cage&quot;);
+System.out.println(path1.resolve(path2)); //   /tiger/cage
+</code></pre>
+
+<h4 id="cleaning-up-a-path-with-normalize">Cleaning Up a Path with normalize()</h4>
+
+<blockquote>
+<p>As you saw with the relativize() method, file systems can construct relative paths using.. and . values. There are times, however, when relative paths are combined such that there are redundancies in the path value. Luckily, Java provides us with the normalize(Path) method to eliminate the redundancies in the path. For example, let’s take the output of one of our previous</p>
+</blockquote>
+
+<p>Here normalize() can re-constitute our path even after its been turned into a relative path and resolved (joined together)</p>
+
+<pre><code class="language-java">Path path3 = Paths.get(&quot;E:\\data&quot;);
+Path path4 = Paths.get(&quot;E:\\user\\home&quot;);
+Path relativePath = path3.relativize(path4);
+System.out.println(path3.resolve(relativePath)); // E:\data\..\user\home
+</code></pre>
+
+<p>Here we can <code>normalize()</code> to get our original path back</p>
+
+<pre><code class="language-java">System.out.println(path3.resolve(relativePath).normalize()); // E:\user\home  
+</code></pre>
+
+<p><code>normalize()</code> like many other path operations does not actually check to see if the <code>normalized</code> path actually exists.</p>
+
+<h4 id="checking-for-file-existence-with-torealpath">Checking for File Existence with toRealPath()</h4>
+
+<blockquote>
+<p>The toRealPath(Path) method takes a Path object that may or may not point to an existing file within the file system, and it returns a reference to a real path within the file system.</p>
+</blockquote>
+
+<p><code>toRealPath()</code> does a few things,</p>
+
+<ol>
+<li>Converts a relative path to an absolute path.</li>
+<li><code>normalizes</code> the new absolute path.</li>
+<li>Checks to see if the resulting path actually exists, and will throw an <code>IOException</code> if it does not.</li>
+</ol>
+
+<p>Given we are in the directory: <code>/horse/schedule</code> and we have the sym link <code>/zebra/food.source → /horse/food.txt</code></p>
+
+<pre><code class="language-java">try {
+  System.out.println(Paths.get(&quot;/zebra/food.source&quot;).toRealPath()); // /horse/food.txt
+  System.out.println(Paths.get(&quot;.././food.txt&quot;).toRealPath());     // /horse/food.txt
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<p>A handy trick to obtain the current working directory is to use;</p>
+
+<pre><code class="language-java">System.out.println(Paths.get(&quot;.&quot;).toRealPath()); // get the real path to the current directory.
+</code></pre>
+
+<h3 id="interacting-with-files">Interacting with Files</h3>
+
+<p>Interacting with files using NIO.2 almost excursively use the <code>Files</code> helper class. The NIO.2 <code>Files</code> class is vastly different <code>File</code> object in the IO package.</p>
+
+<h4 id="testing-a-path-with-exists">Testing a Path with exists()</h4>
+
+<blockquote>
+<p>The Files.exists(Path) method takes a Path object and returns true if, and only if, it references a fi le that exists in the fi le system.</p>
+</blockquote>
+
+<p>If a path does not exist then the method simply returns false, it does not throw an exception like many other classes</p>
+
+<pre><code class="language-java">Files.exists(Paths.get(&quot;/ostrich/feathers.png&quot;)); // checks if the file exists
+Files.exists(Paths.get(&quot;/ostrich&quot;));              // checks if the directory exists.
+</code></pre>
+
+<h4 id="testing-uniqueness-with-issamefile">Testing Uniqueness with isSameFile()</h4>
+
+<blockquote>
+<p>The Files.isSameFile(Path,Path) method is useful for determining if two Path objects relate to the same fi le within the fi le system.</p>
+</blockquote>
+
+<p>The <code>isSameFile()</code> does a few things</p>
+
+<ol>
+<li><p>Even though the method is <code>isSameFile()</code> it can also check whether two directories are the same.</p></li>
+
+<li><p>It first calls the equals method on the two paths passed in, if they return true then <code>isSameFile()</code> returns true (this means even if both paths dont exist but point to the same object this returns true).</p></li>
+
+<li><p>If calling <code>equals()</code> returns false, then it actually hits the file system to compare files/directories. If any of the specified paths dont exist, it will throw an <code>IOException</code></p></li>
+
+<li><p>It only compares that both paths point to same the place in the file system, it does not compare the actual contents of the file.</p></li>
+</ol>
+
+<p>Assume <code>cobra</code> is a sym link to <code>snake</code></p>
+
+<pre><code class="language-java">try {
+System.out.println(Files.isSameFile(Paths.get(&quot;/user/home/cobra&quot;),Paths.get(&quot;/user/home/snake&quot;))); //true
+
+System.out.println(Files.isSameFile(Paths.get(&quot;/user/tree/../monkey&quot;), Paths.get(&quot;/user/monkey&quot;))); // true
+
+System.out.println(Files.isSameFile(Paths.get(&quot;/leaves/./giraffe.exe&quot;),Paths.get(&quot;/leaves/giraffe.exe&quot;))); //true
+
+System.out.println(Files.isSameFile(Paths.get(&quot;/flamingo/tail.data&quot;), Paths.get(&quot;/cardinal/tail.data&quot;))); //false
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h4 id="making-directories-with-createdirectory-and-createdirectories">Making Directories with createDirectory() and createDirectories()</h4>
+
+<blockquote>
+<p>In the NIO.2 API, we can use the Files.createDirectory(Path) method to create a directory. There is also a plural form of the method called createDirectories(), which like mkdirs() creates the target directory along with any nonexistent parent directories leading up to the target directory in the path.</p>
+</blockquote>
+
+<p>If we try to use <code>createDirectory()</code> and we specify a parent directory that does not exist then it will throw an <code>IOException</code>, <code>createDirectories()</code> will simply create the missing parent directory as well as requested directory.</p>
+
+<p>Both methods throw an <code>IOException</code> if the directory already exists, or they can not be created for some reason (no permission).</p>
+
+<pre><code class="language-java">try {
+  Files.createDirectory(Paths.get(&quot;/bison/field&quot;));
+  Files.createDirectories(Paths.get(&quot;/bison/field/pasture/green&quot;));
+} catch (IOException e) {/*Handle file I/O exception...*/}
+</code></pre>
+
+<p>In the first example if the <code>bison</code> directory is missing, Java will throw an exception.</p>
+
+<p>In the second example if <code>bison</code> or <code>field</code> or <code>pastures</code> is missing, Java will create them as well as the target directory, <code>green</code></p>
+
+<h4 id="duplicating-file-contents-with-copy">Duplicating File Contents with copy()</h4>
+
+<p>The primary way to copy directories is via <code>Files.copy(pathSrc, pathDst)</code> although there are other overloaded that allow for copying from a path to an InputStream and vice versa (to an output stream). It is important to note the copy method only does a <em>SHALLOW</em> copy of the directory that is, it only copies the contents of the directory one level down, and does not copy any sub-directories or files in those sub-directories.</p>
+
+<p>All copy methods throw an IOException in cases where; it cannot find directory, it does not have adequate permissions.</p>
+
+<p>You can also specify different type of copy options via the <code>StandardCopyOption</code> enum such as <code>ATOMIC_MOVE</code>, <code>COPY_ATTRIBUTES</code>, <code>REPLACE_EXISTING</code></p>
+
+<pre><code class="language-java">try {
+Files.copy(Paths.get(&quot;/panda&quot;), Paths.get(&quot;/panda-save&quot;)); // copies directory panda --&gt; panda-save
+Files.copy(Paths.get(&quot;/panda/bamboo.txt&quot;),Paths.get(&quot;/panda-save/bamboo.txt&quot;)); // copies files bamboo.txt --&gt; (panda-save) bamboo.txt
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h5 id="copying-files-with-java-io-and-nio-2">Copying Files with java.io and NIO.2</h5>
+
+<p>As mentioned before you can copy files to streams and vice versa.</p>
+
+<pre><code class="language-java">try (InputStream is = new FileInputStream(&quot;source-data.txt&quot;); OutputStream out = new FileOutputStream(&quot;output-data.txt&quot;)) {
+
+// Copy stream data to file
+Files.copy(is, Paths.get(&quot;c:\\mammals\\wolf.txt&quot;));
+
+// Copy file data to stream
+Files.copy(Paths.get(&quot;c:\\fish\\clown.xsl&quot;), out);
+
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h4 id="changing-a-file-location-with-move">Changing a File Location with move()</h4>
+
+<blockquote>
+<p>The Files.move(Path,Path) method moves or renames a file or directory within the file system.</p>
+</blockquote>
+
+<p>As with many other methods, <code>move()</code> throws an IOException in the event the path can not be found or lacks the correct permissions.</p>
+
+<p>The copy method follows links and such, and as with <code>copy()</code> you can specify <code>NOFOLLOW_LINKS</code> , <code>REPLACE_EXISTING</code> or <code>ATOMIC_MOVE</code> to modify the way the paths are moved.</p>
+
+<pre><code class="language-java">try {
+Files.move(Paths.get(&quot;c:\\zoo&quot;), Paths.get(&quot;c:\\zoo-new&quot;)); // this is essentially a re-name: zoo --&gt; zoo-new
+Files.move(Paths.get(&quot;c:\\user\\addresses.txt&quot;), Paths.get(&quot;c:\\zoo-new\\addresses.txt&quot;));
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h4 id="removing-a-file-with-delete-and-deleteifexists">Removing a File with delete() and deleteIfExists()</h4>
+
+<blockquote>
+<p>The Files.delete(Path) method deletes a file or empty directory within the file system. The delete() method throws the checked IOException under a variety of circumstances.</p>
+</blockquote>
+
+<ol>
+<li>If the directory is <em>NOT</em> empty it will throw <code>DirectoryNotEmptyException</code> which is a runtime exception</li>
+<li>If the file or directory does not exist will throw an IOException (deleteIfExists behaves differently)</li>
+<li>If the target is a link, it will delete the link, not the links target directory/file.</li>
+</ol>
+
+<p><code>deleteIfExists</code> is essentially the same as <code>delete</code> however it does <em>NOT</em> throw an exception if the directory or file is missing, instead the method returns a boolean value indicating whether the target was deleted or not.</p>
+
+<pre><code class="language-java">try {
+Files.delete(Paths.get(&quot;/vulture/feathers.txt&quot;));
+Files.deleteIfExists(Paths.get(&quot;/pigeon&quot;));
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h4 id="reading-and-writing-file-data-with-newbufferedreader-and-newbufferedwriter">Reading and Writing File Data with newBufferedReader() and newBufferedWriter()</h4>
+
+<p>The <code>Files</code> class provides some helper methods for common operations such as opening a reader for a file or Writer for writing to a file, you also need  specify a <code>CharSet</code> for the encoding.</p>
+
+<p><code>File.newBufferedReader()</code> and <code>Files.newBufferedWriter</code> both implement the auto-closable interface and can be used in a try-with-resources statement.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/animals/gopher.txt&quot;);
+try (BufferedReader reader = Files.newBufferedReader(path,Charset.forName(&quot;US-ASCII&quot;))) {
+  String currentLine = null; // Read from the stream
+  while((currentLine = reader.readLine()) != null)
+    System.out.println(currentLine);
+  } catch (IOException e) { /*Handle file I/O exception... */}
+</code></pre>
+
+<h4 id="reading-files-with-readalllines">Reading Files with readAllLines()</h4>
+
+<blockquote>
+<p>The Files.readAllLines() method reads all of the lines of a text file and returns the results as an ordered List of String values.</p>
+</blockquote>
+
+<p>You can optionally specify a character set as well, otherwise it will assume the system default set.</p>
+
+<p>Note since this reads the whole file into an <code>ArrayList</code> this can consume a lot of memory if the file is particularly large.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/fish/sharks.log&quot;);
+try {
+  final List&lt;String&gt; lines = Files.readAllLines(path);
+  for(String line: lines) {
+    System.out.println(line);
+  }
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<h2 id="understanding-file-attributes">Understanding File Attributes</h2>
+
+<blockquote>
+<p>In this context, file metadata is data about the file or directory record within the file system and not the contents of the file.
+The one thing to keep in mind while reading file metadata in Java is that some methods are operating system dependent.</p>
+</blockquote>
+
+<h3 id="discovering-basic-file-attributes">Discovering Basic File Attributes</h3>
+
+<p>Common methods for dealing with basic file attributes</p>
+
+<h4 id="reading-common-attributes-with-isdirectory-path-isregularfile-path-and-issymboliclink-path">Reading Common Attributes with isDirectory(path), isRegularFile(path), and isSymbolicLink(path)</h4>
+
+<p>Unlike most other methods, these simply return true or false and do <em>NOT</em> throw exceptions if the target path is missing or invalid.</p>
+
+<p>You can pass a symbolic link to <code>isDirectory</code> abd <code>isRegularFile</code>, in which case Java will follow the link and then determine if it&rsquo;s a valid directory or file, respectively.</p>
+
+<ol>
+<li><p><code>isDirectory</code> returns true if the path is a directory or is a link to a valid directory</p></li>
+
+<li><p><code>isRegularFile</code> returns true if the path is a file or a is link to a valid file.</p></li>
+
+<li><p><code>isSymbolicLink()</code> returns true if the path is a sym link, regardless if the target is there or not.</p></li>
+</ol>
+
+<h4 id="checking-file-visibility-with-ishidden">Checking File Visibility with isHidden()</h4>
+
+<blockquote>
+<p>The Files class includes the Files.isHidden(Path) method to determine whether a file or directory is hidden within the file system.</p>
+</blockquote>
+
+<p>Throws an IOException for numerous reasons, this method will return true if the file is available and is marked as hidden by the OS.</p>
+
+<pre><code class="language-java">try {
+  System.out.println(Files.isHidden(Paths.get(&quot;/walrus.txt&quot;)));
+} catch (IOException e) {
+// Handle file I/O exception...
+}
+</code></pre>
+
+<h4 id="testing-file-accessibility-with-isreadable-and-isexecutable">Testing File Accessibility with isReadable() and isExecutable()</h4>
+
+<blockquote>
+<p>This is important in file systems where the filename can be viewed within a directory, but the user may not have permission to read the contents of the file or execute it.</p>
+</blockquote>
+
+<p>These methods do <em>NOT</em> throw an exception and check whether a file is readable or executable given the current users privileges, meaning running the program as a <code>User</code> might return false, but running the program as an
+<code>Admin</code> might return true.</p>
+
+<pre><code class="language-java">System.out.println(Files.isReadable(Paths.get(&quot;/seal/baby.png&quot;)));
+System.out.println(Files.isExecutable(Paths.get(&quot;/seal/baby.png&quot;)));
+</code></pre>
+
+<h4 id="reading-file-length-with-size">Reading File Length with size()</h4>
+
+<blockquote>
+<p>The Files.size(Path) method is used to determine the size of the fi le in bytes.</p>
+</blockquote>
+
+<p>Represents the size of the file, this may be different to actual size on disk, as the OS may compress the file or fragment the file over various parts of the disk.</p>
+
+<p>While it is permissible to call the <code>size</code> method on a directory it&rsquo;s behaviour is not guaranteed to be consistent, it is probably best to sum the individual files in that directory.</p>
+
+<p>Throws an IOException if the file can not be found or accessed.</p>
+
+<pre><code class="language-java">try {
+  System.out.println(Files.size(Paths.get(&quot;/zoo/c/animals.txt&quot;)));
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<h4 id="managing-file-modifications-with-getlastmodifiedtime-and-setlastmodifiedtime">Managing File Modifications with getLastModifiedTime() and setLastModifiedTime()</h4>
+
+<blockquote>
+<p>The Files class provides the method Files.getLastModifiedTime(Path) , which returns a FileTime object to accomplish this.
+The Files class also provides a mechanism for updating the last-modified date/time ofa file using the Files.setLastModifiedTime(Path,FileTime) method.</p>
+</blockquote>
+
+<p>Note, typically speaking you can alter the <code>lastModifiedTime</code> without altering the contents of the file and vice versa, however generally speaking the OS will alter the <code>lastTimeModified</code> any way.</p>
+
+<p>The <code>FileTime</code> class has a few helper methods for converting the current time to millis, LocalTime, etc</p>
+
+<pre><code class="language-java">try {
+  final Path path = Paths.get(&quot;/rabbit/food.jpg&quot;);
+  System.out.println(Files.getLastModifiedTime(path).toMillis());
+  Files.setLastModifiedTime(path, FileTime.fromMillis(System.currentTimeMillis()));
+  System.out.println(Files.getLastModifiedTime(path).toMillis());
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<h4 id="managing-ownership-with-getowner-and-setowner">Managing Ownership with getOwner() and setOwner()</h4>
+
+<blockquote>
+<p>In this manner, the Files.getOwner(Path) method returns an instance of UserPrincipal that represents the owner of the file within the file system.</p>
+</blockquote>
+
+<p>Both methods take a path and return or set a <code>UserPrinciple</code> where a <code>UserPrinciple</code> represents a user on the system with their respective ownership rights.</p>
+
+<p>In order to get a <code>UserPrinciple</code> we will most likely need to retrieve them via the <code>UserPrincipleLookupService</code>.</p>
+
+<p>Note the OS can arbitrarily reject setting of a new ownership to a given file or directory.</p>
+
+<pre><code class="language-java"> try {
+
+  Path path = Paths.get(&quot;/chicken/feathers.txt&quot;);
+  System.out.println(Files.getOwner(path).getName());
+
+  //change ownership
+  UserPrincipal owner = path.getFileSystem()
+      .getUserPrincipalLookupService().lookupPrincipalByName(&quot;jane&quot;);
+
+  // Output the updated owner information
+  Files.setOwner(path, owner);
+  System.out.println(Files.getOwner(path).getName()); 
+} catch (IOException e) { /* Handle file I/O exception... */ }
+</code></pre>
+
+<h3 id="improving-access-with-views">Improving Access with Views</h3>
+
+<blockquote>
+<p>A view is a group of related attributes for a particular file system type. A file may support multiple views, allowing you to retrieve and update various sets of information about the file.</p>
+</blockquote>
+
+<p>Generally,views provide a more efficient way of dealing with files attributes in bulk, as the view gets all the meta-data for a path in one trip, rather than individually requesting a specific attribute.</p>
+
+<p>The methods above that work in a single or directory as still relevant as there is little to no performance gain when accessing them via a view.</p>
+
+<h4 id="understanding-views">Understanding Views</h4>
+
+<blockquote>
+<p>To request a view, you need to provide both a path to the file or a directory whose information you want to read, as well as a class object, which tells the NIO.2 API method which type of view you would like returned.</p>
+</blockquote>
+
+<p>This is one of the few methods that are not OS agnostic, at least to the developer, that is you must specify a path and either a <code>BasicFileAttributes</code>, <code>DosFileAttributes</code> or <code>PosixFileAttributes</code> for a basic view, a Windows view or a Linux/Mac view. Requesting a view that is different to the underlying OS will throw an <code>IOException</code>.</p>
+
+<p>There are two main methods when trying to obtain a view of attributes.</p>
+
+<ol>
+<li><p><code>Files.readAttributes()</code>, returns a read-only view of the file attributes.</p></li>
+
+<li><p><code>Files.getFileAttributeView()</code> returns the underlying attribute view in  which we can directly manipulate the values.</p></li>
+</ol>
+
+<h4 id="reading-attributes">Reading Attributes</h4>
+
+<blockquote>
+<p>The NIO.2 API provides a Files.readAttributes(Path,Class) method, which returns read-only versions of a file view.</p>
+</blockquote>
+
+<h5 id="basicfileattributes">BasicFileAttributes</h5>
+
+<p>The <code>BasicFileAttributes</code> returns many of the same methods we&rsquo;ve already seen and a few new ones., but only requires one round trip to retrieve all the attributes.</p>
+
+<pre><code class="language-java">public class BasicFileAttributesSample {
+  public static void main(String[] args) throws IOException {
+    Path path = Paths.get(&quot;/turtles/sea.txt&quot;);
+    BasicFileAttributes data = Files.readAttributes(path,BasicFileAttributes.class);
+
+    System.out.println(&quot;Is path a directory? &quot;+data.isDirectory());
+    System.out.println(&quot;Is path a regular file? &quot;+data.isRegularFile());
+    System.out.println(&quot;Is path a symbolic link? &quot;+data.isSymbolicLink());
+    System.out.println(&quot;Path not a file, directory, nor symbolic link? &quot;+ data.isOther());
+
+    System.out.println(&quot;Size (in bytes): &quot;+data.size());
+    System.out.println(&quot;Creation date/time: &quot;+data.creationTime());
+    System.out.println(&quot;Last modified date/time: &quot;+data.lastModifiedTime());
+    System.out.println(&quot;Last accessed date/time: &quot;+data.lastAccessTime());
+    System.out.println(&quot;Unique file identifier (if available): &quot;+ data.fileKey());
+  }
+}
+</code></pre>
+
+<h4 id="modifying-attributes">Modifying Attributes</h4>
+
+<blockquote>
+<p>The NIO.2 API provides the Files.getFileAttributeView(Path,Class) method, which returns a view object that we can use to update the file system–dependent attributes.</p>
+</blockquote>
+
+<h5 id="basicfileattributeview">BasicFileAttributeView</h5>
+
+<p>The view can really on change the file/director&rsquo;s date/time values. We can not really modify the size or  type of the file without directly modifying the file (here where modifying the meta-data)</p>
+
+<pre><code class="language-java">public class BasicFileAttributeViewSample {
+  public static void main(String[] args) throws IOException {
+
+    Path path = Paths.get(&quot;/turtles/sea.txt&quot;);
+    BasicFileAttributeView view = Files.getFileAttributeView(path,BasicFileAttributeView.class);
+    BasicFileAttributes data = view.readAttributes();
+
+    FileTime lastModifiedTime = FileTime.fromMillis(data.lastModifiedTime().toMillis()+10_000);
+
+    view.setTimes(lastModifiedTime,null,null);
+  }
+}
+</code></pre>
+
+<p>Note the <code>setTimes</code> has the following signature</p>
+
+<pre><code class="language-java">setTimes(FileTime lastModifiedTime, FileTime lastAccessTime, FileTime createTime)
+</code></pre>
+
+<p>We can pass <code>null</code> to parameters that we do not wish to alter.</p>
+
+<h2 id="presenting-the-new-stream-methods">Presenting the New Stream Methods</h2>
+
+<blockquote>
+<p>Prior to Java 8, the techniques used to perform complex file operations in NIO.2, such as searching for a file within a directory tree, were a tad verbose and often required you to define an entire class to perform a simple task.</p>
+</blockquote>
+
+<p>Java 8 provided many new helper methods to deal with this as well as making sure they were java.util.stream compatible.</p>
+
+<h3 id="conceptualizing-directory-walking">Conceptualizing Directory Walking</h3>
+
+<p>Generally, most file systems are  structured in some hierarchical fashion where there is a root path (C:// in Windows) or  (/ in Linux/Max), each with files and nesting directories.</p>
+
+<p>Each hierarchy consists of exactly one parent (other than the root path) and either zero, one or more child files or directories.</p>
+
+<p>We often want to find a particular file or a number of files with a certain condition (all files that are older than 2 years). As such we have to <code>walk</code> the file system going to each directory checking of any of the files match, then we go into the sub-directories and see if any the files match and so on.</p>
+
+<h3 id="selecting-a-search-strategy">Selecting a Search Strategy</h3>
+
+<p>There are two main strategies when traversing a file system (or any tree like structure)</p>
+
+<ol>
+<li><p><code>depth-first</code> selects a directory, checks all files then goes into a sub-directory and goes further down into any other sub-directories. Once it has reached the <em>bottom</em> or max depth, it then goes back to root directory and then checks the next directory and it&rsquo;s sub-directories.</p></li>
+
+<li><p><code>breadth-first</code> search starts at the root and processes all elements of each particular depth, or distance from the root, before proceeding to the next depth level.</p></li>
+</ol>
+
+<p>While useful to know, neither strategy has to be known in detail for the exam, except Java uses the <em>DEPTH FIRST</em> by default.</p>
+
+<h3 id="walking-a-directory">Walking a Directory</h3>
+
+<blockquote>
+<p>The Files.walk(path) method returns a Stream<Path> object that traverses the directory in a depth-first, lazy manner.</p>
+</blockquote>
+
+<p>As streams are lazy loaded, nothing actually happens until we call a terminal operation, meaning passing in an invalid path, will only be detected when we try to actually operate on the stream.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/bigcats&quot;);
+
+try {
+  Files.walk(path)
+       .filter(p -&gt; p.toString().endsWith(&quot;.java&quot;))
+       .forEach(System.out::println);
+} catch (IOException e) { /* Handle file I/O exception... */}
+
+//prints assuming the are the only files ending in .java:
+/bigcats/version1/backup/Lion.java
+/bigcats/version1/Lion.java
+/bigcats/version1/Tiger.java
+/bigcats/Lion.java
+</code></pre>
+
+<p>There is an overloaded method of walk, that is <code>walk(Path, int)</code> where the <code>int</code> represents the depth (how many sub-directories) to traverse. The max being Integer.MAX_VALUE</p>
+
+<h4 id="avoiding-circular-paths">Avoiding Circular Paths</h4>
+
+<p>Unlike most other methods in the NIO.2 package, <code>walk()</code> does <em>NOT</em> follow symbolic links as this could lead to a infinite loop. You can optionally specify the <code>FOLLOW_LINKS</code> option to follow links.</p>
+
+<p>If Java detects it has gone in a loop, it will throw a <code>FileSystemLoopException</code></p>
+
+<h3 id="searching-a-directory">Searching a Directory</h3>
+
+<blockquote>
+<p>The Files.find(Path,int,BiPredicate) method behaves in a similar manner as the Files.walk() method, except that it requires the depth value to be explicitly set along with a BiPredicate to filter the data.</p>
+</blockquote>
+
+<p>You can also optionally specify a <code>FOLLOW_LINKS</code> to follow symbolic links.</p>
+
+<p>We can use the BiPredicate to filter rather than explicitly calling our filter method as we did with <code>Files.walk()</code></p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/bigcats&quot;);
+long dateFilter = 1420070400000l;
+
+try {
+  Stream&lt;Path&gt; stream = Files.find(path, 10,(p,a) -&gt; p.toString().endsWith(&quot;.java&quot;)
+      &amp;&amp; a.lastModifiedTime().toMillis()&gt;dateFilter);
+  stream.forEach(System.out::println);
+} catch (Exception e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<p>Here the value types are:</p>
+
+<p>p -&gt; path instance
+a -&gt; BasicFileAttributes</p>
+
+<h3 id="listing-directory-contents">Listing Directory Contents</h3>
+
+<p>To list a directory you can use <code>Files.list(path)</code>. However the <code>list()</code> method returns a stream of the selected path, hence you can perform other operations such  as filtering or mapping like any other stream.</p>
+
+<p>It is similar to the old <code>listFiles()</code> method on the <code>java.io.file</code> class, but the NIO.2 version returns a stream not an array.</p>
+
+<pre><code class="language-java">try {
+  Path path = Paths.get(&quot;ducks&quot;);
+  Files.list(path)
+       .filter(p -&gt; !Files.isDirectory(p))
+       .map(p -&gt; p.toAbsolutePath())
+       .forEach(System.out::println);
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<h3 id="printing-file-contents">Printing File Contents</h3>
+
+<p><code>Files.lines(path)</code> is similar to the new <code>BufferedReader.lines()</code> method in that both return a java  8 stream of strings, <code>Stream&lt;String&gt;</code> this can be beneficial in reading large files, as each line is lazy loaded, meaning the entire file does not have to be read before it can be processed.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/fish/sharks.log&quot;);
+try { Files.lines(path).forEach(System.out::println);} 
+catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<p>As with streams, this allows for a more functional way of dealing with files which has the benefit of; being lazily loaded and easier to read.</p>
+
+<pre><code class="language-java">Path path = Paths.get(&quot;/fish/sharks.log&quot;);
+try {
+  System.out.println(Files.lines(path)
+      .filter(s -&gt; s.startsWith(&quot;WARN &quot;))
+      .map(s -&gt; s.substring(5))
+      .collect(Collectors.toList()));
+} catch (IOException e) {/* Handle file I/O exception... */}
+</code></pre>
+
+<h2 id="comparing-legacy-file-and-nio-2-methods">Comparing Legacy File and NIO.2 Methods</h2>
+
+<p><img src="http://i.imgur.com/79iXgT1.png" alt="Method Differences" /></p>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%209%3a%20NIO.2&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f&amp;title=OCJP%20Chapter%209%3a%20NIO.2" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%209%3a%20NIO.2&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f07%2f04%2fchapter9%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://verric.github.io/2017/07/03/chapter8/" title="OCJP Chapter 8: IO">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://verric.github.io/2017/07/10/chapter10/" title="OCJP Chapter 10: JDBC">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//shortname.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/31/javainnerclasses/">Java Inner classes</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/10/chapter10/">OCJP Chapter 10: JDBC</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/04/chapter9/">OCJP Chapter 9: NIO.2</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/03/chapter8/">OCJP Chapter 8: IO</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/01/chapter7/">OCJP Chapter 7: Concurrency</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/27/chapter6/">OCJP Chapter 6: Exceptions and Assertions</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/26/chapter5/">OCJP Chapter 5: Dates, Strings and Localisations</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/21/angular-bootstrap-css/">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/14/chapter4/">OCJP Chapter 4: Functional Programming</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/11/chapter3/">OCJP Chapter 3: Generics and Collections</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="https://verric.github.io/tags/programming">programming</a></li><li><a href="https://verric.github.io/tags/study-notes">study-notes</a></li><li><a href="https://verric.github.io/tags/angular2">angular2</a></li><li><a href="https://verric.github.io/tags/bootstrap">bootstrap</a></li><li><a href="https://verric.github.io/tags/inner-classes">inner-classes</a></li><li><a href="https://verric.github.io/tags/introduction">introduction</a></li><li><a href="https://verric.github.io/tags/jackson">jackson</a></li><li><a href="https://verric.github.io/tags/java">java</a></li><li><a href="https://verric.github.io/tags/java-8">java-8</a></li><li><a href="https://verric.github.io/tags/json">json</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+<a href="https://verric.github.io/disclaimer/">Disclaimer</a> <i>&middot;</i>
+
+<a href="https://verric.github.io/terms/">Terms</a> 
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  code with <i class='fa fa-heart'></i>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; 2017 Copyright my blog
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="https://verric.github.io/js/jquery.min.js"></script>
+<script src="https://verric.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://verric.github.io/js/highlight.pack.js"></script>
+<script src="https://verric.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER =  false , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

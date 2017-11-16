@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>OCJP Chapter 3: Generics and Collections  &middot; Verric&#39;s blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="OCJP, java, study-notes, chapter 3, ">
+
+<link rel="author" href="http://plus.google.com/+Myprofile">
+
+
+<meta property="og:title" content="OCJP Chapter 3: Generics and Collections  &middot; Verric&#39;s blog ">
+<meta property="og:site_name" content="Verric&#39;s blog"/>
+<meta property="og:url" content="https://verric.github.io/2017/06/11/chapter3/" />
+<meta property="og:locale" content="en">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-06-11T15:14:44&#43;10:00" />
+<meta property="og:article:modified_time" content="2017-06-11T15:14:44&#43;10:00" />
+
+  
+    
+<meta property="og:article:tag" content="OCJP">
+    
+<meta property="og:article:tag" content="java">
+    
+<meta property="og:article:tag" content="study-notes">
+    
+<meta property="og:article:tag" content="chapter 3">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Myprofile" />
+<meta name="twitter:creator" content="@Myprofile" />
+<meta name="twitter:title" content="OCJP Chapter 3: Generics and Collections" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://verric.github.io/2017/06/11/chapter3/" />
+<meta name="twitter:domain" content="https://verric.github.io/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "OCJP Chapter 3: Generics and Collections",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+Myprofile?rel=author"
+    },
+    "datePublished": "2017-06-11",
+    "description": "",
+    "wordCount": 5720
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="https://verric.github.io/2017/06/11/chapter3/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://verric.github.io/touch-icon-144-precomposed.png">
+<link rel="icon" href="https://verric.github.io/favicon.png">
+<meta name="generator" content="Hugo 0.30.2" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="https://verric.github.io/css/bootswatch/paper/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://verric.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://verric.github.io/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="https://verric.github.io/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+        <a class="navbar-brand" href="https://verric.github.io/">
+          Verric&#39;s blog
+          
+          
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="https://verric.github.io/about" >
+                <i class='fa fa-road'></i>
+                About
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="https://verric.github.io/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>OCJP Chapter 3: Generics and Collections
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-06-11">11 Jun, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 27 min
+  &middot; (5720 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%203%3a%20Generics%20and%20Collections&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f&amp;title=OCJP%20Chapter%203%3a%20Generics%20and%20Collections" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%203%3a%20Generics%20and%20Collections&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="https://verric.github.io/tags/programming" class="label label-primary">programming</a>
+  
+  <a href="https://verric.github.io/tags/study-notes" class="label label-primary">study-notes</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <p>Summary notes for Chapter 3
+</p>
+
+<!-- toc -->
+
+<h1 id="chapter-3-generics-and-collections">Chapter 3: Generics and Collections</h1>
+
+<p>Chapter goals:</p>
+
+<blockquote>
+<p>Generics and Collections:</p>
+
+<ol>
+<li><p>Create and use a generic class</p></li>
+
+<li><p>Create and use ArrayList, TreeSet, TreeMap and ArrayDeque objects</p></li>
+
+<li><p>Use java.util.Comparator and java.lang.Comparable interfaces</p></li>
+
+<li><p>Iterate using forEach methods on Streams and List</p></li>
+
+<li><p>Use method references with Streams</p></li>
+
+<li><p>Advanced Java Class Design</p></li>
+
+<li><p>Create and use lambda expressions</p></li>
+
+<li><p>Generics and Collections</p></li>
+
+<li><p>Filter a collection using lambda expressions</p></li>
+
+<li><p>Java Stream API</p></li>
+
+<li><p>Use of merge()and flatMap()methods of the Stream API</p></li>
+</ol>
+</blockquote>
+
+<h1 id="reviewing-oca-collections">Reviewing OCA Collections</h1>
+
+<h2 id="array-and-arraylist">Array and ArrayList</h2>
+
+<p><em>Arrays</em>
+- Not part of the Java Collections framework
+- Can store primitives
+- Fixed size
+- Only inherits from <code>java.lang.object</code>
+- Only field is <code>length</code></p>
+
+<p><em>ArrayList</em>
+- Part of the Java Collections framework
+- CANNOT store primitives (only objects)
+- Can dynamically shrink and grow as needed
+- Is an implementation of the List <code>interface</code>
+- Uses generics to ensure consistent type</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = Arrays.asList(arrayRef);
+</code></pre>
+
+<p>Returns a <code>List</code> based implementation that returns a fixed size list, not an <code>ArrayList</code></p>
+
+<p>While adding and removing from &lsquo;list&rsquo; throws an <code>UnsupportedOperationException</code> as you just like a normal array you can not perform actions that would change the length of the array.</p>
+
+<p>However you can still use methods like <code>List.set()</code> to change the value at a certain index, just like a normal array</p>
+
+<h2 id="searching-and-sorting">Searching and Sorting</h2>
+
+<p><em>Arrays</em></p>
+
+<p>Use the <code>Arrays</code> helper class to sort and search on arrays.</p>
+
+<p>Sorting:</p>
+
+<pre><code class="language-java">int[] nums = new int[]{1,6,5,4,8,9,7};
+Arrays.sort(nums); // 1,4,5,6,7,8,9
+</code></pre>
+
+<p>Searching:</p>
+
+<pre><code class="language-java">Arrays.binarySearch(nums, 6) // returns 1 (6 is at index 1)
+Arrays.binarySearch(nums, 3) // returns -2
+</code></pre>
+
+<p>The second example returns -2 because if it were to exist it would need to be inserted at index 1, negating this gives us -1 and subtracting 1 gives us -2, refer to OCA notes or JavaDocs.</p>
+
+<p><em>ArrayList</em></p>
+
+<p>Uses the <code>Collections</code> helper class to sort and search.</p>
+
+<p>Sorting:</p>
+
+<pre><code class="language-java">List&lt;Integer&gt; numbers = new ArrayList&lt;&gt;(Arrays.asList(9,7,5,3));
+Collections.sort(numbers); // numbers = [3,5,7,9]
+</code></pre>
+
+<p>Searching:</p>
+
+<pre><code class="language-java">Collections.binarySearch(numbers, 3); // returns 0
+Collections.binarySearch(numbers, 2); // returns -1
+</code></pre>
+
+<h2 id="wrapper-class-and-autoboxing">Wrapper Class and AutoBoxing</h2>
+
+<p><em>Boxing</em> is when the JVM automatically takes a primitive type and turns it into it&rsquo;s wrapper type</p>
+
+<ul>
+<li>int &ndash;&gt; Integer</li>
+<li>double &ndash;&gt; Double</li>
+<li>float &ndash;&gt; Float</li>
+<li>char &ndash;&gt; Character</li>
+</ul>
+
+<p><em>Unboxing</em> occurs when the JVM will take the wrapper type and change it into it&rsquo;s primitive type</p>
+
+<p>AutoBoxing often occurs when dealing with primitives types and generics, since generics cant hold primitive types Java will automatically convert it into its wrapper type.</p>
+
+<h3 id="integer-nuance">Integer Nuance</h3>
+
+<p>Given the following</p>
+
+<pre><code class="language-java">List&lt;Integer&gt; numbers = new ArrayList&lt;Integer&gt;();
+numbers.add(1);
+numbers.add(new Integer(3));
+numbers.add(new Integer(5));
+numbers.remove(1); // tricky one returns 3
+numbers.remove(new Integer(5)); // returns true
+System.out.println(numbers); // returns [1,5]
+</code></pre>
+
+<p>The above line marked &lsquo;tricky one&rsquo; is marked as such because <code>ArrayList</code> has an overloaded <code>remove</code> methods</p>
+
+<pre><code class="language-java">public E remove(int index); // belongs to java.util.List
+public boolean remove (Object o); // belongs to java.util.Collection
+</code></pre>
+
+<p>When type matching parameters Java always looks for the most direct type match first and then &laquo;broadens&raquo; its type. As all literals in Java are treated as primitives (String being an exception), Java interprets the argument type to
+<code>numbers.remove(1)</code> to be of type <code>int</code> and as such calls <code>remove(int index)</code>.</p>
+
+<p>In the following line we pass in an <code>Integer</code> to the remove method, while an Integer isn&rsquo;t exactly an <code>Object</code> an Integer <code>is-an</code> Object and hence calls the second remove method</p>
+
+<h2 id="the-diamond-operator">The Diamond Operator</h2>
+
+<p>Since Java 7 (JDK 1.7) Java has had the capacity to infer <code>right-side</code> types meaning it can infer types that are on the right hand side of the assignment operator (=). This is particularly useful for generics are we no longer have to re-declare our generic types making the code look cleaner.</p>
+
+<p>Prior to Java 7</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = new ArrayList&lt;String&gt;();
+Map&lt;String, Map&lt;String, Object&gt;&gt; cache = new HashMap&lt;String, HashMap&lt;String,Object&gt;&gt;();
+</code></pre>
+
+<p>Since Java 7 we can remove the types from the angled brackets on the right hand side.</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = new ArrayList&lt;&gt;();
+Map&lt;String, Map&lt;String, Object&gt;&gt; cache = new HashMap&lt;&gt;();
+</code></pre>
+
+<p>Hence the two angle brackets form a &lsquo;diamond&rsquo; shape. Magical :/</p>
+
+<h1 id="working-with-generics">Working With Generics</h1>
+
+<p>Generics were introduced in Java 5 as a way to allow a way to produce code that is type agnostic (the code doesn&rsquo;t care about the type it deals with), such as Lists, Sets and Maps, while still allowing some <code>type safety</code>.</p>
+
+<p>Java uses angle brackets and parameterized types to form a generic type.</p>
+
+<p>Unfortunately there are a few caveats and nuance to ensure backwards compatibility (being able to write legal Java 4 code on Java 5 JDK/JRE) and can be one of the most common sources of complexity in everyday Java code.</p>
+
+<p>Java generics are only enforced at by compile by  (none other than) the compiler, and does not type checking at runtime.</p>
+
+<h2 id="generic-classes">Generic Classes</h2>
+
+<p>Example:</p>
+
+<pre><code class="language-java">public class Crate&lt;T&gt; {
+  private T contents;
+  public T emptyCrate() {
+    return contents;
+  }
+  public void packCrate(T contents) {
+    this.contents = contents;
+  }
+}
+</code></pre>
+
+<p>Here we declare a formal type parameter of <T>. This means you can instantiate the <code>Crate</code> class with ONE specific type</p>
+
+<h3 id="naming-conventions-for-java-generics">Naming Conventions for Java Generics</h3>
+
+<p>While a type parameter can be named anything you want, they are generally declared via a single upper-case letter. There are also a few conventions:</p>
+
+<ul>
+<li>E - for element, usually used in collections</li>
+<li>K - for key, usually when relating to keys in a map</li>
+<li>V - for value, usually also in a a map</li>
+<li>N - for number</li>
+<li>T - for type, for any type of value</li>
+<li>S,V,U - when declaring multiple generic types</li>
+</ul>
+
+<p>Here is a class that takes two generic values</p>
+
+<pre><code class="language-java">public class SizeLimitedCrate&lt;T, U&gt; {
+  private T contents;
+  private U unit;
+  public SizeLimitedCrate(T contents, U unit) {
+    this.contents = contents;
+    this.unit = unit;
+  }
+}
+</code></pre>
+
+<h3 id="type-erasure">Type Erasure</h3>
+
+<p>To ensure compatibility with pre-Java-5 code, all generic types are lost after compile time, that is the type parameter is only used by the compiler to ensure in the source code that references match the parameter type, there are no checks at runtime.</p>
+
+<p>This means after compile our <code>Crate</code> class above will be transformed into something effectively like this.</p>
+
+<pre><code class="language-java">public class Crate {
+  private Object contents;
+
+  public Object emptyCrate() {
+    return contents;
+  }
+
+  public void packCrate(Object contents) {
+    this.contents = contents;
+  }
+}
+</code></pre>
+
+<p>Here all references to <code>T</code> have been replaced by <code>Object</code>.</p>
+
+<p>Java will also place the necessary casts from <code>Object</code> to the type specified as well, in the caller code.</p>
+
+<h2 id="generic-interfaces">Generic Interfaces</h2>
+
+<p>Interfaces can also declare a generic type parameter</p>
+
+<pre><code class="language-java">public interface Shippable&lt;T&gt; {
+  void ship(T t);
+}
+</code></pre>
+
+<p>You can consume the generic interface just like you normally would with a generic class.</p>
+
+<pre><code class="language-java">public MyClass implements Shippiable&lt;Item&gt; {
+  public void ship(Item item)
+}
+</code></pre>
+
+<h3 id="limitations-of-generics">Limitations of Generics</h3>
+
+<ol>
+<li>Cannot create a new instance of the parameter type <code>&lt;T&gt;</code> as at runtime you would just be creating an instance of <code>Object</code></li>
+<li>Cannot create a static array, as once again you&rsquo;d be creating an array of <code>Object</code>s</li>
+<li>Cannot use the <code>instanceof</code> operator as types are lost at runtime</li>
+<li>Can not use primitives as a generic type parameter. This is because at runtime all types become <code>Object</code>, primitives are the only types in Java that do not intrinsically inherit from <code>java.lang.Object</code></li>
+<li>Cannot create a static variable as a type parameter.</li>
+<li>Have overloaded generic method signatures. The methods will appear to be identical after type erasure.</li>
+</ol>
+
+<h2 id="generic-methods">Generic methods</h2>
+
+<p>Methods can be generic as well, if the method is not using a type parameter specified in its class or interface than it must explicitly state its own type parameter, this declaration is placed just before the return type.</p>
+
+<pre><code class="language-java">public static &lt;T&gt; Crate&lt;T&gt; ship(T t) {
+  System.out.println(&quot;Preparing &quot; + t);
+  return new Crate&lt;T&gt;();
+}
+</code></pre>
+
+<p>The type parameter declaration must enclosed in angled brackets, else it will fail to compile.</p>
+
+<h3 id="invoking-generic-methods">Invoking Generic methods</h3>
+
+<p>You can invoke the above generic method like you normally would with any other method.</p>
+
+<pre><code class="language-java">Crate&lt;String&gt; output = MyClass.ship(&quot;hello&quot;);
+</code></pre>
+
+<p>Or you can explicitly declare the type parameter</p>
+
+<pre><code class="language-java">Crate&lt;String&gt; output = MyClass.&lt;String&gt;ship(&quot;hello&quot;);
+</code></pre>
+
+<p>The above is legal but no longer required as Java can infer the right hand side type from the reference type.</p>
+
+<h2 id="interacting-with-legacy-code">Interacting with Legacy Code</h2>
+
+<blockquote>
+<p>Collections written without generics are also known as raw collections.</p>
+</blockquote>
+
+<p>Raw Collections or classes that use <code>raw types</code> can not be used to enforce compile time safety, this is because all raw types accept <code>Object</code> or return  <code>Object</code> and as such often run into <code>CastClassException</code> at runtime.</p>
+
+<pre><code class="language-Java">public static void main(String[] args) {
+  List unicorns = new ArrayList();
+  unicorns.add(new Unicorn());
+  printDragons(unicorns);
+}
+
+private static void printDragons(List&lt;Dragon&gt; dragons) {
+  for (Dragon dragon: dragons) { // ClassCastException
+  System.out.println(dragon);
+  }
+}
+</code></pre>
+
+<p>Here the <code>List</code> of unicorns uses a raw type (it does not specify a generic type to use) as such we can add anything we can.</p>
+
+<p>Even though we pass the <code>List</code> to the <code>printDragons</code> method that <em>DOES</em> specify a type (Dragons), due to type erasure <code>List</code> and <code>List&lt;Dragon&gt;</code> look exactly the same to the compiler, hence we can pass in the list of unicorns, succesfully.</p>
+
+<p>However at runtime we find out we don&rsquo;t have unicorns, we have dragons :(</p>
+
+<p>We still get a <code>ClassCastException</code> even if we reverse the code, where we pass in a generic <code>List</code> to a method that takes a raw type.</p>
+
+<pre><code class="language-Java">public static void main(String[] args) {
+  List&lt;Unicorn&gt; unicorns = new ArrayList&lt;&gt;();
+  unicorns.add(new Unicorn());
+  printDragons(unicorns);
+}
+
+private static void printDragons(List dragons) {
+  for (Dragon dragon: dragons) { // ClassCastException
+  System.out.println(dragon);
+  }
+}
+</code></pre>
+
+<h3 id="autoboxing-with-raw-collections">AutoBoxing With Raw Collections</h3>
+
+<pre><code class="language-java">public class LegacyAutoboxing {
+  public static void main(String[] args) {
+  List numbers = new ArrayList();
+  numbers.add(5); //works fine as Java converts to an Integer
+  int result = numbers.get(0); // DOES NOT COMPILE
+  }
+}
+</code></pre>
+
+<p>The above fails to compile because raw types return <code>Object</code>, as such the compiler knows an <code>Object</code> can not be referenced by a primitive <code>int</code> and falls over.</p>
+
+<p>Autoboxing only works if we use generics as the compiler knows type at compile time, it can box and unbox for us.</p>
+
+<h2 id="type-bounds">Type Bounds</h2>
+
+<blockquote>
+<p>A bounded parameter type is a generic type that specifies a bound for the generic.</p>
+
+<p>A wildcard generic type is an unknown generic type represented with a question mark(?).</p>
+</blockquote>
+
+<p>Wilcards are present as a way of denoting any type. We have to use a wild card instead of <code>Object</code> otherwise the compiler will enforce that the type being passed is of <code>Object</code> as generics are not covariant.</p>
+
+<p>The <code>?</code> essentially represents an object, as the only class Java is guaranteed to know the passed in type inherits from is <code>Object</code> but a lack of covariance means we cant specify the type bound as <code>Object</code></p>
+
+<pre><code class="language-java">public static void printList(List&lt;Object&gt; list) {
+  for (Object x: list) System.out.println(x);
+}
+
+public static void main(String[] args) {
+List&lt;String&gt; keywords = new ArrayList&lt;&gt;();
+keywords.add(&quot;java&quot;);
+printList(keywords); // DOES NOT COMPILE
+}
+</code></pre>
+
+<p>The above fails to compile because <code>&lt;String&gt; != &lt;Object&gt;</code>.</p>
+
+<p>The above will only work of we pass in an array list of <code>Object</code>. <code>List&lt;Object&gt; keywords = new ArrayList&lt;&gt;();</code></p>
+
+<p>Bounds have three main forms:</p>
+
+<ol>
+<li>no bounds &ndash;&gt; anything</li>
+<li>Upper bounds &ndash;&gt; anything that inherits from a certain type</li>
+<li>Lower bounds &ndash;&gt; anything that inherits from this type</li>
+</ol>
+
+<h4 id="unbounded-wildcards">Unbounded Wildcards</h4>
+
+<p>A unbound wilcard means we can pass in any type.</p>
+
+<pre><code class="language-java">public static void printList(List&lt;?&gt; list) {
+for (Object x: list) System.out.println(x);
+}
+
+public static void main(String[] args) {
+List&lt;String&gt; keywords = new ArrayList&lt;&gt;();
+keywords.add(&quot;java&quot;);
+printList(keywords);
+}
+</code></pre>
+
+<p>The above compiles and runs fine. It is important to remember that when using <code>&lt;?&gt;</code> we can only use methods that are on the <code>Object</code> class</p>
+
+<h4 id="upper-bounded-wildcards">Upper-Bounded Wildcards</h4>
+
+<p>As generics are not covariant we can&rsquo;t sat:</p>
+
+<pre><code class="language-java">ArrayList&lt;Number&gt; list = new ArrayList&lt;Integer&gt;(); // DOES NOT COMPILE
+</code></pre>
+
+<p>So we must explicitly tell the compiler, we want anything that is a number.</p>
+
+<pre><code class="language-java">List&lt;? extends Number&gt; list = new ArrayList&lt;Integer&gt;();
+</code></pre>
+
+<p>This can be read as &laquo;Anything that extends Number&raquo; which means we can pass in: Integer, Long, Float, Double, etc..</p>
+
+<p>When using an upperbound we can only use methods that refer to the upper bound. That is, in this case no matter what we pass in, we can only use methods that are on the <code>Number</code> class</p>
+
+<pre><code class="language-java">public static long total(List&lt;? extends Number&gt; list) {
+  long count = 0;
+  for (Number number: list)
+    count += number.longValue();
+  return count;
+}
+</code></pre>
+
+<p>After compile time Java converts the above into the below to ensure backwards compatibility on older JVM versions.</p>
+
+<pre><code class="language-java">public static long total(List list) {
+  long count = 0;
+  for (Object obj: list) {
+    Number number = (Number) obj;
+    count += number.longValue();
+  }
+  return count;
+}
+</code></pre>
+
+<p>An interesting property when working with unbound and upper-bound generics and Lists, is that the collection becomes immutable, this is due to the fact, the compiler does not know the exact type being inserted into the list</p>
+
+<pre><code class="language-java">static class Sparrow extends Bird { }
+static class Bird { }
+
+public static void main(String[] args) {
+  List&lt;? extends Bird&gt; birds = new ArrayList&lt;Bird&gt;();
+  birds.add(new Sparrow()); // DOES NOT COMPILE
+  birds.add(new Bird()); // DOES NOT COMPILE
+}
+</code></pre>
+
+<h4 id="lower-bounded-wildcards">Lower-Bounded Wildcards</h4>
+
+<p>Lower bounds are the opposite of upper bounds, that is we can pass anything that is a super class of the type specified</p>
+
+<p>Lower bound classes do not suffer from having to be logically immutable, that is we can alter the collection that has being passed in.</p>
+
+<pre><code class="language-java">public static void addSound(List&lt;? super String&gt; list) { // lower bound
+  list.add(&quot;quack&quot;);
+}
+</code></pre>
+
+<blockquote>
+<p>With a lower bound, we are telling Java that the list will be a list of String objects or a list of some objects that are a superclass of String. Either way, it is safe to add a String to that list.</p>
+</blockquote>
+
+<h3 id="putting-it-all-together">Putting it all together</h3>
+
+<p>//TODO come back to this</p>
+
+<p>Using Lists, Sets, Maps, and Queues</p>
+
+<hr />
+
+<blockquote>
+<p>A collection is a group of objects contained in a single object.</p>
+</blockquote>
+
+<p>There are four main collection types</p>
+
+<ul>
+<li>List:</li>
+</ul>
+
+<blockquote>
+<p>A list is an ordered collection of elements that allows duplicate entries. Elements in a list can be accessed by an int index.</p>
+</blockquote>
+
+<p><br/></p>
+
+<ul>
+<li>Set</li>
+</ul>
+
+<blockquote>
+<p>A set is a collection that does not allow duplicate entries.</p>
+</blockquote>
+
+<p><br/></p>
+
+<ul>
+<li>Queue</li>
+</ul>
+
+<blockquote>
+<p>A queue is a collection that orders its elements in a specific order for processing. A typical queue processes its elements in a first-in, first-out order, but other orderings are possible.</p>
+</blockquote>
+
+<p><br/></p>
+
+<ul>
+<li>Map</li>
+</ul>
+
+<blockquote>
+<p>Map: A map is a collection that maps keys to values, with no duplicate keys allowed. The elements in a map are key/value pairs.</p>
+</blockquote>
+
+<p>All the main types except map inherit from the <code>Collection</code> interface.</p>
+
+<h3 id="common-collection-methods">Common Collection methods</h3>
+
+<h4 id="add">add()</h4>
+
+<p>Inserts an element into that collection type, returns true if the element was successfully inserted.</p>
+
+<p><code>boolean add(E element)</code></p>
+
+<p>In some cases such as lists the method always returns true, in other cases like sets, it depends if the elements was actually added.</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = new ArrayList&lt;&gt;();
+System.out.println(list.add(&quot;Sparrow&quot;)); // true
+System.out.println(list.add(&quot;Sparrow&quot;)); // true
+
+Set&lt;String&gt; set = new HashSet&lt;&gt;();
+System.out.println(set.add(&quot;Sparrow&quot;)); // true
+System.out.println(set.add(&quot;Sparrow&quot;)); // false
+</code></pre>
+
+<h4 id="remove">remove()</h4>
+
+<p>The remove methods, naturally, removes an element from the collection.</p>
+
+<p><code>boolean remove(Object object)</code></p>
+
+<p>The remove method takes an object,casts it to the collections type and then calls <code>equals</code> on each object in the collection, if it returns true it removes from the collection.</p>
+
+<p>The remove method returns after the first successful removal of an element or once it reaches the end of the collection.</p>
+
+<pre><code class="language-java">List&lt;String&gt; birds = new ArrayList&lt;&gt;();
+birds.add(&quot;hawk&quot;); // [hawk]
+birds.add(&quot;hawk&quot;); // [hawk, hawk]
+
+System.out.println(birds.remove(&quot;cardinal&quot;)); // prints false
+System.out.println(birds.remove(&quot;hawk&quot;)); // prints true
+System.out.println(birds); // [hawk]
+</code></pre>
+
+<h4 id="isempty-and-size">isEmpty() and size()</h4>
+
+<p>Returns <code>true</code> if the collection has no element, while the other returns how many elements are in the collection.</p>
+
+<pre><code class="language-java">boolean isEmpty()
+int size()
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code class="language-java">System.out.println(birds.isEmpty()); // true
+System.out.println(birds.size()); // 0
+birds.add(&quot;hawk&quot;); // [hawk]
+birds.add(&quot;hawk&quot;); // [hawk, hawk]
+
+System.out.println(birds.isEmpty()); // false
+System.out.println(birds.size()); // 2
+</code></pre>
+
+<h4 id="clear">clear()</h4>
+
+<p>Removes all the elements in a collection</p>
+
+<p><code>void clear()</code></p>
+
+<p>Example:</p>
+
+<pre><code class="language-java">List&lt;String&gt; birds = new ArrayList&lt;&gt;();
+birds.add(&quot;hawk&quot;); // [hawk]
+birds.add(&quot;hawk&quot;); // [hawk, hawk]
+
+System.out.println(birds.isEmpty()); // false
+System.out.println(birds.size()); // 2
+
+birds.clear(); // []
+
+System.out.println(birds.isEmpty()); // true
+System.out.println(birds.size()); // 0
+</code></pre>
+
+<h4 id="contains">contains()</h4>
+
+<p>Checks whether an elements is within the collection</p>
+
+<p><code>boolean contains(Object object)</code></p>
+
+<p>calls upon the objects <code>equal</code> method to see i it is the same.</p>
+
+<pre><code class="language-java">List&lt;String&gt; birds = new ArrayList&lt;&gt;();
+birds.add(&quot;hawk&quot;); // [hawk]
+System.out.println(birds.contains(&quot;hawk&quot;)); // true
+System.out.println(birds.contains(&quot;robin&quot;)); // false
+</code></pre>
+
+<h3 id="using-the-list-interface">Using the List Interface</h3>
+
+<blockquote>
+<p>You use a list when you want an ordered collection that can contain duplicate entries.</p>
+</blockquote>
+
+<p>Lists allow for an ordered collection of elements. Lists do permit duplicates to be entered. Like arrays, the primary way to access, insert or delete elements is via an index, unlike arrays lists can be dynamic, that is they can grow and shrink over the course of time.</p>
+
+<h4 id="comparing-list-implementations">Comparing List Implementations</h4>
+
+<p><em>ArrayList</em></p>
+
+<p>ArrayList is one of the most popular collection types as it is similar to an array but has the benefits of being a list, such as dynamic sizing and being part of the collection framework.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Elements are accessed in constant time, (always takes the same time to retrieve an element) this is because we request an element via an index.</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Adding and removing elements is slightly slower than reading an element.</li>
+</ul>
+
+<p><em>Conclusion</em></p>
+
+<ul>
+<li>ArrayList is often suited when you are reading more than you are writing</li>
+</ul>
+
+<p><em>LinkedList</em></p>
+
+<p>LinkedList implements both the <code>List</code> interface and the <code>Queue</code> interface, you still access elements via their index but to different extents</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Elements at the start and end of the list can be inserted, removed or access in constant time</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Accessing arbitrary  elements in the list is linear time, (slower).</li>
+</ul>
+
+<p><em>Conclusion</em></p>
+
+<ul>
+<li><code>LinedList</code> is helpful when you want to use a list as a queue, but still need to occasionally access elements that are not in the middle of the list.</li>
+</ul>
+
+<p><code>Vector</code> and <code>Stack</code> or outdated versions of <code>ArrayList</code> and <code>ArrayDequeue</code> respectively, but may appear in legacy code.</p>
+
+<h4 id="working-with-list-methods">Working with List methods</h4>
+
+<p>All list implementations have the following methods as well as the one inherited from <code>Collection</code></p>
+
+<p><img src="http://i.imgur.com/XzjVu8V.png" alt="List methods" /></p>
+
+<p>Examples:</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add(&quot;SD&quot;); // [SD]
+list.add(0, &quot;NY&quot;); // [NY,SD]
+list.set(1, &quot;FL&quot;); // [NY,FL]
+list.remove(&quot;NY&quot;); // [FL]
+list.remove(0); // []
+</code></pre>
+
+<h3 id="using-the-set-interface">Using the Set Interface</h3>
+
+<p>Sets are used when you do <em>NOT</em> want duplicates in your collection. Some <code>Set</code> implementation do not order elements as well, meaning you cna directly retrieve an element, unless you want to iterate over them.</p>
+
+<h4 id="comparing-set-implementations">Comparing Set Implementations</h4>
+
+<p><em>HashSet</em></p>
+
+<p>Uses the elements hash-code to check the value instead of <code>equals</code> and stores the hashes in table.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Constant time for adding and checking elements</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Elements are un-ordered</li>
+<li>Improper implementing if the <code>hashcode</code> could degrade performance.</li>
+</ul>
+
+<p><em>TreeSet</em></p>
+
+<p>Allows for items to be ordered, implements the <code>NavigableSet</code> interface. Tree set can take a custom comparator however it will use &laquo;natural ordering&raquo; if non is specified.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Allows for ordering, order is recalculated after every insert or delete.</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Adding and checking elements is on log time</li>
+</ul>
+
+<h4 id="working-with-set-methods">Working with Set Methods</h4>
+
+<p>The <code>Set</code> interface does not add any new methods, instead it uses the methods inherited from <code>Collection</code>.</p>
+
+<p>Example with <code>HashSet</code>.</p>
+
+<pre><code class="language-java">Set&lt;Integer&gt; set = new HashSet&lt;&gt;();
+boolean b1 = set.add(66); // true
+boolean b2 = set.add(10); // true
+boolean b3 = set.add(66); // false
+boolean b4 = set.add(8); // true
+for (Integer integer: set) System.out.print(integer + &quot;,&quot;); // 66,8,10, not guaranteed in that order as we are using hash set
+</code></pre>
+
+<p>Example using <code>TreeSet</code></p>
+
+<pre><code class="language-java">3: Set&lt;Integer&gt; set = new TreeSet&lt;&gt;();
+4: boolean b1 = set.add(66); // true
+5: boolean b2 = set.add(10); // true
+6: boolean b3 = set.add(66); // false
+7: boolean b4 = set.add(8); // true
+8: for (Integer integer: set) System.out.print(integer + &quot;,&quot;); // 8,10,66
+</code></pre>
+
+<h4 id="the-navigableset-interface">The NavigableSet Interface</h4>
+
+<p>This interface allows for searching for elements in many ways, it also allows the tree structure to be traverse from the top down, or from the bottom up.</p>
+
+<p><img src="http://i.imgur.com/677uyn8.png" alt="methods" /></p>
+
+<p>Example:</p>
+
+<pre><code class="language-java">NavigableSet&lt;Integer&gt; set = new TreeSet&lt;&gt;();
+for (int i = 1; i &lt;= 20; i++) set.add(i);
+System.out.println(set.lower(10)); // 9
+System.out.println(set.floor(10)); // 10
+System.out.println(set.ceiling(20)); // 20
+System.out.println(set.higher(20)); // null
+</code></pre>
+
+<p>In the above, remember <code>higher</code> and <code>lower</code> do not include the targeted element.</p>
+
+<h3 id="using-the-queue-interface">Using the Queue Interface</h3>
+
+<p>Queues are used when when want to access one value at a time, and can only process the end of the queue, either the head or the tail.</p>
+
+<p>By default Java queues are <code>First-in First-out</code>, however there is also <code>Last-in First-out</code></p>
+
+<h4 id="comparing-queue-implementations">Comparing Queue Implementations</h4>
+
+<p><em>LinkedList</em></p>
+
+<p>Implements both <code>List</code> and <code>Queue</code> interfaces. It is also a double-ended queue meaning it can process data from the head and the tail of queue.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Allows for elements that are <em>NOT</em> at the head or tail of the queue to be processed as it implements the <code>List</code> interface.</li>
+<li>&laquo;Best of both worlds&raquo; to an extent</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Not as efficient as a &laquo;pure&raquo; queue, when being used as a queue.</li>
+</ul>
+
+<p><em>Conclusion</em></p>
+
+<ul>
+<li>When you want a queue but still may need to access elements in the middle of the collection.</li>
+</ul>
+
+<p><em>ArrayDequeue</em></p>
+
+<p>A &laquo;pure&raquo; double ended queue, it is impossible to access data in the middle of the collection. Allows for data manipulation at the head and tail of the queue.</p>
+
+<h4 id="working-with-queue-methods">Working with Queue Methods</h4>
+
+<p><img src="http://i.imgur.com/v1PRWaI.png" alt="part1" />
+<img src="http://i.imgur.com/f0poWyW.png" alt="part2" /></p>
+
+<p>There are essentially two types of the methods that do the same thing, one group throws exceptions if the queue is empty or invalid, the other type return <code>null</code></p>
+
+<p><code>add</code>, <code>element</code>, and <code>pop</code> &ndash;&gt; throws exception</p>
+
+<p>vs</p>
+
+<p><code>offer</code>, <code>peek</code> and <code>poll</code> &ndash;&gt; return null</p>
+
+<pre><code class="language-java">Queue&lt;Integer&gt; queue = new ArrayDeque&lt;&gt;();
+System.out.println(queue.offer(10)); // true
+System.out.println(queue.offer(4)); // true
+System.out.println(queue.peek()); // 10
+System.out.println(queue.poll()); // 10
+System.out.println(queue.poll()); // 4
+System.out.println(queue.peek()); // null
+</code></pre>
+
+<p>To work with a &laquo;reverse&raquo; queue instead of using <code>add</code> or <code>offer</code> which add elements to the back of the que  we can use <code>push</code> which adds the element to the front of the queue.</p>
+
+<pre><code class="language-java">ArrayDeque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+stack.push(10);
+stack.push(4);
+System.out.println(stack.peek()); // 4
+System.out.println(stack.poll()); // 4
+System.out.println(stack.poll()); // 10
+System.out.println(stack.peek()); // null
+</code></pre>
+
+<p><code>ArrayDeque</code> allows for both stack (last in first out) and a queue  (first in first out)</p>
+
+<p>You can think of a queue as in a line of people.</p>
+
+<p>You can think if a stack as in a pile of something, in which you only access the top item, either adding or removing.</p>
+
+<h3 id="map">Map</h3>
+
+<p>Map uses key value pairs at its core. An example could be a phone, it is simple to get a persons number by their name.</p>
+
+<h4 id="comparing-map-implementations">Comparing Map Implementations</h4>
+
+<p><em>HashMap</em></p>
+
+<p>Stores keys in a hash-table using the keys <code>hashcode</code> method</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Adds and retrieves elements in constant time.</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Lose ordering</li>
+<li>Improper implementation of <code>hashcode</code> can degrade performance.</li>
+</ul>
+
+<p><em>LinkedHashMap</em></p>
+
+<p>nearly identical to hash map but maintain ordering of keys.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Keys are ordered</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Same as above</li>
+</ul>
+
+<p><em>TreeMap</em></p>
+
+<p>Stores keys in a sorted tree structure.</p>
+
+<p><em>Pros</em></p>
+
+<ul>
+<li>Sorted keys</li>
+</ul>
+
+<p><em>Cons</em></p>
+
+<ul>
+<li>Non constant read and write times.</li>
+</ul>
+
+<h4 id="working-with-map-methods">Working with Map Methods</h4>
+
+<p>Since <code>Map</code> does not inherit from <code>Collection</code> most map methods are specific to the key value system.</p>
+
+<p><img src="http://i.imgur.com/JDPL8DW.png" alt="Map methods" /></p>
+
+<p>Using <code>HashMap</code></p>
+
+<pre><code class="language-java">Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
+
+map.put(&quot;koala&quot;, &quot;bamboo&quot;);
+map.put(&quot;lion&quot;, &quot;meat&quot;);
+map.put(&quot;giraffe&quot;, &quot;leaf&quot;);
+
+String food = map.get(&quot;koala&quot;); // bamboo
+for (String key: map.keySet())
+  System.out.print(key + &quot;,&quot;); // koala,giraffe,lion,  this could be returned in any order
+</code></pre>
+
+<p>Using a tree map</p>
+
+<pre><code class="language-java">Map&lt;String, String&gt; map = new TreeMap&lt;&gt;();
+
+map.put(&quot;koala&quot;, &quot;bamboo&quot;);
+map.put(&quot;lion&quot;, &quot;meat&quot;);
+map.put(&quot;giraffe&quot;, &quot;leaf&quot;);
+
+String food = map.get(&quot;koala&quot;); // bamboo
+for (String key: map.keySet())
+  System.out.print(key + &quot;,&quot;); // giraffe,koala,lion, guaranteed ordering based on String implementation or Comparator
+</code></pre>
+
+<h3 id="comparing-collection-types">Comparing Collection Types</h3>
+
+<p>Quick over view of collection types and behaviours.</p>
+
+<p><img src="http://i.imgur.com/ylMWKtl.png" alt="part 1" />
+<img src="http://i.imgur.com/Ap7GByM.png" alt="part 2" /></p>
+
+<p>You will be required to know which structures allow nulls and which ones don&rsquo;t.</p>
+
+<p>As a general rule any structure that allows sorting, does <em>NOT</em> allow null (as its hard to sort nothing).</p>
+
+<ol>
+<li><code>TreeMap</code> is permitted to have null <em>VALUES</em> but not null keys.</li>
+<li><code>ArrayDeuque</code>can not have nulls as nulls take on a special meaning in queues.</li>
+<li><code>Hashtable</code> does not allow null keys nor values for legacy reasons.</li>
+<li><code>TreeSet</code> does not allow null elements.</li>
+</ol>
+
+<h4 id="best-use-cases-for-each-collection-type">Best use cases for each collection type</h4>
+
+<p><img src="http://i.imgur.com/Mxkx6rj.png" alt="table" /></p>
+
+<h2 id="comparator-vs-comparable">Comparator vs. Comparable</h2>
+
+<p>Java sorts numbers based on their natural order.</p>
+
+<p>Java sorts Strings based on the unicode character. This means in strings:
+numbers &ndash;&gt; capital letters &ndash;&gt; lowercase letters</p>
+
+<p><code>Comparable</code> and <code>Comparator</code> are similar but slightly different.</p>
+
+<p>Think of <code>Comparable</code> as an &laquo;internal&raquo; form of comparator, that is often implemented by a class to denote how to compare objects of this class. Here you tell Java how you want to compare the type of this class</p>
+
+<p>Think of <code>Comparator</code> as an &laquo;external&raquo; for of comparable, that is you pass in an object and how it should be compared to another object. This is often done outside of the class such as in lambdas and such.</p>
+
+<h3 id="comparable">Comparable</h3>
+
+<p>The <code>Comparable</code> interface only has one method</p>
+
+<pre><code class="language-java">public interface Comparable&lt;T&gt; {
+public int compareTo(T o);
+}
+</code></pre>
+
+<p>If we want to sort ducks based on their name we could do the following:</p>
+
+<pre><code class="language-java">import java.util.*;
+
+public class Duck implements Comparable&lt;Duck&gt; {
+  private String name;
+
+  public Duck(String name) {
+   this.name = name;
+  }
+
+  public String toString() { // use readable output
+    return name;
+  }
+
+  public int compareTo(Duck d) {
+    return name.compareTo(d.name); // call String's compareTo
+  }
+
+  public static void main(String[] args) {
+    List&lt;Duck&gt; ducks = new ArrayList&lt;&gt;();
+    ducks.add(new Duck(&quot;Quack&quot;));
+    ducks.add(new Duck(&quot;Puddles&quot;));
+    Collections.sort(ducks); // sort by name
+    System.out.println(ducks); // [Puddles, Quack]
+} }
+</code></pre>
+
+<p>The <code>compareTo</code> method returns an int</p>
+
+<ul>
+<li>0 means the value passed in is the <em>same</em> as this object</li>
+<li>&lt;0 means the value passed in <em>smaller</em> than this object</li>
+<li>0&gt; means the value passed is <em>bigger</em> then this object.</li>
+</ul>
+
+<p>Here if we want build or custom implementation of <code>compareTo</code></p>
+
+<pre><code class="language-java">public class Animal implements java.util.Comparable&lt;Animal&gt; {
+  private int id;
+
+  public int compareTo(Animal a) {
+    return id – a.id;
+}
+
+  public static void main(String[] args) {
+    Animal a1 = new Animal();
+    Animal a2 = new Animal();
+
+    a1.id = 5;
+    a2.id = 7;
+
+    System.out.println(a1.compareTo(a2)); // -2
+    System.out.println(a1.compareTo(a1)); // 0
+    System.out.println(a2.compareTo(a1)); // 2
+ } }
+</code></pre>
+
+<blockquote>
+<p>Remember that id – a.id sorts in ascending order and a.id – id sorts in descending order.</p>
+</blockquote>
+
+<p>In legacy code, prior to generics you will have to cast the incoming object</p>
+
+<pre><code class="language-java">public int compareTo(Object obj) {
+  LegacyDuck d = (LegacyDuck) obj; // cast because no generics
+  return name.compareTo(d.name);
+</code></pre>
+
+<p>As good practice it is common to ensure that <code>compareTo</code> is consistent with <code>equals</code> that is if <code>equals</code> returns true, then <code>compareTo</code> should return 0.</p>
+
+<p>### Comparator</p>
+
+<p><code>Comparator</code> is good when you want to sort objects that did not implement the <code>Comparable</code> interface, or if you wish to use a different ordering than the one implemented.</p>
+
+<p>Assuming the duck class from above</p>
+
+<pre><code class="language-java">public static void main(String[] args) {
+  Comparator&lt;Duck&gt; byWeight = new Comparator&lt;Duck&gt;() {
+    public int compare(Duck d1, Duck d2) {
+      return d1.getWeight()—d2.getWeight();
+  }
+  };
+
+  List&lt;Duck&gt; ducks = new ArrayList&lt;&gt;();
+  ducks.add(new Duck(&quot;Quack&quot;, 7));
+  ducks.add(new Duck(&quot;Puddles&quot;, 10));
+
+  Collections.sort(ducks);
+  System.out.println(ducks); // [Puddles, Quack]
+
+  Collections.sort(ducks, byWeight);
+  System.out.println(ducks); // [Quack, Puddles]
+}
+</code></pre>
+
+<p>Here we defined our comparator as an inner class, since it only has one abstract method on it, we can use it in lambda expressions.</p>
+
+<pre><code class="language-java">Comparator&lt;Duck&gt; byWeight = (d1, d2) -&gt; d1.getWeight()—d2.getWeight();
+Comparator&lt;Duck&gt; byWeight = (Duck d1, Duck d2) -&gt; d1.getWeight()—d2.getWeight();
+</code></pre>
+
+<p><img src="http://i.imgur.com/uNx4lOd.png" alt="comparable vs comparator" /></p>
+
+<p>The <code>Comparator</code> interface also provides useful static methods if you want to compare object based on multiple values.</p>
+
+<pre><code class="language-java">public class ChainingComparator implements Comparator&lt;Squirrel&gt; {
+  public int compare(Squirrel s1, Squirrel s2) {
+    Comparator&lt;Squirrel&gt; c = Comparator.comparing(s -&gt; s.getSpecies());
+    c = c.thenComparingInt(s -&gt; s.getWeight());
+    return c.compare(s1, s2);
+}}
+</code></pre>
+
+<h2 id="searching-and-sorting-1">Searching and Sorting</h2>
+
+<p>You can use <code>Collections.sort()</code> to sort any class that directly or indirectly inherits from <code>Collection</code></p>
+
+<p>However the <code>sort()</code> method expects the object to implement <code>Comparable</code>, specify an object with a <code>Comparator</code> or else it will fail to compile.</p>
+
+<pre><code class="language-java">import java.util.*;
+
+public class SortRabbits {
+  static class Rabbit{ int id; }
+  public static void main(String[] args) {
+    List&lt;Rabbit&gt; rabbits = new ArrayList&lt;&gt;();
+    rabbits.add(new Rabbit());
+    Collections.sort(rabbits); // DOES NOT COMPILE
+} }
+</code></pre>
+
+<p>In the above <code>Rabbits</code> does not implement <code>Comparable</code> so Java does not know how to compare them.</p>
+
+<pre><code class="language-java">import java.util.*;
+
+public class SortRabbits {
+  static class Rabbit{ int id; }
+  public static void main(String[] args) {
+    List&lt;Rabbit&gt; rabbits = new ArrayList&lt;&gt;();
+    rabbits.add(new Rabbit());
+    Comparator&lt;Rabbit&gt; c = (r1, r2) -&gt; r1.id - r2.id;
+    Collections.sort(rabbits, c);
+} }
+</code></pre>
+
+<p>Here we passed in a <code>Comparator</code> so Java does know how to compare these rabbits.</p>
+
+<p>Both the <code>sort</code> and the <code>binarySearch</code> method allow you to pass in <code>Comparator</code> to specify ordering.</p>
+
+<p>It is important to remember that binary search requires the elements to be sorted from smallest to largest.</p>
+
+<pre><code class="language-java">List&lt;String&gt; names = Arrays.asList(&quot;Fluffy&quot;, &quot;Hoppy&quot;);
+Comparator&lt;String&gt; c = Comparator.reverseOrder();
+int index = Collections.binarySearch(names, &quot;Hoppy&quot;, c);
+System.out.println(index); // -1
+</code></pre>
+
+<p>In the above we reverse the order, making it largest to smallest, hence it cant find &laquo;Hoppy&raquo;</p>
+
+<h4 id="trees">Trees</h4>
+
+<p>You can only add elements to either <code>TreeSet</code> or <code>TreeMap</code> that implement <code>Comparable</code> unless you explicitly specify a <code>Comparator</code> in the <code>Tree...</code>  constructor.</p>
+
+<pre><code class="language-java">public class UseTreeSet {
+  static class Rabbit{ int id; }
+  public static void main(String[] args) {
+    Set&lt;Duck&gt; ducks = new TreeSet&lt;&gt;();
+    ducks.add(new Duck(&quot;Puddles&quot;));
+
+    Set&lt;Rabbit&gt; rabbit = new TreeSet&lt;&gt;();
+    rabbit.add(new Rabbit()); // throws an exception
+} }
+</code></pre>
+
+<p>In the above an exception is thrown because <code>Rabbit</code> does not implement <code>Comparable</code> while <code>Duck</code> does.</p>
+
+<p>To make this work we could do the following</p>
+
+<pre><code class="language-java">Set&lt;Rabbit&gt; rabbit = new TreeSet&lt;&gt;(new Comparator&lt;Rabbit&gt;() {
+  public int compare(Rabbit r1, Rabbit r2) {
+    return r1.id = r2.id;
+  }
+});
+
+rabbit.add(new Rabbit()); // all good
+</code></pre>
+
+<h2 id="additions-in-java-8">Additions in Java 8</h2>
+
+<p>Java 8 introduces several new methods to the Collections API <code>removeIf(), forEach(), merge(), computeIfPresent(), and computeIfAbsent()</code></p>
+
+<p>It also introduces lambdas and method references.</p>
+
+<h3 id="using-method-references">Using Method References.</h3>
+
+<blockquote>
+<p>Method references are a way to make the code shorter by reducing some of the code that can be inferred and simply mentioning the name of the method.</p>
+</blockquote>
+
+<p>Similar lambada method references flip the traditional way we do things, instead of passing data to a method, we get to pass a method reference to data (under the hood java injects the data back into the method)</p>
+
+<p>Given:</p>
+
+<pre><code class="language-java">public class DuckHelper {
+  public static int compareByWeight(Duck d1, Duck d2) {
+    return d1.getWeight()—d2.getWeight();
+  }
+
+  public static int compareByName(Duck d1, Duck d2) {
+    return d1.getName().compareTo(d2.getName());
+  }
+}
+</code></pre>
+
+<p>we could use this helper as such</p>
+
+<pre><code class="language-java">Comparator&lt;Duck&gt; byWeight = (d1, d2) -&gt; DuckHelper.compareByWeight(d1, d2);
+</code></pre>
+
+<p>or a more compact way:</p>
+
+<pre><code class="language-java">Comparator&lt;Duck&gt; byWeight = DuckHelper::compareByWeight;
+</code></pre>
+
+<blockquote>
+<p>DuckHelper::compareByWeight returns a functional interface and not an int. Remember that :: is like lambdas, and it is typically used for deferred execution.</p>
+</blockquote>
+
+<p>There are four main type of method reference types:</p>
+
+<ol>
+<li>Static methods</li>
+<li>Instance methods on a particular instance</li>
+<li>Instance methods on an instance to be determined at runtime</li>
+<li>Constructors</li>
+</ol>
+
+<p>Method references are common when dealing with functional interfaces as they provide compact ways of passing methods</p>
+
+<p>Here we pass a static method</p>
+
+<pre><code class="language-java">Consumer&lt;List&lt;Integer&gt;&gt; methodRef1 = Collections::sort;
+Consumer&lt;List&lt;Integer&gt;&gt; lambda1 = l -&gt; Collections.sort(l);
+</code></pre>
+
+<p>Here we pass an instance method</p>
+
+<pre><code class="language-java">String str = &quot;abc&quot;;
+Predicate&lt;String&gt; methodRef2 = str::startsWith;
+Predicate&lt;String&gt; lambda2 = s -&gt; str.startsWith(s);
+</code></pre>
+
+<p>Here we pass an instance method but attach it to the class, it looks the same as referencing a static method.</p>
+
+<pre><code class="language-java">Predicate&lt;String&gt; methodRef3 = String::isEmpty;
+Predicate&lt;String&gt; lambda3 = s -&gt; s.isEmpty();
+</code></pre>
+
+<p>Finally we can use method references when calling constructors, when doing so we do not use the <code>new</code> keyword.</p>
+
+<pre><code class="language-java">Supplier&lt;ArrayList&gt; methodRef4 = ArrayList::new;
+Supplier&lt;ArrayList&gt; lambda4 = () -&gt; new ArrayList();
+</code></pre>
+
+<h3 id="removing-conditionally">Removing Conditionally</h3>
+
+<blockquote>
+<p>Java 8 introduces a new method called removeIf. Before this, we had the ability to remove a specified object from a collection or a specified index from a list. Now we can specify what should be deleted using a block of code.</p>
+</blockquote>
+
+<pre><code class="language-java">boolean removeIf(Predicate&lt;? super E&gt; filter)
+</code></pre>
+
+<p>Here we can remove all elements that match the predicate.</p>
+
+<pre><code class="language-java">List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add(&quot;Magician&quot;);
+list.add(&quot;Assistant&quot;);
+
+System.out.println(list); // [Magician, Assistant]
+
+list.removeIf(s -&gt; s.startsWith(&quot;A&quot;));
+
+System.out.println(list); // [Magician]
+</code></pre>
+
+<h3 id="updating-all-elements">Updating All Elements</h3>
+
+<blockquote>
+<p>Another new method introduced on Lists is replaceAll. Java 8 lets you pass a lambda expression and have it applied to each element in the list. The result replaces the current value of that element.</p>
+</blockquote>
+
+<pre><code class="language-java">void replaceAll(UnaryOperator&lt;E&gt; o)
+</code></pre>
+
+<p>Similar to a functional <em>map</em> operation , <code>UnaryOperator</code> simply returns the same type that is passed in.</p>
+
+<p><code>replaceAll</code> also mutates the collection it is working on.</p>
+
+<pre><code class="language-java">List&lt;Integer&gt; list = Arrays.asList(1, 2, 3);
+list.replaceAll(x -&gt; x*2);
+System.out.println(list); // [2, 4, 6]
+</code></pre>
+
+<h3 id="looping-through-a-collection">Looping through a Collection</h3>
+
+<p>We can use the <code>forEach</code> method to loop over methods now instead of having to iterate over them</p>
+
+<pre><code class="language-java">List&lt;String&gt; cats = Arrays.asList(&quot;Annie&quot;, &quot;Ripley&quot;);
+
+for(String cat: cats)
+  System.out.println(cat);
+
+// or
+
+cats.forEach(c -&gt; System.out.println(c));
+
+// or
+
+cats.forEach(System.out::println;
+</code></pre>
+
+<h3 id="using-new-java-8-map-apis">Using New Java 8 Map APIs</h3>
+
+<p>Three new methods were added to the <code>Map</code> API; <code>merge()</code>, <code>computeIfPresent()</code> and <code>computeIfAbsent()</code>.</p>
+
+<h4 id="merge">merge</h4>
+
+<blockquote>
+<p>The merge() method allows adding logic to the problem of what to choose.</p>
+</blockquote>
+
+<p>Takes a <code>Key</code> a <code>Value</code> and <code>BinaryFunction</code> if the result of the function is a value that it is not null and is not referred by the key, then it inserts that value.</p>
+
+<p>Here we pass in a key,  a value and a function if the length of the new value is larger than the length of the old value (the value already set) then it becomes the new value.</p>
+
+<pre><code class="language-java">BiFunction&lt;String, String, String&gt; mapper = (v1, v2) -&gt; v1.length() &gt; v2.length() ? v1: v2;
+
+Map&lt;String, String&gt; favorites = new HashMap&lt;&gt;();
+favorites.put(&quot;Jenny&quot;, &quot;Bus Tour&quot;);
+favorites.put(&quot;Tom&quot;, &quot;Tram&quot;);
+
+String jenny = favorites.merge(&quot;Jenny&quot;, &quot;Skyride&quot;, mapper);
+String tom = favorites.merge(&quot;Tom&quot;, &quot;Skyride&quot;, mapper);
+
+System.out.println(favorites); // {Tom=Skyride, Jenny=Bus Tour}
+System.out.println(jenny); // Bus 
+System.out.println(tom); // Skyride
+</code></pre>
+
+<p>If the <code>BinaryFunction</code> returns null than the key and value are removed. But if the key is not present it inserts it with the value.</p>
+
+<pre><code class="language-java">BiFunction&lt;String, String, String&gt; mapper = (v1, v2) -&gt; null;
+Map&lt;String, String&gt; favorites = new HashMap&lt;&gt;();
+
+favorites.put(&quot;Jenny&quot;, &quot;Bus Tour&quot;);
+favorites.put(&quot;Tom&quot;, &quot;Bus Tour&quot;);
+
+favorites.merge(&quot;Jenny&quot;, &quot;Skyride&quot;, mapper);
+favorites.merge(&quot;Sam&quot;, &quot;Skyride&quot;, mapper);
+System.out.println(favorites); // {Tom=Bus Tour, Sam=Skyride}
+</code></pre>
+
+<p>If the <code>BinaryFunction</code> returns a value and the initial value is not set or null, then the returned value is always inserted.</p>
+
+<pre><code class="language-java">BiFunction&lt;String, String, String&gt; mapper = (v1, v2) -&gt; v1.length() &gt; v2.length() ? v1 : v2;
+Map&lt;String, String&gt; favorites = new HashMap&lt;&gt;();
+
+favorites.put(&quot;Sam&quot;, null);
+
+favorites.merge(&quot;Tom&quot;, &quot;Skyride&quot;, mapper);
+favorites.merge(&quot;Sam&quot;, &quot;Skyride&quot;, mapper);
+System.out.println(favorites); // {Tom=Skyride, Sam=Skyride}
+</code></pre>
+
+<h4 id="computeifpresent-and-computeifabsent">computeIfPresent and computeIfAbsent</h4>
+
+<p><code>computeIfPresent</code> takes a <code>BiFunction</code> and only run if a key is present, while <code>computeIfAbsent</code> takes a <code>Function</code> and runs if the key is not found.</p>
+
+<p>Here we apply the function only if the key is found. If the mapping function returns null the key is removed from the map.</p>
+
+<pre><code class="language-java">Map&lt;String, Integer&gt; counts = new HashMap&lt;&gt;();
+counts.put(&quot;Jenny&quot;, 1);
+
+BiFunction&lt;String, Integer, Integer&gt; mapper = (k, v) -&gt; v + 1;
+
+Integer jenny = counts.computeIfPresent(&quot;Jenny&quot;, mapper);
+Integer sam = counts.computeIfPresent(&quot;Sam&quot;, mapper);
+
+System.out.println(counts); // {Jenny=2}
+System.out.println(jenny); // 2
+System.out.println(sam); // null
+</code></pre>
+
+<p>Here we apply the function when a key is not found (or null).</p>
+
+<pre><code class="language-java">Map&lt;String, Integer&gt; counts = new HashMap&lt;&gt;();
+counts.put(&quot;Jenny&quot;, 15);
+counts.put(&quot;Tom&quot;, null);
+
+Function&lt;String, Integer&gt; mapper = (k) -&gt; 1;
+
+Integer jenny = counts.computeIfAbsent(&quot;Jenny&quot;, mapper); // 15
+Integer sam = counts.computeIfAbsent(&quot;Sam&quot;, mapper); // 1
+Integer tom = counts.computeIfAbsent(&quot;Tom&quot;, mapper); // 1
+System.out.println(counts); // {Tom=1, Jenny=15, Sam=1}
+</code></pre>
+
+<p>In the above Jenny&rsquo;s value is not changed as she already has a value, Sam and Tom dont have valid values and are inserted into the map.</p>
+
+<p><img src="http://i.imgur.com/ow0BkAm.png" alt="comparing table" /></p>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=OCJP%20Chapter%203%3a%20Generics%20and%20Collections&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f&amp;title=OCJP%20Chapter%203%3a%20Generics%20and%20Collections" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=OCJP%20Chapter%203%3a%20Generics%20and%20Collections&amp;body=Check out this site https%3a%2f%2fverric.github.io%2f2017%2f06%2f11%2fchapter3%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="https://verric.github.io/2017/06/08/jsonproperty/" title="Removing the need for @JsonProperty from classes">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="https://verric.github.io/2017/06/14/chapter4/" title="OCJP Chapter 4: Functional Programming">
+            Next <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//shortname.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/31/javainnerclasses/">Java Inner classes</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/10/chapter10/">OCJP Chapter 10: JDBC</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/04/chapter9/">OCJP Chapter 9: NIO.2</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/03/chapter8/">OCJP Chapter 8: IO</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/07/01/chapter7/">OCJP Chapter 7: Concurrency</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/27/chapter6/">OCJP Chapter 6: Exceptions and Assertions</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/26/chapter5/">OCJP Chapter 5: Dates, Strings and Localisations</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/21/angular-bootstrap-css/">Tip du jour: Incorpriating bootstrap styling in angular 2/4 with ng-cli</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/14/chapter4/">OCJP Chapter 4: Functional Programming</a>
+          </li>
+        
+          <li>
+          <a href="https://verric.github.io/2017/06/11/chapter3/">OCJP Chapter 3: Generics and Collections</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="https://verric.github.io/tags/programming">programming</a></li><li><a href="https://verric.github.io/tags/study-notes">study-notes</a></li><li><a href="https://verric.github.io/tags/angular2">angular2</a></li><li><a href="https://verric.github.io/tags/bootstrap">bootstrap</a></li><li><a href="https://verric.github.io/tags/inner-classes">inner-classes</a></li><li><a href="https://verric.github.io/tags/introduction">introduction</a></li><li><a href="https://verric.github.io/tags/jackson">jackson</a></li><li><a href="https://verric.github.io/tags/java">java</a></li><li><a href="https://verric.github.io/tags/java-8">java-8</a></li><li><a href="https://verric.github.io/tags/json">json</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+<a href="https://verric.github.io/disclaimer/">Disclaimer</a> <i>&middot;</i>
+
+<a href="https://verric.github.io/terms/">Terms</a> 
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  code with <i class='fa fa-heart'></i>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; 2017 Copyright my blog
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="https://verric.github.io/js/jquery.min.js"></script>
+<script src="https://verric.github.io/js/bootstrap.min.js"></script>
+
+
+<script src="https://verric.github.io/js/highlight.pack.js"></script>
+<script src="https://verric.github.io/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script>
+var ENABLE_POPOVER =  false , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+
